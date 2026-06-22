@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BudCoin (BUD) â€” The Chillest Meme Coin</title>
+  <meta name="description" content="BudCoin (BUD) â€“ The chillest meme coin in the crypto garden. #StayElevated" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f14;--card:rgba(255,255,255,.05);--line:rgba(255,255,255,.1);
+      --text:#ffffff;--muted:rgba(255,255,255,.7);
+      --em1:#10b981;--em2:#a3e635;--em3:#34d399;
+      --rad:18px;--rad-lg:24px;--sh:0 10px 30px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden;
+    }
+    img{max-width:100%;height:auto;display:block}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+    header{position:sticky;top:0;z-index:20;background:rgba(11,15,20,.7);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;gap:10px;align-items:center;text-decoration:none;color:var(--text);font-weight:700;min-width:0}
+    .brand img{width:36px;height:36px;border-radius:8px;object-fit:cover}
+    .links{display:none;gap:20px;color:var(--muted);font-size:14px;flex-wrap:wrap}
+    .links a{color:inherit;text-decoration:none}
+    .links a:hover{color:#fff}
+    .cta-row{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{appearance:none;border:0;border-radius:12px;padding:10px 14px;font-weight:600;cursor:pointer;transition:.2s;display:inline-flex;gap:8px;align-items:center;text-decoration:none}
+    .btn-primary{background:var(--em1);color:#001b10}
+    .btn-primary:hover{filter:brightness(1.08)}
+    .btn-light{background:#fff;color:#111}
+    .btn-light:hover{filter:brightness(.95)}
+
+    .hero{padding:72px 0}
+    h1{font-size:42px;line-height:1.1;margin:0 0 16px;font-weight:800;overflow-wrap:anywhere}
+    h2{font-size:32px;margin:0 0 14px;font-weight:800}
+    p.lead{font-size:18px;color:var(--muted)}
+    .grid{display:grid;gap:24px}
+    .cols-2{grid-template-columns:1fr}
+    .stats{display:flex;gap:24px;flex-wrap:wrap}
+    .stat span{display:block}
+    .stat .lab{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    .stat .val{font-weight:700}
+
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:20px;min-width:0}
+    .card h3{margin:0 0 8px}
+    code,.mono{font-family:ui-monospace,Menlo,Consolas,monospace;overflow-wrap:anywhere}
+
+    .pill{display:inline-flex;gap:8px;align-items:center;font-size:12px;
+      padding:6px 10px;border-radius:999px;border:1px solid rgba(16,185,129,.3);
+      background:rgba(16,185,129,.08);color:#86efac
+    }
+
+    .chart-wrap{height:290px}
+    .legend{display:grid;gap:8px;margin-top:10px}
+    .leg{display:flex;align-items:center;gap:10px}
+    .dot{width:12px;height:12px;border-radius:3px}
+    .phase-list{margin:0;padding-left:18px}
+    .road{display:grid;gap:16px}
+    .how,.faq,.community{display:grid;gap:16px}
+    .footer{border-top:1px solid var(--line);padding:28px 0;margin-top:48px;color:rgba(255,255,255,.6);font-size:14px}
+
+    @media (min-width: 860px){
+      .links{display:flex}
+      .cols-2{grid-template-columns:1.2fr .8fr}
+      .how{grid-template-columns:repeat(3,1fr)}
+      .faq{grid-template-columns:repeat(2,1fr)}
+      .community{grid-template-columns:repeat(2,1fr)}
+      .road{grid-template-columns:repeat(3,1fr)}
+    }
+
+    .panel{aspect-ratio:1/1;border-radius:24px;border:1px solid var(--line);display:grid;place-items:center;
+      background:linear-gradient(135deg, rgba(16,185,129,.18), rgba(163,230,53,.08));padding:20px}
+    .logo-hero{width:110px;height:110px;border-radius:12px;object-fit:cover}
+
+    /* Floating AI */
+    .ai-fab{
+      position:fixed;right:20px;bottom:20px;width:60px;height:60px;
+      border-radius:50%;background:linear-gradient(135deg,#10b981,#34d399);
+      color:#fff;font-size:26px;display:flex;align-items:center;justify-content:center;
+      border:none;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.3);transition:.2s;z-index:1000;
+    }
+    .ai-fab:hover{transform:scale(1.1)}
+    .ai-chat{
+      position:fixed;right:20px;bottom:90px;width:360px;max-width:90%;
+      background:#0d1218;border:1px solid var(--line);border-radius:16px;
+      box-shadow:0 10px 25px rgba(0,0,0,.4);display:none;flex-direction:column;overflow:hidden;z-index:999;
+      animation:slideUp .3s ease;
+    }
+    @keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+    .ai-chat header{padding:10px 12px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.05)}
+    .ai-title{font-weight:700;font-size:14px}
+    .ai-body{max-height:360px;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+    .ai-msg{padding:10px;border-radius:12px;max-width:90%}
+    .ai-user{background:#17202a;align-self:flex-end}
+    .ai-bot{background:#0f1720;border:1px solid var(--line);align-self:flex-start}
+    .ai-input{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line);background:rgba(255,255,255,.03)}
+    .ai-input input{flex:1;border-radius:10px;border:1px solid var(--line);background:#0b0f14;color:#fff;padding:8px 10px}
+    .ai-input button{border-radius:10px;border:0;background:var(--em2);padding:8px 12px;font-weight:700;cursor:pointer}
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home" title="BudCoin home">
+        <img src="https://i.ibb.co/NMR7PGz/1000018494.jpg" alt="BudCoin logo">
+        <span>BudCoin</span>
+      </a>
+      <nav class="links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#features">Why BudCoin</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#how">How to Buy</a>
+        <a href="#faq">FAQ</a>
+        <a href="#community">Community</a>
+        <a href="#cta">Join</a>
+      </nav>
+      <div class="cta-row">
+        <a class="btn btn-light" href="https://x.com/BudCoin710" target="_blank" rel="noreferrer">X (Twitter)</a>
+        <a class="btn btn-primary" href="https://t.me/+pHWjcQEaTxRkZDFk" target="_blank" rel="noreferrer">Telegram</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="wrap grid cols-2">
+      <div>
+        <span class="pill">ðŸŒ± New Project â€¢ BudCoin (BUD)</span>
+        <h1>The chillest meme coin in the crypto garden</h1>
+        <p class="lead">
+          Built for the global cannabis cultureâ€”smokers, growers, entrepreneurs, and the simply curiousâ€”BUD isnâ€™t just a token, itâ€™s a movement of mellow vibes and collective growth.
+        </p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 12px">
+          <a class="btn btn-primary" href="#cta">Join the vibe â†’</a>
+          <a class="btn btn-light" href="#ca">View Contract</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="lab">Ticker</span><span class="val">BUD</span></div>
+          <div class="stat"><span class="lab">Chain</span><span class="val">Pump</span></div>
+          <div class="stat"><span class="lab">Status</span><span class="val">Stage 1</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <img class="logo-hero" src="https://i.ibb.co/NMR7PGz/1000018494.jpg" alt="BudCoin logo">
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTRACT -->
+  <section id="ca" class="wrap" style="padding-bottom:18px">
+    <div class="card" style="display:flex;gap:16px;justify-content:space-between;align-items:center;flex-wrap:wrap">
+      <div style="min-width:0">
+        <p class="lab" style="margin:0 0 6px;color:var(--muted)">Contract Address</p>
+        <code id="caText" class="mono">4cZTpVHbWEyXnLFtHkvAQH4kZsFxiaJHg2dFJj64pump</code>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-primary" id="copyBtn">Copy CA</button>
+        <a class="btn btn-light" href="https://pump.fun/" target="_blank" rel="noreferrer">View on Pump</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section id="features" class="wrap" style="padding:56px 0">
+    <div style="max-width:680px">
+      <h2>Why BudCoin?</h2>
+      <p class="lead">420-friendly spirit, community-powered energy, and growth togetherâ€”just like a thriving garden.</p>
+    </div>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:14px">
+      <div class="card"><h3>420-Friendly Spirit</h3><p>A playful nod to the worldâ€™s favorite plant and the community that celebrates it.</p></div>
+      <div class="card"><h3>Community-Powered</h3><p>Driven by memes, laughter, and creativityâ€”not corporate suits.</p></div>
+      <div class="card"><h3>Growth Together</h3><p>Our strength comes from supporting each otherâ€”every BUD counts.</p></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="wrap" style="padding:20px 0 56px">
+    <div class="card">
+      <h3 style="margin-top:0">Welcome to our New Project of BudCoin</h3>
+      <p>
+        Our mission is to grow our project for the first stage. We have more in future! ðŸš€ðŸ’« Whether youâ€™re here for the memes, the tech, or the lifestyle, BudCoin is your digital pass to a greener futureâ€”where fun meets freedom and every BUD counts.
+      </p>
+      <p style="font-weight:600">Join the vibe. Grow the movement. <span style="color:#86efac">#StayElevated</span></p>
+    </div>
+  </section>
+
+  <!-- TOKENOMICS -->
+  <section id="tokenomics" class="wrap" style="padding:56px 0">
+    <div class="grid cols-2">
+      <div>
+        <h2>Tokenomics</h2>
+        <div class="grid" style="grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px">
+          <div class="card"><div class="lab">Ticker</div><div class="val">BUD</div></div>
+          <div class="card"><div class="lab">Total Supply</div><div class="val" id="supplyVal">1,000,000,000 BUD</div></div>
+          <div class="card"><div class="lab">Buy Tax</div><div class="val" id="buyTaxVal">0%</div></div>
+          <div class="card"><div class="lab">Sell Tax</div><div class="val" id="sellTaxVal">0%</div></div>
+        </div>
+        <p class="lab" style="margin-top:10px">*Numbers shown are community-first defaults. Update to your official distribution before launch.</p>
+      </div>
+      <div>
+        <div class="card chart-wrap">
+          <svg id="donut" viewBox="0 0 42 42" width="100%" height="100%" aria-label="Token allocation donut chart">
+            <circle cx="21" cy="21" r="15.915" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="6"></circle>
+          </svg>
+        </div>
+        <div class="legend" id="legend"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap" class="wrap" style="padding:56px 0">
+    <h2>Roadmap</h2>
+    <div class="road">
+      <div class="card">
+        <h3>Phase 1 â€” Seed</h3>
+        <ul class="phase-list">
+          <li>Website & branding (this page)</li>
+          <li>Socials live (X, TG)</li>
+          <li>Meme contests & community growth</li>
+          <li>Light whitepaper + CA live</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Phase 2 â€” Sprout</h3>
+        <ul class="phase-list">
+          <li>DEX tools dashboards</li>
+          <li>Influencer & partner collabs</li>
+          <li>Community airdrops & quests</li>
+          <li>Marketing push</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Phase 3 â€” Bloom</h3>
+        <ul class="phase-list">
+          <li>CEX outreach & listings (TBA)</li>
+          <li>Merch & IRL collabs</li>
+          <li>Community treasury pilots</li>
+          <li>BudCoin ecosystem mini-apps</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO BUY -->
+  <section id="how" class="wrap" style="padding:20px 0 56px">
+    <h2>How to Buy</h2>
+    <div class="how">
+      <div class="card"><h3>1) Get a wallet</h3><p>Install a compatible wallet and fund it with the required chain token (e.g., SOL if applicable).</p></div>
+      <div class="card"><h3>2) Go to Pump</h3><p>Open Pump and paste our CA: <code id="caInline" class="mono">4cZTpVHbWEyXnLFtHkvAQH4kZsFxiaJHg2dFJj64pump</code>. Double-check the address before swapping.</p></div>
+      <div class="card"><h3>3) Swap & HODL</h3><p>Choose your amount, confirm, then welcome to the garden. ðŸŒ¿</p></div>
+    </div>
+  </section>
+
+  <!-- FAQ (AI-powered answers) -->
+  <section id="faq" class="wrap" style="padding:20px 0 56px">
+    <h2>FAQ</h2>
+    <div class="card">
+      <p class="lead">Use the green AI button at the bottom-right to chat with BudCoin AI. It knows tokenomics, supply, taxes, liquidity, how to buy, roadmap, airdrops, listings, risks, wallets, and more.</p>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section id="community" class="wrap" style="padding:20px 0 56px">
+    <div class="community">
+      <div class="card">
+        <h3>Socials</h3>
+        <p>Follow and join the conversation:</p>
+        <div style="display:grid;gap:10px">
+          <a class="btn btn-light" href="https://x.com/BudCoin710" target="_blank" rel="noreferrer">Follow on X</a>
+          <a class="btn btn-primary" href="https://t.me/+pHWjcQEaTxRkZDFk" target="_blank" rel="noreferrer">Join Telegram</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Stage 1 Goals</h3>
+        <ul class="phase-list">
+          <li>Launch social channels & grow early believers</li>
+          <li>Community meme drives & collaborations</li>
+          <li>Lightweight whitepaper & brand assets</li>
+          <li>Listings & basic dashboard (TBA)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta" class="wrap" style="padding:20px 0 64px">
+    <div class="card" style="text-align:center;border-radius:var(--rad-lg)">
+      <h2 style="margin-bottom:8px">Ready to roll with BudCoin?</h2>
+      <p class="lead">Relax, laugh, share good energyâ€”and help us grow the chillest meme coin movement.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px">
+        <a class="btn btn-primary" href="https://t.me/+pHWjcQEaTxRkZDFk" target="_blank" rel="noreferrer">Join Telegram</a>
+        <a class="btn btn-light" href="https://x.com/BudCoin710" target="_blank" rel="noreferrer">Follow on X</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap" style="display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap">
+      <div>Â© <span id="year"></span> BudCoin â€¢ All vibes reserved.</div>
+      <div style="display:flex;gap:18px;color:rgba(255,255,255,.7)">
+        <a class="links" href="#about" style="display:inline">About</a>
+        <a class="links" href="#features" style="display:inline">Why BudCoin</a>
+        <a class="links" href="#community" style="display:inline">Community</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating AI Assistant -->
+  <button class="ai-fab" id="aiFab" aria-controls="aiChat" aria-expanded="false" title="Chat with BudCoin AI">ðŸ¤–</button>
+  <div class="ai-chat" id="aiChat" role="dialog" aria-label="BudCoin AI chat" aria-modal="false">
+    <header>
+      <div class="ai-title">BudCoin AI</div>
+      <div style="font-size:12px;color:var(--muted)">Ask about tokenomics, supply, taxes, liquidity, how to buy, roadmap, airdrops, listings, wallets, safety.</div>
+    </header>
+    <div class="ai-body" id="aiBody" aria-live="polite"></div>
+    <form class="ai-input" id="aiForm">
+      <input id="aiInput" type="text" placeholder="Type your questionâ€¦" autocomplete="off" aria-label="Your question">
+      <button type="submit" title="Send">âž¤</button>
+    </form>
+  </div>
+
+  <script>
+    // ===== Editable site data =====
+    const TOKEN = {
+      totalSupply: 1_000_000_000, // update if needed
+      buyTax: 0,
+      sellTax: 0
+    };
+    const ALLOCATION = [
+      { name: "Liquidity", value: 93, color: getComputedStyle(document.documentElement).getPropertyValue('--em1').trim() || '#10b981' },
+      { name: "Community Rewards", value: 5,   color: getComputedStyle(document.documentElement).getPropertyValue('--em2').trim() || '#a3e635' },
+      { name: "CEX/Marketing", value: 2,      color: getComputedStyle(document.documentElement).getPropertyValue('--em3').trim() || '#34d399' }
+    ];
+    const CONTRACT = "4cZTpVHbWEyXnLFtHkvAQH4kZsFxiaJHg2dFJj64pump";
+    const SOCIALS = {
+      x: "https://x.com/BudCoin710",
+      tg: "https://t.me/+pHWjcQEaTxRkZDFk"
+    };
+
+    // ===== Populate dynamic text =====
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('supplyVal').textContent = TOKEN.totalSupply.toLocaleString() + " BUD";
+    document.getElementById('buyTaxVal').textContent = TOKEN.buyTax + "%";
+    document.getElementById('sellTaxVal').textContent = TOKEN.sellTax + "%";
+    document.getElementById('caText').textContent = CONTRACT;
+    document.getElementById('caInline').textContent = CONTRACT;
+
+    // Copy CA
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(CONTRACT);
+        const btn = document.getElementById('copyBtn');
+        const old = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(()=>btn.textContent = old, 1200);
+      } catch(e){ alert("Copy failed"); }
+    });
+
+    // Donut chart (SVG)
+    (function renderDonut(){
+      const svg = document.getElementById('donut');
+      const radius = 15.915;
+      const circ = 2 * Math.PI * radius;
+      let offset = 25;
+      ALLOCATION.forEach(slice => {
+        const len = circ * (slice.value / 100);
+        const ring = document.createElementNS("http://www.w3.org/2000/svg","circle");
+        ring.setAttribute("cx","21"); ring.setAttribute("cy","21"); ring.setAttribute("r", radius);
+        ring.setAttribute("fill","none");
+        ring.setAttribute("stroke", slice.color);
+        ring.setAttribute("stroke-width","6");
+        ring.setAttribute("stroke-dasharray", `${len} ${circ - len}`);
+        ring.setAttribute("stroke-dashoffset", offset);
+        ring.setAttribute("transform","rotate(-90 21 21)");
+        ring.setAttribute("opacity","0.95");
+        svg.appendChild(ring);
+        offset -= len;
+      });
+      const legend = document.getElementById('legend');
+      ALLOCATION.forEach(s => {
+        const row = document.createElement('div'); row.className = 'leg';
+        const dot = document.createElement('span'); dot.className='dot'; dot.style.background = s.color;
+        const name = document.createElement('span'); name.textContent = `${s.name} â€” ${s.value}%`;
+        row.append(dot,name); legend.appendChild(row);
+      });
+    })();
+
+    // ===== AI Assistant: rich FAQ knowledge base =====
+    const aiFab = document.getElementById('aiFab');
+    const aiChat = document.getElementById('aiChat');
+    const aiBody = document.getElementById('aiBody');
+    const aiForm = document.getElementById('aiForm');
+    const aiInput = document.getElementById('aiInput');
+
+    aiFab.addEventListener('click', () => {
+      const open = aiChat.style.display === 'flex';
+      aiChat.style.display = open ? 'none' : 'flex';
+      aiFab.setAttribute('aria-expanded', String(!open));
+      if(!open && !aiBody.children.length){
+        addMsg("Hi! Iâ€™m BudCoin AI ðŸ¤–ðŸŒ¿ Ask me about contract, tokenomics, allocations, taxes, liquidity, how to buy, slippage, wallets, roadmap, CEX, airdrops, socials, safety, and more.");
+      }
+      if(!open){ aiInput.focus(); }
+    });
+
+    function addMsg(text, who='bot'){
+      const div = document.createElement('div');
+      div.className = 'ai-msg ' + (who === 'user' ? 'ai-user' : 'ai-bot');
+      div.textContent = text;
+      aiBody.appendChild(div);
+      aiBody.scrollTop = aiBody.scrollHeight;
+    }
+
+    // Big knowledge base with regex triggers
+    const KB = [
+      // Core identity
+      { q:/^(hi|hello|hey)\b|what is budcoin|about budcoin/i, a: "BudCoin (BUD) is a meme-fueled community token celebrating chill vibes, humor, and collective growth. Join the movement on X and Telegram." },
+      { q:/ticker|symbol/i, a: "Ticker: BUD" },
+      { q:/chain|network/i, a: "BudCoin is currently on Pump." },
+
+      // Contract
+      { q:/contract|ca|address/i, a: `Official contract address: ${CONTRACT}\nAlways verify on our official X/Telegram.` },
+
+      // Tokenomics & allocations
+      { q:/tokenomics|allocation|distribution|percent|percentage/i, a: `Tokenomics:\nâ€¢ Total Supply: ${TOKEN.totalSupply.toLocaleString()} BUD\nâ€¢ Buy Tax: ${TOKEN.buyTax}%\nâ€¢ Sell Tax: ${TOKEN.sellTax}%\nâ€¢ Allocation: ${ALLOCATION.map(s=>`${s.name} ${s.value}%`).join(", ")}.` },
+      { q:/supply|total supply|circulating/i, a: `Total supply is ${TOKEN.totalSupply.toLocaleString()} BUD. Circulating supply will depend on liquidity and any allocations released.` },
+      { q:/buy tax|buy-tax|buytax/i, a: `Current buy tax: ${TOKEN.buyTax}%` },
+      { q:/sell tax|sell-tax|selltax/i, a: `Current sell tax: ${TOKEN.sellTax}%` },
+
+      // Liquidity / ownership
+      { q:/liquidity|lock|burn|lp|renounce|ownership/i, a: "Liquidity security: we recommend locking LP or burning liquidity and will announce any renounce/lock transactions with links when executed." },
+
+      // How to buy & trading tips
+      { q:/how (do i )?buy|purchase|where.*buy|get.*bud/i, a: `How to buy:\n1) Install a compatible wallet & fund it.\n2) Open Pump.fun and paste our CA: ${CONTRACT}\n3) Choose amount, confirm swap, and HODL.` },
+      { q:/slippage|failed|price impact/i, a: "If swaps fail, try a small slippage increase and retry. Network conditions vary; ensure enough native token for gas." },
+      { q:/wallet|phantom|metamask|trust wallet/i, a: "Use a reputable wallet. Keep your seed phrase offline and never share it. Double-check URLs." },
+
+      // Roadmap / milestones
+      { q:/roadmap|phase|when .*(phase|update)/i, a: "Roadmap:\nâ€¢ Phase 1 â€” Seed: website, socials, memes, light whitepaper, CA live.\nâ€¢ Phase 2 â€” Sprout: DEX dashboards, collabs, community airdrops & quests, marketing.\nâ€¢ Phase 3 â€” Bloom: CEX outreach & listings (TBA), merch, community treasury pilots, ecosystem mini-apps." },
+
+      // Listings
+      { q:/cex|listing|exchange|when.*listing/i, a: "CEX outreach is targeted in Phase 3. Timing depends on demand, volume, and compliance." },
+
+      // Rewards / airdrops
+      { q:/airdrop|giveaway|rewards|quests/i, a: "Community rewards are planned from the 5% allocation. Watch X & Telegram for eligibility and announcements." },
+
+      // Socials / links
+      { q:/social|twitter|x|telegram|community|links/i, a: `Official links:\nâ€¢ X (Twitter): ${SOCIALS.x}\nâ€¢ Telegram: ${SOCIALS.tg}\nBookmark and always verify from these.` },
+
+      // Charts / price
+      { q:/chart|price|graph|dex|tracker/i, a: "Chart/tracker links will be posted after initial liquidity and indexers are live on our socials." },
+
+      // Docs
+      { q:/whitepaper|doc|documentation/i, a: "Light whitepaper is planned in Phase 1. It will outline vision, culture, and mechanics." },
+
+      // Security / safety
+      { q:/risk|safe|safety|financial advice/i, a: "Crypto is volatile and risky. This chat is informational only â€” not financial advice. DYOR and only risk what you can afford to lose." },
+      { q:/scam|fake|impersonation|phishing/i, a: `Beware of fakes. Only trust:\nâ€¢ Contract: ${CONTRACT}\nâ€¢ Official socials: ${SOCIALS.x} and ${SOCIALS.tg}\nNever share your seed phrase.` },
+
+      // Misc
+      { q:/brand|logo|assets|press kit/i, a: "Brand assets and a press kit will be shared alongside the whitepaper/launch materials." },
+      { q:/contact|support|help/i, a: "Ask here or join Telegram and tag an admin. Weâ€™re happy to help!" }
+    ];
+
+    aiForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const v = aiInput.value.trim();
+      if(!v) return;
+      addMsg(v, 'user');
+      let matched = KB.find(item => item.q.test(v));
+      let answer = matched ? matched.a : "I didnâ€™t catch that. Try asking about: tokenomics, allocations, taxes, liquidity, how to buy, slippage, wallets, roadmap, CEX, airdrops, socials, or safety.";
+      setTimeout(()=> addMsg(answer, 'bot'), 200);
+      aiInput.value = "";
+    });
+
+    // Open chat with ? key
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === '?' && !e.ctrlKey && !e.metaKey){
+        aiFab.click();
+      }
+    });
+  </script>
+</body>
+</html>
