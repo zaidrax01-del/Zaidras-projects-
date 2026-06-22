@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAOYC - Digital Lifestyle Brand</title>
+    <link href="https://fonts.cdnfonts.com/css/bauhaus" rel="stylesheet">
+    <style>
+        /* Base styles and resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            color: white;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Bauhaus', sans-serif;
+            font-weight: bold;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+        
+        /* Common page styles */
+        .page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        
+        .page-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+        
+        .blurred-bg {
+            filter: blur(5px);
+        }
+        
+        /* Back button */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            z-index: 100;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        
+        /* Persistent footer */
+        .social-footer {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 90;
+        }
+        
+        .social-footer img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+        
+        .social-footer img:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Welcome page styles */
+        #welcome-page {
+            display: block;
+        }
+        
+        #welcome-bg {
+            background-image: url('https://i.postimg.cc/g0dbpjxS/IMG-20250827-WA0009.jpg');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #000;
+        }
+        
+        .enter-button {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            cursor: pointer;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-family: sans-serif;
+        }
+        
+        /* Homepage styles */
+        .homepage-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3000px; /* Wide container for panoramic image */
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        #homepage-bg {
+            background-image: url('https://i.postimg.cc/Y2GVJth5/IMG-20250825-WA0025.jpg');
+            background-size: auto 100%;
+            width: 3000px;
+            height: 100%;
+        }
+        
+        .nav-dots-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3000px;
+            height: 100%;
+        }
+        
+        .nav-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            animation: bounce 2s infinite alternate;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .nav-tag {
+            position: absolute;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-style: italic;
+            text-transform: uppercase;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            white-space: nowrap;
+            cursor: pointer;
+            z-index: 10;
+            padding: 5px 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
+        }
+        
+        /* Slide around text animation */
+        .slide-around-text {
+            position: fixed;
+            bottom: 70px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-family: sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 18px;
+            letter-spacing: 2px;
+            animation: dropIn 1.5s ease-out forwards;
+            z-index: 80;
+        }
+        
+        @keyframes dropIn {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Content pages common styles */
+        .content-container {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+            height: calc(100% - 80px);
+            overflow-y: auto;
+        }
+        
+        /* Roadmaps and Tokenomics styles */
+        .image-series {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .image-series img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Collection page styles */
+        .coming-soon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-family: 'Bauhaus', sans-serif;
+            font-size: 48px;
+            animation: moveAround 5s infinite alternate;
+        }
+        
+        @keyframes moveAround {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(20px, -20px); }
+            50% { transform: translate(0, -40px); }
+            75% { transform: translate(-20px, -20px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        /* About page styles */
+        .about-content {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-title {
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Bauhaus', sans-serif;
+            font-weight: bold;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+        
+        .about-text {
+            line-height: 1.6;
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+        
+        /* Gallery styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* How to Buy styles */
+        .buy-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .blockchain-steps {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .blockchain-title {
+            margin-bottom: 15px;
+            color: #fff;
+            font-family: 'Bauhaus', sans-serif;
+            font-weight: bold;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+        
+        .steps-list {
+            padding-left: 20px;
+            font-family: sans-serif;
+        }
+        
+        .steps-list li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .contract-address {
+            word-break: break-all;
+            font-family: monospace;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 5px;
+            border-radius: 4px;
+            margin-top: 5px;
+            display: inline-block;
+        }
+        
+        .quick-buy-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .quick-buy-links a {
+            display: block;
+        }
+        
+        .quick-buy-links img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+        
+        .quick-buy-links img:hover {
+            transform: scale(1.1);
+        }
+        
+        /* AI FAQ styles */
+        .chatbot-container {
+            width: 90%;
+            max-width: 800px;
+            height: 70vh;
+            margin: 0 auto;
+            background-image: url('https://i.postimg.cc/fLW7Lq84/IMG-20250826-WA0022.jpg');
+            background-size: cover;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            font-family: sans-serif;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            margin-right: 10px;
+            font-family: sans-serif;
+        }
+        
+        .chat-input button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: #4e54c8;
+            color: white;
+            cursor: pointer;
+            font-family: sans-serif;
+        }
+
+        /* Horizontal scrolling for homepage */
+        #homepage {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        /* Scrollbar styling */
+        #homepage::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        #homepage::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        #homepage::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 4px;
+        }
+
+        #homepage::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <!-- WELCOME PAGE -->
+    <div id="welcome-page" class="page">
+        <div class="page-bg" id="welcome-bg"></div>
+        <div class="enter-button">Enter&gt;</div>
+        <!-- No social footer on welcome page -->
+    </div>
+
+    <!-- HOMEPAGE -->
+    <div id="homepage" class="page">
+        <a href="#" class="back-button">Back</a>
+        <div class="homepage-container">
+            <div class="page-bg" id="homepage-bg"></div>
+            <div class="nav-dots-container">
+                <!-- Navigation dots will be positioned here with JavaScript -->
+            </div>
+        </div>
+        <div class="slide-around-text">&lt;SLIDE AROUND&gt;</div>
+        <div class="social-footer">
+            <a href="https://x.com/koaychouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png" alt="X"></a>
+            <a href="https://t.me/koaycbasedhouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram"></a>
+        </div>
+    </div>
+
+    <!-- ROADMAPS PAGE -->
+    <div id="roadmaps-page" class="page">
+        <div class="page-bg blurred-bg"></div>
+        <a href="#" class="back-button">Back</a>
+        <div class="content-container">
+            <div class="image-series">
+                <img src="https://i.postimg.cc/9XqbqZJk/IMG-20250826-WA0005.jpg" alt="Roadmap Part 1">
+                <img src="https://i.postimg.cc/gjwTx7rt/IMG-20250826-WA0006.jpg" alt="Roadmap Part 2">
+                <img src="https://i.postimg.cc/KvNSM6Y4/IMG-20250826-WA0004.jpg" alt="Roadmap Part 3">
+            </div>
+        </div>
+        <div class="social-footer">
+            <a href="https://x.com/koaychouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png" alt="X"></a>
+            <a href="https://t.me/koaycbasedhouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram"></a>
+        </div>
+    </div>
+
+    <!-- TOKENOMICS PAGE -->
+    <div id="tokenomics-page" class="page">
+        <div class="page-bg blurred-bg"></div>
+        <a href="#" class="back-button">Back</a>
+        <div class="content-container">
+            <div class="image-series">
+                <img src="https://i.postimg.cc/Z5Rx4Ms1/IMG-20250826-WA0018.jpg" alt="Tokenomics Part 1">
+                <img src="https://i.postimg.cc/9QVYKfyF/IMG-20250826-WA0020.jpg" alt="Tokenomics Part 2">
+                <img src="https://i.postimg.cc/JhgLPvSm/IMG-20250826-WA0015.jpg" alt="Tokenomics Part 3">
+            </div>
+        </div>
+        <div class="social-footer">
+            <a href="https://x.com/koaychouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png" alt="X"></a>
+            <a href="https://t.me/koaycbasedhouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram"></a>
+        </div>
+    </div>
+
+    <!-- COLLECTION PAGE -->
+    <div id="collection-page" class="page">
+        <div class="page-bg blurred-bg"></div>
+        <a href="#" class="back-button">Back</a>
+        <div class="coming-soon">COMING SOON</div>
+        <div class="social-footer">
+            <a href="https://x.com/koaychouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png" alt="X"></a>
+            <a href="https://t.me/koaycbasedhouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram"></a>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about-page" class="page">
+        <div class="page-bg blurred-bg"></div>
+        <a href="#" class="back-button">Back</a>
+        <div class="content-container">
+            <div class="about-content">
+                <h2 class="about-title">WHAT IS KAOYC?</h2>
+                <p class="about-text">
+                    KAOYC is more than just a tokenâ€”it is a lifestyle brand born from the fusion of cryptocurrency prestige and the vibrant culture of NFTs. Built to stand as a symbol of creativity, freedom, and digital identity, KAOYC captures the essence of what it means to thrive in the Web3 era. At its heart, KAOYC is not only a digital asset but also a cultural hubâ€”a stockhouse for memes, trends, and collective expression across three major blockchains. It represents a space where humor, innovation, and community come together, redefining how people engage with blockchain technology and internet culture. More than ownership, KAOYC is about belonging. It is a brand that champions the spirit of being "based," forward-thinking, and unapologetically unique. By blending the energy of meme culture with the limitless opportunities of decentralized technology, KAOYC is set to become a lasting symbol of the new digital lifestyle.
+                </p>
+            </div>
+        </div>
+        <div class="social-footer">
+            <a href="https://x.com/koaychouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png" alt="X"></a>
+            <a href="https://t.me/koaycbasedhouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram"></a>
+        </div>
+    </div>
+
+    <!-- GALLERY PAGE -->
+    <div id="gallery-page" class="page">
+        <div class="page-bg blurred-bg"></div>
+        <a href="#" class="back-button">Back</a>
+        <div class="content-container">
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://i.postimg.cc/65xsmdqs/IMG-20250826-WA0026.jpg" alt="Gallery Image 1"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/BQphBD1B/IMG-20250826-WA0027.jpg" alt="Gallery Image 2"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/jd1fTSVr/IMG-20250826-WA0028.jpg" alt="Gallery Image 3"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/zBqb7LhT/IMG-20250826-WA0029.jpg" alt="Gallery Image 4"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/Hk5rC04Q/IMG-20250826-WA0031.jpg" alt="Gallery Image 5"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/C1v14cSV/IMG-20250826-WA0032.jpg" alt="Gallery Image 6"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/Kjw8641q/IMG-20250826-WA0033.jpg" alt="Gallery Image 7"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/gkLJvy7f/IMG-20250826-WA0034.jpg" alt="Gallery Image 8"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/KzYc4tLp/IMG-20250826-WA0035.jpg" alt="Gallery Image 9"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/zD6DXbfp/IMG-20250826-WA0036.jpg" alt="Gallery Image 10"></div>
+            </div>
+        </div>
+        <div class="social-footer">
+            <a href="https://x.com/koaychouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png" alt="X"></a>
+            <a href="https://t.me/koaycbasedhouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram"></a>
+        </div>
+    </div>
+
+    <!-- HOW TO BUY PAGE -->
+    <div id="howtobuy-page" class="page">
+        <div class="page-bg blurred-bg"></div>
+        <a href="#" class="back-button">Back</a>
+        <div class="content-container">
+            <div class="buy-steps">
+                <div class="blockchain-steps">
+                    <h3 class="blockchain-title">SOL</h3>
+                    <ol class="steps-list">
+                        <li>Download Phantom wallet.</li>
+                        <li>Fund it with SOL (buy from CEX like Binance or Coinbase, then withdraw).</li>
+                        <li>Go to the buy link: <a href="https://photon-sol.tinyastro.io/en/lp/4RZfuZL8LQDAWmJdHYvrmVaSeg7Jbfa5np1pT8HmUJx4" target="_blank">photon-sol.tinyastro.io</a></li>
+                        <li>Paste the KAOYC Solana contract address: <span class="contract-address">Fsz7iAgWiLKDZwWkoLQc7E5SbVREKq8jzazp2GizBAGS</span></li>
+                        <li>Swap SOL â†’ KAOYC.</li>
+                    </ol>
+                </div>
+                
+                <div class="blockchain-steps">
+                    <h3 class="blockchain-title">ALGO</h3>
+                    <ol class="steps-list">
+                        <li>Download Pera Wallet or Defly.</li>
+                        <li>Fund it with ALGO.</li>
+                        <li>Go to the buy link: <a href="https://rug.ninja/Koayc%20On%20Algo" target="_blank">rug.ninja/Koayc On Algo</a></li>
+                        <li>Paste the KAOYC ASA ID / contract address, swap ALGO â†’ KAOYC.</li>
+                    </ol>
+                </div>
+                
+                <div class="blockchain-steps">
+                    <h3 class="blockchain-title">BASE</h3>
+                    <ol class="steps-list">
+                        <li>Download Metamask or Coinbase Wallet.</li>
+                        <li>Bridge ETH to Base chain using the Base Bridge.</li>
+                        <li>Go to the buy link: <a href="https://dexscreener.com/base/0x8c04c6Aba44ff0cF6E0eC9260cB0135416325F40" target="_blank">dexscreener.com</a></li>
+                        <li>Paste the KAOYC Base contract address: <span class="contract-address">0x2136d621e7dcCD5567e72bF1D7C5a33311157f99</span></li>
+                        <li>Swap ETH â†’ KAOYC.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="quick-buy-links">
+                <a href="https://photon-sol.tinyastro.io/en/lp/4RZfuZL8LQDAWmJdHYvrmVaSeg7Jbfa5np1pT8HmUJx4" target="_blank">
+                    <img src="https://i.postimg.cc/v8LkqB43/download.png" alt="Solana">
+                </a>
+                <a href="https://dexscreener.com/base/0x8c04c6Aba44ff0cF6E0eC9260cB0135416325F40" target="_blank">
+                    <img src="https://i.postimg.cc/L66tqFCb/images.jpg" alt="Base">
+                </a>
+                <a href="https://rug.ninja/Koayc%20On%20Algo" target="_blank">
+                    <img src="https://i.postimg.cc/zGhVvdrQ/download-1.png" alt="Algorand">
+                </a>
+            </div>
+        </div>
+        <div class="social-footer">
+            <a href="https://x.com/koaychouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png" alt="X"></a>
+            <a href="https://t.me/koaycbasedhouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram"></a>
+        </div>
+    </div>
+
+    <!-- AI FAQ PAGE -->
+    <div id="faq-page" class="page">
+        <div class="page-bg blurred-bg"></div>
+        <a href="#" class="back-button">Back</a>
+        <div class="content-container">
+            <div class="chatbot-container">
+                <div class="chat-messages">
+                    <!-- Chat messages will appear here -->
+                    <div class="message bot-message">
+                        <p>Hello! I'm the KAOYC AI assistant. How can I help you today?</p>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Ask me anything about KAOYC...">
+                    <button>Send</button>
+                </div>
+            </div>
+        </div>
+        <div class="social-footer">
+            <a href="https://x.com/koaychouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png" alt="X"></a>
+            <a href="https://t.me/koaycbasedhouse" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram"></a>
+        </div>
+    </div>
+
+    <script>
+        // Page navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set background images for pages
+            document.querySelector('#roadmaps-page .page-bg').style.backgroundImage = "url('https://i.postimg.cc/cHcnQ1tr/IMG-20250823-WA0020.jpg')";
+            document.querySelector('#tokenomics-page .page-bg').style.backgroundImage = "url('https://i.postimg.cc/nh27jYgq/IMG-20250825-WA0016.jpg')";
+            document.querySelector('#collection-page .page-bg').style.backgroundImage = "url('https://i.postimg.cc/HWPTxJ6j/IMG-20250824-WA0024.jpg')";
+            document.querySelector('#about-page .page-bg').style.backgroundImage = "url('https://i.postimg.cc/Tw6BhxDk/IMG-20250825-WA0026.jpg')";
+            document.querySelector('#gallery-page .page-bg').style.backgroundImage = "url('https://i.postimg.cc/TP7CvXcL/IMG-20250825-WA0023.jpg')";
+            document.querySelector('#faq-page .page-bg').style.backgroundImage = "url('https://i.postimg.cc/rFfBF7gT/IMG-20250825-WA0018.jpg')";
+            document.querySelector('#howtobuy-page .page-bg').style.backgroundImage = "url('https://i.postimg.cc/rFfBF7gT/IMG-20250825-WA0018.jpg')";
+            
+            // Enter button functionality
+            document.querySelector('.enter-button').addEventListener('click', function() {
+                showPage('homepage');
+            });
+            
+            // Back button functionality
+            document.querySelectorAll('.back-button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showPage('homepage');
+                });
+            });
+            
+            // Setup homepage navigation dots
+            setupHomepageNavigation();
+            
+            // Setup chatbot functionality
+            setupChatbot();
+        });
+        
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show the requested page
+            document.getElementById(pageId).style.display = 'block';
+            
+            // Special handling for homepage
+            if (pageId === 'homepage') {
+                // Set scroll position to the middle of the panoramic view
+                setTimeout(() => {
+                    document.getElementById('homepage').scrollLeft = 1000;
+                }, 100);
+            }
+        }
+        
+        function setupHomepageNavigation() {
+            const navContainer = document.querySelector('.nav-dots-container');
+            
+            // Define navigation points with positions and links
+            // Positions are based on the 3000px width of the homepage container
+            const navPoints = [
+                { left: 300, top: '30%', text: 'COLLECTION', target: 'collection-page' },
+                { left: 700, top: '50%', text: 'ROADMAP', target: 'roadmaps-page' },
+                { left: 1100, top: '70%', text: 'TOKENOMICS', target: 'tokenomics-page' },
+                { left: 1500, top: '40%', text: 'ABOUT', target: 'about-page' },
+                { left: 1900, top: '60%', text: 'GALLERY', target: 'gallery-page' },
+                { left: 2300, top: '30%', text: 'HOW TO BUY', target: 'howtobuy-page' },
+                { left: 2700, top: '50%', text: 'AI FAQ', target: 'faq-page' }
+            ];
+            
+            // Create navigation dots and tags
+            navPoints.forEach(point => {
+                // Create dot
+                const dot = document.createElement('div');
+                dot.className = 'nav-dot';
+                dot.style.top = point.top;
+                dot.style.left = point.left + 'px';
+                
+                // Create tag
+                const tag = document.createElement('div');
+                tag.className = 'nav-tag';
+                tag.textContent = point.text;
+                tag.style.top = `calc(${point.top} + 30px)`;
+                tag.style.left = (point.left - 40) + 'px';
+                
+                // Add click event to both dot and tag
+                dot.addEventListener('click', () => showPage(point.target));
+                tag.addEventListener('click', () => showPage(point.target));
+                
+                // Add to homepage
+                navContainer.appendChild(dot);
+                navContainer.appendChild(tag);
+            });
+        }
+        
+        function setupChatbot() {
+            const chatInput = document.querySelector('.chat-input input');
+            const chatButton = document.querySelector('.chat-input button');
+            const chatMessages = document.querySelector('.chat-messages');
+            
+            // Predefined questions and answers
+            const faq = [
+                { question: "what is kaoyc", answer: "KAOYC is a lifestyle brand that merges cryptocurrency with NFT culture. It represents creativity, freedom, and digital identity across multiple blockchains." },
+                { question: "how to buy", answer: "You can buy KAOYC on Solana, Base, and Algorand blockchains. Check the 'How to Buy' section for detailed instructions." },
+                { question: "contract address", answer: "Solana: Fsz7iAgWiLKDZwWkoLQc7E5SbVREKq8jzazp2GizBAGS, Base: 0x2136d621e7dcCD5567e72bF1D7C5a33311157f99, Algorand: Check our official channels for the ASA ID." },
+                { question: "roadmap", answer: "Our roadmap includes expanding the KAOYC ecosystem, launching NFT collections, and building utilities for token holders. Check the Roadmap section for details." },
+                { question: "tokenomics", answer: "KAOYC has a deflationary token model with mechanisms for sustainable growth. See the Tokenomics section for comprehensive information." },
+                { question: "nft", answer: "Our NFT collection is coming soon! It will feature unique traits and utilities for holders. Stay tuned for updates." },
+                { question: "social media", answer: "Follow us on X (Twitter) @koaychouse and join our Telegram group at t.me/koaycbasedhouse for the latest updates." }
+            ];
+            
+            function addMessage(text, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = isUser ? 'message user-message' : 'message bot-message';
+                messageDiv.innerHTML = `<p>${text}</p>`;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            function handleQuestion() {
+                const question = chatInput.value.toLowerCase().trim();
+                if (!question) return;
+                
+                addMessage(question, true);
+                chatInput.value = '';
+                
+                // Find matching FAQ
+                let answered = false;
+                for (const item of faq) {
+                    if (question.includes(item.question)) {
+                        addMessage(item.answer);
+                        answered = true;
+                        break;
+                    }
+                }
+                
+                if (!answered) {
+                    addMessage("I'm not sure about that. Please check our website sections or ask something else about KAOYC.");
+                }
+            }
+            
+            chatButton.addEventListener('click', handleQuestion);
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleQuestion();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
