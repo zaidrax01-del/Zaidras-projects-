@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>FAMILY TROLL | $TROLL Â· Family First Â· Troll Forever Â· Launching Soon</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0A0A0F;
+      color: #F0F0F0;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    img, iframe, .glass-card, .info-card, .how-to-buy, .hero, section {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .glass-card {
+      background: rgba(15, 15, 25, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 2rem;
+      border: 1px solid rgba(0, 255, 200, 0.3);
+      transition: transform 0.2s ease, border-color 0.2s;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(0, 255, 200, 0.6);
+      transform: translateY(-4px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00FFC8, #00B894);
+      color: #0A0A0F;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      box-shadow: 0 8px 16px -6px rgba(0, 255, 200, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #00E6B0, #00A37A);
+      transform: scale(1.02);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #00FFC8;
+      color: #00FFC8;
+      padding: 0.75rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .btn-outline:hover {
+      background: rgba(0, 255, 200, 0.1);
+      border-color: #00E6B0;
+      color: #00E6B0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-img {
+      height: 45px;
+      width: auto;
+      border-radius: 12px;
+    }
+
+    .logo-text {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(115deg, #00FFC8, #00B894);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #CBD5E1;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #00FFC8;
+    }
+
+    .hero {
+      padding: 3rem 0 5rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-badge {
+      background: rgba(0, 255, 200, 0.15);
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #00FFC8;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 .highlight {
+      color: #00FFC8;
+      text-shadow: 0 0 10px rgba(0,255,200,0.3);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #A0AEC0;
+      max-width: 550px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-logo-area {
+      text-align: center;
+      background: radial-gradient(circle at 30% 10%, #1A1A2A, transparent);
+      border-radius: 2rem;
+      padding: 1rem;
+    }
+    .hero-logo-img {
+      max-width: 280px;
+      border-radius: 2rem;
+      box-shadow: 0 0 20px rgba(0,255,200,0.3);
+    }
+
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: #00FFC8;
+      border-radius: 3px;
+    }
+
+    .section-sub {
+      color: #94A3B8;
+      max-width: 700px;
+      margin-bottom: 2.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .info-card {
+      background: #111118;
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      transition: 0.25s;
+      border: 1px solid #2A2A3A;
+    }
+
+    .info-card i {
+      font-size: 2.4rem;
+      color: #00FFC8;
+      margin-bottom: 1rem;
+    }
+
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .info-card p {
+      color: #B9C7D9;
+      font-size: 0.95rem;
+    }
+
+    .token-badge {
+      background: #00FFC8;
+      color: #0A0A0F;
+      font-weight: 700;
+      border-radius: 40px;
+      padding: 0.2rem 1rem;
+      display: inline-block;
+      font-size: 0.8rem;
+    }
+
+    .ca-box {
+      background: #0A0A10;
+      border-radius: 1rem;
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border: 1px solid #2D2D3A;
+      margin-top: 1rem;
+    }
+    .ca-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #00000040;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      word-break: break-all;
+    }
+    .copy-btn {
+      background: #1E2A3A;
+      border: none;
+      color: #00FFC8;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .copy-btn:hover {
+      background: #00FFC8;
+      color: #0A0A0F;
+    }
+    .how-to-buy {
+      background: linear-gradient(135deg, #111118, #0A0A10);
+      border-radius: 2rem;
+      padding: 2rem;
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .step-number {
+      background: #00FFC8;
+      color: #0A0A0F;
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+    .roadmap-phase {
+      background: #111118;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid #00FFC8;
+      transition: 0.2s;
+    }
+    .roadmap-phase:hover {
+      transform: translateX(5px);
+      background: #151520;
+    }
+    .phase-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #00FFC8;
+    }
+    .phase-stats {
+      font-size: 0.85rem;
+      color: #94A3B8;
+      margin-bottom: 0.8rem;
+      font-family: monospace;
+    }
+    .phase-desc {
+      color: #CBD5E1;
+      line-height: 1.5;
+    }
+    .phase-desc ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .phase-desc li {
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .phase-desc li i {
+      color: #00FFC8;
+      width: 18px;
+      font-size: 0.8rem;
+    }
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+    .social-icon {
+      background: #1A1A2A;
+      border-radius: 60px;
+      padding: 0.6rem 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #00FFC8;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+      border: 1px solid #2D2D3A;
+    }
+    .social-icon:hover {
+      background: #00FFC8;
+      color: #0A0A0F;
+    }
+    .chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .chat-toggle {
+      background: linear-gradient(135deg, #00FFC8, #00B894);
+      width: 55px;
+      height: 55px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border: none;
+      color: #0A0A0F;
+      font-size: 26px;
+    }
+    .chat-window {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 320px;
+      height: 480px;
+      background: #0F0F18;
+      border-radius: 1.5rem;
+      border: 1px solid #00FFC8;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+    .chat-header {
+      background: #1A1A2A;
+      padding: 0.8rem;
+      font-weight: bold;
+      border-bottom: 1px solid #2D2D3A;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .message {
+      max-width: 85%;
+      padding: 0.5rem 0.8rem;
+      border-radius: 1rem;
+      font-size: 0.8rem;
+    }
+    .bot-msg {
+      background: #1E2A3A;
+      color: white;
+      align-self: flex-start;
+    }
+    .user-msg {
+      background: #00FFC8;
+      color: #0A0A0F;
+      align-self: flex-end;
+    }
+    .chat-input-area {
+      display: flex;
+      padding: 0.6rem;
+      background: #0A0A10;
+      border-top: 1px solid #2D2D3A;
+      gap: 0.5rem;
+    }
+    .chat-input {
+      flex: 1;
+      background: #1E2A3A;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 40px;
+      color: white;
+      outline: none;
+      font-size: 0.8rem;
+    }
+    .chat-send {
+      background: #00FFC8;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 40px;
+      color: #0A0A0F;
+      cursor: pointer;
+    }
+    .typing {
+      font-size: 0.7rem;
+      color: #00FFC8;
+      padding: 0.2rem;
+    }
+    footer {
+      padding: 2rem 0;
+      text-align: center;
+      color: #5E6F8D;
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .navbar {
+        flex-direction: column;
+        text-align: center;
+      }
+      .nav-links {
+        justify-content: center;
+        gap: 1rem;
+      }
+      .hero-logo-img {
+        max-width: 200px;
+      }
+      .step {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .chat-window {
+        width: 280px;
+        right: -10px;
+      }
+      .logo-img {
+        height: 35px;
+      }
+      .logo-text {
+        font-size: 1.2rem;
+      }
+      body, html {
+        overflow-x: hidden;
+      }
+      .phase-title {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo-container">
+        <img src="https://i.ibb.co/Qjt1CbXK/IMG-20260520-111754-046.jpg" alt="Family Troll Logo" class="logo-img" onerror="this.onerror=null; this.src='https://placehold.co/45x45?text=TROLL';">
+        <div class="logo-text">ðŸ§Œ FAMILY TROLL</div>
+      </div>
+      <div class="nav-links">
+        <a href="#about">Narrative</a>
+        <a href="#token">$TROLL</a>
+        <a href="#how-to-buy">How to Buy</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#community">Community</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-users"></i> FAMILY FIRST Â· TROLL FOREVER Â· LAUNCHING SOON</div>
+        <h1>We are <span class="highlight">Family Troll.</span></h1>
+        <p>A family of trolls who meme together, grind together, and build together. No fake corporate teams. Just trolls having fun while taking over the charts. Family first, troll forever.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#how-to-buy" class="btn-primary"><i class="fas fa-troll"></i> Join the Family</a>
+          <div class="social-links" style="margin: 0;">
+            <a href="https://t.me/+8rEi9WrCUCllM2Q9" target="_blank" class="social-icon"><i class="fab fa-telegram"></i> Telegram</a>
+            <a href="https://x.com/CryptoAlways_" target="_blank" class="social-icon"><i class="fab fa-twitter"></i> X</a>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div><strong style="color:#00FFC8;">ðŸ§Œ Family Built</strong><br>no corporate suits</div>
+          <div><strong style="color:#00FFC8;">ðŸ“ˆ Real Trolls</strong><br>building in public</div>
+          <div><strong style="color:#00FFC8;">ðŸŽ­ Memes Are Weapons</strong><br>community is the force</div>
+        </div>
+      </div>
+      <div class="hero-logo-area">
+        <img src="https://i.ibb.co/Qjt1CbXK/IMG-20260520-111754-046.jpg" alt="Family Troll" class="hero-logo-img" onerror="this.onerror=null; this.src='https://placehold.co/280x280?text=TROLL';">
+        <p style="margin-top: 1rem;"><i class="fas fa-shield-alt"></i> FAMILY TROLL</p>
+        <span class="token-badge" style="margin-top: 0.5rem;">LAUNCHING SOON ON SOLANA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Narrative Section (Family Troll) -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">ðŸ§Œ The Family Troll Narrative</h2>
+      <div class="section-sub">Not a typical token. We're a family of trolls â€” chaotic, loyal, and unstoppable.</div>
+      <div class="grid-3">
+        <div class="info-card"><i class="fas fa-users"></i><h3>Family First</h3><p>We stick together. No whales controlling the group. Every troll matters, and every meme counts.</p></div>
+        <div class="info-card"><i class="fas fa-mask"></i><h3>Troll Energy</h3><p>We embrace the chaos. Memes are our language, and trolling the old system is our mission.</p></div>
+        <div class="info-card"><i class="fas fa-hand-fist"></i><h3>Built by Trolls, for Trolls</h3><p>No fake corporate team. No recycled roadmap. Just a real community grinding from zero.</p></div>
+      </div>
+      <div class="glass-card" style="margin-top: 2rem; padding: 2rem; text-align: center;">
+        <p style="font-size: 1.2rem; font-weight: 500;">"We're not a project. We're a family. And families troll together." <strong style="color:#00FFC8;">ðŸ§Œ $TROLL</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- $TROLL Token Section -->
+  <section id="token">
+    <div class="container">
+      <h2 class="section-title">ðŸ§Œ $TROLL â€” The Family Meme Coin</h2>
+      <div class="section-sub">Fair launch. Community owned. No VCs, no presale tricks â€” just trolls. Launching soon on Solana.</div>
+      
+      <div class="glass-card" style="padding: 1.5rem; margin-bottom: 2rem;">
+        <div style="display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 0.8rem;">
+          <i class="fas fa-link" style="color:#00FFC8;"></i>
+          <strong style="font-size: 1.1rem;">Contract Address (Solana):</strong>
+        </div>
+        <div class="ca-box">
+          <span class="ca-code" id="contractAddress">TBA â€” Announcement on Telegram & X</span>
+          <div style="display: flex; gap: 0.8rem;">
+            <button class="copy-btn" onclick="copyCA()"><i class="far fa-copy"></i> Copy</button>
+            <a href="#" class="btn-outline" style="padding: 0.4rem 1rem; font-size: 0.8rem;"><i class="fas fa-external-link-alt"></i> Coming Soon</a>
+          </div>
+        </div>
+        <p style="font-size: 0.8rem; margin-top: 0.8rem; color:#94A3B8;"><i class="fas fa-shield-alt"></i> Contract will be posted on official Telegram and X before launch. Stay tuned, trolls.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="info-card"><i class="fas fa-torii-gate"></i><h3>Zero Pretend</h3><p>No fake corporate facade. Just real troll energy and transparency.</p></div>
+        <div class="info-card"><i class="fas fa-chart-line"></i><h3>Organic Growth</h3><p>No paid shills. No wash trading. The family drives every spike.</p></div>
+        <div class="info-card"><i class="fas fa-gem"></i><h3>Building in Public</h3><p>Every move, every meme, every milestone shared live. The family decides.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Buy Section -->
+  <section id="how-to-buy">
+    <div class="container">
+      <h2 class="section-title">ðŸ§Œ How to Join the Family (When Live)</h2>
+      <div class="section-sub">Get your $TROLL tokens in 4 simple steps after launch. Become a troll today.</div>
+      <div class="how-to-buy glass-card">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div><strong>Get a Solana Wallet</strong><br>Download Phantom or Solflare. Create a wallet and keep your seed phrase safe.</div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div><strong>Fund with SOL</strong><br>Buy Solana (SOL) from an exchange like Binance, Coinbase, or Kraken. Send SOL to your wallet.</div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div><strong>Connect to a DEX</strong><br>Go to Jupiter or Raydium. Connect your wallet. Paste the $TROLL contract address (announced at launch).</div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div><strong>Swap & Troll</strong><br>Enter the amount of SOL you want to swap for $TROLL. Confirm. You're now part of the family.</div>
+        </div>
+        <div style="text-align: center; margin-top: 1.5rem;">
+          <a href="#" class="btn-primary" style="pointer-events: none; opacity: 0.8;"><i class="fas fa-book-open"></i> Full Guide (Coming with Launch)</a>
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 1rem; font-size: 0.8rem; color:#94A3B8;"><i class="fas fa-exclamation-triangle"></i> Always double-check the contract address from official channels before swapping.</p>
+    </div>
+  </section>
+
+  <!-- ROADMAP TO CEX (theme colors adjusted) -->
+  <section id="roadmap">
+    <div class="container">
+      <h2 class="section-title">ðŸš€ ROADMAP TO CEX LISTING</h2>
+      <div class="section-sub">From a tiny troll villageâ€¦ to millions. From a small familyâ€¦ to a powerful movement.</div>
+      
+      <div class="roadmap-phase">
+        <div class="phase-title">ðŸŸ¢ PHASE 1 â€” FAIR LAUNCH</div>
+        <div class="phase-stats">Market Cap: $500 - $2K</div>
+        <div class="phase-desc">
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Officially launched on Pump.fun</li>
+            <li><i class="fas fa-chart-line"></i> Starting market cap: $500 - $2K</li>
+            <li><i class="fas fa-users"></i> Early trolls begin to enter</li>
+            <li><i class="fas fa-comments"></i> The first family starts forming</li>
+            <li><i class="fas fa-hard-hat"></i> Built from zero, with no big investors</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="roadmap-phase">
+        <div class="phase-title">ðŸ”¥ PHASE 2 â€” FAMILY BUILDING</div>
+        <div class="phase-stats">Market Cap: $10K - $30K</div>
+        <div class="phase-desc">
+          <ul>
+            <li><i class="fas fa-chart-line"></i> Market cap grows to $10K - $30K</li>
+            <li><i class="fab fa-telegram"></i> Telegram & Twitter become more active</li>
+            <li><i class="fas fa-bullhorn"></i> Community raids running nonstop</li>
+            <li><i class="fas fa-mask"></i> Memes spreading everywhere</li>
+            <li><i class="fas fa-eye"></i> Smart money starts watching the trolls</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="roadmap-phase">
+        <div class="phase-title">âš¡ PHASE 3 â€” VIRAL MOMENT</div>
+        <div class="phase-stats">Market Cap: $50K - $150K</div>
+        <div class="phase-desc">
+          <ul>
+            <li><i class="fas fa-chart-simple"></i> Market cap reaches $50K - $150K</li>
+            <li><i class="fas fa-waveform"></i> Trading volume explodes</li>
+            <li><i class="fas fa-fire"></i> The token starts trending</li>
+            <li><i class="fas fa-brain"></i> FOMO begins to hit hard</li>
+            <li><i class="fas fa-hourglass-half"></i> Holders increase every hour</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="roadmap-phase">
+        <div class="phase-title">ðŸ’Ž PHASE 4 â€” DEX EXPANSION</div>
+        <div class="phase-stats">Market Cap: $300K - $1M</div>
+        <div class="phase-desc">
+          <ul>
+            <li><i class="fas fa-rocket"></i> Automatically listed on Raydium</li>
+            <li><i class="fas fa-chart-line"></i> Market cap pushes toward $300K - $1M</li>
+            <li><i class="fas fa-fish"></i> Whales begin accumulating</li>
+            <li><i class="fas fa-microphone-alt"></i> Crypto influencers start talking about the trolls</li>
+            <li><i class="fas fa-fist-raised"></i> The family becomes the strongest force behind the token</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="roadmap-phase">
+        <div class="phase-title">ðŸ† PHASE 5 â€” THE ROAD TO CEX</div>
+        <div class="phase-stats">Market Cap: $1M+ | Daily Volume: Growing</div>
+        <div class="phase-desc">
+          <ul>
+            <li><i class="fas fa-chart-line"></i> Market cap stabilizes above $1M+</li>
+            <li><i class="fas fa-chart-simple"></i> Daily trading volume keeps growing</li>
+            <li><i class="fas fa-globe"></i> Global branding & exposure begin expanding</li>
+            <li><i class="fas fa-exchange-alt"></i> Targeting listings on exchanges like MEXC, BitMart, and Gate.io</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="glass-card" style="margin-top: 2rem; padding: 1.5rem; text-align: center;">
+        <p><i class="fas fa-quote-left" style="color:#00FFC8;"></i> This is only the beginning.<br>From a small market capâ€¦ to millions.<br>From a small familyâ€¦ to a powerful movement.</p>
+        <p style="margin-top: 1rem; font-weight: 700;">ðŸ§Œ Those who stay from the beginning will witness the journey to the top. ðŸ§Œ</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Section with updated socials -->
+  <section id="community">
+    <div class="container">
+      <h2 class="section-title">ðŸ§Œ The Family Behind the Trolls</h2>
+      <div class="section-sub">Memes are the weapon. Family is the force. Join the trolls.</div>
+      <div class="grid-3">
+        <div class="info-card"><i class="fab fa-telegram"></i><h3>Telegram Troll Zone</h3><p>Chat, memes, raids, and real-time alpha. The family hangs out here.</p></div>
+        <div class="info-card"><i class="fab fa-twitter"></i><h3>X (Twitter) Frontlines</h3><p>Follow for announcements, meme warfare, and community spotlights. Spread the troll love.</p></div>
+        <div class="info-card"><i class="fas fa-meteor"></i><h3>Troll Events</h3><p>Space calls, meme contests, and giveaways. Active trolls get rewarded.</p></div>
+      </div>
+      <div class="glass-card" style="padding: 1.5rem; margin-top: 1rem; text-align: center;">
+        <p><i class="fas fa-quote-left" style="color:#00FFC8;"></i> No fake corporate team. No recycled roadmap. No pretending. Just a family of trolls building in public with the community beside them.</p>
+        <div class="social-links" style="margin-top: 1rem;">
+          <a href="https://t.me/+8rEi9WrCUCllM2Q9" target="_blank" class="social-icon"><i class="fab fa-telegram"></i> Join Telegram</a>
+          <a href="https://x.com/CryptoAlways_" target="_blank" class="social-icon"><i class="fab fa-twitter"></i> Follow on X</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA with updated socials -->
+  <section style="padding-top: 2rem; border-bottom: none;">
+    <div class="container">
+      <div style="background: linear-gradient(125deg, #1A1A2A, #0A0A10); border-radius: 2.5rem; padding: 2.5rem 1.5rem; text-align: center;">
+        <h2 style="font-size: 1.8rem;">ðŸ§Œ Ready to join the family?</h2>
+        <p class="section-sub" style="margin: 0 auto 1.5rem;">The troll nation grows with every new believer. Join the Telegram and X now to be first when $TROLL goes live.</p>
+        <div class="social-links" style="justify-content: center;">
+          <a href="https://t.me/+8rEi9WrCUCllM2Q9" target="_blank" class="btn-primary" style="background: #00FFC8;"><i class="fab fa-telegram"></i> Telegram</a>
+          <a href="https://x.com/CryptoAlways_" target="_blank" class="btn-outline"><i class="fab fa-twitter"></i> X (Twitter)</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.85rem;"><i class="fas fa-troll"></i> FAMILY TROLL | Real trolls. Real memes. Real family.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+        <span>ðŸ§Œ FAMILY TROLL</span>
+        <span>ðŸ”¥ Troll Together</span>
+        <span>ðŸŽ­ Memes Are the Weapon</span>
+      </div>
+      <p>Â© 2026 FAMILY TROLL â€” Built by a family of trolls, for trolls. No fake corporate teams. Just the family.</p>
+      <p style="font-size:0.7rem">Launching soon on Solana. Contract address TBA. Always DYOR, trolls.</p>
+    </div>
+  </footer>
+
+  <!-- AI Chatbot (Family Troll Assistant) -->
+  <div class="chatbot-container" id="chatbotContainer">
+    <div class="chat-toggle" id="chatToggle">
+      <i class="fas fa-troll"></i>
+    </div>
+    <div class="chat-window" id="chatWindow" style="display: none;">
+      <div class="chat-header">
+        <span><i class="fas fa-troll"></i> Troll AI</span>
+        <i class="fas fa-times" id="closeChat" style="cursor:pointer"></i>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot-msg">ðŸ§Œ Hehe, welcome troll! I'm Troll AI. Ask me about the family, $TROLL, how to buy, roadmap to CEX, or anything else. Family first, troll forever!</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Ask about Family Troll...">
+        <button class="chat-send" id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function copyCA() {
+      const caText = document.getElementById("contractAddress").innerText;
+      navigator.clipboard.writeText(caText).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        const original = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        setTimeout(() => btn.innerHTML = original, 2000);
+      }).catch(() => alert("Contract address will be announced at launch, troll."));
+    }
+
+    // Troll AI Knowledge Base
+    const qaDb = [
+      { keywords: ["what is family troll", "narrative", "tell me about family troll"], answer: "Family Troll is a movement. A family of trolls who meme together, grind together, and build together. No fake corporate teams. Just real trolls having fun while taking over the charts. Family first, troll forever." },
+      { keywords: ["who is behind", "founder", "operator"], answer: "A family of trolls building in public with the community beside them. No fake corporate facade. The family is the force." },
+      { keywords: ["memes", "weapon", "troll"], answer: "Memes are our weapon. We fight with humor, culture, and chaotic energy. Memes drive the movement â€” and the movement is Family Troll." },
+      { keywords: ["how to buy", "buy $troll", "where to buy"], answer: "$TROLL is launching soon on Solana. Step 1: Get a Solana wallet. Step 2: Fund with SOL. Step 3: When launched, swap on Jupiter/Raydium using the contract address from Telegram/X." },
+      { keywords: ["contract address", "ca", "when launch"], answer: "Contract address will be posted on official Telegram and X at launch. Follow @CryptoAlways_ on X and join Telegram to be first, troll." },
+      { keywords: ["community", "telegram", "twitter", "join"], answer: "Join the Family Troll on Telegram: https://t.me/+8rEi9WrCUCllM2Q9 and follow X: https://x.com/CryptoAlways_" },
+      { keywords: ["roadmap", "phases", "cex listing"], answer: "Our roadmap: 1) Fair launch on Pump.fun ($500-$2K), 2) Family building ($10K-$30K), 3) Viral moment ($50K-$150K), 4) DEX expansion on Raydium ($300K-$1M), 5) Road to CEX ($1M+, targeting MEXC, BitMart, Gate.io)." },
+      { keywords: ["price prediction", "moon", "when moon"], answer: "We don't do price predictions. Real value comes from family and grind. Troll when ready." },
+      { keywords: ["is it safe", "rug pull", "legit"], answer: "No corporate team, no presale tricks. Built transparently in public. Always DYOR, but the family is the real security." },
+      { keywords: ["family first", "slogan"], answer: "FAMILY FIRST, TROLL FOREVER â€” the family, the movement, the chaos behind $TROLL." },
+      { keywords: ["launching soon", "release date"], answer: "Exact date TBA. Follow X and Telegram for the announcement. We're grinding hard to deliver a fair launch, troll." }
+    ];
+
+    function getBotResponse(userMsg) {
+      const lower = userMsg.toLowerCase();
+      for (let item of qaDb) {
+        for (let kw of item.keywords) {
+          if (lower.includes(kw.toLowerCase())) return item.answer;
+        }
+      }
+      return "ðŸ§Œ Great question, troll! I'm still learning, but ask me about the family narrative, how to buy $TROLL (launching soon), the roadmap to CEX, or the community. FAMILY FIRST, TROLL FOREVER!";
+    }
+
+    // Chat UI
+    const chatToggle = document.getElementById('chatToggle');
+    const chatWindow = document.getElementById('chatWindow');
+    const closeChat = document.getElementById('closeChat');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    chatToggle.onclick = () => { chatWindow.style.display = chatWindow.style.display === 'none' ? 'flex' : 'none'; };
+    closeChat.onclick = () => { chatWindow.style.display = 'none'; };
+
+    function addMessage(text, isUser) {
+      const div = document.createElement('div');
+      div.className = `message ${isUser ? 'user-msg' : 'bot-msg'}`;
+      div.innerHTML = text;
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function showTypingAndRespond(q) {
+      const typing = document.createElement('div');
+      typing.className = 'typing';
+      typing.id = 'typingIndicator';
+      typing.innerHTML = 'ðŸ§Œ Troll AI is thinking...';
+      chatMessages.appendChild(typing);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      setTimeout(() => {
+        document.getElementById('typingIndicator')?.remove();
+        addMessage(getBotResponse(q), false);
+      }, 400);
+    }
+
+    function handleSend() {
+      const msg = chatInput.value.trim();
+      if (!msg) return;
+      addMessage(msg, true);
+      chatInput.value = '';
+      showTypingAndRespond(msg);
+    }
+
+    sendBtn.onclick = handleSend;
+    chatInput.onkeypress = (e) => { if (e.key === 'Enter') handleSend(); };
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+  </script>
+</body>
+</html>
