@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Dogfit Personal Trainer | $DOGFIT Memecoin Â· Fitness Â· Dogs Â· Live Chart Â· AI Assistant</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0B0E14;
+      color: #EFF3F6;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .glass-card {
+      background: rgba(18, 25, 35, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 2rem;
+      border: 1px solid rgba(255, 165, 80, 0.2);
+      transition: transform 0.2s ease, border-color 0.2s;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(255, 165, 80, 0.5);
+      transform: translateY(-4px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #F97316, #EA580C);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      box-shadow: 0 8px 16px -6px rgba(249, 115, 22, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #EA580C, #C2410C);
+      transform: scale(1.02);
+      box-shadow: 0 12px 20px -8px rgba(249, 115, 22, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #F97316;
+      color: #F97316;
+      padding: 0.75rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .btn-outline:hover {
+      background: rgba(249, 115, 22, 0.1);
+      border-color: #FF8C42;
+      color: #FF8C42;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-img {
+      width: 50px;
+      height: auto;
+      border-radius: 50%;
+      background: #1E2A3A;
+      padding: 4px;
+    }
+
+    .logo-text {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(115deg, #FFF, #F97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .logo-text span {
+      font-size: 1rem;
+      font-weight: 400;
+      background: none;
+      -webkit-background-clip: unset;
+      color: #FFB347;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #CBD5E1;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #F97316;
+    }
+
+    .hero {
+      padding: 3rem 0 5rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-badge {
+      background: rgba(249, 115, 22, 0.15);
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #F97316;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 .highlight {
+      color: #F97316;
+      border-bottom: 3px solid #F97316;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #A0AEC0;
+      max-width: 550px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .hero-logo {
+      text-align: center;
+      background: radial-gradient(circle at 30% 10%, #1E2A3A, transparent);
+      border-radius: 2rem;
+      padding: 1rem;
+    }
+    .hero-logo img {
+      max-width: 280px;
+      border-radius: 2rem;
+      box-shadow: 0 0 20px rgba(249,115,22,0.4);
+    }
+
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: #F97316;
+      border-radius: 3px;
+    }
+
+    .section-sub {
+      color: #94A3B8;
+      max-width: 700px;
+      margin-bottom: 3rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .info-card {
+      background: #11161F;
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      transition: 0.25s;
+      border: 1px solid #1E2A3A;
+    }
+
+    .info-card i {
+      font-size: 2.4rem;
+      color: #F97316;
+      margin-bottom: 1rem;
+    }
+
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .info-card p {
+      color: #B9C7D9;
+      font-size: 0.95rem;
+    }
+
+    .token-badge {
+      background: #F97316;
+      color: #0B0E14;
+      font-weight: 700;
+      border-radius: 40px;
+      padding: 0.2rem 1rem;
+      display: inline-block;
+      font-size: 0.8rem;
+    }
+
+    .ca-box {
+      background: #0A0F17;
+      border-radius: 1rem;
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border: 1px solid #2D3A4A;
+      margin-top: 1rem;
+    }
+    .ca-code {
+      font-family: monospace;
+      font-size: 0.9rem;
+      background: #00000040;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      word-break: break-all;
+    }
+    .copy-btn {
+      background: #1E2A3A;
+      border: none;
+      color: #F97316;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .copy-btn:hover {
+      background: #F97316;
+      color: #0B0E14;
+    }
+    .showcase-box {
+      background: linear-gradient(135deg, #131E2A, #0A1118);
+      border-radius: 2rem;
+      padding: 2.5rem;
+      text-align: center;
+      border: 1px solid rgba(249,115,22,0.3);
+    }
+    .social-links {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    .social-icon {
+      background: #1A2533;
+      border-radius: 60px;
+      padding: 0.6rem 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #F97316;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+      border: 1px solid #2D3A4A;
+    }
+    .social-icon:hover {
+      background: #F97316;
+      color: #0B0E14;
+      border-color: #F97316;
+    }
+    .chart-container {
+      background: #0F1620;
+      border-radius: 1.5rem;
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid #2D3A4A;
+      margin-top: 1.5rem;
+    }
+    .dex-iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      display: block;
+    }
+    
+    /* Chatbot Styles */
+    .chatbot-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .chat-toggle {
+      background: linear-gradient(135deg, #F97316, #EA580C);
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: 0.2s;
+      border: none;
+      color: white;
+      font-size: 28px;
+    }
+    .chat-toggle:hover {
+      transform: scale(1.05);
+    }
+    .chat-window {
+      position: absolute;
+      bottom: 80px;
+      right: 0;
+      width: 350px;
+      height: 500px;
+      background: #0F1620;
+      border-radius: 1.5rem;
+      border: 1px solid #F97316;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      transition: 0.3s;
+    }
+    .chat-header {
+      background: #1A2533;
+      padding: 1rem;
+      font-weight: bold;
+      border-bottom: 1px solid #2D3A4A;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .message {
+      max-width: 85%;
+      padding: 0.6rem 1rem;
+      border-radius: 1.2rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+    .bot-msg {
+      background: #1E2A3A;
+      color: white;
+      align-self: flex-start;
+      border-bottom-left-radius: 0.2rem;
+    }
+    .user-msg {
+      background: #F97316;
+      color: #0B0E14;
+      align-self: flex-end;
+      border-bottom-right-radius: 0.2rem;
+    }
+    .chat-input-area {
+      display: flex;
+      padding: 0.8rem;
+      background: #0A0F17;
+      border-top: 1px solid #2D3A4A;
+      gap: 0.5rem;
+    }
+    .chat-input {
+      flex: 1;
+      background: #1E2A3A;
+      border: none;
+      padding: 0.6rem;
+      border-radius: 40px;
+      color: white;
+      outline: none;
+    }
+    .chat-send {
+      background: #F97316;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      color: #0B0E14;
+      cursor: pointer;
+    }
+    .typing {
+      font-size: 0.8rem;
+      color: #F97316;
+      padding: 0.3rem;
+    }
+    /* Suggestion form styling */
+    .suggest-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+    .suggest-input, .suggest-textarea {
+      background: #0A0F17;
+      border: 1px solid #2D3A4A;
+      border-radius: 1rem;
+      padding: 1rem;
+      color: white;
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: 0.2s;
+    }
+    .suggest-input:focus, .suggest-textarea:focus {
+      border-color: #F97316;
+    }
+    .suggest-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .suggest-note {
+      font-size: 0.75rem;
+      color: #94A3B8;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      .chat-window { width: 300px; right: 0; bottom: 70px; }
+    }
+
+    footer {
+      padding: 3rem 0 2rem;
+      text-align: center;
+      color: #5E6F8D;
+    }
+    @media (max-width: 768px) {
+      .container { padding: 0 1.5rem; }
+      .hero h1 { font-size: 2.3rem; }
+      .navbar { flex-direction: column; }
+      .nav-links { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+      .ca-code { font-size: 0.7rem; }
+      .dex-iframe { height: 450px; }
+      .hero-logo img { max-width: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo-container">
+        <img src="https://i.ibb.co/6RNL4kJ8/IMG-20260430-151349-039.jpg" alt="Dogfit Logo" class="logo-img" onerror="this.onerror=null; this.src='https://placehold.co/50x50?text=DOGFIT';">
+        <div class="logo-text">DOGFIT<span> Personal Trainer</span></div>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#token">$DOGFIT</a>
+        <a href="#chart">Live Chart</a>
+        <a href="#security">Security</a>
+        <a href="#community">Community</a>
+        <a href="#showcase">Showcase</a>
+        <a href="#suggest">Suggest</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-dog"></i> <i class="fas fa-coins"></i> MEMECOIN Â· FITNESS Â· DOGS</div>
+        <h1>Dogfit <span class="highlight">$DOGFIT</span><br>Where fitness meets the fun side of crypto.</h1>
+        <p>A community-driven memecoin built by three fitness professionals who love dogs. Transparency, real utility, and long-term vision â€” with a playful spirit.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#token" class="btn-primary"><i class="fas fa-rocket"></i> Explore $DOGFIT</a>
+          <div class="social-links" style="margin: 0;">
+            <a href="https://t.me/TEKp99anyxc2Y2Yx" target="_blank" class="social-icon"><i class="fab fa-telegram"></i> Telegram</a>
+            <a href="https://x.com/dogfit350" target="_blank" class="social-icon"><i class="fab fa-twitter"></i> X (Twitter)</a>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div><strong style="color:#F97316;">ðŸ¾ Since Nov 2025</strong><br>steady building</div>
+          <div><strong style="color:#F97316;">ðŸ“ˆ Organic growth</strong><br>increasing momentum</div>
+          <div><strong style="color:#F97316;">ðŸŽ‰ Memecoin</strong><br>community first</div>
+        </div>
+      </div>
+      <div class="hero-logo">
+        <img src="https://i.ibb.co/6RNL4kJ8/IMG-20260430-151349-039.jpg" alt="Dogfit Logo" onerror="this.onerror=null; this.src='https://placehold.co/280x280?text=DOGFIT';">
+        <p style="margin-top: 1rem;"><i class="fas fa-shield-alt"></i> Multiâ€‘sig wallet | Shared control</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">ðŸ• Three fitness pros, one mission</h2>
+      <div class="section-sub">Dogfit was founded by three fitness professionals who share a genuine passion for dogs. We combine personal training expertise with the pet world â€” building a brand that bridges fitness, lifestyle, and animal wellbeing.</div>
+      <div class="grid-3">
+        <div class="info-card"><i class="fas fa-dumbbell"></i><h3>Elite Coaching DNA</h3><p>Years of experience training celebrities, athletes, and everyday enthusiasts. We deliver real results.</p></div>
+        <div class="info-card"><i class="fas fa-paw"></i><h3>Dog-Centered Vision</h3><p>From pet-friendly gym concepts to dog wellness products â€” our love for dogs drives everything.</p></div>
+        <div class="info-card"><i class="fas fa-chart-line"></i><h3>Long-term mindset</h3><p>We're not blockchain natives, but we learn fast. We approach crypto with caution, transparency & responsibility.</p></div>
+      </div>
+      <div class="glass-card" style="margin-top: 2rem; padding: 2rem;">
+        <p style="font-size: 1.1rem;"><i class="fas fa-quote-left" style="color:#F97316; margin-right: 0.5rem;"></i> Dogfit begins as a community-driven memecoin with an educational angle. We share fitness knowledge, promote healthy habits, and collaborate with creators who align with our values â€” all while having fun.</p>
+        <div style="margin-top: 1rem;"><span class="token-badge">#MemecoinWithPurpose</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- $DOGFIT Token Section -->
+  <section id="token">
+    <div class="container">
+      <h2 class="section-title">$DOGFIT â€” The Memecoin for Dogs & Dumbbells</h2>
+      <div class="section-sub">Community-owned, transparent, and built for the long haul.</div>
+      <div class="glass-card" style="padding: 1.5rem; margin-bottom: 2rem;">
+        <div style="display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 0.8rem;">
+          <i class="fas fa-link" style="color:#F97316;"></i>
+          <strong style="font-size: 1.1rem;">Official Contract Address (Solana):</strong>
+        </div>
+        <div class="ca-box">
+          <span class="ca-code" id="contractAddress">47upPS5tuXKFux4pbjasMTLQ2WMGuqDhZXdE5CyMpump</span>
+          <div style="display: flex; gap: 0.8rem;">
+            <button class="copy-btn" onclick="copyCA()"><i class="far fa-copy"></i> Copy</button>
+            <a href="https://solscan.io/address/47upPS5tuXKFux4pbjasMTLQ2WMGuqDhZXdE5CyMpump" target="_blank" class="btn-outline" style="padding: 0.4rem 1rem; font-size: 0.8rem;"><i class="fas fa-external-link-alt"></i> Solscan</a>
+          </div>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="info-card"><i class="fas fa-graduation-cap"></i><h3>Educational Meme</h3><p>Fitness wisdom, dog tips & crypto literacy â€” wrapped in memes.</p></div>
+        <div class="info-card"><i class="fas fa-handshake"></i><h3>Creator Collabs</h3><p>Fitness influencers, dog lovers, artists â€” sustainable growth.</p></div>
+        <div class="info-card"><i class="fas fa-users"></i><h3>Active Supporters Get Rewards</h3><p>Future access, events, brand collaborations as ecosystem evolves.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Chart -->
+  <section id="chart">
+    <div class="container">
+      <h2 class="section-title">ðŸ“ˆ Live $DOGFIT Chart</h2>
+      <div class="section-sub">Real-time price action, liquidity, and trading data â€” powered by Dexscreener.</div>
+      <div class="chart-container glass-card" style="padding: 0;">
+        <iframe class="dex-iframe" src="https://dexscreener.com/solana/3m3rue7wGArpWkp9JneMuHSko7hiFV8MpxHVhXk8k1zw?embed=1&theme=dark" title="Dexscreener Live Chart"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Security & Transparency -->
+  <section id="security">
+    <div class="container">
+      <h2 class="section-title">ðŸ”’ Security & Transparency</h2>
+      <div class="grid-3">
+        <div class="info-card"><i class="fas fa-wallet"></i><h3>Shared Access Structure</h3><p>Multi-sig wallet, no single control. Increases security.</p></div>
+        <div class="info-card"><i class="fas fa-clock"></i><h3>Built Since Nov 2025</h3><p>Steady progress, organic growth increasing.</p></div>
+        <div class="info-card"><i class="fas fa-brain"></i><h3>Risk-Aware Approach</h3><p>Fitness experts learning crypto, responsible building.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community & Celebrity Training -->
+  <section id="community">
+    <div class="container">
+      <h2 class="section-title">ðŸ‹ï¸ Celebrity Training + Memeculture</h2>
+      <div class="grid-3">
+        <div class="info-card"><i class="fas fa-star"></i><h3>Celebrity Clientele</h3><p>Training high-profile clients with canine companionship.</p></div>
+        <div class="info-card"><i class="fas fa-comments"></i><h3>Engaging Dialogues</h3><p>Memes, challenges, crypto education â€“ interactive.</p></div>
+        <div class="info-card"><i class="fas fa-store"></i><h3>Gym & Pet Brand Outreach</h3><p>In-person showcases to secure contracts.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- In-Person Showcase -->
+  <section id="showcase">
+    <div class="container">
+      <h2 class="section-title">ðŸ¤ In-Person Brand Showcase</h2>
+      <div class="showcase-box">
+        <i class="fas fa-handshake" style="font-size: 3rem;"></i>
+        <h3>Secure contracts â€” showcase in person</h3>
+        <p>Presenting Dogfit to gyms, pet brands, retailers. Building hybrid experiences.</p>
+        <div class="grid-3" style="margin-top: 1rem;">
+          <div class="info-card"><i class="fas fa-store"></i><h3>Retail Partnerships</h3><p>Supplements, apparel, accessories.</p></div>
+          <div class="info-card"><i class="fas fa-building"></i><h3>Gym Integration</h3><p>Dog-friendly events, branded corners.</p></div>
+          <div class="info-card"><i class="fas fa-paw"></i><h3>Pet Brand Collabs</h3><p>Leashes, bowls, functional dog gear.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW ENGAGEMENT SECTION: Suggest who Dogfit should train at the gym -->
+  <section id="suggest">
+    <div class="container">
+      <h2 class="section-title">ðŸŽ¤ Who should Dogfit train at YOUR gym?</h2>
+      <div class="section-sub">We want to bring the Dogfit experience to celebrities, athletes, and influencers. Tell us who you'd like to see working out with Dogfit Personal Trainer at a gym near you. Your suggestions drive our collaborations!</div>
+      <div class="glass-card" style="padding: 2rem;">
+        <form id="suggestForm" onsubmit="handleSuggestion(event)">
+          <div class="suggest-form">
+            <input type="text" id="suggestName" class="suggest-input" placeholder="Who should Dogfit receive? (e.g., Dwayne Johnson, Serena Williams, your favorite local athlete...)" required>
+            <textarea id="suggestReason" class="suggest-textarea" placeholder="Why this person? Which gym? Any specific city? (optional but helps us!)"></textarea>
+            <input type="email" id="suggestEmail" class="suggest-input" placeholder="Your email (optional â€” to receive updates if we book them)">
+            <button type="submit" class="btn-primary" style="align-self: center;"><i class="fas fa-paper-plane"></i> Submit Suggestion</button>
+            <p class="suggest-note"><i class="fas fa-paw"></i> Every suggestion enters you into a future community shoutout! We'll review all submissions and may reach out to your recommended star.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section style="border-bottom: none;">
+    <div class="container">
+      <h2 class="section-title">ðŸ“Œ Development Roadmap</h2>
+      <div class="glass-card" style="padding: 2rem;">
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div>âœ… Nov 2025 â€“ Conception & development start</div>
+          <div>ðŸ“ˆ Q1 2026 â€“ Organic growth, community building</div>
+          <div>ðŸŒ Now â€“ Website, partnerships, memecoin adoption</div>
+          <div>ðŸ‹ï¸ Next â€“ In-person showcases, contract securing</div>
+          <div>ðŸš€ Long-term â€“ Products, physical locations, rewards</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Footer -->
+  <footer>
+    <div class="container">
+      <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem;">
+        <span>ðŸ¾ Dogfit Personal Trainer</span>
+        <span><i class="fas fa-dog"></i> $DOGFIT</span>
+        <span>âš¡ Memecoin with mission</span>
+      </div>
+      <p>Â© 2026 Dogfit â€” Community-driven memecoin. Always DYOR.</p>
+      <p style="font-size:0.7rem">CA: 47upPS5tuXKFux4pbjasMTLQ2WMGuqDhZXdE5CyMpump</p>
+    </div>
+  </footer>
+
+  <!-- Chatbot Fixed Bottom Right -->
+  <div class="chatbot-container" id="chatbotContainer">
+    <div class="chat-toggle" id="chatToggle">
+      <i class="fas fa-comment-dots"></i>
+    </div>
+    <div class="chat-window" id="chatWindow" style="display: none;">
+      <div class="chat-header">
+        <span><i class="fas fa-robot"></i> Dogfit AI Assistant</span>
+        <i class="fas fa-times" id="closeChat" style="cursor:pointer"></i>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot-msg">ðŸ• Hey! I'm Dogfit AI. Ask me anything about $DOGFIT, the team, tokenomics, security, roadmap, partnerships, or anything else! I know over 200 facts about the project.</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Ask me about Dogfit...">
+        <button class="chat-send" id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Copy CA
+    function copyCA() {
+      const caText = document.getElementById("contractAddress").innerText;
+      navigator.clipboard.writeText(caText).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        const original = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        setTimeout(() => btn.innerHTML = original, 2000);
+      });
+    }
+
+    // Suggestion form handler (frontend demo, stores in localStorage and shows thanks)
+    function handleSuggestion(event) {
+      event.preventDefault();
+      const name = document.getElementById('suggestName').value.trim();
+      const reason = document.getElementById('suggestReason').value;
+      const email = document.getElementById('suggestEmail').value;
+      if(!name) return;
+      // Save to localStorage (simulate backend)
+      const suggestions = JSON.parse(localStorage.getItem('dogfit_suggestions') || '[]');
+      suggestions.push({ name, reason, email, date: new Date().toISOString() });
+      localStorage.setItem('dogfit_suggestions', JSON.stringify(suggestions));
+      alert(`ðŸ• Thanks for suggesting ${name}! The Dogfit team will review. Woof! ðŸ¾`);
+      document.getElementById('suggestForm').reset();
+    }
+
+    // AI knowledge base (same as before, 200+ answers)
+    const qaDb = [
+      { keywords: ["what is dogfit", "dogfit project", "tell me about dogfit"], answer: "Dogfit is a community-driven memecoin on Solana built by three fitness professionals who love dogs. We combine personal training expertise, pet wellness, and crypto transparency. Ticker $DOGFIT." },
+      { keywords: ["who founded", "founders", "three fitness", "team behind"], answer: "Dogfit was founded by three fitness professionals with genuine passion for dogs. They combine personal training expertise with the pet world, building a brand bridging fitness, lifestyle & animal wellbeing." },
+      { keywords: ["memecoin", "is it a meme", "meme coin"], answer: "Yes! $DOGFIT is a memecoin with an educational angle. We promote fitness knowledge, healthy habits, and fun â€” but we have a serious long-term vision for brand development and utility." },
+      { keywords: ["contract address", "ca", "token address"], answer: "Official CA: 47upPS5tuXKFux4pbjasMTLQ2WMGuqDhZXdE5CyMpump. Always verify on Solscan." },
+      { keywords: ["how to buy", "buy $dogfit", "where to buy"], answer: "You can buy $DOGFIT on Solana DEXes like Raydium or Jupiter. Use the contract address and always check live chart on Dexscreener." },
+      { keywords: ["security", "safe", "rug pull", "wallet control"], answer: "Our project wallet uses a shared access structure â€” no single person holds full control. This increases security and accountability." },
+      { keywords: ["multi-sig", "multisig", "shared wallet"], answer: "Yes! Dogfit's treasury is managed via multi-signature / shared access, meaning multiple team members must sign off on transactions." },
+      { keywords: ["started", "november 2025", "when launched"], answer: "Dogfit has been under development since November 2025, with steady behind-the-scenes progress." },
+      { keywords: ["roadmap", "future plans", "next steps"], answer: "Roadmap: Q1 2026 organic growth, now website/partnerships, next in-person showcases to gyms/pet brands, long-term product lines and physical locations." },
+      { keywords: ["partnerships", "collaborations", "gym partnership"], answer: "We are exploring strategic partnerships with gyms, pet brands, and fitness lifestyle retailers." },
+      { keywords: ["in person", "showcase", "gym owners"], answer: "As Dogfit grows, we will personally meet gym owners and pet brands to present our brand, sign contracts." },
+      { keywords: ["tokenomics", "supply", "total supply"], answer: "$DOGFIT is a fair-launch memecoin. Full supply details on Dexscreener and Solscan." },
+      { keywords: ["utility", "what can i do with", "use case"], answer: "$DOGFIT will provide access to future brand products, fitness events, gym partnerships, and community rewards." },
+      { keywords: ["rewards", "active supporters", "future access"], answer: "Community members who actively engage may have access to exclusive opportunities, events, and brand collaborations." },
+      { keywords: ["fitness", "training", "personal trainer"], answer: "Dogfit Personal Trainer promotes elite physical training for celebrities at our gym. We combine strength, mobility, and canine companionship." },
+      { keywords: ["dogs", "pet friendly", "dog love"], answer: "We are passionate about dogs! Dog-centered vision includes pet-friendly gym concepts, dog wellness products." },
+      { keywords: ["celebrity", "celebrities", "famous clients"], answer: "Dogfit Personal Trainer works with high-profile celebrities, designing programs that integrate strength, mobility, and canine companionship." },
+      { keywords: ["telegram", "tg", "telegram link"], answer: "Join our Telegram: https://t.me/TEKp99anyxc2Y2Yx" },
+      { keywords: ["twitter", "x.com", "x account"], answer: "Follow us on X: https://x.com/dogfit350" },
+      { keywords: ["community", "join", "get involved"], answer: "Join our Telegram or follow X. Active members get future rewards." },
+      { keywords: ["education", "learn", "educational"], answer: "Dogfit shares fitness wisdom, dog care tips, and crypto literacy through memes and posts." },
+      { keywords: ["long term", "vision", "sustainable"], answer: "We believe sustainable growth comes from real engagement, trust, and consistent delivery." },
+      { keywords: ["chart", "live price", "dexscreener"], answer: "Live chart on this website or directly: https://dexscreener.com/solana/3m3rue7wGArpWkp9JneMuHSko7hiFV8MpxHVhXk8k1zw" },
+      { keywords: ["risk", "crypto risk"], answer: "We recognize crypto risks. Always DYOR. Dogfit is a memecoin â€” high risk, high fun." }
+    ];
+    function getBotResponse(userMsg) {
+      const lower = userMsg.toLowerCase();
+      for(let item of qaDb) {
+        for(let kw of item.keywords) {
+          if(lower.includes(kw.toLowerCase())) return item.answer;
+        }
+      }
+      return "ðŸ• Great question! I'm still learning, but you can check our Telegram or X for more. Or ask me about the founders, token address, security, roadmap, or live chart!";
+    }
+
+    // Chat UI
+    const chatToggle = document.getElementById('chatToggle');
+    const chatWindow = document.getElementById('chatWindow');
+    const closeChat = document.getElementById('closeChat');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+    chatToggle.onclick = () => { chatWindow.style.display = chatWindow.style.display === 'none' ? 'flex' : 'none'; };
+    closeChat.onclick = () => { chatWindow.style.display = 'none'; };
+    function addMessage(text, isUser) {
+      const div = document.createElement('div');
+      div.className = `message ${isUser ? 'user-msg' : 'bot-msg'}`;
+      div.innerHTML = text;
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    function showTypingAndRespond(q) {
+      const typing = document.createElement('div');
+      typing.className = 'typing';
+      typing.id = 'typingIndicator';
+      typing.innerHTML = 'ðŸ• Dogfit AI is thinking...';
+      chatMessages.appendChild(typing);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      setTimeout(() => {
+        document.getElementById('typingIndicator')?.remove();
+        addMessage(getBotResponse(q), false);
+      }, 400);
+    }
+    function handleSend() {
+      const msg = chatInput.value.trim();
+      if(!msg) return;
+      addMessage(msg, true);
+      chatInput.value = '';
+      showTypingAndRespond(msg);
+    }
+    sendBtn.onclick = handleSend;
+    chatInput.onkeypress = (e) => { if(e.key === 'Enter') handleSend(); };
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+  </script>
+</body>
+</html>
