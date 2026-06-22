@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimo The Meme - Cozy Crypto Meme Coin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B8B; /* Vibrant pink */
+            --primary-dark: #E55A7B;
+            --secondary: #20C997; /* Teal */
+            --accent: #FFD166; /* Bright yellow */
+            --purple: #A162F7; /* Vibrant purple */
+            --blue: #118AB2; /* Bright blue */
+            --light: #F8F9FA;
+            --dark: #212529;
+            --gray: #6C757D;
+            --light-gray: #E9ECEF;
+            --gradient-primary: linear-gradient(135deg, #FF6B8B 0%, #FF8E53 100%);
+            --gradient-secondary: linear-gradient(135deg, #20C997 0%, #118AB2 100%);
+            --gradient-accent: linear-gradient(135deg, #FFD166 0%, #FFB347 100%);
+            --gradient-purple: linear-gradient(135deg, #A162F7 0%, #7C3AED 100%);
+            --border-radius: 20px;
+            --shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            --shadow-light: 0 8px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 214, 102, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(161, 98, 247, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(32, 201, 151, 0.1) 0%, transparent 30%);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Comic Neue', cursive;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 4rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 3rem;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2.5rem;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 80px;
+            height: 6px;
+            background: var(--gradient-accent);
+            border-radius: 3px;
+        }
+
+        h3 {
+            font-size: 2rem;
+            color: var(--purple);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.15rem;
+            color: var(--dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-light {
+            background-color: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 3px solid var(--accent);
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 36px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.4);
+            font-family: 'Comic Neue', cursive;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-purple);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 107, 139, 0.6);
+        }
+
+        .btn:hover:before {
+            opacity: 1;
+        }
+
+        .btn-secondary {
+            background: var(--gradient-purple);
+            box-shadow: 0 8px 20px rgba(161, 98, 247, 0.4);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 15px 30px rgba(161, 98, 247, 0.6);
+        }
+
+        /* Contract Address Banner */
+        .ca-banner {
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-weight: 800;
+            font-size: 1.5rem;
+            font-family: 'Comic Neue', cursive;
+            border-bottom: 4px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.4);
+            animation: pulse 2s infinite;
+            margin-top: 80px;
+            border-radius: 10px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contract-address {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 1.2rem;
+            word-break: break-all;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .copy-btn {
+            background: var(--gradient-accent);
+            color: var(--dark);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+            font-family: 'Comic Neue', cursive;
+            box-shadow: 0 4px 12px rgba(255, 209, 102, 0.4);
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 18px rgba(255, 209, 102, 0.6);
+        }
+
+        .copy-btn.copied {
+            background: var(--gradient-secondary);
+            color: white;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-family: 'Comic Neue', cursive;
+            font-weight: 800;
+            font-size: 2rem;
+            text-decoration: none;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            border-radius: 50%;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .logo-img:hover {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--dark);
+            cursor: pointer;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 120px;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 214, 102, 0.25) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(161, 98, 247, 0.25) 0%, transparent 30%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ff6b8b' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text .tagline {
+            font-size: 1.8rem;
+            color: var(--blue);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 25px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-logo {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.2));
+            animation: float 6s ease-in-out infinite;
+            border-radius: 30px;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateY(10deg);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: perspective(1000px) rotateY(10deg) translateY(0) rotate(0deg); }
+            33% { transform: perspective(1000px) rotateY(10deg) translateY(-25px) rotate(2deg); }
+            66% { transform: perspective(1000px) rotateY(10deg) translateY(15px) rotate(-2deg); }
+        }
+
+        /* Vision & Philosophy */
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .vision-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 8px solid;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .vision-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .vision-card:nth-child(1) { border-color: var(--primary); }
+        .vision-card:nth-child(2) { border-color: var(--secondary); }
+        .vision-card:nth-child(3) { border-color: var(--accent); }
+        .vision-card:nth-child(4) { border-color: var(--purple); }
+
+        .vision-card:hover {
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .vision-card:hover:before {
+            opacity: 0.05;
+        }
+
+        .vision-card i {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            display: inline-block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .vision-card:nth-child(2) i {
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .vision-card:nth-child(3) i {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .vision-card:nth-child(4) i {
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        /* Tokenomics */
+        .tokenomics-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-top: 50px;
+        }
+
+        .token-details {
+            flex: 1;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border-left: 8px solid var(--secondary);
+        }
+
+        .token-stats {
+            flex: 1;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border-left: 8px solid var(--purple);
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 18px 0;
+            border-bottom: 2px dashed var(--light-gray);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 214, 102, 0.1);
+            padding-left: 15px;
+            padding-right: 15px;
+            border-radius: 10px;
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+
+        .stat-value {
+            font-weight: 800;
+            font-size: 1.2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Roadmap */
+        .roadmap-container {
+            position: relative;
+            max-width: 900px;
+            margin: 80px auto 0;
+        }
+
+        .roadmap-line {
+            position: absolute;
+            left: 40px;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            background: var(--gradient-primary);
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(255, 107, 139, 0.5);
+        }
+
+        .roadmap-phase {
+            display: flex;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .phase-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            z-index: 2;
+            box-shadow: 0 0 0 10px var(--light), 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-right: 40px;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .phase-icon i {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .roadmap-phase:nth-child(2) .phase-icon i {
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .roadmap-phase:nth-child(3) .phase-icon i {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .roadmap-phase:nth-child(4) .phase-icon i {
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .roadmap-phase:hover .phase-icon {
+            transform: scale(1.2) rotate(15deg);
+            box-shadow: 0 0 0 10px var(--light), 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .phase-content {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 35px;
+            box-shadow: var(--shadow);
+            flex: 1;
+            transition: var(--transition);
+            border-top: 6px solid var(--primary);
+        }
+
+        .roadmap-phase:nth-child(2) .phase-content {
+            border-top-color: var(--secondary);
+        }
+
+        .roadmap-phase:nth-child(3) .phase-content {
+            border-top-color: var(--accent);
+        }
+
+        .roadmap-phase:nth-child(4) .phase-content {
+            border-top-color: var(--purple);
+        }
+
+        .roadmap-phase:hover .phase-content {
+            transform: translateX(15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .phase-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.5);
+        }
+
+        .roadmap-phase:nth-child(2) .phase-number {
+            background: var(--gradient-secondary);
+            box-shadow: 0 5px 15px rgba(32, 201, 151, 0.5);
+        }
+
+        .roadmap-phase:nth-child(3) .phase-number {
+            background: var(--gradient-accent);
+            box-shadow: 0 5px 15px rgba(255, 209, 102, 0.5);
+        }
+
+        .roadmap-phase:nth-child(4) .phase-number {
+            background: var(--gradient-purple);
+            box-shadow: 0 5px 15px rgba(161, 98, 247, 0.5);
+        }
+
+        /* How to Buy */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .step {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .step:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .step:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .step:hover:before {
+            opacity: 0.05;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            line-height: 70px;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(255, 107, 139, 0.5);
+        }
+
+        .step:nth-child(2) .step-number {
+            background: var(--gradient-secondary);
+            box-shadow: 0 10px 25px rgba(32, 201, 151, 0.5);
+        }
+
+        .step:nth-child(3) .step-number {
+            background: var(--gradient-accent);
+            box-shadow: 0 10px 25px rgba(255, 209, 102, 0.5);
+        }
+
+        .step:nth-child(4) .step-number {
+            background: var(--gradient-purple);
+            box-shadow: 0 10px 25px rgba(161, 98, 247, 0.5);
+        }
+
+        .step:nth-child(5) .step-number {
+            background: var(--gradient-primary);
+            box-shadow: 0 10px 25px rgba(255, 107, 139, 0.5);
+        }
+
+        /* Community */
+        .community-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .highlight {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .highlight:hover {
+            transform: translateY(-15px) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .highlight i {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            display: inline-block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .highlight:nth-child(2) i {
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .highlight:nth-child(3) i {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .highlight:nth-child(4) i {
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        /* Links & Footer */
+        .links-container {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            color: var(--dark);
+            font-size: 3rem;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .social-link:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            transform: translateY(-15px) scale(1.1);
+            color: white;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .social-link:hover:before {
+            opacity: 1;
+        }
+
+        .social-link:nth-child(2):before {
+            background: var(--gradient-secondary);
+        }
+
+        .x-logo {
+            font-family: 'Comic Neue', cursive;
+            font-weight: 800;
+            font-size: 2.8rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: var(--gradient-primary);
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-family: 'Comic Neue', cursive;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 30px;
+            font-weight: 800;
+        }
+
+        .footer-logo-img {
+            height: 80px;
+            width: auto;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .copyright {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+        }
+
+        .chatbot-toggle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(255, 107, 139, 0.5);
+            transition: var(--transition);
+            border: none;
+            color: white;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 15px 35px rgba(255, 107, 139, 0.7);
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
+            width: 380px;
+            height: 500px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            border: 3px solid var(--accent);
+        }
+
+        .chatbot-window.active {
+            display: flex;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chatbot-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chatbot-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: #f9f9f9;
+        }
+
+        .message {
+            padding: 12px 18px;
+            border-radius: 20px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .bot-message {
+            background: var(--light-gray);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .user-message {
+            background: var(--gradient-primary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chatbot-input {
+            padding: 20px;
+            border-top: 2px solid var(--light-gray);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid var(--light-gray);
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .chatbot-input input:focus {
+            border-color: var(--primary);
+        }
+
+        .chatbot-input button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .chatbot-input button:hover {
+            transform: scale(1.1);
+            background: var(--primary-dark);
+        }
+
+        .suggested-questions {
+            padding: 10px 20px;
+            background: white;
+            border-bottom: 2px solid var(--light-gray);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .suggested-question {
+            padding: 8px 15px;
+            background: rgba(32, 201, 151, 0.1);
+            border: 1px solid rgba(32, 201, 151, 0.3);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .suggested-question:hover {
+            background: rgba(32, 201, 151, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 2.8rem; }
+        }
+
+        @media (max-width: 992px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.5rem; }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .tokenomics-container {
+                flex-direction: column;
+            }
+            
+            .hero-logo {
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                padding: 30px 20px;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+                backdrop-filter: blur(10px);
+                border-top: 3px solid var(--accent);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 350px;
+                text-align: center;
+            }
+            
+            .roadmap-line {
+                left: 35px;
+            }
+            
+            .phase-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+                margin-right: 25px;
+            }
+            
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2.2rem; }
+            
+            section {
+                padding: 70px 0;
+            }
+            
+            .ca-banner {
+                font-size: 1.2rem;
+                padding: 15px;
+                margin-top: 60px;
+            }
+            
+            .contract-address {
+                font-size: 1rem;
+                padding: 8px 15px;
+            }
+            
+            .social-link {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
+            }
+            
+            .x-logo {
+                font-size: 2.2rem;
+            }
+            
+            .chatbot-window {
+                width: 320px;
+                height: 450px;
+            }
+            
+            .chatbot-container {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .logo-img {
+                height: 50px;
+            }
+            
+            .hero-logo {
+                max-width: 300px;
+            }
+            
+            .vision-grid,
+            .steps-container,
+            .community-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .phase-content {
+                padding: 25px;
+            }
+            
+            .token-details,
+            .token-stats {
+                padding: 30px;
+            }
+            
+            .ca-banner {
+                font-size: 1.1rem;
+                padding: 12px;
+            }
+            
+            .contract-address {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+            
+            .links-container {
+                gap: 40px;
+            }
+            
+            .chatbot-window {
+                width: 300px;
+                right: -10px;
+            }
+            
+            .chatbot-toggle {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="https://i.ibb.co/jPPqb0y8/IMG-20251217-121628-956.jpg" alt="Mimo The Meme Logo" class="logo-img">
+                <span>Mimo The Meme</span>
+            </a>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#vision">Vision</a></li>
+                <li><a href="#tokenomics">Tokenomics</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#buy">How to Buy</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#links" class="btn btn-secondary">Join Now</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Sit back. Relax. Meme.</h1>
+                <p class="tagline">The comfy meme coin built on Solana</p>
+                <p>Mimo The Meme is a community-driven meme coin built on simplicity, comfort, and good vibes. In a space often filled with stress, noise, and unfair launches, Mimo exists to do the opposite â€” stay cozy, stay fun, and put the community first.</p>
+                <p>This is not about complicated promises or fake hype. Mimo is about memes, people, and shared energy from day one.</p>
+                <div class="hero-buttons">
+                    <a href="#buy" class="btn">How to Buy $MIMO</a>
+                    <a href="#links" class="btn btn-secondary">Join Community</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://i.ibb.co/jPPqb0y8/IMG-20251217-121628-956.jpg" alt="Mimo The Meme Logo" class="hero-logo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contract Address Banner -->
+    <div class="container">
+        <div class="ca-banner">
+            ðŸš€ MIMO Contract Address ðŸš€
+            <div class="contract-address" id="contractAddress">
+                GuhQGKkhofS4KHbm3jKxqFaRviz33Kdt7Acdi7n3pump
+            </div>
+            <button class="copy-btn" id="copyBtn">
+                <i class="fas fa-copy"></i> Copy Contract Address
+            </button>
+            <p style="margin-top: 10px; font-size: 1rem; opacity: 0.9;">Always verify the contract address on our official channels</p>
+        </div>
+    </div>
+
+    <!-- Vision & Philosophy -->
+    <section id="vision" class="section-light">
+        <div class="container">
+            <h2>Vision & Philosophy</h2>
+            <p>The vision of Mimo The Meme is to create one of the strongest, happiest, and most comfortable meme communities in crypto. Mimo aims to be a place where everyone starts on equal footing, the community grows organically, and memes lead the way.</p>
+            
+            <div class="vision-grid">
+                <div class="vision-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Community First</h3>
+                    <p>No insiders, no special allocations, and no behind-the-scenes advantages. Every holder is part of the same journey.</p>
+                </div>
+                
+                <div class="vision-card">
+                    <i class="fas fa-couch"></i>
+                    <h3>Stay Comfy</h3>
+                    <p>Crypto doesn't always need to be loud. Sometimes it just needs to be comfy. Mimo embraces calm confidence instead of chaos.</p>
+                </div>
+                
+                <div class="vision-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Long-term Vibes</h3>
+                    <p>We focus on long-term vibes instead of rushed pumps and strong community culture instead of empty marketing.</p>
+                </div>
+                
+                <div class="vision-card">
+                    <i class="fas fa-laugh-beam"></i>
+                    <h3>Memes Lead the Way</h3>
+                    <p>Memes are at the heart of everything we do. We believe in the power of humor and creativity to build a strong community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tokenomics -->
+    <section id="tokenomics">
+        <div class="container">
+            <h2>Tokenomics</h2>
+            <p>Mimo The Meme follows a clean, transparent, and fair token structure with a fair launch and no presale. Every token enters the market at launch with no hidden advantages.</p>
+            
+            <div class="tokenomics-container">
+                <div class="token-details">
+                    <h3>Fair & Simple</h3>
+                    <p>Token Name: <strong>Mimo The Meme</strong></p>
+                    <p>Ticker: <strong>$MIMO</strong></p>
+                    <p>Blockchain: <strong>Solana</strong></p>
+                    <p>Launch Platform: <strong>Pump.fun</strong></p>
+                    <p>Launch Type: <strong>Fair Launch</strong></p>
+                    <p>Contract Address: <strong id="contractShort">GuhQ...pump</strong></p>
+                    <p>Presale / Private Sale: <strong>None</strong></p>
+                </div>
+                
+                <div class="token-stats">
+                    <h3>Token Stats</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">Total Supply</span>
+                        <span class="stat-value">1,000,000,000</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Tokens for Launch</span>
+                        <span class="stat-value">100%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Liquidity</span>
+                        <span class="stat-value">Locked ðŸ”’</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Fair Launch</span>
+                        <span class="stat-value">âœ… Guaranteed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap" class="section-light">
+        <div class="container">
+            <h2>Roadmap</h2>
+            <p>Mimo's journey is designed to grow organically with the community, focusing on steady progress and sustainable development rather than empty promises.</p>
+            
+            <div class="roadmap-container">
+                <div class="roadmap-line"></div>
+                
+                <div class="roadmap-phase">
+                    <div class="phase-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="phase-content">
+                        <div class="phase-number">1</div>
+                        <h3>Phase 1 â€“ Kick Back & Launch</h3>
+                        <p>MIMO enters the chat with a fair launch on Pump.fun. Liquidity is added and locked. Official website goes live along with X (Twitter) and Telegram channels. First memes, raids, and community engagement begin.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-phase">
+                    <div class="phase-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="phase-content">
+                        <div class="phase-number">2</div>
+                        <h3>Phase 2 â€“ Chill & Grow</h3>
+                        <p>Let the vibes spread with organic community growth. Meme contests and community creativity encouraged. CoinGecko and CoinMarketCap listings pursued. Small but consistent marketing efforts.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-phase">
+                    <div class="phase-icon">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                    <div class="phase-content">
+                        <div class="phase-number">3</div>
+                        <h3>Phase 3 â€“ Turn Up the Volume</h3>
+                        <p>MIMO goes global with increased visibility and influencer attention. Partnerships with other meme projects. Larger marketing campaigns. Push for trending on DEXs and X.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-phase">
+                    <div class="phase-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <div class="phase-content">
+                        <div class="phase-number">4</div>
+                        <h3>Phase 4 â€“ Cozy Forever</h3>
+                        <p>MIMO stays comfy with strong long-term community retention. Regular meme drops and community events. Limited Mimo merchandise releases. Community-led decisions through voting. Mimo continues as a meme-first project.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Buy -->
+    <section id="buy">
+        <div class="container">
+            <h2>How to Buy $MIMO</h2>
+            <p>Buying $MIMO is designed to be simple and accessible. Follow these steps to join the Mimo community.</p>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Create a Wallet</h3>
+                    <p>Use a Solana-compatible wallet such as Phantom or Solflare. Download and set up your wallet.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Add SOL</h3>
+                    <p>Purchase SOL from an exchange and send it to your wallet. You'll need SOL for transactions.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Visit Pump.fun</h3>
+                    <p>Connect your wallet on Pump.fun. Always use official links from Mimo's channels.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Find $MIMO</h3>
+                    <p>Search for Mimo The Meme ($MIMO) using the official contract address: <strong>GuhQ...pump</strong></p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Swap & Relax</h3>
+                    <p>Swap SOL for $MIMO and enjoy the memes. Welcome to the comfy community!</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px; padding: 30px; background: rgba(255, 214, 102, 0.15); border-radius: var(--border-radius); border: 3px dashed var(--accent);">
+                <p style="font-weight: 700; color: var(--dark); font-size: 1.3rem;"><i class="fas fa-exclamation-triangle" style="color: var(--primary); margin-right: 10px;"></i> <strong>Important:</strong> Always double-check links and only use official channels. Beware of scams and fake tokens.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community -->
+    <section id="community" class="section-light">
+        <div class="container">
+            <h2>Community First</h2>
+            <p>Mimo The Meme is powered entirely by its community. There is no top-down culture. Mimo grows with its people, not above them.</p>
+            
+            <div class="community-highlights">
+                <div class="highlight">
+                    <i class="fas fa-users"></i>
+                    <h3>Share Memes</h3>
+                    <p>The community is encouraged to create and share memes that capture the cozy Mimo vibe.</p>
+                </div>
+                
+                <div class="highlight">
+                    <i class="fas fa-comments"></i>
+                    <h3>Participate</h3>
+                    <p>Join discussions, share ideas, and help shape the future of Mimo through community input.</p>
+                </div>
+                
+                <div class="highlight">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Onboard Members</h3>
+                    <p>Help onboard new members and spread positive vibes throughout the crypto space.</p>
+                </div>
+                
+                <div class="highlight">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Contribute Ideas</h3>
+                    <p>Bring your creativity and ideas to help Mimo grow organically and sustainably.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Links & Footer -->
+    <section id="links">
+        <div class="container">
+            <h2>Join the Mimo Community</h2>
+            <p>Stay connected through official channels only. Join us for memes, updates, and good vibes.</p>
+            
+            <div class="links-container">
+                <a href="https://t.me/+pFB-N2YvuRs1Njk0" class="social-link" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://x.com/mimothememe?s=21" class="social-link" target="_blank">
+                    <div class="x-logo">ð•</div>
+                </a>
+            </div>
+            
+            <div style="text-align: center; max-width: 800px; margin: 40px auto; padding: 30px; background: white; border-radius: var(--border-radius); box-shadow: var(--shadow-light);">
+                <p style="font-weight: 700; color: var(--primary); font-size: 1.3rem;"><i class="fas fa-link" style="margin-right: 10px;"></i> Official Channels</p>
+                <p style="font-size: 1.2rem;">Follow us on X and join our Telegram for the latest updates!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <img src="https://i.ibb.co/jPPqb0y8/IMG-20251217-121628-956.jpg" alt="Mimo The Meme Logo" class="footer-logo-img">
+                <div>Mimo The Meme</div>
+            </div>
+            
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px;">Mimo The Meme isn't trying to change the world. It's here to make crypto more enjoyable.</p>
+            <p style="font-size: 1.3rem; font-weight: 700; margin-bottom: 40px;">If you believe in fair launches, strong communities, good memes, and cozy vibes, then you're already part of Mimo.</p>
+            
+            <div style="font-size: 4rem; margin: 40px 0; color: var(--accent);">
+                ðŸ›‹ï¸ðŸ¸âœ¨
+            </div>
+            
+            <div class="copyright">
+                <p>Â© 2023 Mimo The Meme. All rights reserved. This is a meme project. Cryptocurrency investments are volatile and risky. Do your own research.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" id="chatbotToggle">ðŸ¤–</button>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <h3><span>ðŸ¤–</span> Mimo Assistant</h3>
+                <button class="chatbot-close" id="chatbotClose">Ã—</button>
+            </div>
+            
+            <div class="suggested-questions">
+                <div class="suggested-question" onclick="askQuestion('What is Mimo The Meme?')">What is Mimo?</div>
+                <div class="suggested-question" onclick="askQuestion('How to buy $MIMO?')">How to buy?</div>
+                <div class="suggested-question" onclick="askQuestion('Contract address?')">Contract Address</div>
+            </div>
+            
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot-message">
+                    Hello! I'm the Mimo assistant ðŸ¤–. I can answer all your questions about Mimo The Meme! Try asking about the project, tokenomics, roadmap, or how to buy $MIMO.
+                </div>
+            </div>
+            
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Ask me anything about Mimo..." onkeypress="handleKeyPress(event)">
+                <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Contract Address
+        const contractAddress = "GuhQGKkhofS4KHbm3jKxqFaRviz33Kdt7Acdi7n3pump";
+        const shortContractAddress = "GuhQ...pump";
+        
+        // Update short contract display
+        document.getElementById('contractShort').textContent = shortContractAddress;
+        
+        // Copy contract address functionality
+        const copyBtn = document.getElementById('copyBtn');
+        const contractAddressElement = document.getElementById('contractAddress');
+        
+        copyBtn.addEventListener('click', function() {
+            navigator.clipboard.writeText(contractAddress).then(() => {
+                // Show copied state
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                copyBtn.classList.add('copied');
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Contract Address';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                // Fallback copy method
+                const textArea = document.createElement('textarea');
+                textArea.value = contractAddress;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                copyBtn.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Contract Address';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+
+        // Mobile navigation toggle
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+            this.innerHTML = document.getElementById('navLinks').classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('navLinks').classList.remove('active');
+                document.getElementById('mobileToggle').innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if(window.scrollY > 100) {
+                header.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.15)';
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+        
+        // Add floating effect to some elements on mouse move
+        document.addEventListener('mousemove', function(e) {
+            const heroLogo = document.querySelector('.hero-logo');
+            if(heroLogo) {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                heroLogo.style.transform = `perspective(1000px) rotateY(${10 + xAxis}deg) translateY(${yAxis}px)`;
+            }
+        });
+
+        // Chatbot functionality
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const chatbotClose = document.getElementById('chatbotClose');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const chatbotSend = document.getElementById('chatbotSend');
+        
+        // Toggle chatbot window
+        chatbotToggle.addEventListener('click', function() {
+            chatbotWindow.classList.toggle('active');
+        });
+        
+        // Close chatbot window
+        chatbotClose.addEventListener('click', function() {
+            chatbotWindow.classList.remove('active');
+        });
+        
+        // Send message when button is clicked
+        chatbotSend.addEventListener('click', sendMessage);
+        
+        // Send message when Enter key is pressed
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        // Function to send a message
+        function sendMessage() {
+            const message = chatbotInput.value.trim();
+            if (message === '') return;
+            
+            // Add user message
+            addMessage(message, 'user');
+            
+            // Clear input
+            chatbotInput.value = '';
+            
+            // Get bot response
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                addMessage(response, 'bot');
+            }, 500);
+        }
+        
+        // Function to add a message to the chat
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+            messageDiv.textContent = text;
+            
+            chatbotMessages.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+        
+        // Function to ask a question from suggested questions
+        function askQuestion(question) {
+            chatbotInput.value = question;
+            sendMessage();
+        }
+        
+        // Function to get bot response based on user input
+        function getBotResponse(input) {
+            const lowerInput = input.toLowerCase();
+            
+            // Project information
+            if (lowerInput.includes('what is') && (lowerInput.includes('mimo') || lowerInput.includes('mimo the meme'))) {
+                return "Mimo The Meme is a community-driven meme coin built on simplicity, comfort, and good vibes. It's a Solana-based meme coin focused on creating a cozy, fair, and fun community experience.";
+            }
+            
+            // Vision
+            else if (lowerInput.includes('vision') || lowerInput.includes('philosophy')) {
+                return "The vision of Mimo The Meme is to create one of the strongest, happiest, and most comfortable meme communities in crypto. We believe in fair launches, strong community culture, and long-term vibes over short-term hype.";
+            }
+            
+            // Tokenomics
+            else if (lowerInput.includes('token') || lowerInput.includes('supply') || lowerInput.includes('ticker') || lowerInput.includes('tokenomics')) {
+                return "Token Name: Mimo The Meme | Ticker: $MIMO | Blockchain: Solana | Total Supply: 1,000,000,000 (1B) | Launch: Fair Launch on Pump.fun | Presale: None | Contract: GuhQGKkhofS4KHbm3jKxqFaRviz33Kdt7Acdi7n3pump";
+            }
+            
+            // Contract address
+            else if (lowerInput.includes('contract') || lowerInput.includes('address') || lowerInput.includes('ca')) {
+                return `Mimo Contract Address: ${contractAddress} | Always verify on official channels!`;
+            }
+            
+            // How to buy
+            else if (lowerInput.includes('how to buy') || lowerInput.includes('buy') || lowerInput.includes('purchase')) {
+                return `1. Create a Solana wallet (Phantom/Solflare) | 2. Add SOL to your wallet | 3. Visit Pump.fun | 4. Find $MIMO using contract: ${shortContractAddress} | 5. Swap SOL for $MIMO | Always use official links!`;
+            }
+            
+            // Roadmap
+            else if (lowerInput.includes('roadmap') || lowerInput.includes('phase') || lowerInput.includes('plan')) {
+                return "Phase 1: Launch & community building | Phase 2: Organic growth & listings | Phase 3: Marketing & partnerships | Phase 4: Long-term community retention | Check the website for detailed roadmap!";
+            }
+            
+            // Launch
+            else if (lowerInput.includes('launch') || lowerInput.includes('when launch') || lowerInput.includes('date')) {
+                return "Mimo is live! Use contract address: " + contractAddress + " to trade $MIMO on Pump.fun!";
+            }
+            
+            // Community
+            else if (lowerInput.includes('community') || lowerInput.includes('social') || lowerInput.includes('telegram') || lowerInput.includes('twitter') || lowerInput.includes('x')) {
+                return "Join our community on Telegram (https://t.me/+pFB-N2YvuRs1Njk0) and X (https://x.com/mimothememe)! We're building a cozy, meme-loving community where everyone is welcome. No insiders, no special allocations - just good vibes!";
+            }
+            
+            // Fair launch
+            else if (lowerInput.includes('fair') || lowerInput.includes('presale') || lowerInput.includes('private')) {
+                return "Mimo is a fair launch project. No presale, no private sale. Every token enters the market at launch. We believe in equal opportunity for all!";
+            }
+            
+            // Blockchain
+            else if (lowerInput.includes('solana') || lowerInput.includes('blockchain') || lowerInput.includes('network')) {
+                return "Mimo The Meme is built on Solana for fast transactions and low fees. This makes it accessible and efficient for everyone in our community.";
+            }
+            
+            // Memes
+            else if (lowerInput.includes('meme') || lowerInput.includes('fun') || lowerInput.includes('vibe')) {
+                return "Memes are at the heart of Mimo! We're here to make crypto more enjoyable with good vibes, cozy energy, and community-driven memes. Sit back, relax, and meme with us!";
+            }
+            
+            // Team
+            else if (lowerInput.includes('team') || lowerInput.includes('who created') || lowerInput.includes('developer')) {
+                return "Mimo is community-driven with no central team controlling it. The project is built by and for the community. Everyone starts on equal footing!";
+            }
+            
+            // Safety
+            else if (lowerInput.includes('safe') || lowerInput.includes('scam') || lowerInput.includes('rug') || lowerInput.includes('trust')) {
+                return "Mimo is a fair launch project with locked liquidity and transparent tokenomics. Always verify contract addresses through official channels and never share your private keys!";
+            }
+            
+            // Price
+            else if (lowerInput.includes('price') || lowerInput.includes('value') || lowerInput.includes('worth')) {
+                return "As a meme coin, $MIMO's value comes from community support and vibes. Always do your own research and invest responsibly. Crypto investments are volatile.";
+            }
+            
+            // Default response
+            else {
+                const responses = [
+                    "I'm here to help with all things Mimo! Try asking about: What is Mimo? | How to buy $MIMO? | Tokenomics | Roadmap | Contract address | Community",
+                    "Want to know more about Mimo? Ask me about the vision, tokenomics, or how to join our cozy community!",
+                    "I can answer questions about Mimo's fair launch, token details, roadmap, and community. What would you like to know?",
+                    "Mimo is all about good vibes and memes! Ask me anything about the project and I'll help you out."
+                ];
+                return responses[Math.floor(Math.random() * responses.length)];
+            }
+        }
+        
+        // Initialize with a welcome message if chat is empty
+        window.addEventListener('load', function() {
+            if (chatbotMessages.children.length === 1) { // Only has the initial welcome
+                setTimeout(() => {
+                    addMessage("Need help? Try asking: 'What is Mimo?' or 'How to buy $MIMO?' or 'Contract address?'", 'bot');
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
