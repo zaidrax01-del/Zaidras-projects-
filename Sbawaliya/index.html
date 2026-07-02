@@ -374,13 +374,15 @@
             color: var(--ink);
         }
 
-        /* ─── HERO VISUAL — LOGO ─── */
+        /* ─── HERO VISUAL — LOGO CIRCLE ─── */
         .hero-visual {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             position: relative;
         }
+
         .logo-container {
             position: relative;
             width: 100%;
@@ -390,6 +392,7 @@
             align-items: center;
             justify-content: center;
         }
+
         .logo-glow {
             position: absolute;
             inset: 0;
@@ -430,7 +433,7 @@
             }
         }
 
-        .logo-illustration {
+        .logo-circle {
             position: relative;
             z-index: 2;
             width: 85%;
@@ -438,42 +441,43 @@
             border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, rgba(255, 248, 235, 0.9), rgba(212, 190, 160, 0.3));
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             box-shadow:
                 0 8px 40px rgba(60, 40, 20, 0.08),
                 inset 0 2px 20px rgba(255, 248, 235, 0.3);
             border: 1px solid rgba(180, 148, 106, 0.15);
-            padding: 20px;
-            text-align: center;
             overflow: hidden;
         }
-        .logo-illustration img {
+        .logo-circle img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             display: block;
-            max-width: 220px;
-            max-height: 220px;
-            filter: drop-shadow(0 4px 12px rgba(180, 148, 106, 0.2));
+            padding: 20px;
+            filter: drop-shadow(0 4px 12px rgba(180, 148, 106, 0.15));
         }
-        .logo-illustration .saint-name {
+
+        /* ─── LOGO TEXT BELOW ─── */
+        .logo-text-below {
+            text-align: center;
+            margin-top: 18px;
+        }
+        .logo-text-below .saint-name {
             font-family: var(--font-serif);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
             font-style: italic;
             color: var(--gold-old);
             letter-spacing: 2px;
-            margin-top: 6px;
         }
-        .logo-illustration .saint-title {
-            font-size: 0.55rem;
+        .logo-text-below .saint-title {
+            font-size: 0.6rem;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             color: var(--ink-faded);
-            opacity: 0.6;
-            margin-top: -2px;
+            opacity: 0.5;
+            margin-top: 2px;
         }
 
         /* ─── SCROLL INDICATOR ─── */
@@ -1045,11 +1049,18 @@
                         <div class="logo-glow"></div>
                         <div class="logo-ring"></div>
                         <div class="logo-ring"></div>
-                        <div class="logo-illustration">
-                            <img src="https://i.ibb.co/tMRWQbYc/IMG-20260702-093708-973.jpg" alt="SBAWALIYA Logo" />
-                            <div class="saint-name">The Saint of Chirawa</div>
-                            <div class="saint-title">Blessed of Rajasthan</div>
+                        <div class="logo-circle">
+                            <!-- === ADD YOUR LOGO HERE === -->
+                            <!-- Replace the src with your local image path -->
+                            <img src="logo.png" alt="SBAWALIYA Logo" />
+                            <!-- ============================ -->
                         </div>
+                    </div>
+
+                    <!-- Logo text moved below the circle -->
+                    <div class="logo-text-below">
+                        <div class="saint-name">The Saint of Chirawa</div>
+                        <div class="saint-title">Blessed of Rajasthan</div>
                     </div>
                 </div>
             </div>
