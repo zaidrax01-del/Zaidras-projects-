@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SBAWALIYA — The Prophecy Unearthed</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* ─── RESET ─── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --parchment: #f4e8d1;
+            --parchment-dark: #dac09a;
+            --parchment-light: #fcf6ec;
+            --ink: #2c1e0f;
+            --ink-faded: #5a442e;
+            --gold-old: #b48a4a;
+            --gold-pale: #d9b87a;
+            --gold-light: #e8d0a0;
+            --border-aged: #b4946a;
+            --shadow-warm: rgba(60, 40, 20, 0.12);
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--parchment);
+            color: var(--ink);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b4946a' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            min-height: 100vh;
+            padding: 0 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ─── PARTICLES CANVAS ─── */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--parchment-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-old);
+            border-radius: 20px;
+        }
+
+        /* ─── UTILITY ─── */
+        .gold-text {
+            color: var(--gold-old);
+        }
+        .section-tag {
+            display: inline-block;
+            font-family: var(--font-serif);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-old);
+            border-bottom: 2px solid var(--gold-old);
+            padding-bottom: 4px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: var(--ink);
+        }
+
+        .section-sub {
+            font-size: 1.05rem;
+            color: var(--ink-faded);
+            max-width: 600px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        /* ─── DECORATIVE DIVIDER ─── */
+        .ornate-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            color: var(--gold-old);
+            font-size: 0.7rem;
+            letter-spacing: 6px;
+        }
+        .ornate-divider::before,
+        .ornate-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold-old), transparent);
+        }
+
+        /* ─── HEADER ─── */
+        .header {
+            padding: 18px 0 12px;
+            border-bottom: 1px solid rgba(180, 148, 106, 0.2);
+            margin-bottom: 20px;
+            background: rgba(244, 232, 209, 0.75);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: box-shadow 0.3s;
+        }
+        .header.scrolled {
+            box-shadow: 0 4px 30px rgba(60, 40, 20, 0.06);
+        }
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: 2px;
+            color: var(--ink);
+        }
+        .logo span {
+            color: var(--gold-old);
+        }
+        .logo small {
+            display: block;
+            font-family: var(--font-sans);
+            font-size: 0.55rem;
+            font-weight: 400;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--ink-faded);
+            margin-top: -4px;
+            opacity: 0.8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a {
+            color: var(--ink-faded);
+            transition: 0.2s;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 4px;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold-old);
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--gold-old);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+        }
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: var(--ink);
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 30px 0 50px;
+            position: relative;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-content .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(180, 148, 106, 0.10);
+            border: 1px solid rgba(180, 148, 106, 0.25);
+            border-radius: 60px;
+            padding: 5px 20px 5px 12px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-old);
+            margin-bottom: 24px;
+            font-family: var(--font-sans);
+        }
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold-old);
+            animation: pulse-dot 3s infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.25;
+                transform: scale(0.6);
+            }
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.8rem, 6vw, 4.4rem);
+            font-weight: 700;
+            line-height: 1.05;
+            font-style: italic;
+            color: var(--ink);
+            margin-bottom: 16px;
+        }
+        .hero h1 .highlight {
+            color: var(--gold-old);
+            position: relative;
+        }
+        .hero h1 .highlight::before {
+            content: '✦';
+            font-size: 0.6em;
+            margin-right: 6px;
+            opacity: 0.5;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--ink-faded);
+            max-width: 480px;
+            line-height: 1.9;
+            margin-bottom: 28px;
+            font-weight: 300;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px 48px;
+            margin-bottom: 32px;
+        }
+        .hero-stats .stat .num {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gold-old);
+            line-height: 1;
+        }
+        .hero-stats .stat .label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--ink-faded);
+            margin-top: 4px;
+            opacity: 0.8;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 34px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            border: 1px solid transparent;
+            cursor: pointer;
+            background: transparent;
+            color: var(--ink);
+            font-family: var(--font-sans);
+        }
+        .btn--primary {
+            background: var(--gold-old);
+            color: var(--parchment);
+            border-color: var(--gold-old);
+            box-shadow: 0 6px 24px rgba(180, 148, 106, 0.25);
+        }
+        .btn--primary:hover {
+            background: #a07d3e;
+            border-color: #a07d3e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 36px rgba(180, 148, 106, 0.35);
+        }
+        .btn--outline {
+            border-color: var(--border-aged);
+            color: var(--ink-faded);
+        }
+        .btn--outline:hover {
+            background: rgba(180, 148, 106, 0.08);
+            border-color: var(--gold-old);
+            color: var(--ink);
+        }
+
+        /* ─── HERO VISUAL — LOGO ─── */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .logo-container {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-glow {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 30%, rgba(180, 148, 106, 0.25), rgba(180, 148, 106, 0.05) 60%, transparent 80%);
+            animation: glow-pulse 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes glow-pulse {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        .logo-ring {
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            border: 1px solid rgba(180, 148, 106, 0.12);
+            animation: spin 35s linear infinite;
+            pointer-events: none;
+        }
+        .logo-ring:nth-child(2) {
+            inset: -28px;
+            border-color: rgba(180, 148, 106, 0.06);
+            animation-duration: 50s;
+            animation-direction: reverse;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .logo-illustration {
+            position: relative;
+            z-index: 2;
+            width: 85%;
+            height: 85%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 248, 235, 0.9), rgba(212, 190, 160, 0.3));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 8px 40px rgba(60, 40, 20, 0.08),
+                inset 0 2px 20px rgba(255, 248, 235, 0.3);
+            border: 1px solid rgba(180, 148, 106, 0.15);
+            padding: 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .logo-illustration img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            max-width: 220px;
+            max-height: 220px;
+            filter: drop-shadow(0 4px 12px rgba(180, 148, 106, 0.2));
+        }
+        .logo-illustration .saint-name {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--gold-old);
+            letter-spacing: 2px;
+            margin-top: 6px;
+        }
+        .logo-illustration .saint-title {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--ink-faded);
+            opacity: 0.6;
+            margin-top: -2px;
+        }
+
+        /* ─── SCROLL INDICATOR ─── */
+        .scroll-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: var(--ink-faded);
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 30px;
+            opacity: 0.5;
+            animation: bounce-down 2.8s infinite;
+        }
+        .scroll-indicator i {
+            font-size: 1rem;
+        }
+        @keyframes bounce-down {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(8px);
+            }
+        }
+
+        /* ─── WARNING ─── */
+        .warning {
+            background: rgba(180, 148, 106, 0.06);
+            border-top: 1px solid rgba(180, 148, 106, 0.15);
+            border-bottom: 1px solid rgba(180, 148, 106, 0.15);
+            padding: 18px 0;
+            margin: 10px 0 30px;
+            border-radius: 8px;
+        }
+        .warning .container {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+        }
+        .warning .icon {
+            font-size: 1.3rem;
+            color: var(--gold-old);
+            flex-shrink: 0;
+            margin-top: 2px;
+            opacity: 0.7;
+        }
+        .warning .content h4 {
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--ink);
+            letter-spacing: 0.5px;
+        }
+        .warning .content p {
+            font-size: 0.82rem;
+            color: var(--ink-faded);
+            margin-top: 4px;
+        }
+        .warning .content .highlight-red {
+            color: #a13d2e;
+            font-weight: 600;
+        }
+
+        /* ─── STORY — TIMELINE ─── */
+        .story {
+            padding: 50px 0 30px;
+            position: relative;
+        }
+        .story-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .story-header .section-sub {
+            margin: 0 auto;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--gold-old), var(--gold-old), transparent);
+            transform: translateX(-50%);
+            opacity: 0.2;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            width: 100%;
+            padding: 20px 0;
+            position: relative;
+            gap: 30px;
+        }
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        .timeline-item .year {
+            flex: 0 0 80px;
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--gold-old);
+            letter-spacing: 1px;
+            line-height: 1;
+            padding-top: 4px;
+        }
+        .timeline-item .content {
+            flex: 1;
+            padding: 0 10px;
+        }
+        .timeline-item .content .title {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--ink);
+        }
+        .timeline-item .content .desc {
+            font-size: 0.9rem;
+            color: var(--ink-faded);
+            line-height: 1.6;
+            margin-top: 2px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gold-old);
+            border: 2px solid var(--parchment);
+            box-shadow: 0 0 0 4px rgba(180, 148, 106, 0.12);
+            z-index: 2;
+            flex-shrink: 0;
+        }
+
+        /* ─── TOKEN INFO ─── */
+        .token-info {
+            padding: 50px 0;
+            border-top: 1px solid rgba(180, 148, 106, 0.12);
+            border-bottom: 1px solid rgba(180, 148, 106, 0.12);
+            margin: 30px 0;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .token-info .section-sub {
+            margin: 0 auto;
+        }
+        .token-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 18px;
+            margin-top: 30px;
+        }
+        .token-card {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(180, 148, 106, 0.12);
+            border-radius: 16px;
+            padding: 22px 18px;
+            text-align: center;
+            transition: 0.3s;
+            backdrop-filter: blur(2px);
+        }
+        .token-card:hover {
+            border-color: var(--gold-old);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(60, 40, 20, 0.05);
+        }
+        .token-card .icon {
+            font-size: 1.6rem;
+            color: var(--gold-old);
+            margin-bottom: 6px;
+            opacity: 0.8;
+        }
+        .token-card .label {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--ink-faded);
+            opacity: 0.7;
+        }
+        .token-card .value {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-top: 4px;
+        }
+
+        /* ─── WHY ─── */
+        .why {
+            padding: 50px 0 30px;
+        }
+        .why-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .why-header .section-sub {
+            margin: 0 auto;
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 22px;
+        }
+        .why-item {
+            background: rgba(255, 255, 255, 0.35);
+            border: 1px solid rgba(180, 148, 106, 0.10);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: 0.3s;
+            backdrop-filter: blur(2px);
+        }
+        .why-item:hover {
+            border-color: var(--gold-old);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(60, 40, 20, 0.04);
+        }
+        .why-item .icon {
+            font-size: 2rem;
+            color: var(--gold-old);
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+        .why-item h4 {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .why-item p {
+            font-size: 0.82rem;
+            color: var(--ink-faded);
+            line-height: 1.7;
+        }
+
+        /* ─── CTA WITH COUNTDOWN ─── */
+        .cta {
+            padding: 50px 0 40px;
+            text-align: center;
+            border-top: 1px solid rgba(180, 148, 106, 0.12);
+            margin-top: 20px;
+        }
+        .cta .glow-box {
+            max-width: 740px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.35);
+            padding: 50px 30px 40px;
+            border-radius: 32px;
+            border: 1px solid rgba(180, 148, 106, 0.15);
+            backdrop-filter: blur(4px);
+        }
+        .cta h2 {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            font-style: italic;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        .cta p {
+            color: var(--ink-faded);
+            max-width: 460px;
+            margin: 0 auto 24px;
+            font-size: 1rem;
+        }
+
+        /* ─── COUNTDOWN ─── */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 24px 0 32px;
+            flex-wrap: wrap;
+        }
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(180, 148, 106, 0.12);
+            border-radius: 16px;
+            padding: 14px 18px;
+            min-width: 80px;
+            text-align: center;
+            backdrop-filter: blur(2px);
+        }
+        .countdown-item .num {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gold-old);
+            line-height: 1;
+            display: block;
+        }
+        .countdown-item .lbl {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--ink-faded);
+            opacity: 0.6;
+            margin-top: 4px;
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            border-top: 1px solid rgba(180, 148, 106, 0.12);
+            padding: 28px 0 18px;
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--ink-faded);
+        }
+        .footer .brand {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--ink);
+        }
+        .footer .brand small {
+            display: block;
+            font-family: var(--font-sans);
+            font-size: 0.55rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            color: var(--ink-faded);
+            margin-top: -4px;
+            opacity: 0.7;
+        }
+        .footer .socials {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin: 14px 0 10px;
+        }
+        .footer .socials a {
+            color: var(--ink-faded);
+            font-size: 1.2rem;
+            transition: 0.2s;
+            opacity: 0.6;
+        }
+        .footer .socials a:hover {
+            color: var(--gold-old);
+            opacity: 1;
+        }
+        .footer .copy {
+            font-size: 0.65rem;
+            letter-spacing: 0.5px;
+            opacity: 0.6;
+            line-height: 1.8;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .logo-container {
+                max-width: 280px;
+                margin: 0 auto;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: center;
+                text-align: center !important;
+                padding: 16px 0;
+                gap: 6px;
+            }
+            .timeline-item .year {
+                flex: none;
+                font-size: 1.3rem;
+            }
+            .timeline-item .content {
+                padding: 0;
+            }
+            .timeline::before {
+                left: 50%;
+            }
+            .timeline-dot {
+                display: none;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(244, 232, 209, 0.98);
+                padding: 20px 30px;
+                gap: 12px;
+                border-bottom: 1px solid rgba(180, 148, 106, 0.15);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .warning .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .countdown-item {
+                min-width: 60px;
+                padding: 10px 14px;
+            }
+            .countdown-item .num {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero-stats {
+                gap: 16px 28px;
+            }
+            .hero-stats .stat .num {
+                font-size: 1.6rem;
+            }
+            .token-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .cta .glow-box {
+                padding: 30px 18px;
+            }
+            .countdown {
+                gap: 8px;
+            }
+            .countdown-item {
+                min-width: 50px;
+                padding: 8px 10px;
+            }
+            .countdown-item .num {
+                font-size: 1.3rem;
+            }
+            .countdown-item .lbl {
+                font-size: 0.45rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .token-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ─── ANIMATIONS ─── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── PARTICLES CANVAS ─── -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ─── HEADER ─── -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo">
+                SBAWALIYA
+                <small>✦ the prophecy unearthed</small>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#story">The Legend</a></li>
+                <li><a href="#token">Token</a></li>
+                <li><a href="#why">Why</a></li>
+                <li><a href="#cta">Awaken</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="dot"></span>
+                        Awakening · Dec 1, 2026
+                    </div>
+                    <h1>
+                        The saint<br />
+                        <span class="highlight">who blessed</span><br />
+                        an empire
+                    </h1>
+                    <p>
+                        In the golden deserts of Rajasthan, a forgotten man spoke
+                        words that shaped history. Now, that legend stirs again — on Solana.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="num">130</span>
+                            <span class="label">Years of Lore</span>
+                        </div>
+                        <div class="stat">
+                            <span class="num">$66B</span>
+                            <span class="label">Blessed Fortune</span>
+                        </div>
+                        <div class="stat">
+                            <span class="num">40</span>
+                            <span class="label">Nations Touched</span>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#cta" class="btn btn--primary">
+                            <i class="fa-regular fa-compass"></i> Enter the Prophecy
+                        </a>
+                        <a href="#story" class="btn btn--outline">
+                            Uncover the Legend <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="logo-container">
+                        <div class="logo-glow"></div>
+                        <div class="logo-ring"></div>
+                        <div class="logo-ring"></div>
+                        <div class="logo-illustration">
+                            <img src="https://i.ibb.co/tMRWQbYc/IMG-20260702-093708-973.jpg" alt="SBAWALIYA Logo" />
+                            <div class="saint-name">The Saint of Chirawa</div>
+                            <div class="saint-title">Blessed of Rajasthan</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Unearth the story</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── WARNING ─── -->
+    <section class="warning" id="warning">
+        <div class="container">
+            <div class="icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div class="content">
+                <h4>⚔️ Guard the prophecy — no presale, no private sale</h4>
+                <p>
+                    <span class="highlight-red">No early CA · No insider access.</span>
+                    Any DM offering CA before launch is a <strong>scam</strong>.
+                    The legend is for all, or none.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── STORY — TIMELINE ─── -->
+    <section class="story" id="story">
+        <div class="container">
+            <div class="story-header fade-up">
+                <span class="section-tag">✦ The Legend</span>
+                <h2 class="section-title">
+                    The Prophecy <span class="gold-text">Unfolded</span>
+                </h2>
+                <p class="section-sub">
+                    According to local legend, a saint's blessing set in motion
+                    a chain of events that would echo through generations.
+                </p>
+            </div>
+
+            <div class="timeline">
+                <!-- Item 1 -->
+                <div class="timeline-item fade-up">
+                    <div class="year">1902</div>
+                    <div class="content">
+                        <div class="title">The Blessing</div>
+                        <div class="desc">
+                            In Chirawa, a wandering saint blesses a struggling merchant:
+                            <em>“Your name will be carved in gold.”</em>
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="timeline-item fade-up">
+                    <div class="year">1918</div>
+                    <div class="content">
+                        <div class="title">The Rise Begins</div>
+                        <div class="desc">
+                            The merchant's family — the Birlas — lay the foundation of
+                            what would become a global empire.
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="timeline-item fade-up">
+                    <div class="year">Today</div>
+                    <div class="content">
+                        <div class="title">$66 Billion Empire</div>
+                        <div class="desc">
+                            Operations across 40 countries. One of India's largest
+                            conglomerates. The prophecy fulfilled.
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="timeline-item fade-up">
+                    <div class="year">2026</div>
+                    <div class="content">
+                        <div class="title">Legend On-Chain</div>
+                        <div class="desc">
+                            The saint's story, once whispered only in villages,
+                            is now minted on Solana. The prophecy goes digital.
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+
+            <div class="ornate-divider">✦ ✦ ✦</div>
+        </div>
+    </section>
+
+    <!-- ─── TOKEN INFO ─── -->
+    <section class="token-info" id="token">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:6px;">
+                <span class="section-tag">⚡ The Awakening</span>
+                <h2 class="section-title" style="margin-bottom:8px;">
+                    From Legend <span class="gold-text">to Liquidity</span>
+                </h2>
+                <p class="section-sub" style="margin:0 auto;">
+                    Pure fair launch. Community-powered. Built on Solana.
+                </p>
+            </div>
+
+            <div class="token-grid">
+                <div class="token-card fade-up">
+                    <div class="icon"><i class="fa-regular fa-calendar"></i></div>
+                    <div class="label">Launch</div>
+                    <div class="value">Dec 1, 2026</div>
+                </div>
+                <div class="token-card fade-up">
+                    <div class="icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="label">Network</div>
+                    <div class="value">Solana</div>
+                </div>
+                <div class="token-card fade-up">
+                    <div class="icon"><i class="fa-solid fa-rocket"></i></div>
+                    <div class="label">Platform</div>
+                    <div class="value">pump.fun</div>
+                </div>
+                <div class="token-card fade-up">
+                    <div class="icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="label">Fair Launch</div>
+                    <div class="value">100% Community</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── WHY ─── -->
+    <section class="why" id="why">
+        <div class="container">
+            <div class="why-header">
+                <span class="section-tag">✦ Why SBAWALIYA</span>
+                <h2 class="section-title">
+                    Myth × <span class="gold-text">Memecoin</span>
+                </h2>
+                <p class="section-sub">
+                    Where ancient prophecy meets Solana speed.
+                </p>
+            </div>
+
+            <div class="why-grid">
+                <div class="why-item fade-up">
+                    <div class="icon"><i class="fa-regular fa-gem"></i></div>
+                    <h4>Pure Fair Launch</h4>
+                    <p>No presale, no private sale, no insider access. Equal for all.</p>
+                </div>
+                <div class="why-item fade-up">
+                    <div class="icon"><i class="fa-solid fa-people-group"></i></div>
+                    <h4>Community-Powered</h4>
+                    <p>Built by believers, for believers. The legend lives through the people.</p>
+                </div>
+                <div class="why-item fade-up">
+                    <div class="icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h4>Solana Speed</h4>
+                    <p>Lightning-fast transactions, low fees, and the power of Solana.</p>
+                </div>
+                <div class="why-item fade-up">
+                    <div class="icon"><i class="fa-solid fa-scroll"></i></div>
+                    <h4>Legendary Lore</h4>
+                    <p>A 130-year-old story, now immortalized on-chain. History in the making.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── CTA WITH COUNTDOWN ─── -->
+    <section class="cta" id="cta">
+        <div class="container">
+            <div class="glow-box fade-up">
+                <span class="section-tag" style="margin-bottom:10px;">🚀 The Prophecy Awakens</span>
+                <h2>
+                    From Blessings<br />
+                    <span class="gold-text">to Blockchain.</span>
+                </h2>
+                <p>
+                    $BAWALIYA — not just a token, but a story written in code.
+                    <br />
+                    <span style="color:var(--gold-old); font-weight:600;">Dec 1, 2026 · Solana · pump.fun</span>
+                </p>
+
+                <!-- COUNTDOWN -->
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="num" id="days">--</span>
+                        <span class="lbl">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="num" id="hours">--</span>
+                        <span class="lbl">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="num" id="minutes">--</span>
+                        <span class="lbl">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="num" id="seconds">--</span>
+                        <span class="lbl">Seconds</span>
+                    </div>
+                </div>
+
+                <div class="btn-group" style="justify-content:center;">
+                    <!-- Set Reminder Button — opens Google Calendar -->
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=SBAWALIYA+Launch&dates=20261201T000000Z/20261201T010000Z&details=The+prophecy+awakens+on+Solana.+Join+the+legend.&location=Solana+%7C+pump.fun" target="_blank" class="btn btn--primary">
+                        <i class="fa-regular fa-bell"></i> Set Reminder
+                    </a>
+                    <!-- Follow on X -->
+                    <a href="https://x.com/Bawaliya_baba" target="_blank" class="btn btn--outline">
+                        <i class="fa-brands fa-x-twitter"></i> Follow @Bawaliya_baba
+                    </a>
+                </div>
+                <div style="margin-top:16px; font-size:0.65rem; color:var(--ink-faded); opacity:0.6;">
+                    <i class="fa-solid fa-shield-halved gold-text"></i> Fair launch. No presale. No private sale.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer class="footer">
+        <div class="container">
+            <div class="brand">
+                SBAWALIYA
+                <small>✦ 130-year legend · reborn on Solana</small>
+            </div>
+            <div class="socials">
+                <a href="https://x.com/Bawaliya_baba" target="_blank" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://t.me/BawaliyaBabaCOMMUNITY" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            </div>
+            <div class="copy">
+                &copy; 2026 SBAWALIYA · From Rajasthan to the blockchain.
+                <br />
+                <span style="opacity:0.5; font-size:0.6rem;">#BAWALIYA #Solana #PumpFun #Memecoin #FairLaunch #LegendOnChain</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ─── SCRIPTS ─── -->
+    <script>
+        // ─── PARTICLES ───
+        (function() {
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            const particles = [];
+            const count = 35;
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+                reset() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.size = Math.random() * 3 + 1.5;
+                    this.speedX = (Math.random() - 0.5) * 0.4;
+                    this.speedY = (Math.random() - 0.5) * 0.4;
+                    this.opacity = Math.random() * 0.3 + 0.05;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > height) this.speedY *= -1;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(180, 148, 106, ${this.opacity})`;
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+
+        // ─── COUNTDOWN ───
+        (function() {
+            const launchDate = new Date('2026-12-01T00:00:00').getTime();
+
+            function updateCountdown() {
+                const now = Date.now();
+                let diff = launchDate - now;
+                if (diff < 0) diff = 0;
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        })();
+
+        // ─── HAMBURGER ───
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // ─── SCROLL ANIMATIONS ───
+        const fadeEls = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+        fadeEls.forEach(el => observer.observe(el));
+
+        // ─── HEADER SHADOW ───
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 30) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ─── SMOOTH ANCHOR ───
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
