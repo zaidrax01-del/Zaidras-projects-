@@ -637,56 +637,117 @@
             flex-shrink: 0;
         }
 
-        /* ─── TOKEN INFO ─── */
-        .token-info {
+        /* ─── TOKENOMICS ─── */
+        .tokenomics {
             padding: 50px 0;
             border-top: 1px solid rgba(180, 148, 106, 0.12);
             border-bottom: 1px solid rgba(180, 148, 106, 0.12);
             margin: 30px 0;
             background: rgba(255, 255, 255, 0.15);
         }
-        .token-info .section-sub {
-            margin: 0 auto;
-        }
-        .token-grid {
+        .tokenomics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
             margin-top: 30px;
         }
-        .token-card {
+        .tokenomics-item {
             background: rgba(255, 255, 255, 0.4);
             border: 1px solid rgba(180, 148, 106, 0.12);
             border-radius: 16px;
-            padding: 22px 18px;
+            padding: 20px 16px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .tokenomics-item:hover {
+            border-color: var(--gold-old);
+            transform: translateY(-3px);
+        }
+        .tokenomics-item .pct {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold-old);
+            display: block;
+        }
+        .tokenomics-item .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--ink-faded);
+            margin-top: 4px;
+        }
+
+        /* ─── ECOSYSTEM ─── */
+        .ecosystem {
+            padding: 50px 0 30px;
+        }
+        .ecosystem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        .ecosystem-card {
+            background: rgba(255, 255, 255, 0.35);
+            border: 1px solid rgba(180, 148, 106, 0.10);
+            border-radius: 16px;
+            padding: 28px 20px;
             text-align: center;
             transition: 0.3s;
             backdrop-filter: blur(2px);
         }
-        .token-card:hover {
+        .ecosystem-card:hover {
             border-color: var(--gold-old);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(60, 40, 20, 0.05);
+            transform: translateY(-4px);
         }
-        .token-card .icon {
-            font-size: 1.6rem;
+        .ecosystem-card .icon {
+            font-size: 2.4rem;
             color: var(--gold-old);
-            margin-bottom: 6px;
-            opacity: 0.8;
+            margin-bottom: 10px;
         }
-        .token-card .label {
-            font-size: 0.55rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--ink-faded);
-            opacity: 0.7;
-        }
-        .token-card .value {
+        .ecosystem-card h4 {
             font-family: var(--font-serif);
-            font-size: 1.2rem;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .ecosystem-card p {
+            font-size: 0.82rem;
+            color: var(--ink-faded);
+            line-height: 1.6;
+        }
+
+        /* ─── ROADMAP ─── */
+        .roadmap {
+            padding: 50px 0 30px;
+            border-top: 1px solid rgba(180, 148, 106, 0.12);
+            margin-top: 20px;
+        }
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .roadmap-item {
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(180, 148, 106, 0.10);
+            border-radius: 16px;
+            padding: 20px 16px;
+            text-align: center;
+        }
+        .roadmap-item .quarter {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
             font-weight: 700;
-            color: var(--ink);
-            margin-top: 4px;
+            color: var(--gold-old);
+        }
+        .roadmap-item .desc {
+            font-size: 0.8rem;
+            color: var(--ink-faded);
+            margin-top: 6px;
+            line-height: 1.5;
         }
 
         /* ─── WHY ─── */
@@ -939,7 +1000,13 @@
             .hero-stats .stat .num {
                 font-size: 1.6rem;
             }
-            .token-grid {
+            .tokenomics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .ecosystem-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .roadmap-grid {
                 grid-template-columns: 1fr 1fr;
             }
             .cta .glow-box {
@@ -961,7 +1028,13 @@
         }
 
         @media (max-width: 400px) {
-            .token-grid {
+            .tokenomics-grid {
+                grid-template-columns: 1fr;
+            }
+            .ecosystem-grid {
+                grid-template-columns: 1fr;
+            }
+            .roadmap-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -992,8 +1065,9 @@
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#story">The Legend</a></li>
-                <li><a href="#token">Token</a></li>
-                <li><a href="#why">Why</a></li>
+                <li><a href="#tokenomics">Tokenomics</a></li>
+                <li><a href="#ecosystem">Ecosystem</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
                 <li><a href="#cta">Awaken</a></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -1009,7 +1083,7 @@
                 <div class="hero-content">
                     <div class="hero-badge">
                         <span class="dot"></span>
-                        Awakening · Dec 1, 2026
+                        Awakening · Dec 1, 2025
                     </div>
                     <h1>
                         The saint<br />
@@ -1026,8 +1100,8 @@
                             <span class="label">Years of Lore</span>
                         </div>
                         <div class="stat">
-                            <span class="num">$66B</span>
-                            <span class="label">Blessed Fortune</span>
+                            <span class="num">1B</span>
+                            <span class="label">Total Supply</span>
                         </div>
                         <div class="stat">
                             <span class="num">40</span>
@@ -1050,14 +1124,10 @@
                         <div class="logo-ring"></div>
                         <div class="logo-ring"></div>
                         <div class="logo-circle">
-                            <!-- === ADD YOUR LOGO HERE === -->
-                            <!-- Replace the src with your local image path -->
+                            <!-- Replace with your local logo -->
                             <img src="logo.png" alt="SBAWALIYA Logo" />
-                            <!-- ============================ -->
                         </div>
                     </div>
-
-                    <!-- Logo text moved below the circle -->
                     <div class="logo-text-below">
                         <div class="saint-name">The Saint of Chirawa</div>
                         <div class="saint-title">Blessed of Rajasthan</div>
@@ -1101,7 +1171,6 @@
             </div>
 
             <div class="timeline">
-                <!-- Item 1 -->
                 <div class="timeline-item fade-up">
                     <div class="year">1902</div>
                     <div class="content">
@@ -1113,8 +1182,6 @@
                     </div>
                     <div class="timeline-dot"></div>
                 </div>
-
-                <!-- Item 2 -->
                 <div class="timeline-item fade-up">
                     <div class="year">1918</div>
                     <div class="content">
@@ -1126,8 +1193,6 @@
                     </div>
                     <div class="timeline-dot"></div>
                 </div>
-
-                <!-- Item 3 -->
                 <div class="timeline-item fade-up">
                     <div class="year">Today</div>
                     <div class="content">
@@ -1139,10 +1204,8 @@
                     </div>
                     <div class="timeline-dot"></div>
                 </div>
-
-                <!-- Item 4 -->
                 <div class="timeline-item fade-up">
-                    <div class="year">2026</div>
+                    <div class="year">2025</div>
                     <div class="content">
                         <div class="title">Legend On-Chain</div>
                         <div class="desc">
@@ -1158,45 +1221,156 @@
         </div>
     </section>
 
-    <!-- ─── TOKEN INFO ─── -->
-    <section class="token-info" id="token">
+    <!-- ─── TOKENOMICS ─── -->
+    <section class="tokenomics" id="tokenomics">
         <div class="container">
             <div style="text-align:center; margin-bottom:6px;">
-                <span class="section-tag">⚡ The Awakening</span>
+                <span class="section-tag">⚡ Tokenomics</span>
                 <h2 class="section-title" style="margin-bottom:8px;">
-                    From Legend <span class="gold-text">to Liquidity</span>
+                    The <span class="gold-text">Blessing</span> Distributed
                 </h2>
                 <p class="section-sub" style="margin:0 auto;">
-                    Pure fair launch. Community-powered. Built on Solana.
+                    Total Supply: 1,000,000,000 $BAWALIYA · SPL Token on Solana
                 </p>
             </div>
 
-            <div class="token-grid">
-                <div class="token-card fade-up">
-                    <div class="icon"><i class="fa-regular fa-calendar"></i></div>
-                    <div class="label">Launch</div>
-                    <div class="value">Dec 1, 2026</div>
+            <div class="tokenomics-grid">
+                <div class="tokenomics-item fade-up">
+                    <span class="pct">35%</span>
+                    <span class="label">Community & Ecosystem</span>
                 </div>
-                <div class="token-card fade-up">
-                    <div class="icon"><i class="fa-solid fa-bolt"></i></div>
-                    <div class="label">Network</div>
-                    <div class="value">Solana</div>
+                <div class="tokenomics-item fade-up">
+                    <span class="pct">15%</span>
+                    <span class="label">Liquidity & Exchanges</span>
                 </div>
-                <div class="token-card fade-up">
-                    <div class="icon"><i class="fa-solid fa-rocket"></i></div>
-                    <div class="label">Platform</div>
-                    <div class="value">pump.fun</div>
+                <div class="tokenomics-item fade-up">
+                    <span class="pct">15%</span>
+                    <span class="label">Treasury & Reserve</span>
                 </div>
-                <div class="token-card fade-up">
-                    <div class="icon"><i class="fa-solid fa-users"></i></div>
-                    <div class="label">Fair Launch</div>
-                    <div class="value">100% Community</div>
+                <div class="tokenomics-item fade-up">
+                    <span class="pct">10%</span>
+                    <span class="label">Marketing & Growth</span>
+                </div>
+                <div class="tokenomics-item fade-up">
+                    <span class="pct">10%</span>
+                    <span class="label">Development</span>
+                </div>
+                <div class="tokenomics-item fade-up">
+                    <span class="pct">5%</span>
+                    <span class="label">Team</span>
+                </div>
+                <div class="tokenomics-item fade-up">
+                    <span class="pct">5%</span>
+                    <span class="label">Advisors</span>
+                </div>
+                <div class="tokenomics-item fade-up">
+                    <span class="pct">5%</span>
+                    <span class="label">Airdrop & Rewards</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ─── WHY ─── -->
+    <!-- ─── ECOSYSTEM ─── -->
+    <section class="ecosystem" id="ecosystem">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:6px;">
+                <span class="section-tag">✦ The Ecosystem</span>
+                <h2 class="section-title">
+                    Play, Earn, <span class="gold-text">Believe</span>
+                </h2>
+                <p class="section-sub" style="margin:0 auto;">
+                    An entertainment ecosystem blending ancient wisdom with modern crypto culture.
+                </p>
+            </div>
+
+            <div class="ecosystem-grid">
+                <div class="ecosystem-card fade-up">
+                    <div class="icon"><i class="fa-solid fa-route"></i></div>
+                    <h4>Baba's Journey</h4>
+                    <p>Endless runner across India. Dodge obstacles, collect coins, and beat high scores.</p>
+                </div>
+                <div class="ecosystem-card fade-up">
+                    <div class="icon"><i class="fa-solid fa-bowl-food"></i></div>
+                    <h4>Temple Offerings</h4>
+                    <p>Slice fruits, flowers & offerings. Each perfect slice earns coins and combos.</p>
+                </div>
+                <div class="ecosystem-card fade-up">
+                    <div class="icon"><i class="fa-solid fa-circle-question"></i></div>
+                    <h4>Baba's Prophecy</h4>
+                    <p>Daily quiz on lore, history, crypto & fun facts. Test your knowledge.</p>
+                </div>
+                <div class="ecosystem-card fade-up">
+                    <div class="icon"><i class="fa-solid fa-clover"></i></div>
+                    <h4>Blessing Wheel</h4>
+                    <p>Win multipliers, bonus coins or rare rewards. Risk. Luck. Blessings.</p>
+                </div>
+                <div class="ecosystem-card fade-up">
+                    <div class="icon"><i class="fa-solid fa-ranking-star"></i></div>
+                    <h4>Temple Rankings</h4>
+                    <p>Climb leaderboards and earn multiplier rewards. Compete with the community.</p>
+                </div>
+                <div class="ecosystem-card fade-up">
+                    <div class="icon"><i class="fa-solid fa-scroll"></i></div>
+                    <h4>Lore Collection</h4>
+                    <p>Complete missions to unlock stories of Bawaliya Baba and earn special boosts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── ROADMAP ─── -->
+    <section class="roadmap" id="roadmap">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:6px;">
+                <span class="section-tag">🗺️ The Path</span>
+                <h2 class="section-title">
+                    Roadmap to <span class="gold-text">Glory</span>
+                </h2>
+                <p class="section-sub" style="margin:0 auto;">
+                    From legend to global dominion — the journey of $BAWALIYA.
+                </p>
+            </div>
+
+            <div class="roadmap-grid">
+                <div class="roadmap-item fade-up">
+                    <div class="quarter">Q3 2024</div>
+                    <div class="desc">Concepts & Branding</div>
+                </div>
+                <div class="roadmap-item fade-up">
+                    <div class="quarter">Q4 2024</div>
+                    <div class="desc">Community Building</div>
+                </div>
+                <div class="roadmap-item fade-up">
+                    <div class="quarter">Q1 2025</div>
+                    <div class="desc">Development Begins</div>
+                </div>
+                <div class="roadmap-item fade-up">
+                    <div class="quarter">Q2 2025</div>
+                    <div class="desc">Public Beta & Wallet Connect</div>
+                </div>
+                <div class="roadmap-item fade-up">
+                    <div class="quarter">Q3 2025</div>
+                    <div class="desc">Full Release & TGE</div>
+                </div>
+                <div class="roadmap-item fade-up">
+                    <div class="quarter">Q4 2025</div>
+                    <div class="desc">Airdrop & Exchange Listings</div>
+                </div>
+                <div class="roadmap-item fade-up">
+                    <div class="quarter">Dec 1, 2025</div>
+                    <div class="desc"><strong>Launch</strong> — Prophecy Awakens</div>
+                </div>
+                <div class="roadmap-item fade-up">
+                    <div class="quarter">2026+</div>
+                    <div class="desc">Gaming Expansion & Global Dominion</div>
+                </div>
+            </div>
+            <div class="ornate-divider">✦ ✦ ✦</div>
+        </div>
+    </section>
+
+    <!-- ─── WHY ─── (merged with existing) -->
     <section class="why" id="why">
         <div class="container">
             <div class="why-header">
@@ -1246,7 +1420,7 @@
                 <p>
                     $BAWALIYA — not just a token, but a story written in code.
                     <br />
-                    <span style="color:var(--gold-old); font-weight:600;">Dec 1, 2026 · Solana · pump.fun</span>
+                    <span style="color:var(--gold-old); font-weight:600;">Dec 1, 2025 · Solana · pump.fun</span>
                 </p>
 
                 <!-- COUNTDOWN -->
@@ -1270,13 +1444,11 @@
                 </div>
 
                 <div class="btn-group" style="justify-content:center;">
-                    <!-- Set Reminder Button — opens Google Calendar -->
-                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=SBAWALIYA+Launch&dates=20261201T000000Z/20261201T010000Z&details=The+prophecy+awakens+on+Solana.+Join+the+legend.&location=Solana+%7C+pump.fun" target="_blank" class="btn btn--primary">
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=SBAWALIYA+Launch&dates=20251201T000000Z/20251201T010000Z&details=The+prophecy+awakens+on+Solana.+Join+the+legend.&location=Solana+%7C+pump.fun" target="_blank" class="btn btn--primary">
                         <i class="fa-regular fa-bell"></i> Set Reminder
                     </a>
-                    <!-- Follow on X -->
-                    <a href="https://x.com/Bawaliya_baba" target="_blank" class="btn btn--outline">
-                        <i class="fa-brands fa-x-twitter"></i> Follow @Bawaliya_baba
+                    <a href="https://x.com/BAWALIYATOKEN" target="_blank" class="btn btn--outline">
+                        <i class="fa-brands fa-x-twitter"></i> Follow @BAWALIYATOKEN
                     </a>
                 </div>
                 <div style="margin-top:16px; font-size:0.65rem; color:var(--ink-faded); opacity:0.6;">
@@ -1294,8 +1466,9 @@
                 <small>✦ 130-year legend · reborn on Solana</small>
             </div>
             <div class="socials">
-                <a href="https://x.com/Bawaliya_baba" target="_blank" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://t.me/BawaliyaBabaCOMMUNITY" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://x.com/BAWALIYATOKEN" target="_blank" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://t.me/BAWALIYABABA" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://bawaliya.io" target="_blank" aria-label="Website"><i class="fa-solid fa-globe"></i></a>
             </div>
             <div class="copy">
                 &copy; 2026 SBAWALIYA · From Rajasthan to the blockchain.
@@ -1363,9 +1536,9 @@
             animate();
         })();
 
-        // ─── COUNTDOWN ───
+        // ─── COUNTDOWN (Dec 1, 2025) ───
         (function() {
-            const launchDate = new Date('2026-12-01T00:00:00').getTime();
+            const launchDate = new Date('2025-12-01T00:00:00').getTime();
 
             function updateCountdown() {
                 const now = Date.now();
@@ -1435,6 +1608,5 @@
             });
         });
     </script>
-
 </body>
 </html>
