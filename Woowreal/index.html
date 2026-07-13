@@ -257,31 +257,13 @@
             align-items: center;
             gap: 4px;
             text-decoration: none;
-            font-family: var(--font-serif);
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
             flex-shrink: 0;
         }
-        .logo .woow {
-            color: var(--gold);
-        }
-        .logo .real {
-            color: var(--text-primary);
-            font-weight: 400;
-        }
-        .logo-badge {
-            font-family: var(--font-sans);
-            font-size: 0.4rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: var(--gold);
-            color: #FFFFFF;
-            padding: 2px 8px;
-            border-radius: 30px;
-            margin-left: 4px;
+        
+        .logo-img {
+            height: 32px;
+            width: auto;
+            display: block;
         }
 
         /* Center: Nav links */
@@ -1103,8 +1085,10 @@
             margin-bottom: 28px;
         }
 
-        .footer-brand .logo {
-            font-size: 1.1rem;
+        .footer-brand .logo-img-footer {
+            height: 26px;
+            width: auto;
+            display: block;
             margin-bottom: 6px;
         }
         .footer-brand p {
@@ -1112,6 +1096,7 @@
             font-size: 0.8rem;
             max-width: 260px;
             line-height: 1.7;
+            margin-top: 6px;
         }
         .footer-brand .socials {
             display: flex;
@@ -1439,10 +1424,9 @@
     <!-- ===== HEADER ===== -->
     <header class="header" id="header">
         <div class="container">
-            <!-- Left: Logo -->
+            <!-- Left: Logo Image -->
             <a href="#" class="logo">
-                <span class="woow">WOOW</span><span class="real">REAL</span>
-                <span class="logo-badge">$WOOW</span>
+                <img src="logo.png" alt="WOOW REAL Logo" class="logo-img">
             </a>
 
             <!-- Center: Nav links -->
@@ -1780,7 +1764,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="#" class="logo">
-                        <span class="woow">WOOW</span><span class="real">REAL</span>
+                        <img src="logo.png" alt="WOOW REAL Logo" class="logo-img-footer">
                     </a>
                     <p>
                         The original. The only. WOOW Real.<br />
