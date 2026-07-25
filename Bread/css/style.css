@@ -1690,3 +1690,295 @@ padding-top:80px;
 
 }
 
+/* =========================
+HOW TO BUY
+========================= */
+
+.buy{
+
+padding:130px 0;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.buy::before{
+
+content:"";
+
+position:absolute;
+
+right:-250px;
+
+bottom:-250px;
+
+width:700px;
+
+height:700px;
+
+background:radial-gradient(circle,
+rgba(212,175,55,.08),
+transparent 70%);
+
+pointer-events:none;
+
+}
+
+.buy-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:30px;
+
+margin-top:80px;
+
+}
+
+.buy-card{
+
+position:relative;
+
+background:linear-gradient(180deg,#141414,#0d0d0d);
+
+border:1px solid rgba(212,175,55,.15);
+
+border-radius:24px;
+
+padding:45px 30px;
+
+transition:.35s;
+
+overflow:hidden;
+
+}
+
+.buy-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:4px;
+
+background:linear-gradient(90deg,var(--gold),#FFD86B);
+
+}
+
+.buy-card:hover{
+
+transform:translateY(-10px);
+
+border-color:var(--gold);
+
+box-shadow:0 20px 60px rgba(212,175,55,.18);
+
+}
+
+.buy-card span{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+width:70px;
+
+height:70px;
+
+border-radius:50%;
+
+background:linear-gradient(135deg,#FFD86B,var(--gold));
+
+font-size:28px;
+
+font-family:'Cinzel',serif;
+
+font-weight:700;
+
+color:#000;
+
+margin-bottom:28px;
+
+box-shadow:0 15px 35px rgba(212,175,55,.35);
+
+}
+
+.buy-card h3{
+
+font-size:26px;
+
+font-family:'Cinzel',serif;
+
+color:var(--gold);
+
+margin-bottom:16px;
+
+}
+
+.buy-card p{
+
+font-size:15px;
+
+line-height:1.8;
+
+color:#c8c8c8;
+
+}
+
+/* =========================
+FAQ
+========================= */
+
+.faq{
+
+padding:130px 0;
+
+}
+
+.faq-list{
+
+display:flex;
+
+flex-direction:column;
+
+gap:22px;
+
+margin-top:80px;
+
+max-width:950px;
+
+margin-inline:auto;
+
+}
+
+.faq-item{
+
+background:linear-gradient(180deg,#141414,#0d0d0d);
+
+border:1px solid rgba(212,175,55,.15);
+
+border-radius:22px;
+
+padding:28px 35px;
+
+transition:.35s;
+
+cursor:pointer;
+
+}
+
+.faq-item:hover{
+
+border-color:var(--gold);
+
+transform:translateY(-6px);
+
+box-shadow:0 18px 55px rgba(212,175,55,.15);
+
+}
+
+.faq-item h3{
+
+font-family:'Cinzel',serif;
+
+font-size:25px;
+
+color:var(--gold);
+
+margin-bottom:14px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.faq-item h3::after{
+
+content:"+";
+
+font-size:24px;
+
+font-family:'Inter',sans-serif;
+
+font-weight:700;
+
+color:var(--gold);
+
+}
+
+.faq-item.active h3::after{
+
+content:"−";
+
+}
+
+.faq-item p{
+
+font-size:16px;
+
+line-height:1.9;
+
+color:#c8c8c8;
+
+display:none;
+
+padding-top:12px;
+
+}
+
+.faq-item.active p{
+
+display:block;
+
+animation:fadeDown .35s ease;
+
+}
+
+/* =========================
+FAQ ANIMATION
+========================= */
+
+@keyframes fadeDown{
+
+from{
+
+opacity:0;
+
+transform:translateY(-12px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* =========================
+SECTION DIVIDER
+========================= */
+
+.buy + .faq{
+
+padding-top:90px;
+
+}
+
