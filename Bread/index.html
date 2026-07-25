@@ -2,36 +2,33 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>$BREAD | Feed The Community</title>
 
     <meta name="description"
-        content="$BREAD - Feed The Community. A premium community-first memecoin on Solana." />
+        content="$BREAD - Community First Memecoin on Solana">
 
-    <!-- Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Icons -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animation.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+
+    <!-- Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-<div class="background-glow"></div>
-
-<div class="site-wrapper">
+<div class="page-wrapper">
 
 <!-- ================= NAVBAR ================= -->
 
@@ -41,7 +38,7 @@
 
 <a href="#" class="logo">
 
-<img src="assets/images/logo.png" alt="Bread">
+<img src="assets/logo/logo.png" alt="$BREAD Logo">
 
 <span>$BREAD</span>
 
@@ -51,7 +48,7 @@
 
 <ul class="nav-links">
 
-<li><a href="#home" class="active">HOME</a></li>
+<li><a href="#hero">HOME</a></li>
 
 <li><a href="#about">ABOUT</a></li>
 
@@ -75,27 +72,13 @@ BUY $BREAD
 
 </a>
 
-<div class="mobile-menu">
-
-<i class="fa-solid fa-bars"></i>
-
-</div>
-
 </div>
 
 </header>
 
 <!-- ================= HERO ================= -->
 
-<section class="hero" id="home">
-
-<div class="hero-background">
-
-<img src="assets/images/hero-bg.jpg" alt="Lamborghini">
-
-<div class="hero-overlay"></div>
-
-</div>
+<section id="hero" class="hero">
 
 <div class="container hero-grid">
 
@@ -113,22 +96,23 @@ GET THAT
 
 <p>
 
-$BREAD is building something different—
-a premium community-first memecoin where
-every idea matters, creators are supported,
-and success is shared.
+$BREAD is the ultimate meme token
+
+for the grinders, the dreamers,
+
+and the dough makers.
 
 </p>
 
 <div class="hero-buttons">
 
-<a href="#" class="gold-btn">
+<a href="#" class="btn gold">
 
 BUY $BREAD
 
 </a>
 
-<a href="#" class="dark-btn">
+<a href="#" class="btn dark">
 
 JOIN COMMUNITY
 
@@ -137,341 +121,3 @@ JOIN COMMUNITY
 </div>
 
 </div>
-
-<!-- CENTER -->
-
-<div class="hero-center">
-
-<img
-class="hero-logo"
-src="assets/images/coin.png"
-alt="Bread Coin">
-
-</div>
-
-<!-- RIGHT -->
-
-<div class="hero-right">
-
-<div class="floating-card">
-
-<h3>
-
-Pain.
-
-Passion.
-
-Millions.
-
-</h3>
-
-<p>
-
-The strongest communities aren't bought.
-
-They're built.
-
-Welcome to the Bakery.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= LIVE STATS ================= -->
-
-<section class="stats-section">
-
-<div class="container">
-
-<div class="stats-grid">
-
-<div class="stat-card glass">
-<h2>$0.00</h2>
-<p>Launch Price</p>
-</div>
-
-<div class="stat-card glass">
-<h2>1B</h2>
-<p>Total Supply</p>
-</div>
-
-<div class="stat-card glass">
-<h2>Fair</h2>
-<p>Launch</p>
-</div>
-
-<div class="stat-card glass">
-<h2>0%</h2>
-<p>Tax</p>
-</div>
-
-<div class="stat-card glass">
-<h2>100%</h2>
-<p>Community</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= MAIN GRID ================= -->
-
-<section class="main-grid">
-
-<div class="container">
-
-<div class="cards-grid">
-
-<!-- ABOUT -->
-
-<div class="card about-card glass shine-card hover-lift fade-up" id="about">
-
-<div class="card-image">
-
-<img src="assets/images/bread-money.jpg" alt="Bread">
-
-</div>
-
-<div class="card-content">
-
-<span class="card-tag">ABOUT</span>
-
-<h2>Feed the Community. Not the Whales.</h2>
-
-<p>
-
-$BREAD isn't another memecoin chasing hype.
-
-We're building a community where every holder matters,
-
-every creator has an opportunity,
-
-and every builder has a place.
-
-</p>
-
-<a href="#" class="gold-link">
-
-Learn More
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</a>
-
-</div>
-
-</div>
-
-<!-- RECIPE -->
-
-<div class="card roadmap-card glass shine-card hover-lift fade-up" id="roadmap">
-
-<span class="card-tag">
-
-THE RECIPE
-
-</span>
-
-<h2>
-
-Bake Success Together
-
-</h2>
-
-<ul>
-
-<li>🥖 Fair Launch</li>
-
-<li>🥖 Community Growth</li>
-
-<li>🥖 Meme Competitions</li>
-
-<li>🥖 Creator Support</li>
-
-<li>🥖 Ecosystem Expansion</li>
-
-</ul>
-
-</div>
-
-<!-- COMMUNITY -->
-
-<div class="card creator-card glass shine-card hover-lift fade-up" id="community">
-
-<div class="card-image">
-
-<img src="assets/images/yacht.jpg" alt="Community">
-
-</div>
-
-<div class="card-content">
-
-<span class="card-tag">
-
-THE BAKERY
-
-</span>
-
-<h2>
-
-Built Together.
-
-</h2>
-
-<p>
-
-The Bakery is where builders,
-
-artists,
-
-developers,
-
-traders,
-
-and creators all grow together.
-
-</p>
-
-</div>
-
-</div>
-
-<!-- FAQ -->
-
-<div class="card faq-card glass shine-card hover-lift fade-up" id="faq">
-
-<span class="card-tag">
-
-FAQ
-
-</span>
-
-<h2>
-
-Quick Answers
-
-</h2>
-
-<div class="faq-item">
-
-<h4>
-
-Private Sale?
-
-</h4>
-
-<p>
-
-No.
-
-Everything begins with a fair launch.
-
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h4>
-
-Launch Chain?
-
-</h4>
-
-<p>
-
-Solana Blockchain.
-
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h4>
-
-Taxes?
-
-</h4>
-
-<p>
-
-0% Buy & Sell Tax.
-
-</p>
-
-</div>
-
-</div>
-
-<!-- TOKENOMICS -->
-
-<div class="card tokenomics-card glass shine-card hover-lift fade-up" id="tokenomics">
-
-<span class="card-tag">
-
-TOKENOMICS
-
-</span>
-
-<h2>
-
-Supply Distribution
-
-</h2>
-
-<canvas id="tokenChart"></canvas>
-
-<div class="token-list">
-
-<div>
-
-<span></span>
-
-<p>90% Community Liquidity</p>
-
-</div>
-
-<div>
-
-<span></span>
-
-<p>5% Marketing</p>
-
-</div>
-
-<div>
-
-<span></span>
-
-<p>3% Rewards</p>
-
-</div>
-
-<div>
-
-<span></span>
-
-<p>2% Development</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>. 
-
-
