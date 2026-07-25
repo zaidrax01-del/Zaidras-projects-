@@ -2382,3 +2382,513 @@ border-radius:20px;
 background:#FFD86B;
 
 }
+
+/* =========================
+PREMIUM ANIMATIONS
+========================= */
+
+/* Fade Up */
+
+.fade-up{
+
+opacity:0;
+
+transform:translateY(70px);
+
+transition:all .9s ease;
+
+}
+
+.fade-up.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+/* Fade Left */
+
+.fade-left{
+
+opacity:0;
+
+transform:translateX(-70px);
+
+transition:all .9s ease;
+
+}
+
+.fade-left.show{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+/* Fade Right */
+
+.fade-right{
+
+opacity:0;
+
+transform:translateX(70px);
+
+transition:all .9s ease;
+
+}
+
+.fade-right.show{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+/* Zoom */
+
+.zoom{
+
+opacity:0;
+
+transform:scale(.85);
+
+transition:all .8s ease;
+
+}
+
+.zoom.show{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+/* =========================
+GLASS EFFECT
+========================= */
+
+.glass{
+
+background:rgba(255,255,255,.04);
+
+backdrop-filter:blur(24px);
+
+-webkit-backdrop-filter:blur(24px);
+
+border:1px solid rgba(255,255,255,.08);
+
+box-shadow:
+
+0 25px 60px rgba(0,0,0,.45);
+
+}
+
+/* =========================
+PREMIUM BORDER
+========================= */
+
+.gold-border{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.gold-border::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+padding:1px;
+
+border-radius:inherit;
+
+background:
+
+linear-gradient(
+
+135deg,
+
+transparent,
+
+rgba(212,175,55,.8),
+
+transparent
+
+);
+
+-webkit-mask:
+
+linear-gradient(#fff 0 0) content-box,
+
+linear-gradient(#fff 0 0);
+
+-webkit-mask-composite:xor;
+
+mask-composite:exclude;
+
+pointer-events:none;
+
+}
+
+/* =========================
+HOVER LIFT
+========================= */
+
+.hover-lift{
+
+transition:.4s ease;
+
+}
+
+.hover-lift:hover{
+
+transform:
+
+translateY(-10px)
+
+scale(1.02);
+
+}
+
+/* =========================
+IMAGE HOVER
+========================= */
+
+.image-hover{
+
+overflow:hidden;
+
+border-radius:24px;
+
+}
+
+.image-hover img{
+
+transition:transform .8s ease;
+
+}
+
+.image-hover:hover img{
+
+transform:scale(1.08);
+
+}
+
+/* =========================
+GLOW BUTTON
+========================= */
+
+.glow-btn{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.glow-btn::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:-120%;
+
+width:60%;
+
+height:100%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.5),
+
+transparent
+
+);
+
+transform:skewX(-25deg);
+
+}
+
+.glow-btn:hover::before{
+
+animation:shine 1.2s linear;
+
+}
+
+@keyframes shine{
+
+100%{
+
+left:170%;
+
+}
+
+}
+
+/* =========================
+FLOATING ELEMENTS
+========================= */
+
+.float-slow{
+
+animation:floatSlow 8s ease-in-out infinite;
+
+}
+
+.float-fast{
+
+animation:floatFast 5s ease-in-out infinite;
+
+}
+
+@keyframes floatSlow{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-20px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes floatFast{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+/* =========================
+ROTATING GLOW
+========================= */
+
+.rotate-glow{
+
+position:relative;
+
+}
+
+.rotate-glow::after{
+
+content:"";
+
+position:absolute;
+
+inset:-30px;
+
+border-radius:50%;
+
+background:
+
+conic-gradient(
+
+from 0deg,
+
+transparent,
+
+rgba(212,175,55,.45),
+
+transparent
+
+);
+
+filter:blur(35px);
+
+animation:spinGlow 10s linear infinite;
+
+z-index:-1;
+
+}
+
+@keyframes spinGlow{
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* =========================
+CARD SHINE
+========================= */
+
+.shine-card{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.shine-card::after{
+
+content:"";
+
+position:absolute;
+
+top:-120%;
+
+left:-60%;
+
+width:45%;
+
+height:300%;
+
+background:
+
+rgba(255,255,255,.08);
+
+transform:rotate(25deg);
+
+transition:.8s;
+
+}
+
+.shine-card:hover::after{
+
+left:150%;
+
+}
+
+/* =========================
+GRADIENT TEXT
+========================= */
+
+.gold-text{
+
+background:
+
+linear-gradient(
+
+90deg,
+
+#FFF6C2,
+
+#FFD86B,
+
+#D4AF37,
+
+#FFF6C2
+
+);
+
+background-size:300%;
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+animation:goldMove 6s linear infinite;
+
+}
+
+@keyframes goldMove{
+
+0%{
+
+background-position:0%;
+
+}
+
+100%{
+
+background-position:300%;
+
+}
+
+}
+
+/* =========================
+SOFT GLOW
+========================= */
+
+.soft-glow{
+
+box-shadow:
+
+0 0 20px rgba(212,175,55,.18),
+
+0 0 60px rgba(212,175,55,.08);
+
+}
+
+/* =========================
+SECTION REVEAL
+========================= */
+
+section{
+
+animation:fadeSection .8s ease both;
+
+animation-timeline:view();
+
+animation-range:entry 10% cover 35%;
+
+}
+
+@keyframes fadeSection{
+
+from{
+
+opacity:0;
+
+transform:translateY(60px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
