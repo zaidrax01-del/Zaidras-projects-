@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>$BREAD — Feed the Community. Not the Whales.</title>
-    <!-- Google Fonts -->
+    <title>$BREAD — Get That Bread</title>
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <!-- Font Awesome 6 (free) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
     </script>
     <style>
-        /* ============================================================
-                   RESET & BASE — Premium Black & Gold
-                   ============================================================ */
+        /* ===== RESET & BASE ===== */
         *,
         *::before,
         *::after {
@@ -27,23 +25,14 @@
 
         :root {
             --gold: #d4af37;
-            --gold-light: #e8c84a;
             --gold-dark: #b8962e;
-            --gold-glow: rgba(212, 175, 55, 0.25);
-            --gold-glow-strong: rgba(212, 175, 55, 0.45);
-            --bg-primary: #0b0b0b;
-            --bg-card: rgba(20, 20, 20, 0.85);
-            --bg-card-hover: rgba(30, 30, 30, 0.92);
-            --text-primary: #ffffff;
+            --bg: #0b0b0b;
+            --card-bg: #141414;
+            --text: #ffffff;
             --text-secondary: #b0b0b0;
-            --text-muted: #6b6b6b;
-            --border-gold: rgba(212, 175, 55, 0.15);
+            --border: rgba(212, 175, 55, 0.15);
             --radius: 16px;
-            --radius-lg: 24px;
-            --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.6);
-            --shadow-gold: 0 8px 40px rgba(212, 175, 55, 0.12);
-            --shadow-gold-strong: 0 8px 60px rgba(212, 175, 55, 0.2);
-            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
             --font-heading: 'Cinzel', serif;
             --font-body: 'Inter', sans-serif;
         }
@@ -54,10 +43,9 @@
 
         body {
             font-family: var(--font-body);
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -81,124 +69,23 @@
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
+            background: var(--bg);
         }
         ::-webkit-scrollbar-thumb {
             background: var(--gold);
             border-radius: 10px;
-            box-shadow: 0 0 20px var(--gold-glow);
         }
 
-        /* ===== SELECTION ===== */
-        ::selection {
-            background: var(--gold);
-            color: #000;
-        }
-
-        /* ============================================================
-                   GLOW ORBS (Decorative)
-                   ============================================================ */
-        .glow-orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.2;
-            animation: orbPulse 8s ease-in-out infinite alternate;
-        }
-        .glow-orb--1 {
-            width: 600px;
-            height: 600px;
-            top: -200px;
-            right: -200px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.12), transparent 70%);
-        }
-        .glow-orb--2 {
-            width: 500px;
-            height: 500px;
-            bottom: -100px;
-            left: -100px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.08), transparent 70%);
-            animation-delay: 3s;
-        }
-
-        @keyframes orbPulse {
-            0% {
-                opacity: 0.12;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0.25;
-                transform: scale(1.1);
-            }
-        }
-
-        /* ============================================================
-                   FLOATING PARTICLES (Gold)
-                   ============================================================ */
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* ============================================================
-                   SHIMMER ANIMATIONS
-                   ============================================================ */
-        @keyframes shimmerGold {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
-        }
-
-        @keyframes goldPulse {
-            0%,
-            100% {
-                text-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
-            }
-            50% {
-                text-shadow: 0 0 40px rgba(212, 175, 55, 0.35);
-            }
-        }
-
-        .shimmer-text {
-            background: linear-gradient(135deg, #b8962e 0%, #d4af37 30%, #e8c84a 50%, #d4af37 70%, #b8962e 100%);
-            background-size: 300% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmerGold 4s ease-in-out infinite;
-        }
-
-        /* ============================================================
-                   NAVIGATION — Sticky Glassmorphism
-                   ============================================================ */
+        /* ===== HEADER / NAV ===== */
         header {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
             z-index: 1000;
             padding: 14px 0;
-            background: transparent;
-            transition: var(--transition);
-            border-bottom: 1px solid transparent;
-        }
-
-        header.scrolled {
-            background: rgba(11, 11, 11, 0.88);
-            backdrop-filter: blur(20px) saturate(1.3);
-            -webkit-backdrop-filter: blur(20px) saturate(1.3);
+            background: rgba(11, 11, 11, 0.92);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(212, 175, 55, 0.06);
-            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
         }
 
         .nav-container {
@@ -214,22 +101,19 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            flex-shrink: 0;
         }
 
         .logo-wrapper .logo-img {
-            width: 45px;
-            height: 45px;
+            height: 40px;
+            width: 40px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--gold);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.25);
-            animation: goldPulse 3s ease-in-out infinite;
         }
 
         .logo-wrapper .logo-text {
             font-family: var(--font-heading);
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #fff;
             letter-spacing: 0.5px;
@@ -237,7 +121,6 @@
         .logo-wrapper .logo-text span {
             color: var(--gold);
             font-weight: 400;
-            animation: goldPulse 3s ease-in-out infinite;
         }
 
         .nav-links {
@@ -248,14 +131,13 @@
         }
 
         .nav-links a {
-            font-family: var(--font-body);
+            font-size: 0.8rem;
             font-weight: 500;
-            font-size: 0.78rem;
             color: var(--text-secondary);
-            transition: var(--transition);
-            position: relative;
-            letter-spacing: 0.4px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+            position: relative;
         }
         .nav-links a::after {
             content: '';
@@ -265,37 +147,32 @@
             width: 0;
             height: 2px;
             background: var(--gold);
-            transition: var(--transition);
-            box-shadow: 0 0 16px rgba(212, 175, 55, 0.3);
-        }
-        .nav-links a:hover::after {
-            width: 100%;
+            transition: width 0.3s;
         }
         .nav-links a:hover {
             color: #fff;
         }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
         .nav-cta {
-            background: linear-gradient(135deg, #b8962e, #d4af37, #e8c84a, #d4af37, #b8962e);
-            background-size: 300% 100%;
-            animation: shimmerGold 3s ease-in-out infinite;
+            background: linear-gradient(135deg, #b8962e, #d4af37, #e8c84a);
             color: #000 !important;
-            padding: 6px 22px;
+            padding: 6px 20px;
             border-radius: 50px;
-            font-weight: 700 !important;
-            transition: var(--transition);
-            box-shadow: 0 4px 24px rgba(212, 175, 55, 0.2);
-            text-transform: none !important;
-            letter-spacing: 0.3px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            font-size: 0.78rem !important;
+            font-weight: 700;
+            font-size: 0.75rem !important;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
         .nav-cta::after {
-            display: none !important;
+            display: none;
         }
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 40px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
             color: #000 !important;
         }
 
@@ -313,7 +190,7 @@
             height: 2px;
             background: #fff;
             border-radius: 4px;
-            transition: var(--transition);
+            transition: 0.3s;
         }
         .hamburger.active span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 6px);
@@ -325,76 +202,35 @@
             transform: rotate(-45deg) translate(5px, -6px);
         }
 
-        /* ============================================================
-                   HERO SECTION — Luxury Background
-                   ============================================================ */
+        /* ===== HERO — tightened spacing with background ===== */
         .hero {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
+            padding: 80px 0 0;
+            min-height: auto;
             display: flex;
             align-items: center;
-            padding: 120px 0 60px;
-            overflow: hidden;
             background-image: url('https://i.ibb.co/PZJX1zkb/file-00000000936c81f4af7cb60d2505c57a.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            /* dark overlay via pseudo */
+            position: relative;
+            overflow: hidden;
         }
 
         .hero::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.45);
+            background: rgba(0, 0, 0, 0.55);
             z-index: 0;
-        }
-
-        /* Blend bottom into next section */
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 120px;
-            background: linear-gradient(to bottom, transparent, #0b0b0b);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .hero .container {
-            position: relative;
-            z-index: 1;
         }
 
         .hero-grid {
+            position: relative;
+            z-index: 1;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            font-family: var(--font-heading);
-            font-size: 0.65rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--gold);
-            background: rgba(212, 175, 55, 0.06);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            padding: 6px 18px;
-            border-radius: 50px;
-            margin-bottom: 18px;
-            animation: goldPulse 3s ease-in-out infinite;
         }
 
         .hero-content h1 {
@@ -402,256 +238,100 @@
             font-size: 4.2rem;
             font-weight: 900;
             line-height: 1.05;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             letter-spacing: -1px;
         }
         .hero-content h1 .highlight {
-            background: linear-gradient(135deg, #b8962e, #d4af37, #e8c84a, #d4af37, #b8962e);
-            background-size: 300% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmerGold 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.12));
+            color: var(--gold);
         }
 
-        .hero-content .subtitle {
-            font-size: 1.05rem;
+        .hero-content .sub {
+            font-size: 1.1rem;
             color: var(--text-secondary);
-            max-width: 500px;
-            margin-bottom: 12px;
-            line-height: 1.7;
-            font-weight: 400;
-        }
-
-        .hero-content .tagline {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            max-width: 500px;
-            margin-bottom: 32px;
+            max-width: 480px;
+            margin-bottom: 28px;
             line-height: 1.7;
         }
 
         .hero-buttons {
             display: flex;
-            flex-wrap: wrap;
             gap: 16px;
+            flex-wrap: wrap;
         }
 
-        /* Buttons */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 36px;
+            padding: 12px 32px;
             border-radius: 50px;
-            font-family: var(--font-body);
             font-weight: 700;
             font-size: 0.85rem;
-            transition: var(--transition);
+            transition: all 0.3s;
             border: none;
             cursor: pointer;
-            letter-spacing: 0.5px;
             text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         .btn-primary {
-            background: linear-gradient(135deg, #b8962e, #d4af37, #e8c84a, #d4af37, #b8962e);
-            background-size: 300% 100%;
-            animation: shimmerGold 3s ease-in-out infinite;
+            background: linear-gradient(135deg, #b8962e, #d4af37, #e8c84a);
             color: #000;
-            box-shadow: 0 4px 30px rgba(212, 175, 55, 0.2);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-        }
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 50px;
-            background: linear-gradient(135deg, #b8962e, #d4af37, #e8c84a, #d4af37, #b8962e);
-            background-size: 300% 100%;
-            animation: shimmerGold 3s ease-in-out infinite;
-            z-index: -1;
-            filter: blur(16px);
-            opacity: 0.3;
-            transition: var(--transition);
+            box-shadow: 0 4px 24px rgba(212, 175, 55, 0.2);
         }
         .btn-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 50px rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 40px rgba(212, 175, 55, 0.4);
         }
-        .btn-primary:hover::before {
-            opacity: 0.7;
-            filter: blur(24px);
-        }
-
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.04);
+            background: transparent;
             color: #fff;
             border: 1.5px solid rgba(212, 175, 55, 0.25);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
         }
         .btn-secondary:hover {
-            background: rgba(212, 175, 55, 0.08);
+            background: rgba(212, 175, 55, 0.05);
             border-color: var(--gold);
             transform: translateY(-3px);
-            box-shadow: 0 8px 40px rgba(212, 175, 55, 0.08);
         }
 
-        /* Right Column — Mascot */
         .hero-visual {
-            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 2;
+            position: relative;
         }
 
-        .hero-illustration {
-            position: relative;
+        /* Hero mascot image — updated to new link */
+        .hero-visual .mascot {
             width: 100%;
-            max-width: 520px;
-            aspect-ratio: 1 / 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            max-width: 420px;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 60px rgba(212, 175, 55, 0.08));
         }
 
-        .hero-mascot-wrapper {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-        }
-
-        .hero-mascot-wrapper .gold-ring {
+        .hero-visual .lamborghini-bg {
             position: absolute;
-            border-radius: 50%;
-            border: 1px solid rgba(212, 175, 55, 0.08);
-            animation: spinRing 20s linear infinite;
+            bottom: 0;
+            right: 0;
+            width: 50%;
+            opacity: 0.15;
             pointer-events: none;
-        }
-        .hero-mascot-wrapper .gold-ring:nth-child(1) {
-            width: 320px;
-            height: 320px;
-            animation-duration: 25s;
-        }
-        .hero-mascot-wrapper .gold-ring:nth-child(2) {
-            width: 360px;
-            height: 360px;
-            border-color: rgba(212, 175, 55, 0.04);
-            animation-duration: 35s;
-            animation-direction: reverse;
-        }
-        .hero-mascot-wrapper .gold-ring:nth-child(3) {
-            width: 400px;
-            height: 400px;
-            border-color: rgba(212, 175, 55, 0.025);
-            animation-duration: 45s;
+            z-index: -1;
         }
 
-        @keyframes spinRing {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .hero-mascot {
-            position: relative;
-            z-index: 2;
-            width: 280px;
-            height: 280px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 80px rgba(212, 175, 55, 0.08));
-            animation: floatMascot 6s ease-in-out infinite;
-        }
-
-        @keyframes floatMascot {
+        @keyframes float {
             0%,
             100% {
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-18px);
+                transform: translateY(-16px);
             }
         }
 
-        .float-particle {
-            position: absolute;
-            font-size: 1rem;
-            color: var(--gold);
-            opacity: 0.4;
-            animation: floatParticle 5s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 3;
-        }
-        .float-particle:nth-child(4) {
-            top: -5%;
-            right: 5%;
-            animation-delay: 0.3s;
-            font-size: 1.4rem;
-        }
-        .float-particle:nth-child(5) {
-            bottom: -5%;
-            left: 5%;
-            animation-delay: 0.9s;
-            font-size: 1.2rem;
-        }
-        .float-particle:nth-child(6) {
-            top: 15%;
-            right: -8%;
-            animation-delay: 1.5s;
-            font-size: 0.9rem;
-        }
-        .float-particle:nth-child(7) {
-            bottom: 15%;
-            left: -8%;
-            animation-delay: 2.1s;
-            font-size: 1.1rem;
-        }
-        .float-particle:nth-child(8) {
-            top: 50%;
-            right: -12%;
-            animation-delay: 0.6s;
-            font-size: 0.7rem;
-            opacity: 0.25;
-        }
-        .float-particle:nth-child(9) {
-            top: 50%;
-            left: -12%;
-            animation-delay: 1.8s;
-            font-size: 0.7rem;
-            opacity: 0.25;
-        }
-
-        @keyframes floatParticle {
-            0%,
-            100% {
-                transform: translateY(0) scale(1) rotate(0deg);
-                opacity: 0.4;
-            }
-            50% {
-                transform: translateY(-16px) scale(1.1) rotate(12deg);
-                opacity: 0.8;
-            }
-        }
-
-        /* ============================================================
-                   STATISTICS SECTION — PRE-LAUNCH VALUES
-                   ============================================================ */
+        /* ===== STATS — pulled up tight, all zeros ===== */
         .stats-section {
-            position: relative;
-            z-index: 1;
             padding: 0 0 60px;
-            margin-top: -20px;
+            margin-top: -40px;
         }
 
         .stats-grid {
@@ -661,41 +341,17 @@
         }
 
         .stat-card {
-            background: var(--bg-card);
+            background: var(--card-bg);
             border: 1px solid rgba(212, 175, 55, 0.06);
             border-radius: var(--radius);
-            padding: 24px 16px;
+            padding: 24px 12px;
             text-align: center;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0;
-            transition: var(--transition);
+            transition: 0.3s;
         }
         .stat-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(212, 175, 55, 0.12);
-            background: var(--bg-card-hover);
-            box-shadow: var(--shadow-gold-strong);
-        }
-        .stat-card:hover::before {
-            opacity: 1;
-        }
-
-        .stat-card .stat-icon {
-            font-size: 1.4rem;
-            color: var(--gold);
-            margin-bottom: 6px;
-            opacity: 0.6;
+            border-color: rgba(212, 175, 55, 0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.05);
         }
         .stat-card .stat-number {
             font-family: var(--font-heading);
@@ -706,178 +362,14 @@
         }
         .stat-card .stat-label {
             font-size: 0.7rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-weight: 500;
             margin-top: 2px;
         }
 
-        /* ============================================================
-                   MISSION / VALUES SECTION
-                   ============================================================ */
-        .mission-section {
-            position: relative;
-            z-index: 1;
-            padding: 100px 0;
-            background-image: url('https://i.ibb.co/PZJX1zkb/file-00000000936c81f4af7cb60d2505c57a.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: scroll;
-            overflow: hidden;
-        }
-
-        .mission-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.70);
-            z-index: 0;
-        }
-
-        .mission-section::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(to bottom, #0b0b0b, transparent);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .mission-section .bottom-fade {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(to top, #0b0b0b, transparent);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .mission-section .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .mission-section .value-card {
-            background: rgba(20, 20, 20, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(212, 175, 55, 0.12);
-            border-radius: var(--radius);
-            padding: 24px 20px;
-            text-align: center;
-            transition: var(--transition);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-        .mission-section .value-card:hover {
-            border-color: rgba(212, 175, 55, 0.3);
-            background: rgba(30, 30, 30, 0.85);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 40px rgba(212, 175, 55, 0.15);
-        }
-
-        .mission-section .why-bread-box {
-            background: rgba(20, 20, 20, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(212, 175, 55, 0.12);
-            border-radius: var(--radius);
-            padding: 32px 28px;
-            margin-top: 30px;
-            text-align: center;
-            transition: var(--transition);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-        .mission-section .why-bread-box:hover {
-            border-color: rgba(212, 175, 55, 0.3);
-            background: rgba(30, 30, 30, 0.85);
-            box-shadow: 0 8px 40px rgba(212, 175, 55, 0.15);
-        }
-
-        .mission-section .section-label,
-        .mission-section .section-title,
-        .mission-section .section-desc,
-        .mission-section .value-card h3,
-        .mission-section .value-card p,
-        .mission-section .why-bread-box h3,
-        .mission-section .why-bread-box p {
-            color: #fff;
-        }
-        .mission-section .section-desc {
-            color: var(--text-secondary);
-        }
-        .mission-section .value-card p,
-        .mission-section .why-bread-box p {
-            color: var(--text-secondary);
-        }
-
-        /* ============================================================
-                   SECTION SHARED
-                   ============================================================ */
-        section {
-            position: relative;
-            z-index: 1;
-            padding: 60px 0;
-        }
-
-        .section-label {
-            display: inline-block;
-            font-family: var(--font-heading);
-            font-size: 0.65rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--gold);
-            background: rgba(212, 175, 55, 0.06);
-            border: 1px solid rgba(212, 175, 55, 0.08);
-            padding: 4px 18px;
-            border-radius: 50px;
-            margin-bottom: 14px;
-            animation: goldPulse 3s ease-in-out infinite;
-        }
-
-        .section-title {
-            font-family: var(--font-heading);
-            font-size: 2.4rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-        }
-        .section-title .highlight {
-            background: linear-gradient(135deg, #b8962e, #d4af37, #e8c84a, #d4af37, #b8962e);
-            background-size: 300% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmerGold 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.08));
-        }
-
-        .section-desc {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            max-width: 640px;
-            line-height: 1.7;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-        .mx-auto {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* ============================================================
-                   INFORMATION GRID — 5 Cards
-                   ============================================================ */
+        /* ===== INFO GRID (5 cards) ===== */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -886,332 +378,209 @@
         }
 
         .info-card {
-            background: var(--bg-card);
+            background: var(--card-bg);
             border: 1px solid rgba(212, 175, 55, 0.06);
             border-radius: var(--radius);
             padding: 24px 20px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             height: 100%;
-        }
-        .info-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0;
-            transition: var(--transition);
+            transition: 0.3s;
         }
         .info-card:hover {
-            border-color: rgba(212, 175, 55, 0.12);
-            background: var(--bg-card-hover);
+            border-color: rgba(212, 175, 55, 0.15);
             transform: translateY(-4px);
-            box-shadow: var(--shadow-gold-strong);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.05);
         }
-        .info-card:hover::before {
-            opacity: 1;
-        }
-
         .info-card .card-title {
             font-family: var(--font-heading);
             font-size: 1rem;
             font-weight: 700;
             color: #fff;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             letter-spacing: 0.5px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
-        .info-card .card-title .title-icon {
+        .info-card .card-title .icon {
             color: var(--gold);
             font-size: 1.1rem;
         }
-
         .info-card .card-body {
             flex: 1;
             color: var(--text-secondary);
             font-size: 0.88rem;
             line-height: 1.7;
         }
-
         .info-card .card-footer {
-            margin-top: 14px;
+            margin-top: 16px;
         }
-
         .info-card .card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
             color: var(--gold);
             font-weight: 600;
             font-size: 0.82rem;
-            transition: var(--transition);
+            transition: 0.3s;
             border-bottom: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
         .info-card .card-link:hover {
-            color: var(--gold-light);
+            color: var(--gold-dark);
             border-bottom-color: var(--gold);
-            transform: translateX(4px);
         }
 
-        /* About card image */
-        .about-card-img {
+        /* About card image — updated to ship */
+        .about-img {
             width: 100%;
             border-radius: var(--radius) var(--radius) 0 0;
             margin-bottom: 12px;
             object-fit: cover;
-            max-height: 140px;
+            max-height: 120px;
             background: #0b0b0b;
             border-bottom: 1px solid rgba(212, 175, 55, 0.06);
         }
 
         /* Roadmap items */
-        .roadmap-items {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-top: 4px;
-        }
         .roadmap-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             font-size: 0.85rem;
         }
         .roadmap-item .phase {
             color: #fff;
             font-weight: 500;
         }
-        .roadmap-item .phase-desc {
-            color: var(--text-muted);
+        .roadmap-item .desc {
+            color: var(--text-secondary);
             font-size: 0.8rem;
-        }
-        .roadmap-item .phase-icon {
-            color: var(--gold);
-            font-size: 0.8rem;
-            margin-right: 6px;
         }
 
         /* Forum items */
-        .forum-items {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
         .forum-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             padding: 5px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             font-size: 0.85rem;
         }
-        .forum-item .forum-name {
+        .forum-item .name {
             color: #fff;
         }
-        .forum-item .forum-count {
+        .forum-item .count {
             color: var(--gold);
             font-weight: 600;
             font-size: 0.8rem;
         }
 
         /* FAQ items */
-        .faq-items {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-        .faq-item-simple {
+        .faq-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             font-size: 0.85rem;
             cursor: pointer;
-            transition: var(--transition);
+            transition: 0.3s;
         }
-        .faq-item-simple:hover {
+        .faq-item:hover {
             color: var(--gold);
         }
-        .faq-item-simple .faq-q {
+        .faq-item .q {
             color: #fff;
         }
-        .faq-item-simple .faq-arrow {
+        .faq-item .arrow {
             color: var(--gold);
             font-size: 0.7rem;
             opacity: 0.5;
-            transition: var(--transition);
-        }
-        .faq-item-simple:hover .faq-arrow {
-            opacity: 1;
         }
 
-        /* Tokenomics chart container */
-        .tokenomics-chart-wrap {
+        /* Tokenomics chart */
+        .chart-wrap {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        .tokenomics-chart-wrap canvas {
-            max-width: 160px;
-            max-height: 160px;
+        .chart-wrap canvas {
+            max-width: 150px;
+            max-height: 150px;
             width: 100%;
             height: auto;
             margin-bottom: 10px;
         }
-        .tokenomics-legend {
+        .legend {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3px 14px;
             font-size: 0.7rem;
             color: var(--text-secondary);
         }
-        .tokenomics-legend .legend-item {
+        .legend .item {
             display: flex;
             align-items: center;
             gap: 6px;
         }
-        .tokenomics-legend .legend-dot {
+        .legend .dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
             flex-shrink: 0;
         }
 
-        /* ============================================================
-                   HOW TO BUY & TOKENOMICS — LAMBORGHINI BACKGROUND
-                   ============================================================ */
-        .bg-lamborghini {
-            position: relative;
-            background-image: url('https://i.ibb.co/3m4YwHyW/file-0000000025f481f491e531d438c95fbe.png');
+        /* ===== BOTTOM BANNER (UPDATED) ===== */
+        .banner {
+            background-image: url('https://i.ibb.co/sdSXczgw/file-00000000d1bc81f4be44ef6da5b5dde7.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: scroll;
-            overflow: hidden;
-            padding: 80px 0;
-        }
-
-        .bg-lamborghini::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.70);
-            z-index: 0;
-        }
-
-        .bg-lamborghini .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .bg-lamborghini .section-label,
-        .bg-lamborghini .section-title,
-        .bg-lamborghini .section-desc,
-        .bg-lamborghini .buy-step,
-        .bg-lamborghini .contract-box,
-        .bg-lamborghini .info-card {
-            color: #fff;
-        }
-
-        .bg-lamborghini .buy-step,
-        .bg-lamborghini .contract-box,
-        .bg-lamborghini .info-card {
-            background: rgba(20, 20, 20, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(212, 175, 55, 0.12);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .bg-lamborghini .buy-step:hover,
-        .bg-lamborghini .contract-box:hover,
-        .bg-lamborghini .info-card:hover {
-            background: rgba(30, 30, 30, 0.85);
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 8px 40px rgba(212, 175, 55, 0.15);
-        }
-
-        /* ============================================================
-                   COMMUNITY BANNER
-                   ============================================================ */
-        .community-banner {
-            background: url('https://i.ibb.co/bMff2VDj/grok-1784969629322.jpg') center/cover no-repeat;
-            position: relative;
-            border-radius: var(--radius-lg);
+            border: 1px solid rgba(212, 175, 55, 0.06);
+            border-radius: var(--radius);
             padding: 50px 40px;
             text-align: center;
+            position: relative;
             overflow: hidden;
-            min-height: 320px;
-            isolation: isolate;
+            margin-top: 20px;
         }
 
-        .community-banner::before {
+        /* Dark overlay for readability */
+        .banner::before {
             content: '';
             position: absolute;
             inset: 0;
             background: rgba(0, 0, 0, 0.65);
             z-index: 1;
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius);
         }
 
-        .community-banner .banner-mascot {
-            position: absolute;
-            bottom: -10px;
-            right: 20px;
-            width: 140px;
-            height: auto;
-            z-index: 2;
-            animation: floatMascot 5s ease-in-out infinite;
-            filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.5));
-            pointer-events: none;
-        }
-
-        .community-banner .banner-content {
+        .banner .content {
             position: relative;
             z-index: 2;
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .community-banner h2 {
+        .banner h2 {
             font-family: var(--font-heading);
-            font-size: 2.6rem;
+            font-size: 2.4rem;
             font-weight: 800;
             margin-bottom: 10px;
         }
-        .community-banner h2 .gold {
+        .banner h2 .gold {
             color: var(--gold);
-            animation: goldPulse 3s ease-in-out infinite;
         }
-        .community-banner p {
+        .banner p {
             font-size: 1rem;
             color: var(--text-secondary);
-            max-width: 550px;
+            max-width: 500px;
             margin: 0 auto 24px;
             line-height: 1.7;
         }
-        .community-banner .btn {
-            position: relative;
-            z-index: 1;
-        }
 
-        /* ============================================================
-                   FOOTER
-                   ============================================================ */
+        /* ===== FOOTER ===== */
         footer {
-            position: relative;
-            z-index: 1;
             padding: 30px 0 20px;
             border-top: 1px solid rgba(212, 175, 55, 0.04);
             margin-top: 20px;
@@ -1232,7 +601,7 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+            background: linear-gradient(135deg, #b8962e, #d4af37, #e8c84a);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1240,79 +609,46 @@
             font-weight: 900;
             color: #000;
         }
-        .footer-left .footer-brand {
+        .footer-left .brand {
             font-family: var(--font-heading);
             font-size: 1rem;
             font-weight: 700;
             color: #fff;
         }
-        .footer-left .footer-brand span {
+        .footer-left .brand span {
             color: var(--gold);
         }
-        .footer-left .footer-copy {
+        .footer-left .copy {
             font-size: 0.75rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             opacity: 0.5;
-            margin-left: 4px;
         }
-
         .footer-socials {
             display: flex;
             gap: 18px;
         }
         .footer-socials a {
             font-size: 1.2rem;
-            transition: var(--transition);
             opacity: 0.4;
             color: #fff;
+            transition: 0.3s;
         }
         .footer-socials a:hover {
             opacity: 1;
             color: var(--gold);
             transform: translateY(-2px);
         }
-
         .footer-links {
             display: flex;
             gap: 20px;
             font-size: 0.78rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
         .footer-links a:hover {
             color: var(--gold);
         }
 
-        /* ============================================================
-                   SCROLL REVEAL
-                   ============================================================ */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .reveal-delay-1 {
-            transition-delay: 0.08s;
-        }
-        .reveal-delay-2 {
-            transition-delay: 0.16s;
-        }
-        .reveal-delay-3 {
-            transition-delay: 0.24s;
-        }
-        .reveal-delay-4 {
-            transition-delay: 0.32s;
-        }
-        .reveal-delay-5 {
-            transition-delay: 0.40s;
-        }
-
-        /* ============================================================
-                   RESPONSIVE
-                   ============================================================ */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .hero-content h1 {
                 font-size: 3.4rem;
@@ -1320,39 +656,23 @@
             .stats-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            .stats-grid .stat-card:nth-child(4),
-            .stats-grid .stat-card:nth-child(5) {
-                grid-column: span 1;
-            }
             .info-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             .info-grid .info-card:nth-child(5) {
                 grid-column: span 2;
             }
-            .community-banner .banner-mascot {
-                width: 100px;
-                right: 10px;
-                bottom: 0;
-            }
-            .mission-section {
-                padding: 80px 0;
-            }
-            .bg-lamborghini {
-                padding: 60px 0;
-            }
         }
 
         @media (max-width: 868px) {
+            .hero {
+                padding: 70px 0 0;
+            }
             .hero-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            .hero-content .subtitle {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .hero-content .tagline {
+            .hero-content .sub {
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -1362,37 +682,18 @@
             .hero-visual {
                 order: -1;
             }
-            .hero-illustration {
-                max-width: 380px;
-                margin: 0 auto;
-            }
-            .hero-mascot {
-                width: 200px;
-                height: 200px;
-            }
-            .hero-mascot-wrapper .gold-ring:nth-child(1) {
-                width: 240px;
-                height: 240px;
-            }
-            .hero-mascot-wrapper .gold-ring:nth-child(2) {
-                width: 270px;
-                height: 270px;
-            }
-            .hero-mascot-wrapper .gold-ring:nth-child(3) {
-                width: 300px;
-                height: 300px;
+            .hero-visual .mascot {
+                max-width: 280px;
             }
             .hero-content h1 {
                 font-size: 2.8rem;
             }
-            .float-particle {
-                display: none;
+            .stats-section {
+                margin-top: -20px;
             }
-
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
             .info-grid {
                 grid-template-columns: 1fr;
             }
@@ -1407,12 +708,10 @@
                 width: 280px;
                 height: 100vh;
                 background: rgba(11, 11, 11, 0.98);
-                backdrop-filter: blur(20px);
                 flex-direction: column;
                 padding: 80px 32px 32px;
                 gap: 20px;
-                box-shadow: -8px 0 40px rgba(0, 0, 0, 0.6);
-                transition: var(--transition);
+                transition: right 0.3s;
                 border-left: 1px solid rgba(212, 175, 55, 0.06);
             }
             .nav-links.open {
@@ -1422,17 +721,11 @@
                 display: flex;
             }
 
-            .community-banner {
+            .banner {
                 padding: 36px 24px;
-                min-height: 280px;
             }
-            .community-banner h2 {
+            .banner h2 {
                 font-size: 2rem;
-            }
-            .community-banner .banner-mascot {
-                width: 80px;
-                right: 5px;
-                bottom: -5px;
             }
 
             .footer-grid {
@@ -1446,43 +739,17 @@
             .footer-left {
                 flex-direction: column;
             }
-
-            .buy-steps {
-                grid-template-columns: 1fr 1fr;
-            }
-            .mission-section {
-                padding: 60px 0;
-            }
-            .bg-lamborghini {
-                padding: 50px 0;
-            }
         }
 
         @media (max-width: 480px) {
+            .hero {
+                padding: 60px 0 0;
+            }
             .hero-content h1 {
                 font-size: 2.2rem;
             }
-            .hero-illustration {
-                max-width: 280px;
-            }
-            .hero-mascot {
-                width: 150px;
-                height: 150px;
-            }
-            .hero-mascot-wrapper .gold-ring:nth-child(1) {
-                width: 190px;
-                height: 190px;
-            }
-            .hero-mascot-wrapper .gold-ring:nth-child(2) {
-                width: 220px;
-                height: 220px;
-            }
-            .hero-mascot-wrapper .gold-ring:nth-child(3) {
-                width: 250px;
-                height: 250px;
-            }
-            .hero-content h1 {
-                font-size: 2rem;
+            .hero-visual .mascot {
+                max-width: 200px;
             }
             .stats-grid {
                 grid-template-columns: 1fr 1fr;
@@ -1492,95 +759,48 @@
                 font-size: 1.2rem;
             }
             .stat-card {
-                padding: 16px 12px;
+                padding: 16px 8px;
             }
             .btn {
-                padding: 12px 24px;
-                font-size: 0.78rem;
-            }
-            .section-title {
-                font-size: 1.8rem;
-            }
-            .community-banner h2 {
-                font-size: 1.6rem;
-            }
-            .community-banner {
-                padding: 28px 16px;
-                min-height: 220px;
-            }
-            .community-banner .banner-mascot {
-                width: 60px;
-                right: 0;
-                bottom: -5px;
-            }
-            .tokenomics-chart-wrap canvas {
-                max-width: 130px;
-                max-height: 130px;
-            }
-            .footer-socials {
-                gap: 14px;
-            }
-            .footer-links {
-                gap: 12px;
-                font-size: 0.7rem;
-            }
-            .buy-steps {
-                grid-template-columns: 1fr 1fr;
-            }
-            .buy-step {
-                padding: 18px 12px;
-            }
-            .buy-step .step-icon {
-                font-size: 1.2rem;
-            }
-            .buy-step p {
+                padding: 10px 20px;
                 font-size: 0.75rem;
             }
-            .mission-grid {
-                grid-template-columns: 1fr 1fr;
+            .banner h2 {
+                font-size: 1.6rem;
             }
-            .why-bread-box h3 {
-                font-size: 1.2rem;
+            .banner {
+                padding: 28px 16px;
             }
-            .about-card-img {
-                max-height: 100px;
+            .chart-wrap canvas {
+                max-width: 120px;
             }
-            .mission-section {
-                padding: 50px 0;
+            .info-card {
+                padding: 18px 16px;
             }
-            .bg-lamborghini {
-                padding: 40px 0;
+            .stats-section {
+                margin-top: -10px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== DECORATIVE GLOW ORBS ===== -->
-    <div class="glow-orb glow-orb--1"></div>
-    <div class="glow-orb glow-orb--2"></div>
-
-    <!-- ===== FLOATING PARTICLES ===== -->
-    <canvas id="particles-canvas"></canvas>
-
-    <!-- ============================================================
-    NAVIGATION
-    ============================================================ -->
-    <header id="header">
+    <!-- ===== HEADER ===== -->
+    <header>
         <div class="nav-container">
             <a href="#" class="logo-wrapper">
                 <img src="https://i.ibb.co/bMLmpgPR/grok-1784969725199.jpg" alt="$BREAD Logo" class="logo-img" />
                 <span class="logo-text">$BREAD <span>· Bakery</span></span>
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#tokenomics">Tokenomics</a></li>
-                <li><a href="#roadmap">Roadmap</a></li>
-                <li><a href="#community">Community</a></li>
-                <li><a href="#forum">Forum</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#buy" class="nav-cta">BUY $BREAD</a></li>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">ABOUT</a></li>
+                <li><a href="#">TOKENOMICS</a></li>
+                <li><a href="#">ROADMAP</a></li>
+                <li><a href="#">COMMUNITY</a></li>
+                <li><a href="#">FORUM</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#" class="nav-cta">BUY $BREAD</a></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Menu">
                 <span></span><span></span><span></span>
@@ -1588,578 +808,249 @@
         </div>
     </header>
 
-    <!-- ============================================================
-    HERO SECTION — Full-screen background
-    ============================================================ -->
-    <section class="hero" id="hero">
+    <!-- ===== HERO ===== -->
+    <section class="hero">
         <div class="container">
             <div class="hero-grid">
-                <!-- Left Column: Text -->
                 <div class="hero-content">
-                    <div class="hero-badge">🥖 Feed the Community. Not the Whales.</div>
                     <h1>GET THAT <span class="highlight">BREAD</span></h1>
-                    <p class="subtitle">
-                        Crypto has enough projects chasing hype. $BREAD is building something different—a community-first memecoin.
-                    </p>
-                    <p class="tagline">
-                        No insiders. No gatekeeping. Just people building together. Join the Bakery.
+                    <p class="sub">
+                        $BREAD is the ultimate meme token for the grinders, the dreamers, and the dough makers.
                     </p>
                     <div class="hero-buttons">
-                        <a href="#buy" class="btn btn-primary">BUY $BREAD</a>
-                        <a href="#community" class="btn btn-secondary">JOIN COMMUNITY</a>
+                        <a href="#" class="btn btn-primary">BUY $BREAD</a>
+                        <a href="#" class="btn btn-secondary">JOIN COMMUNITY</a>
                     </div>
                 </div>
-                <!-- Right Column: Mascot -->
                 <div class="hero-visual">
-                    <div class="hero-illustration">
-                        <div class="hero-mascot-wrapper">
-                            <div class="gold-ring"></div>
-                            <div class="gold-ring"></div>
-                            <div class="gold-ring"></div>
-                            <img src="https://i.ibb.co/cKN1KvPC/file-00000000c9d881f497291a1a5cfe1f03.png" alt="$BREAD Mascot" class="hero-mascot" id="heroLogo" loading="lazy" />
-                            <span class="float-particle" style="top:-5%;right:5%;">✦</span>
-                            <span class="float-particle" style="bottom:-5%;left:5%;">✦</span>
-                            <span class="float-particle" style="top:15%;right:-8%;">◆</span>
-                            <span class="float-particle" style="bottom:15%;left:-8%;">◆</span>
-                            <span class="float-particle" style="top:50%;right:-12%;">•</span>
-                            <span class="float-particle" style="top:50%;left:-12%;">•</span>
-                        </div>
-                    </div>
+                    <!-- Hero mascot image updated to new link -->
+                    <img src="https://i.ibb.co/Y7cgPHP5/file-0000000073d081f4983d7e179e39cddc.png" alt="$BREAD Mascot" class="mascot" />
+                    <img src="https://i.ibb.co/3m4YwHyW/file-0000000025f481f491e531d438c95fbe.png" alt="Lamborghini" class="lamborghini-bg" />
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-    STATISTICS SECTION — PRE-LAUNCH (0.00 / Coming Soon)
-    ============================================================ -->
-    <section class="stats-section" id="stats">
+    <!-- ===== STATS — PRE‑LAUNCH ZEROS ===== -->
+    <section class="stats-section">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-card reveal reveal-delay-1">
-                    <div class="stat-icon"><i class="fa-solid fa-coins"></i></div>
-                    <div class="stat-number" data-count="0">$0.00000</div>
+                <div class="stat-card">
+                    <div class="stat-number">$0.00</div>
                     <div class="stat-label">Price</div>
                 </div>
-                <div class="stat-card reveal reveal-delay-2">
-                    <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
-                    <div class="stat-number" data-count="0">0</div>
+                <div class="stat-card">
+                    <div class="stat-number">0</div>
                     <div class="stat-label">Holders</div>
                 </div>
-                <div class="stat-card reveal reveal-delay-3">
-                    <div class="stat-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <div class="stat-number" data-count="0">$0</div>
+                <div class="stat-card">
+                    <div class="stat-number">$0.00</div>
                     <div class="stat-label">Market Cap</div>
                 </div>
-                <div class="stat-card reveal reveal-delay-4">
-                    <div class="stat-icon"><i class="fa-solid fa-water"></i></div>
-                    <div class="stat-number" data-count="0">$0</div>
+                <div class="stat-card">
+                    <div class="stat-number">$0.00</div>
                     <div class="stat-label">Liquidity</div>
                 </div>
-                <div class="stat-card reveal reveal-delay-5">
-                    <div class="stat-icon"><i class="fa-solid fa-tokens"></i></div>
-                    <div class="stat-number" data-count="1000000000">1B</div>
+                <div class="stat-card">
+                    <div class="stat-number">1,000,000,000</div>
                     <div class="stat-label">Total Supply</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-    MISSION / VALUES SECTION
-    ============================================================ -->
-    <section class="mission-section" id="about">
-        <div class="bottom-fade"></div>
-        <div class="container">
-            <div class="text-center reveal">
-                <span class="section-label">🎯 Our Mission</span>
-                <h2 class="section-title">Build a community where <span class="highlight">everyone thrives</span></h2>
-                <p class="section-desc mx-auto">
-                    Our mission is simple: Build a community where people are heard, creators are supported, and success is shared instead of controlled.
-                    We aren't trying to become another project that forgets its holders after launch. We're building something people genuinely enjoy being part of.
-                </p>
-            </div>
-            <div class="mission-grid">
-                <div class="value-card reveal reveal-delay-1">
-                    <div class="icon">❤️</div>
-                    <h3>Community First</h3>
-                    <p>Every holder matters.</p>
-                </div>
-                <div class="value-card reveal reveal-delay-2">
-                    <div class="icon">🔍</div>
-                    <h3>Transparency</h3>
-                    <p>Open communication. No hidden agendas.</p>
-                </div>
-                <div class="value-card reveal reveal-delay-3">
-                    <div class="icon">⚖️</div>
-                    <h3>Fairness</h3>
-                    <p>Everyone gets the same opportunity.</p>
-                </div>
-                <div class="value-card reveal reveal-delay-4">
-                    <div class="icon">✨</div>
-                    <h3>Creativity</h3>
-                    <p>Good ideas deserve attention.</p>
-                </div>
-                <div class="value-card reveal reveal-delay-5">
-                    <div class="icon">🤝</div>
-                    <h3>Respect</h3>
-                    <p>Every community member deserves to be heard.</p>
-                </div>
-                <div class="value-card reveal reveal-delay-1">
-                    <div class="icon">🏗️</div>
-                    <h3>Long-Term Building</h3>
-                    <p>We're here to build something people remember.</p>
-                </div>
-            </div>
-            <div class="why-bread-box reveal">
-                <h3>🥖 <span class="highlight">Why Bread?</span></h3>
-                <p>Most projects launch to make money. We launched to build a community. While others chase quick pumps, we're focused on creating something people actually enjoy following. The strongest communities aren't bought. They're built.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    INFORMATION GRID — 5 Cards (Tokenomics included)
-    ============================================================ -->
-    <section id="info-grid" class="bg-lamborghini" style="padding-top:0;">
+    <!-- ===== INFO GRID (5 cards) ===== -->
+    <section>
         <div class="container">
             <div class="info-grid">
-                <!-- Card 1: About Bread (with image) -->
-                <div class="info-card reveal reveal-delay-1" id="about-card">
-                    <div class="card-title">
-                        <span class="title-icon"><i class="fa-solid fa-circle-info"></i></span>
-                        ABOUT $BREAD
-                    </div>
+                <!-- About — updated image to ship -->
+                <div class="info-card">
+                    <div class="card-title"><span class="icon"><i class="fa-solid fa-circle-info"></i></span> ABOUT $BREAD</div>
                     <div class="card-body">
-                        <img src="https://i.ibb.co/Y7cgPHP5/file-0000000073d081f4983d7e179e39cddc.png" alt="About Bread" class="about-card-img" loading="lazy" />
-                        <p style="margin-bottom:10px;">
-                            $BREAD is more than a memecoin—it's a movement built around community, transparency, and opportunity.
-                        </p>
-                        <p style="font-size:0.82rem;color:var(--text-muted);">
-                            We believe crypto should be fun again. Everyone deserves a chance to eat.
+                        <img src="https://i.ibb.co/vGpZ1hH/file-00000000951c81f49b685ad9d77e3aa8.png" alt="About Bread" class="about-img" />
+                        <p>
+                            We're not just here for laughs. We're here for generational wealth. It's a movement.
                         </p>
                     </div>
                     <div class="card-footer">
-                        <a href="#about" class="card-link">READ MORE <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="#" class="card-link">READ MORE <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
-                <!-- Card 2: Roadmap (The Recipe) -->
-                <div class="info-card reveal reveal-delay-2" id="roadmap">
-                    <div class="card-title">
-                        <span class="title-icon"><i class="fa-solid fa-utensils"></i></span>
-                        THE RECIPE
-                    </div>
+                <!-- Roadmap -->
+                <div class="info-card">
+                    <div class="card-title"><span class="icon"><i class="fa-solid fa-road"></i></span> ROADMAP</div>
                     <div class="card-body">
-                        <div class="roadmap-items">
-                            <div class="roadmap-item">
-                                <span><span class="phase-icon">🥖</span> <span class="phase">Phase 1 — Mix</span></span>
-                                <span class="phase-desc">Build the Bakery</span>
-                            </div>
-                            <div class="roadmap-item">
-                                <span><span class="phase-icon">🍞</span> <span class="phase">Phase 2 — Knead</span></span>
-                                <span class="phase-desc">Grow together</span>
-                            </div>
-                            <div class="roadmap-item">
-                                <span><span class="phase-icon">🥐</span> <span class="phase">Phase 3 — Bake</span></span>
-                                <span class="phase-desc">Support the builders</span>
-                            </div>
-                            <div class="roadmap-item">
-                                <span><span class="phase-icon">🥯</span> <span class="phase">Phase 4 — Share</span></span>
-                                <span class="phase-desc">Feed the future</span>
-                            </div>
+                        <div class="roadmap-item">
+                            <span class="phase">Phase 1</span>
+                            <span class="desc">Launch</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="phase">Phase 2</span>
+                            <span class="desc">Community Growth</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="phase">Phase 3</span>
+                            <span class="desc">CEX Listings</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="phase">Phase 4</span>
+                            <span class="desc">Global Domination</span>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="#roadmap" class="card-link">VIEW ROADMAP <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="#" class="card-link">VIEW ROADMAP <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
-                <!-- Card 3: Community Forum -->
-                <div class="info-card reveal reveal-delay-3" id="forum">
-                    <div class="card-title">
-                        <span class="title-icon"><i class="fa-solid fa-comments"></i></span>
-                        COMMUNITY FORUM
-                    </div>
+                <!-- Community Forum -->
+                <div class="info-card">
+                    <div class="card-title"><span class="icon"><i class="fa-solid fa-comments"></i></span> COMMUNITY FORUM</div>
                     <div class="card-body">
-                        <div class="forum-items">
-                            <div class="forum-item">
-                                <span class="forum-name">Daily Bread Memes</span>
-                                <span class="forum-count">1.2K</span>
-                            </div>
-                            <div class="forum-item">
-                                <span class="forum-name">Show Off Your Bags</span>
-                                <span class="forum-count">856</span>
-                            </div>
-                            <div class="forum-item">
-                                <span class="forum-name">Price Talk</span>
-                                <span class="forum-count">1.5K</span>
-                            </div>
-                            <div class="forum-item">
-                                <span class="forum-name">Art &amp; Creations</span>
-                                <span class="forum-count">642</span>
-                            </div>
-                            <div class="forum-item">
-                                <span class="forum-name">Ask the Community</span>
-                                <span class="forum-count">312</span>
-                            </div>
+                        <div class="forum-item">
+                            <span class="name">Daily Bread Memes</span>
+                            <span class="count">1.2K</span>
+                        </div>
+                        <div class="forum-item">
+                            <span class="name">Show Off Your Bags</span>
+                            <span class="count">856</span>
+                        </div>
+                        <div class="forum-item">
+                            <span class="name">Price Talk</span>
+                            <span class="count">1.5K</span>
+                        </div>
+                        <div class="forum-item">
+                            <span class="name">Art &amp; Creations</span>
+                            <span class="count">642</span>
+                        </div>
+                        <div class="forum-item">
+                            <span class="name">Ask the Community</span>
+                            <span class="count">312</span>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="#forum" class="card-link">GO TO FORUM <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="#" class="card-link">GO TO FORUM <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
-                <!-- Card 4: FAQs -->
-                <div class="info-card reveal reveal-delay-4" id="faq">
-                    <div class="card-title">
-                        <span class="title-icon"><i class="fa-solid fa-circle-question"></i></span>
-                        FAQS
-                    </div>
+                <!-- FAQs -->
+                <div class="info-card">
+                    <div class="card-title"><span class="icon"><i class="fa-solid fa-circle-question"></i></span> FAQS</div>
                     <div class="card-body">
-                        <div class="faq-items">
-                            <div class="faq-item-simple">
-                                <span class="faq-q">Is there a private sale?</span>
-                                <span class="faq-arrow">▸</span>
-                            </div>
-                            <div class="faq-item-simple">
-                                <span class="faq-q">Is the launch fair?</span>
-                                <span class="faq-arrow">▸</span>
-                            </div>
-                            <div class="faq-item-simple">
-                                <span class="faq-q">What's the goal of $BREAD?</span>
-                                <span class="faq-arrow">▸</span>
-                            </div>
-                            <div class="faq-item-simple">
-                                <span class="faq-q">Is this just another memecoin?</span>
-                                <span class="faq-arrow">▸</span>
-                            </div>
-                            <div class="faq-item-simple">
-                                <span class="faq-q">Where can I stay updated?</span>
-                                <span class="faq-arrow">▸</span>
-                            </div>
+                        <div class="faq-item">
+                            <span class="q">What is $BREAD?</span>
+                            <span class="arrow">▸</span>
+                        </div>
+                        <div class="faq-item">
+                            <span class="q">How do I buy $BREAD?</span>
+                            <span class="arrow">▸</span>
+                        </div>
+                        <div class="faq-item">
+                            <span class="q">What makes $BREAD different?</span>
+                            <span class="arrow">▸</span>
+                        </div>
+                        <div class="faq-item">
+                            <span class="q">Is $BREAD a good investment?</span>
+                            <span class="arrow">▸</span>
+                        </div>
+                        <div class="faq-item">
+                            <span class="q">Where can I see the roadmap?</span>
+                            <span class="arrow">▸</span>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="#faq" class="card-link">VIEW FAQS <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="#" class="card-link">VIEW FAQS <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
-                <!-- Card 5: Tokenomics -->
-                <div class="info-card reveal reveal-delay-5" id="tokenomics">
-                    <div class="card-title">
-                        <span class="title-icon"><i class="fa-solid fa-chart-pie"></i></span>
-                        TOKENOMICS
-                    </div>
+                <!-- Tokenomics -->
+                <div class="info-card">
+                    <div class="card-title"><span class="icon"><i class="fa-solid fa-chart-pie"></i></span> TOKENOMICS</div>
                     <div class="card-body">
-                        <div class="tokenomics-chart-wrap">
+                        <div class="chart-wrap">
                             <canvas id="tokenomicsChart"></canvas>
-                            <div class="tokenomics-legend">
-                                <span class="legend-item"><span class="legend-dot" style="background:#d4af37;"></span> Liquidity</span>
-                                <span class="legend-item"><span class="legend-dot" style="background:#e8c84a;"></span> Marketing</span>
-                                <span class="legend-item"><span class="legend-dot" style="background:#b8962e;"></span> Rewards</span>
-                                <span class="legend-item"><span class="legend-dot" style="background:#6b5a3e;"></span> Dev</span>
+                            <div class="legend">
+                                <span class="item"><span class="dot" style="background:#d4af37;"></span> Liquidity</span>
+                                <span class="item"><span class="dot" style="background:#e8c84a;"></span> Marketing</span>
+                                <span class="item"><span class="dot" style="background:#b8962e;"></span> Rewards</span>
+                                <span class="item"><span class="dot" style="background:#6b5a3e;"></span> Team</span>
+                                <span class="item"><span class="dot" style="background:#4a3f2a;"></span> Dev</span>
+                                <span class="item"><span class="dot" style="background:#2a2518;"></span> Burn</span>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="#tokenomics" class="card-link">SEE TOKENOMICS <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="#" class="card-link">SEE TOKENOMICS <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-    HOW TO BUY SECTION — with Lamborghini background
-    ============================================================ -->
-    <section id="buy" class="bg-lamborghini">
+    <!-- ===== BOTTOM BANNER (UPDATED) ===== -->
+    <section>
         <div class="container">
-            <div class="text-center reveal">
-                <span class="section-label">🛒 How to Buy</span>
-                <h2 class="section-title">Grab your slice of <span class="highlight">$BREAD</span></h2>
-                <p class="section-desc mx-auto">Join the Bakery in 7 simple steps.</p>
-            </div>
-            <div class="buy-steps-container">
-                <div class="buy-steps">
-                    <div class="buy-step reveal reveal-delay-1">
-                        <div class="step-icon">📱</div>
-                        <p>Download Phantom Wallet.</p>
-                    </div>
-                    <div class="buy-step reveal reveal-delay-2">
-                        <div class="step-icon">💰</div>
-                        <p>Purchase SOL from your preferred exchange.</p>
-                    </div>
-                    <div class="buy-step reveal reveal-delay-3">
-                        <div class="step-icon">🔄</div>
-                        <p>Transfer SOL to your wallet.</p>
-                    </div>
-                    <div class="buy-step reveal reveal-delay-4">
-                        <div class="step-icon">🌐</div>
-                        <p>Visit Jupiter or Raydium after launch.</p>
-                    </div>
-                    <div class="buy-step reveal reveal-delay-5">
-                        <div class="step-icon">📋</div>
-                        <p>Paste the official $BREAD contract address.</p>
-                    </div>
-                    <div class="buy-step reveal reveal-delay-1">
-                        <div class="step-icon">🔄</div>
-                        <p>Swap SOL for $BREAD.</p>
-                    </div>
-                    <div class="buy-step reveal reveal-delay-2" style="grid-column:span 2;">
-                        <div class="step-icon">🥖</div>
-                        <p>Welcome to the Bakery.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="contract-box reveal">
-                <p>📋 Contract Address: <span>Coming Soon</span></p>
-                <div class="tax">Token Name: Bread | Ticker: $BREAD | Blockchain: Solana | Tax: 0%</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    COMMUNITY BANNER
-    ============================================================ -->
-    <section id="community">
-        <div class="container">
-            <div class="community-banner reveal">
-                <img src="https://i.ibb.co/vvsqZ2Lk/file-00000000099881f49dc90717368fd6dc.png" alt="Bread Mascot" class="banner-mascot" loading="lazy" />
-                <div class="banner-content">
-                    <h2>Everyone Deserves a <span class="gold">Seat at the Table</span></h2>
-                    <p>
-                        The best communities aren't built by one person. They're built by thousands of people who believe in the same idea.
-                        Whether you're a trader, creator, artist, developer, or simply someone looking for a genuine community... There's always room in the Bakery.
-                    </p>
-                    <a href="https://discord.gg/qXy9gBRd" target="_blank" class="btn btn-primary">🍞 GRAB YOUR SLICE. JOIN $BREAD.</a>
+            <div class="banner">
+                <div class="content">
+                    <h2>JOIN THE <span class="gold">MOVEMENT</span></h2>
+                    <p>Be part of a community that's focused on one thing — getting that bread.</p>
+                    <a href="#" class="btn btn-primary">JOIN DISCORD</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-    FOOTER
-    ============================================================ -->
+    <!-- ===== FOOTER — SOCIAL LINKS ADDED ===== -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-left">
                     <span class="logo-icon">🥖</span>
-                    <span class="footer-brand">$BREAD <span>· Bakery</span></span>
-                    <span class="footer-copy">&copy; 2026</span>
+                    <span class="brand">$BREAD <span>· Bakery</span></span>
+                    <span class="copy">&copy; 2026</span>
                 </div>
                 <div class="footer-socials">
                     <a href="https://x.com/4THABREAD" target="_blank" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
                     <a href="https://t.me/+xmMCqIZjGeAxMjEx" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://discord.gg/qXy9gBRd" target="_blank" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-                    <a href="#" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/4thabread?igsh=Y3d3cDMyYjllNXN1&utm_source=qr" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 </div>
                 <div class="footer-links">
-                    <a href="#">Terms</a>
-                    <a href="#">Privacy</a>
-                    <a href="#">Disclaimer</a>
+                    <a href="#">TERMS</a>
+                    <a href="#">PRIVACY</a>
+                    <a href="#">DISCLAIMER</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- ============================================================
-    JAVASCRIPT
-    ============================================================ -->
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // ============================================================
-        // 1. PARTICLES
-        // ============================================================
-        (function particles() {
-            const canvas = document.getElementById('particles-canvas');
-            const ctx = canvas.getContext('2d');
-            let w, h;
-            const particles = [];
-            const EMOJIS = ['✦', '◆', '•', '◦', '▪', '▫', '✧'];
-
-            function resize() {
-                w = canvas.width = window.innerWidth;
-                h = canvas.height = window.innerHeight;
-            }
-            window.addEventListener('resize', resize);
-            resize();
-
-            class Particle {
-                constructor() {
-                    this.reset();
-                }
-                reset() {
-                    this.x = Math.random() * w;
-                    this.y = Math.random() * h;
-                    this.size = 6 + Math.random() * 14;
-                    this.speedX = (Math.random() - 0.5) * 0.2;
-                    this.speedY = (Math.random() - 0.5) * 0.2 - 0.06;
-                    this.opacity = 0.03 + Math.random() * 0.10;
-                    this.emoji = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
-                    this.rotation = Math.random() * 360;
-                    this.rotationSpeed = (Math.random() - 0.5) * 0.3;
-                    this.life = 1;
-                    this.decay = 0.00015 + Math.random() * 0.0003;
-                }
-                update() {
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-                    this.rotation += this.rotationSpeed;
-                    this.life -= this.decay;
-                    if (this.life <= 0 || this.y < -50 || this.y > h + 50 || this.x < -50 || this.x > w + 50) {
-                        this.reset();
-                        this.life = 1;
-                        this.y = h + 20;
-                        this.x = Math.random() * w;
-                    }
-                }
-                draw() {
-                    ctx.save();
-                    ctx.globalAlpha = this.opacity * this.life;
-                    ctx.translate(this.x, this.y);
-                    ctx.rotate((this.rotation * Math.PI) / 180);
-                    ctx.font = `${this.size}px sans-serif`;
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillStyle = '#d4af37';
-                    ctx.shadowColor = 'rgba(212,175,55,0.15)';
-                    ctx.shadowBlur = 12;
-                    ctx.fillText(this.emoji, 0, 0);
-                    ctx.restore();
-                }
-            }
-
-            for (let i = 0; i < 35; i++) {
-                particles.push(new Particle());
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, w, h);
-                particles.forEach(p => {
-                    p.update();
-                    p.draw();
-                });
-                requestAnimationFrame(animate);
-            }
-            animate();
-        })();
-
-        // ============================================================
-        // 2. NAV
-        // ============================================================
-        const header = document.getElementById('header');
+        // ===== HAMBURGER =====
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
-
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('open');
         });
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('open');
-            });
-        });
-
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 40);
-        });
-
-        // ============================================================
-        // 3. SCROLL REVEAL
-        // ============================================================
-        (function scrollReveal() {
-            const reveals = document.querySelectorAll('.reveal');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.08,
-                rootMargin: '0px 0px -40px 0px'
-            });
-            reveals.forEach(el => observer.observe(el));
-        })();
-
-        // ============================================================
-        // 4. ANIMATED COUNTERS — now showing 0 for pre-launch
-        // ============================================================
-        (function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number[data-count]');
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const el = entry.target;
-                        const target = el.dataset.count;
-                        if (target.includes('$') || target.includes('K') || target.includes('M') || target
-                            .includes('B')) {
-                            const numStr = target.replace(/[^0-9.]/g, '');
-                            const suffix = target.replace(/[0-9.]/g, '');
-                            const num = parseFloat(numStr);
-                            let current = 0;
-                            const step = Math.max(1, Math.floor(num / 60));
-                            const timer = setInterval(() => {
-                                current += step;
-                                if (current >= num) {
-                                    current = num;
-                                    clearInterval(timer);
-                                }
-                                if (suffix === 'K' || suffix === 'M' || suffix === 'B') {
-                                    el.textContent = current.toLocaleString() + suffix;
-                                } else if (target.startsWith('$')) {
-                                    el.textContent = '$' + current.toFixed(5);
-                                } else {
-                                    el.textContent = current.toLocaleString();
-                                }
-                            }, 25);
-                            observer.unobserve(el);
-                            return;
-                        }
-
-                        const num = parseFloat(target.replace(/,/g, ''));
-                        if (isNaN(num)) return;
-                        let current = 0;
-                        const step = Math.max(1, Math.floor(num / 60));
-                        const timer = setInterval(() => {
-                            current += step;
-                            if (current >= num) {
-                                current = num;
-                                clearInterval(timer);
-                            }
-                            el.textContent = current.toLocaleString();
-                        }, 25);
-                        observer.unobserve(el);
-                    }
-                });
-            }, { threshold: 0.3 });
-
-            counters.forEach(el => observer.observe(el));
-        })();
-
-        // ============================================================
-        // 5. TOKENOMICS CHART
-        // ============================================================
-        (function tokenomicsChart() {
+        // ===== TOKENOMICS CHART =====
+        (function() {
             const ctx = document.getElementById('tokenomicsChart');
             if (!ctx) return;
-
             new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Liquidity', 'Marketing', 'Rewards', 'Development'],
+                    labels: ['Liquidity', 'Marketing', 'Rewards', 'Team', 'Dev', 'Burn'],
                     datasets: [{
-                        data: [90, 5, 3, 2],
+                        data: [40, 20, 15, 10, 10, 5],
                         backgroundColor: [
                             '#d4af37',
                             '#e8c84a',
                             '#b8962e',
-                            '#6b5a3e'
+                            '#6b5a3e',
+                            '#4a3f2a',
+                            '#2a2518'
                         ],
                         borderColor: '#0b0b0b',
                         borderWidth: 2,
@@ -2169,11 +1060,9 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: true,
-                    cutout: '72%',
+                    cutout: '70%',
                     plugins: {
-                        legend: {
-                            display: false,
-                        },
+                        legend: { display: false },
                         tooltip: {
                             backgroundColor: 'rgba(11,11,11,0.9)',
                             titleColor: '#fff',
@@ -2197,44 +1086,20 @@
             });
         })();
 
-        // ============================================================
-        // 6. FAQ ITEMS — Toggle
-        // ============================================================
-        document.querySelectorAll('.faq-item-simple').forEach(item => {
+        // ===== FAQ TOGGLE =====
+        document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', function() {
-                const arrow = this.querySelector('.faq-arrow');
+                const arrow = this.querySelector('.arrow');
                 this.classList.toggle('active');
-                if (this.classList.contains('active')) {
-                    arrow.textContent = '▾';
-                } else {
-                    arrow.textContent = '▸';
-                }
+                arrow.textContent = this.classList.contains('active') ? '▾' : '▸';
             });
         });
 
-        // ============================================================
-        // 7. SMOOTH SCROLLING
-        // ============================================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                const target = document.querySelector(targetId);
-                if (target) {
-                    e.preventDefault();
-                    const offset = 80;
-                    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                    window.scrollTo({ top, behavior: 'smooth' });
-                }
-            });
-        });
-
-        console.log('🥖 $BREAD — Feed the Community. Not the Whales.');
-        console.log('✨ Pre-launch stats set to 0.00 / Coming Soon.');
-        console.log('🚗 Lamborghini background added to Buy & Tokenomics sections.');
+        console.log('🥖 $BREAD — social links added to footer.');
         console.log('🐦 X: https://x.com/4THABREAD');
         console.log('✈️ Telegram: https://t.me/+xmMCqIZjGeAxMjEx');
         console.log('💬 Discord: https://discord.gg/qXy9gBRd');
+        console.log('📸 Instagram: https://www.instagram.com/4thabread');
     </script>
 </body>
 </html>
