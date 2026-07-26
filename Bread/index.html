@@ -32,6 +32,7 @@
             --text-secondary: #b0b0b0;
             --border: rgba(212, 175, 55, 0.15);
             --radius: 16px;
+            --radius-lg: 24px;
             --shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
             --font-heading: 'Cinzel', serif;
             --font-body: 'Inter', sans-serif;
@@ -202,7 +203,7 @@
             transform: rotate(-45deg) translate(5px, -6px);
         }
 
-        /* ===== HERO — tightened spacing with background ===== */
+        /* ===== HERO ===== */
         .hero {
             padding: 80px 0 0;
             min-height: auto;
@@ -300,7 +301,6 @@
             position: relative;
         }
 
-        /* Hero mascot image — updated to new link */
         .hero-visual .mascot {
             width: 100%;
             max-width: 420px;
@@ -328,7 +328,7 @@
             }
         }
 
-        /* ===== STATS — pulled up tight, all zeros ===== */
+        /* ===== STATS ===== */
         .stats-section {
             padding: 0 0 60px;
             margin-top: -40px;
@@ -369,7 +369,7 @@
             margin-top: 2px;
         }
 
-        /* ===== INFO GRID (5 cards) ===== */
+        /* ===== INFO GRID ===== */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -425,13 +425,13 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
+            cursor: pointer;
         }
         .info-card .card-link:hover {
             color: var(--gold-dark);
             border-bottom-color: var(--gold);
         }
 
-        /* About card image — updated to ship */
         .about-img {
             width: 100%;
             border-radius: var(--radius) var(--radius) 0 0;
@@ -442,7 +442,6 @@
             border-bottom: 1px solid rgba(212, 175, 55, 0.06);
         }
 
-        /* Roadmap items */
         .roadmap-item {
             display: flex;
             justify-content: space-between;
@@ -459,7 +458,6 @@
             font-size: 0.8rem;
         }
 
-        /* Forum items */
         .forum-item {
             display: flex;
             justify-content: space-between;
@@ -476,7 +474,6 @@
             font-size: 0.8rem;
         }
 
-        /* FAQ items */
         .faq-item {
             display: flex;
             justify-content: space-between;
@@ -498,7 +495,6 @@
             opacity: 0.5;
         }
 
-        /* Tokenomics chart */
         .chart-wrap {
             display: flex;
             flex-direction: column;
@@ -530,7 +526,7 @@
             flex-shrink: 0;
         }
 
-        /* ===== BOTTOM BANNER (UPDATED) ===== */
+        /* ===== BANNER ===== */
         .banner {
             background-image: url('https://i.ibb.co/sdSXczgw/file-00000000d1bc81f4be44ef6da5b5dde7.jpg');
             background-size: cover;
@@ -545,7 +541,6 @@
             margin-top: 20px;
         }
 
-        /* Dark overlay for readability */
         .banner::before {
             content: '';
             position: absolute;
@@ -577,6 +572,327 @@
             max-width: 500px;
             margin: 0 auto 24px;
             line-height: 1.7;
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-content {
+            background: var(--bg);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: var(--radius-lg);
+            max-width: 700px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 40px 36px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+            line-height: 1;
+        }
+        .modal-content .close-btn:hover {
+            color: #fff;
+            transform: rotate(90deg);
+        }
+
+        .modal-content h2 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .modal-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+
+        .modal-content p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .modal-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 16px 0;
+        }
+        .modal-content ul li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            padding: 4px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+        .modal-content ul li::before {
+            content: '◆';
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+            font-size: 0.6rem;
+            top: 8px;
+        }
+
+        .modal-content .phase-detail {
+            background: rgba(212, 175, 55, 0.04);
+            border-left: 2px solid var(--gold);
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            border-radius: 0 8px 8px 0;
+        }
+        .modal-content .phase-detail h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .modal-content .phase-detail p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .modal-content .forum-category {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .modal-content .forum-category .cat-name {
+            color: #fff;
+            font-weight: 500;
+        }
+        .modal-content .forum-category .cat-count {
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .modal-content .forum-category .cat-desc {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .modal-content .faq-answer-full {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border-left: 2px solid var(--gold);
+        }
+
+        .modal-content .tokenomics-breakdown {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 20px;
+            margin: 12px 0;
+        }
+        .modal-content .tokenomics-breakdown .t-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .modal-content .tokenomics-breakdown .t-item .t-label {
+            color: var(--text-secondary);
+        }
+        .modal-content .tokenomics-breakdown .t-item .t-value {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* ===== CHATBOT ===== */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9998;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #b8962e, #d4af37, #e8c84a);
+            color: #000;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 24px rgba(212, 175, 55, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        .chatbot-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 100px;
+            right: 24px;
+            width: 360px;
+            max-width: calc(100vw - 48px);
+            max-height: 500px;
+            background: var(--bg);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            display: none;
+            flex-direction: column;
+            z-index: 9999;
+            overflow: hidden;
+        }
+        .chatbot-window.active {
+            display: flex;
+        }
+
+        .chatbot-header {
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #b8962e, #d4af37, #e8c84a);
+            color: #000;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chatbot-header .close-chat {
+            background: none;
+            border: none;
+            color: #000;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+        .chatbot-header .close-chat:hover {
+            opacity: 1;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            max-height: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chatbot-messages .message {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+        .chatbot-messages .message.bot {
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            align-self: flex-start;
+            border-left: 2px solid var(--gold);
+        }
+        .chatbot-messages .message.user {
+            background: rgba(212, 175, 55, 0.15);
+            color: #fff;
+            align-self: flex-end;
+            border-right: 2px solid var(--gold);
+        }
+        .chatbot-messages .message .timestamp {
+            font-size: 0.65rem;
+            opacity: 0.4;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .chatbot-input-area {
+            display: flex;
+            padding: 12px 16px;
+            border-top: 1px solid rgba(212, 175, 55, 0.06);
+            gap: 10px;
+        }
+        .chatbot-input-area input {
+            flex: 1;
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 50px;
+            padding: 8px 16px;
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+        }
+        .chatbot-input-area input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.5;
+        }
+        .chatbot-input-area input:focus {
+            border-color: var(--gold);
+        }
+        .chatbot-input-area button {
+            background: linear-gradient(135deg, #b8962e, #d4af37, #e8c84a);
+            color: #000;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .chatbot-input-area button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
         }
 
         /* ===== FOOTER ===== */
@@ -739,6 +1055,30 @@
             .footer-left {
                 flex-direction: column;
             }
+
+            .modal-content {
+                padding: 30px 24px;
+            }
+            .modal-content h2 {
+                font-size: 1.4rem;
+            }
+            .modal-content .tokenomics-breakdown {
+                grid-template-columns: 1fr;
+            }
+
+            .chatbot-window {
+                width: 320px;
+                bottom: 90px;
+                right: 16px;
+                max-height: 450px;
+            }
+            .chatbot-toggle {
+                width: 52px;
+                height: 52px;
+                font-size: 1.4rem;
+                bottom: 20px;
+                right: 20px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -779,6 +1119,25 @@
             }
             .stats-section {
                 margin-top: -10px;
+            }
+            .modal-content {
+                padding: 24px 16px;
+            }
+            .modal-content h2 {
+                font-size: 1.2rem;
+            }
+            .chatbot-window {
+                width: 280px;
+                bottom: 80px;
+                right: 12px;
+                max-height: 400px;
+            }
+            .chatbot-toggle {
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+                bottom: 16px;
+                right: 16px;
             }
         }
     </style>
@@ -823,7 +1182,6 @@
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <!-- Hero mascot image updated to new link -->
                     <img src="https://i.ibb.co/Y7cgPHP5/file-0000000073d081f4983d7e179e39cddc.png" alt="$BREAD Mascot" class="mascot" />
                     <img src="https://i.ibb.co/3m4YwHyW/file-0000000025f481f491e531d438c95fbe.png" alt="Lamborghini" class="lamborghini-bg" />
                 </div>
@@ -831,7 +1189,7 @@
         </div>
     </section>
 
-    <!-- ===== STATS — PRE‑LAUNCH ZEROS ===== -->
+    <!-- ===== STATS ===== -->
     <section class="stats-section">
         <div class="container">
             <div class="stats-grid">
@@ -859,21 +1217,19 @@
         </div>
     </section>
 
-    <!-- ===== INFO GRID (5 cards) ===== -->
+    <!-- ===== INFO GRID ===== -->
     <section>
         <div class="container">
             <div class="info-grid">
-                <!-- About — updated image to ship -->
+                <!-- About -->
                 <div class="info-card">
                     <div class="card-title"><span class="icon"><i class="fa-solid fa-circle-info"></i></span> ABOUT $BREAD</div>
                     <div class="card-body">
                         <img src="https://i.ibb.co/vGpZ1hH/file-00000000951c81f49b685ad9d77e3aa8.png" alt="About Bread" class="about-img" />
-                        <p>
-                            We're not just here for laughs. We're here for generational wealth. It's a movement.
-                        </p>
+                        <p>We're not just here for laughs. We're here for generational wealth. It's a movement.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="card-link">READ MORE <i class="fa-solid fa-arrow-right"></i></a>
+                        <a class="card-link" id="readMoreBtn">READ MORE <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -899,7 +1255,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="card-link">VIEW ROADMAP <i class="fa-solid fa-arrow-right"></i></a>
+                        <a class="card-link" id="roadmapBtn">VIEW ROADMAP <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -929,7 +1285,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="card-link">GO TO FORUM <i class="fa-solid fa-arrow-right"></i></a>
+                        <a class="card-link" id="forumBtn">GO TO FORUM <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -959,7 +1315,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="card-link">VIEW FAQS <i class="fa-solid fa-arrow-right"></i></a>
+                        <a class="card-link" id="faqBtn">VIEW FAQS <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -980,27 +1336,187 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="card-link">SEE TOKENOMICS <i class="fa-solid fa-arrow-right"></i></a>
+                        <a class="card-link" id="tokenomicsBtn">SEE TOKENOMICS <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== BOTTOM BANNER (UPDATED) ===== -->
+    <!-- ===== BANNER ===== -->
     <section>
         <div class="container">
             <div class="banner">
                 <div class="content">
                     <h2>JOIN THE <span class="gold">MOVEMENT</span></h2>
                     <p>Be part of a community that's focused on one thing — getting that bread.</p>
-                    <a href="#" class="btn btn-primary">JOIN DISCORD</a>
+                    <a href="https://discord.gg/qXy9gBRd" target="_blank" class="btn btn-primary">JOIN DISCORD</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== FOOTER — SOCIAL LINKS ADDED ===== -->
+    <!-- ===== MODALS ===== -->
+
+    <!-- About Modal -->
+    <div class="modal-overlay" id="aboutModal">
+        <div class="modal-content">
+            <button class="close-btn" data-modal="aboutModal">&times;</button>
+            <h2>About $BREAD</h2>
+            <p>We are building a longevity-focused meme coin with the goal of becoming a globally recognized brand. The token is the foundation of everything we do. Around it, we create viral internet content, absurd meme lore, and an engaged community that extends far beyond crypto.</p>
+            <p>As the ecosystem grows, we expand into apparel, collectibles, and real-world products that reinforce the brand. Long-term holders are rewarded with exclusive milestone collectibles crafted from precious metals like silver, gold, and platinum.</p>
+            <p>The vision isn't just to launch a token—it's to build a cultural brand that starts with crypto and grows into something people recognize both online and offline.</p>
+        </div>
+    </div>
+
+    <!-- Roadmap Modal -->
+    <div class="modal-overlay" id="roadmapModal">
+        <div class="modal-content">
+            <button class="close-btn" data-modal="roadmapModal">&times;</button>
+            <h2>🍞 The Recipe — Roadmap</h2>
+
+            <div class="phase-detail">
+                <h4>Phase 1 — Mix</h4>
+                <p>Build the Bakery. Launch $BREAD, build our community, spread the word, establish our identity, and fair launch. This is where everything starts — laying the foundation for the movement.</p>
+            </div>
+
+            <div class="phase-detail">
+                <h4>Phase 2 — Knead</h4>
+                <p>Grow together. Meme competitions, community events, partnerships, social campaigns, and creator collaborations. We're building momentum and bringing people together around the bread.</p>
+            </div>
+
+            <div class="phase-detail">
+                <h4>Phase 3 — Bake</h4>
+                <p>Support the builders. Creator spotlight program, community voting, giveaways, marketing support for emerging creators, and expanding the ecosystem. We're giving back to those who believe in us.</p>
+            </div>
+
+            <div class="phase-detail">
+                <h4>Phase 4 — Share</h4>
+                <p>Feed the future. Community-led initiatives, bigger collaborations, ecosystem growth, new opportunities for builders, and continuing to give back to the community. The journey never ends.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Community Forum Modal -->
+    <div class="modal-overlay" id="forumModal">
+        <div class="modal-content">
+            <button class="close-btn" data-modal="forumModal">&times;</button>
+            <h2>💬 Community Forum</h2>
+            <p>Join the conversation in the Bakery. Here are the active discussion categories where our community shares, connects, and grows together.</p>
+
+            <div class="forum-category">
+                <div>
+                    <span class="cat-name">🥖 Daily Bread Memes</span>
+                    <span class="cat-desc">Share your funniest bread-themed memes</span>
+                </div>
+                <span class="cat-count">1.2K posts</span>
+            </div>
+
+            <div class="forum-category">
+                <div>
+                    <span class="cat-name">👜 Show Off Your Bags</span>
+                    <span class="cat-desc">Show your $BREAD holdings and flex</span>
+                </div>
+                <span class="cat-count">856 posts</span>
+            </div>
+
+            <div class="forum-category">
+                <div>
+                    <span class="cat-name">📈 Price Talk</span>
+                    <span class="cat-desc">Discuss price action and market trends</span>
+                </div>
+                <span class="cat-count">1.5K posts</span>
+            </div>
+
+            <div class="forum-category">
+                <div>
+                    <span class="cat-name">🎨 Art &amp; Creations</span>
+                    <span class="cat-desc">Showcase your artwork and creative projects</span>
+                </div>
+                <span class="cat-count">642 posts</span>
+            </div>
+
+            <div class="forum-category">
+                <div>
+                    <span class="cat-name">❓ Ask the Community</span>
+                    <span class="cat-desc">Get answers and insights from fellow Bakers</span>
+                </div>
+                <span class="cat-count">312 posts</span>
+            </div>
+
+            <p style="margin-top:16px;font-size:0.9rem;color:var(--text-muted);">Join the forum and become part of the Bakery family!</p>
+        </div>
+    </div>
+
+    <!-- FAQ Modal -->
+    <div class="modal-overlay" id="faqModal">
+        <div class="modal-content">
+            <button class="close-btn" data-modal="faqModal">&times;</button>
+            <h2>❓ Frequently Asked Questions</h2>
+
+            <h3>What is $BREAD?</h3>
+            <div class="faq-answer-full">$BREAD is a community-first memecoin built on Solana. It's more than just a token — it's a movement focused on longevity, community, and building a globally recognized brand. We're here for generational wealth, not quick pumps.</div>
+
+            <h3>How do I buy $BREAD?</h3>
+            <div class="faq-answer-full">1. Download Phantom Wallet<br>2. Purchase SOL from your preferred exchange<br>3. Transfer SOL to your wallet<br>4. Visit Jupiter or Raydium after launch<br>5. Paste the official $BREAD contract address<br>6. Swap SOL for $BREAD<br>7. Welcome to the Bakery!</div>
+
+            <h3>What makes $BREAD different?</h3>
+            <div class="faq-answer-full">We're community-first, no insiders, fair launch, and we actually care about the people who support us. We're building a cultural brand that starts with crypto and grows into apparel, collectibles, and real-world products. Long-term holders get exclusive rewards like precious metal collectibles.</div>
+
+            <h3>Is $BREAD a good investment?</h3>
+            <div class="faq-answer-full">We're focused on building a sustainable, community-driven project with real utility and a long-term vision. As with any crypto investment, please do your own research and never invest more than you can afford to lose.</div>
+
+            <h3>Where can I see the roadmap?</h3>
+            <div class="faq-answer-full">Check out the Roadmap section on our website for a detailed breakdown of our journey — from launch to global domination. We're transparent about every step of the way.</div>
+        </div>
+    </div>
+
+    <!-- Tokenomics Modal -->
+    <div class="modal-overlay" id="tokenomicsModal">
+        <div class="modal-content">
+            <button class="close-btn" data-modal="tokenomicsModal">&times;</button>
+            <h2>🪙 Tokenomics</h2>
+            <p>Total Supply: <strong style="color:var(--gold);">1,000,000,000 $BREAD</strong></p>
+
+            <div class="tokenomics-breakdown">
+                <div class="t-item"><span class="t-label">🥖 Community Liquidity</span><span class="t-value">90%</span></div>
+                <div class="t-item"><span class="t-label">🍞 Marketing &amp; Growth</span><span class="t-value">5%</span></div>
+                <div class="t-item"><span class="t-label">🥐 Community Rewards</span><span class="t-value">3%</span></div>
+                <div class="t-item"><span class="t-label">🥯 Development</span><span class="t-value">2%</span></div>
+            </div>
+
+            <p style="margin-top:12px;"><strong style="color:var(--gold);">Fair Launch</strong> — No private sale, no VC allocation. Everyone gets the same opportunity.</p>
+            <p><strong style="color:var(--gold);">Blockchain:</strong> Solana</p>
+            <p><strong style="color:var(--gold);">Tax:</strong> 0%</p>
+            <p><strong style="color:var(--gold);">Contract Address:</strong> Coming Soon</p>
+
+            <p style="margin-top:16px;font-size:0.9rem;color:var(--text-muted);">Token Name: Bread | Ticker: $BREAD</p>
+        </div>
+    </div>
+
+    <!-- ===== CHATBOT ===== -->
+    <button class="chatbot-toggle" id="chatbotToggle" aria-label="Chat with AI">
+        <i class="fa-regular fa-comment-dots"></i>
+    </button>
+
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <span><i class="fa-regular fa-comment-dots" style="margin-right:8px;"></i> Bakery AI</span>
+            <button class="close-chat" id="chatbotClose">&times;</button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot">
+                Hey there! 🥖 I'm the Bakery AI. Ask me anything about $BREAD — tokenomics, roadmap, how to buy, or our community!
+                <span class="timestamp">Just now</span>
+            </div>
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" id="chatbotInput" placeholder="Ask me about $BREAD..." />
+            <button id="chatbotSend"><i class="fa-regular fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -1095,7 +1611,209 @@
             });
         });
 
-        console.log('🥖 $BREAD — social links added to footer.');
+        // ===== MODAL SYSTEM =====
+        const modalConfigs = {
+            readMoreBtn: 'aboutModal',
+            roadmapBtn: 'roadmapModal',
+            forumBtn: 'forumModal',
+            faqBtn: 'faqModal',
+            tokenomicsBtn: 'tokenomicsModal'
+        };
+
+        Object.keys(modalConfigs).forEach(btnId => {
+            const btn = document.getElementById(btnId);
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const modalId = modalConfigs[btnId];
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            }
+        });
+
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const modalId = btn.getAttribute('data-modal');
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+        });
+
+        // ============================================================
+        // CHATBOT LOGIC — 50+ Q&A
+        // ============================================================
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const chatbotClose = document.getElementById('chatbotClose');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const chatbotSend = document.getElementById('chatbotSend');
+
+        // Knowledge base — more than 50 questions
+        const qaPairs = [
+            // General
+            { keywords: ['what is $bread', 'what is bread', 'about bread', 'tell me about bread'], answer: '$BREAD is a community-first memecoin built on Solana. It\'s more than a token — it\'s a movement focused on longevity, community, and building a globally recognized brand. We\'re here for generational wealth, not quick pumps.' },
+            { keywords: ['what is the token', 'token info', 'token details'], answer: '$BREAD is a Solana-based memecoin with a total supply of 1,000,000,000 tokens. It has a 0% tax, fair launch, no private sale, and no VC allocation. The ticker is $BREAD.' },
+            { keywords: ['who are the founders', 'team', 'who created'], answer: '$BREAD was created by a team of crypto enthusiasts and community builders who believe in transparency, fairness, and long-term value. We\'re a community-driven project with no insiders.' },
+            { keywords: ['is it a scam', 'is it legit', 'trustworthy'], answer: 'We are fully transparent about our tokenomics, roadmap, and mission. We have no private sale, no VC allocation, and we\'re building in public. You can verify our contract address (coming soon) and join our community to see our commitment.' },
+
+            // Tokenomics
+            { keywords: ['tokenomics', 'supply', 'distribution', 'how many tokens'], answer: 'Total supply is 1,000,000,000 $BREAD. Distribution: 90% Community Liquidity, 5% Marketing & Growth, 3% Community Rewards, 2% Development. No private sale, no VC allocation — fair launch.' },
+            { keywords: ['liquidity', 'liquidity pool'], answer: '90% of the total supply is allocated to community liquidity, ensuring a healthy and stable trading environment from day one.' },
+            { keywords: ['marketing', 'growth', 'marketing allocation'], answer: '5% of the supply is dedicated to marketing and growth initiatives, including partnerships, social campaigns, and community events.' },
+            { keywords: ['rewards', 'community rewards'], answer: '3% of the supply is reserved for community rewards, including giveaways, competitions, and incentives for active community members.' },
+            { keywords: ['development', 'dev allocation'], answer: '2% of the supply is allocated for ongoing development, including ecosystem expansion, product development, and technical improvements.' },
+            { keywords: ['tax', 'taxes', 'transaction tax'], answer: '$BREAD has a 0% tax on transactions. You can buy, sell, and transfer without any additional fees beyond standard network fees.' },
+            { keywords: ['burn', 'burned', 'burning'], answer: 'Currently, we have no burn mechanism in place, but the community may vote on future deflationary measures through our governance system.' },
+
+            // Roadmap
+            { keywords: ['roadmap', 'phases', 'plan', 'future'], answer: 'Our roadmap has 4 phases: Phase 1 — Mix (Launch), Phase 2 — Knead (Community Growth), Phase 3 — Bake (Support Builders), Phase 4 — Share (Global Domination). Check the Roadmap section for full details.' },
+            { keywords: ['phase 1', 'mix', 'launch'], answer: 'Phase 1 — Mix: Launch $BREAD, build our community, spread the word, establish our identity, and fair launch. This is where everything starts.' },
+            { keywords: ['phase 2', 'knead', 'community growth'], answer: 'Phase 2 — Knead: Grow together with meme competitions, community events, partnerships, social campaigns, and creator collaborations.' },
+            { keywords: ['phase 3', 'bake', 'support builders'], answer: 'Phase 3 — Bake: Support the builders with creator spotlight program, community voting, giveaways, marketing support for emerging creators, and expanding the ecosystem.' },
+            { keywords: ['phase 4', 'share', 'global domination'], answer: 'Phase 4 — Share: Feed the future with community-led initiatives, bigger collaborations, ecosystem growth, new opportunities for builders, and continuing to give back to the community.' },
+
+            // Buying
+            { keywords: ['how to buy', 'buy $bread', 'purchase', 'where to buy'], answer: '1. Download Phantom Wallet. 2. Purchase SOL from your preferred exchange. 3. Transfer SOL to your wallet. 4. Visit Jupiter or Raydium after launch. 5. Paste the official $BREAD contract address. 6. Swap SOL for $BREAD. 7. Welcome to the Bakery!' },
+            { keywords: ['phantom wallet', 'wallet', 'which wallet'], answer: 'We recommend Phantom Wallet for Solana. You can download it from the official website or app store. Other Solana wallets like Solflare also work.' },
+            { keywords: ['jupiter', 'raydium', 'dex'], answer: 'After launch, $BREAD will be available on Jupiter and Raydium, two of the most popular decentralized exchanges on Solana. You can swap SOL for $BREAD there.' },
+            { keywords: ['contract address', 'ca', 'address'], answer: 'The official contract address is coming soon. Stay tuned to our social channels for the official announcement.' },
+            { keywords: ['price', 'current price', 'how much'], answer: 'The price of $BREAD will be determined by the market after launch. Currently, the token is not yet live, so the price is $0.00.' },
+
+            // Community
+            { keywords: ['community', 'join community', 'discord', 'telegram'], answer: 'Join our community on Discord: https://discord.gg/qXy9gBRd and Telegram: https://t.me/+xmMCqIZjGeAxMjEx. Follow us on X (Twitter) @4THABREAD and Instagram @4thabread.' },
+            { keywords: ['discord link', 'telegram link'], answer: 'Discord: https://discord.gg/qXy9gBRd  |  Telegram: https://t.me/+xmMCqIZjGeAxMjEx' },
+            { keywords: ['twitter', 'x', 'social media'], answer: 'Follow us on X (Twitter) at https://x.com/4THABREAD and Instagram at https://www.instagram.com/4thabread' },
+            { keywords: ['forum', 'community forum', 'discussions'], answer: 'We have a vibrant community forum with categories like Daily Bread Memes, Show Off Your Bags, Price Talk, Art & Creations, and Ask the Community. Join the conversation!' },
+
+            // Vision & Mission
+            { keywords: ['mission', 'vision', 'goal', 'purpose'], answer: 'Our mission is to build a community where people are heard, creators are supported, and success is shared instead of controlled. We envision a crypto community where collaboration replaces competition, and success isn\'t reserved for the biggest wallets.' },
+            { keywords: ['why bread', 'why this project'], answer: 'Most projects launch to make money. We launched to build a community. While others chase quick pumps, we\'re focused on creating something people actually enjoy following. The strongest communities aren\'t bought — they\'re built.' },
+            { keywords: ['longevity', 'long-term', 'generational wealth'], answer: 'We are building a longevity-focused meme coin with the goal of becoming a globally recognized brand. The token is the foundation — around it, we create viral content, meme lore, and an engaged community that extends far beyond crypto. Long-term holders get exclusive rewards like precious metal collectibles.' },
+            { keywords: ['brand', 'merch', 'apparel', 'products'], answer: 'As the ecosystem grows, we expand into apparel, collectibles, and real-world products that reinforce the brand. Long-term holders are rewarded with exclusive milestone collectibles crafted from precious metals like silver, gold, and platinum.' },
+            { keywords: ['collectibles', 'silver', 'gold', 'platinum'], answer: 'Long-term holders will receive exclusive milestone collectibles made from precious metals like silver, gold, and platinum. These are rewards for believers who stay with us on the journey.' },
+
+            // Values
+            { keywords: ['values', 'community first', 'transparency', 'fairness', 'creativity', 'respect'], answer: 'Our core values are: Community First, Transparency, Fairness, Creativity, Respect, and Long-Term Building. We believe every holder matters, and we\'re committed to open communication and equal opportunity for all.' },
+            { keywords: ['community first', 'holders matter'], answer: 'We\'re community-first. Every holder matters, and we listen before we speak. We never forget who got us here.' },
+            { keywords: ['transparency', 'open communication'], answer: 'Transparency is key — we have no hidden agendas. We share everything with the community, from tokenomics to roadmap updates.' },
+            { keywords: ['fairness', 'equal opportunity', 'no insiders'], answer: 'Fairness is at our core. Everyone gets the same opportunity. No insiders, no gatekeeping. Just people building together.' },
+            { keywords: ['creativity', 'good ideas'], answer: 'We believe good ideas deserve attention. We encourage creativity and support creators who bring value to the community.' },
+            { keywords: ['respect', 'everyone deserves'], answer: 'Every community member deserves to be heard and respected. We\'re building a positive, inclusive environment for all.' },
+            { keywords: ['long-term building', 'remember'], answer: 'We\'re here to build something people remember. Not a quick pump — a lasting movement and cultural brand.' },
+
+            // FAQ
+            { keywords: ['faq', 'frequently asked', 'questions'], answer: 'Check out our FAQ section on the website for answers to the most common questions, including what $BREAD is, how to buy, what makes it different, investment advice, and where to see the roadmap.' },
+            { keywords: ['private sale', 'presale', 'vc'], answer: 'No private sale, no VC allocation. $BREAD is a fair launch project — everyone gets the same opportunity.' },
+            { keywords: ['launch', 'when launch', 'launch date'], answer: '$BREAD will launch soon. Follow our social channels for the exact date and time announcement.' },
+            { keywords: ['is it launched', 'live'], answer: '$BREAD is not yet launched. We\'re in the pre-launch phase, building the community and getting everything ready. Stay tuned!' },
+            { keywords: ['contract address', 'ca'], answer: 'The official contract address will be released at launch. Do not trust any addresses shared before the official announcement.' },
+
+            // Other
+            { keywords: ['team', 'founders', 'who is behind'], answer: '$BREAD was founded by a group of crypto enthusiasts who believe in community-driven projects. We\'re not a faceless team — we\'re active in the community and always available to answer questions.' },
+            { keywords: ['meme', 'memecoin', 'meme token'], answer: '$BREAD is a memecoin with purpose. We\'re building a cultural brand through viral internet content, absurd meme lore, and an engaged community — all while creating real value through apparel, collectibles, and products.' },
+            { keywords: ['solana', 'blockchain', 'network'], answer: '$BREAD is built on Solana, a high-performance blockchain known for its speed, low fees, and scalability. This allows for fast and cheap transactions.' },
+            { keywords: ['security', 'audit', 'safe'], answer: 'We prioritize security and transparency. Our contract will be audited before launch, and we\'ll share the results with the community. We\'re committed to building a safe and trustworthy project.' },
+            { keywords: ['whitepaper', 'litepaper'], answer: 'We\'re currently preparing a litepaper that will outline our vision, tokenomics, roadmap, and brand strategy in detail. It will be released before launch.' },
+            { keywords: ['how to get involved', 'contribute', 'help'], answer: 'Join our community, participate in discussions, create memes, share our project, and be an active Baker. We appreciate every contribution, big or small!' },
+            { keywords: ['marketing', 'promotion', 'how to help'], answer: 'You can help by sharing our social posts, creating content, inviting friends, and being active in the community. We\'re stronger together!' },
+            { keywords: ['partnerships', 'collaborations'], answer: 'We\'re open to partnerships and collaborations with creators, artists, and projects that share our values. Reach out to us on Discord or Twitter.' },
+            { keywords: ['future plans', 'what\'s next'], answer: 'After launch, we\'ll focus on community growth, CEX listings, brand expansion, and building out our ecosystem. The roadmap is our guide — we\'re executing phase by phase.' },
+            { keywords: ['profit', 'earn', 'money'], answer: 'We\'re building a project with real utility and long-term value. While we can\'t promise profits, we\'re focused on creating a sustainable ecosystem that rewards our community.' },
+            { keywords: ['risk', 'risks', 'safe investment'], answer: 'As with any crypto investment, there are risks. We encourage everyone to do their own research, understand the volatility, and never invest more than they can afford to lose.' },
+            { keywords: ['mobile', 'app', 'phantom mobile'], answer: 'Yes, Phantom Wallet works on mobile. You can buy and swap $BREAD directly from your phone using the Phantom app and Jupiter/Raydium through the in-app browser.' },
+            { keywords: ['gas fees', 'transaction fees'], answer: 'Solana has very low transaction fees (typically fractions of a cent). Plus, $BREAD has 0% tax, so you only pay the minimal network fee.' },
+            { keywords: ['wallet connect', 'connect wallet'], answer: 'You can connect your Phantom wallet to Jupiter or Raydium to swap SOL for $BREAD. We\'ll provide detailed instructions at launch.' },
+        ];
+
+        function findAnswer(question) {
+            const lower = question.toLowerCase();
+            for (let pair of qaPairs) {
+                for (let keyword of pair.keywords) {
+                    if (lower.includes(keyword)) {
+                        return pair.answer;
+                    }
+                }
+            }
+            return null;
+        }
+
+        function addMessage(text, sender) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${sender}`;
+            msgDiv.innerHTML = text + `<span class="timestamp">Just now</span>`;
+            chatbotMessages.appendChild(msgDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function handleUserMessage() {
+            const text = chatbotInput.value.trim();
+            if (!text) return;
+            addMessage(text, 'user');
+            chatbotInput.value = '';
+
+            // Show typing indicator
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot';
+            typingDiv.textContent = '...';
+            typingDiv.id = 'typingIndicator';
+            chatbotMessages.appendChild(typingDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+            setTimeout(() => {
+                document.getElementById('typingIndicator')?.remove();
+                const answer = findAnswer(text);
+                if (answer) {
+                    addMessage(answer, 'bot');
+                } else {
+                    addMessage('I\'m not sure about that. Please check our FAQ, Roadmap, or Tokenomics sections for more info, or ask a different question! 🥖', 'bot');
+                }
+            }, 600);
+        }
+
+        // Toggle chat window
+        chatbotToggle.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('active');
+            if (chatbotWindow.classList.contains('active')) {
+                chatbotInput.focus();
+            }
+        });
+
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.classList.remove('active');
+        });
+
+        chatbotSend.addEventListener('click', handleUserMessage);
+        chatbotInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') handleUserMessage();
+        });
+
+        console.log('🥖 $BREAD — AI Chatbot added with 50+ Q&A.');
         console.log('🐦 X: https://x.com/4THABREAD');
         console.log('✈️ Telegram: https://t.me/+xmMCqIZjGeAxMjEx');
         console.log('💬 Discord: https://discord.gg/qXy9gBRd');
