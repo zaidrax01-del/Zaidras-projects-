@@ -30,6 +30,7 @@
             --card-bg: #141414;
             --text: #ffffff;
             --text-secondary: #b0b0b0;
+            --text-muted: #6b6b6b;
             --border: rgba(212, 175, 55, 0.15);
             --radius: 16px;
             --radius-lg: 24px;
@@ -442,12 +443,13 @@
             border-bottom: 1px solid rgba(212, 175, 55, 0.06);
         }
 
+        /* ===== ROADMAP CARD ITEMS (updated) ===== */
         .roadmap-item {
             display: flex;
             justify-content: space-between;
-            padding: 6px 0;
+            padding: 4px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            font-size: 0.85rem;
+            font-size: 0.82rem;
         }
         .roadmap-item .phase {
             color: #fff;
@@ -455,7 +457,9 @@
         }
         .roadmap-item .desc {
             color: var(--text-secondary);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
+            text-align: right;
+            max-width: 60%;
         }
 
         .forum-item {
@@ -495,7 +499,9 @@
             opacity: 0.5;
         }
 
+        /* ===== TOKENOMICS CHART (TBD) ===== */
         .chart-wrap {
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -507,6 +513,28 @@
             height: auto;
             margin-bottom: 10px;
         }
+
+        .chart-wrap .center-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            pointer-events: none;
+        }
+        .chart-wrap .center-overlay .amount {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .chart-wrap .center-overlay .label {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         .legend {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -657,33 +685,12 @@
             margin-bottom: 12px;
         }
 
-        .modal-content ul {
-            list-style: none;
-            padding: 0;
-            margin: 8px 0 16px 0;
-        }
-        .modal-content ul li {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            padding: 4px 0;
-            padding-left: 24px;
-            position: relative;
-        }
-        .modal-content ul li::before {
-            content: '◆';
-            color: var(--gold);
-            position: absolute;
-            left: 0;
-            font-size: 0.6rem;
-            top: 8px;
-        }
-
+        /* Roadmap phase detail */
         .modal-content .phase-detail {
             background: rgba(212, 175, 55, 0.04);
             border-left: 2px solid var(--gold);
             padding: 12px 16px;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             border-radius: 0 8px 8px 0;
         }
         .modal-content .phase-detail h4 {
@@ -693,9 +700,70 @@
             color: #fff;
             margin-bottom: 4px;
         }
-        .modal-content .phase-detail p {
+        .modal-content .phase-detail .phase-goal {
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-weight: 500;
+            margin: 4px 0 6px 0;
+        }
+        .modal-content .phase-detail ul {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0 0 0;
+        }
+        .modal-content .phase-detail ul li {
+            color: var(--text-secondary);
             font-size: 0.9rem;
-            margin-bottom: 0;
+            line-height: 1.7;
+            padding: 2px 0 2px 20px;
+            position: relative;
+        }
+        .modal-content .phase-detail ul li::before {
+            content: '◆';
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+            font-size: 0.5rem;
+            top: 6px;
+        }
+
+        .modal-content .principles {
+            margin-top: 24px;
+            padding: 16px 20px;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: var(--radius);
+            border: 1px solid rgba(212, 175, 55, 0.08);
+        }
+        .modal-content .principles h4 {
+            font-family: var(--font-heading);
+            color: var(--gold);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .modal-content .principles ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 16px;
+        }
+        .modal-content .principles ul li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 3px 0;
+        }
+        .modal-content .principles ul li strong {
+            color: #fff;
+        }
+        .modal-content .principles .motto {
+            margin-top: 10px;
+            font-family: var(--font-heading);
+            color: var(--gold);
+            font-size: 1.1rem;
+            text-align: center;
+            letter-spacing: 2px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            padding-top: 10px;
         }
 
         .modal-content .forum-category {
@@ -1065,6 +1133,9 @@
             .modal-content .tokenomics-breakdown {
                 grid-template-columns: 1fr;
             }
+            .modal-content .principles ul {
+                grid-template-columns: 1fr;
+            }
 
             .chatbot-window {
                 width: 320px;
@@ -1233,25 +1304,29 @@
                     </div>
                 </div>
 
-                <!-- Roadmap -->
+                <!-- Roadmap (updated) -->
                 <div class="info-card">
                     <div class="card-title"><span class="icon"><i class="fa-solid fa-road"></i></span> ROADMAP</div>
                     <div class="card-body">
                         <div class="roadmap-item">
                             <span class="phase">Phase 1</span>
-                            <span class="desc">Launch</span>
+                            <span class="desc">The Bread Is Baked</span>
                         </div>
                         <div class="roadmap-item">
                             <span class="phase">Phase 2</span>
-                            <span class="desc">Community Growth</span>
+                            <span class="desc">Community Rises</span>
                         </div>
                         <div class="roadmap-item">
                             <span class="phase">Phase 3</span>
-                            <span class="desc">CEX Listings</span>
+                            <span class="desc">Build the Loaf</span>
                         </div>
                         <div class="roadmap-item">
                             <span class="phase">Phase 4</span>
-                            <span class="desc">Global Domination</span>
+                            <span class="desc">The Bakery Ecosystem</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="phase">Phase 5</span>
+                            <span class="desc">Legacy of $BREAD</span>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -1325,13 +1400,17 @@
                     <div class="card-body">
                         <div class="chart-wrap">
                             <canvas id="tokenomicsChart"></canvas>
+                            <div class="center-overlay">
+                                <div class="amount">TBD</div>
+                                <div class="label">Community Decides</div>
+                            </div>
                             <div class="legend">
-                                <span class="item"><span class="dot" style="background:#d4af37;"></span> Liquidity</span>
-                                <span class="item"><span class="dot" style="background:#e8c84a;"></span> Marketing</span>
-                                <span class="item"><span class="dot" style="background:#b8962e;"></span> Rewards</span>
-                                <span class="item"><span class="dot" style="background:#6b5a3e;"></span> Team</span>
-                                <span class="item"><span class="dot" style="background:#4a3f2a;"></span> Dev</span>
-                                <span class="item"><span class="dot" style="background:#2a2518;"></span> Burn</span>
+                                <span class="item"><span class="dot" style="background:#d4af37;"></span> Liquidity (TBD)</span>
+                                <span class="item"><span class="dot" style="background:#d4af37;"></span> Marketing (TBD)</span>
+                                <span class="item"><span class="dot" style="background:#d4af37;"></span> Rewards (TBD)</span>
+                                <span class="item"><span class="dot" style="background:#d4af37;"></span> Team (TBD)</span>
+                                <span class="item"><span class="dot" style="background:#d4af37;"></span> Dev (TBD)</span>
+                                <span class="item"><span class="dot" style="background:#d4af37;"></span> Burn (TBD)</span>
                             </div>
                         </div>
                     </div>
@@ -1369,30 +1448,81 @@
         </div>
     </div>
 
-    <!-- Roadmap Modal -->
+    <!-- Roadmap Modal (updated) -->
     <div class="modal-overlay" id="roadmapModal">
         <div class="modal-content">
             <button class="close-btn" data-modal="roadmapModal">&times;</button>
-            <h2>🍞 The Recipe — Roadmap</h2>
+            <h2>🍞 $BREAD Roadmap</h2>
+            <p style="font-style:italic;color:var(--gold);margin-bottom:20px;">Rises. Bread. Always.</p>
 
             <div class="phase-detail">
-                <h4>Phase 1 — Mix</h4>
-                <p>Build the Bakery. Launch $BREAD, build our community, spread the word, establish our identity, and fair launch. This is where everything starts — laying the foundation for the movement.</p>
+                <h4>Phase 1 – The Bread Is Baked</h4>
+                <div class="phase-goal">🎯 Goal: Establish brand · Gather community · Set foundation</div>
+                <ul>
+                    <li>Launch $BREAD token and mascot</li>
+                    <li>Create & publish the legend of $BREAD</li>
+                    <li>Launch X & Telegram</li>
+                    <li>Build the founding $BREAD Army</li>
+                </ul>
             </div>
 
             <div class="phase-detail">
-                <h4>Phase 2 — Knead</h4>
-                <p>Grow together. Meme competitions, community events, partnerships, social campaigns, and creator collaborations. We're building momentum and bringing people together around the bread.</p>
+                <h4>Phase 2 – Community Rises</h4>
+                <div class="phase-goal">🎯 Goal: Engage community · Drive participation · Cultural growth</div>
+                <ul>
+                    <li>Daily memes & story content</li>
+                    <li>Meme contests & campaigns</li>
+                    <li>Holder perks, stickers, GIFs</li>
+                    <li>Voting on lore & decisions</li>
+                    <li>Grow a strong, positive culture</li>
+                </ul>
             </div>
 
             <div class="phase-detail">
-                <h4>Phase 3 — Bake</h4>
-                <p>Support the builders. Creator spotlight program, community voting, giveaways, marketing support for emerging creators, and expanding the ecosystem. We're giving back to those who believe in us.</p>
+                <h4>Phase 3 – Build the Loaf</h4>
+                <div class="phase-goal">🎯 Goal: Elevate brand · Expand creative universe · Strategic partnerships</div>
+                <ul>
+                    <li>Official merch</li>
+                    <li>Comics, animations & short videos</li>
+                    <li>Collabs with artists & creators</li>
+                    <li>Expand universe with new characters</li>
+                </ul>
             </div>
 
             <div class="phase-detail">
-                <h4>Phase 4 — Share</h4>
-                <p>Feed the future. Community-led initiatives, bigger collaborations, ecosystem growth, new opportunities for builders, and continuing to give back to the community. The journey never ends.</p>
+                <h4>Phase 4 – The Bakery Ecosystem</h4>
+                <div class="phase-goal">🎯 Goal: Build utility · Empower creators · Launch ecosystem</div>
+                <ul>
+                    <li>Community tools: meme generator, profile tools</li>
+                    <li>Digital collectibles & NFTs</li>
+                    <li>Expand lore with community contributions</li>
+                    <li>New utilities & features</li>
+                    <li>Launch $BREAD staking & rewards</li>
+                </ul>
+            </div>
+
+            <div class="phase-detail">
+                <h4>Phase 5 – Legacy of $BREAD</h4>
+                <div class="phase-goal">🎯 Goal: Sustain legacy · Achieve mass adoption · Become iconic</div>
+                <ul>
+                    <li>Roadmap complete — new era begins</li>
+                    <li>CEX listings & global expansion</li>
+                    <li>Real-world partnerships & utility</li>
+                    <li>$BREAD becomes a household name</li>
+                </ul>
+            </div>
+
+            <!-- Principles -->
+            <div class="principles">
+                <h4>Our Principles</h4>
+                <ul>
+                    <li><strong>Rises.</strong> — We never give up.</li>
+                    <li><strong>Community First.</strong> — Together we grow.</li>
+                    <li><strong>Built Different.</strong> — Unique. Authentic. Real.</li>
+                    <li><strong>Loyalty Over Hype.</strong> — We value real ones.</li>
+                    <li><strong>The Community Writes the Legend.</strong> — You shape the future.</li>
+                </ul>
+                <div class="motto">🥖 Rises. Bread. Always. 🥖</div>
             </div>
         </div>
     </div>
@@ -1477,12 +1607,13 @@
             <button class="close-btn" data-modal="tokenomicsModal">&times;</button>
             <h2>🪙 Tokenomics</h2>
             <p>Total Supply: <strong style="color:var(--gold);">1,000,000,000 $BREAD</strong></p>
+            <p style="margin-bottom:16px;color:var(--text-secondary);">Tokenomics distribution is currently being finalized by the community. Allocations will be decided collectively.</p>
 
             <div class="tokenomics-breakdown">
-                <div class="t-item"><span class="t-label">🥖 Community Liquidity</span><span class="t-value">90%</span></div>
-                <div class="t-item"><span class="t-label">🍞 Marketing &amp; Growth</span><span class="t-value">5%</span></div>
-                <div class="t-item"><span class="t-label">🥐 Community Rewards</span><span class="t-value">3%</span></div>
-                <div class="t-item"><span class="t-label">🥯 Development</span><span class="t-value">2%</span></div>
+                <div class="t-item"><span class="t-label">🥖 Community Liquidity</span><span class="t-value">TBD</span></div>
+                <div class="t-item"><span class="t-label">🍞 Marketing &amp; Growth</span><span class="t-value">TBD</span></div>
+                <div class="t-item"><span class="t-label">🥐 Community Rewards</span><span class="t-value">TBD</span></div>
+                <div class="t-item"><span class="t-label">🥯 Development</span><span class="t-value">TBD</span></div>
             </div>
 
             <p style="margin-top:12px;"><strong style="color:var(--gold);">Fair Launch</strong> — No private sale, no VC allocation. Everyone gets the same opportunity.</p>
@@ -1550,7 +1681,7 @@
             navLinks.classList.toggle('open');
         });
 
-        // ===== TOKENOMICS CHART =====
+        // ===== TOKENOMICS CHART (TBD — Solid Gold Ring) =====
         (function() {
             const ctx = document.getElementById('tokenomicsChart');
             if (!ctx) return;
@@ -1559,14 +1690,14 @@
                 data: {
                     labels: ['Liquidity', 'Marketing', 'Rewards', 'Team', 'Dev', 'Burn'],
                     datasets: [{
-                        data: [40, 20, 15, 10, 10, 5],
+                        data: [1, 1, 1, 1, 1, 1],
                         backgroundColor: [
                             '#d4af37',
-                            '#e8c84a',
-                            '#b8962e',
-                            '#6b5a3e',
-                            '#4a3f2a',
-                            '#2a2518'
+                            '#d4af37',
+                            '#d4af37',
+                            '#d4af37',
+                            '#d4af37',
+                            '#d4af37'
                         ],
                         borderColor: '#0b0b0b',
                         borderWidth: 2,
@@ -1576,23 +1707,10 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: true,
-                    cutout: '70%',
+                    cutout: '75%',
                     plugins: {
                         legend: { display: false },
-                        tooltip: {
-                            backgroundColor: 'rgba(11,11,11,0.9)',
-                            titleColor: '#fff',
-                            bodyColor: '#d4af37',
-                            borderColor: 'rgba(212,175,55,0.15)',
-                            borderWidth: 1,
-                            padding: 12,
-                            cornerRadius: 8,
-                            callbacks: {
-                                label: function(context) {
-                                    return context.label + ': ' + context.parsed + '%';
-                                }
-                            }
-                        }
+                        tooltip: { enabled: false }
                     },
                     animation: {
                         animateRotate: true,
@@ -1665,7 +1783,7 @@
         });
 
         // ============================================================
-        // CHATBOT LOGIC — 50+ Q&A
+        // CHATBOT LOGIC (updated roadmap knowledge)
         // ============================================================
         const chatbotToggle = document.getElementById('chatbotToggle');
         const chatbotWindow = document.getElementById('chatbotWindow');
@@ -1674,7 +1792,6 @@
         const chatbotInput = document.getElementById('chatbotInput');
         const chatbotSend = document.getElementById('chatbotSend');
 
-        // Knowledge base — more than 50 questions
         const qaPairs = [
             // General
             { keywords: ['what is $bread', 'what is bread', 'about bread', 'tell me about bread'], answer: '$BREAD is a community-first memecoin built on Solana. It\'s more than a token — it\'s a movement focused on longevity, community, and building a globally recognized brand. We\'re here for generational wealth, not quick pumps.' },
@@ -1683,20 +1800,23 @@
             { keywords: ['is it a scam', 'is it legit', 'trustworthy'], answer: 'We are fully transparent about our tokenomics, roadmap, and mission. We have no private sale, no VC allocation, and we\'re building in public. You can verify our contract address (coming soon) and join our community to see our commitment.' },
 
             // Tokenomics
-            { keywords: ['tokenomics', 'supply', 'distribution', 'how many tokens'], answer: 'Total supply is 1,000,000,000 $BREAD. Distribution: 90% Community Liquidity, 5% Marketing & Growth, 3% Community Rewards, 2% Development. No private sale, no VC allocation — fair launch.' },
-            { keywords: ['liquidity', 'liquidity pool'], answer: '90% of the total supply is allocated to community liquidity, ensuring a healthy and stable trading environment from day one.' },
-            { keywords: ['marketing', 'growth', 'marketing allocation'], answer: '5% of the supply is dedicated to marketing and growth initiatives, including partnerships, social campaigns, and community events.' },
-            { keywords: ['rewards', 'community rewards'], answer: '3% of the supply is reserved for community rewards, including giveaways, competitions, and incentives for active community members.' },
-            { keywords: ['development', 'dev allocation'], answer: '2% of the supply is allocated for ongoing development, including ecosystem expansion, product development, and technical improvements.' },
+            { keywords: ['tokenomics', 'supply', 'distribution', 'how many tokens'], answer: 'Total supply is 1,000,000,000 $BREAD. Tokenomics distribution is currently being finalized by the community. Allocations will be decided collectively. Check back soon or join our Discord to participate in the discussion!' },
+            { keywords: ['liquidity', 'liquidity pool'], answer: 'Liquidity allocation is TBD and will be decided by the community. We\'re committed to a fair and transparent process.' },
+            { keywords: ['marketing', 'growth', 'marketing allocation'], answer: 'Marketing allocation is TBD and will be decided by the community. We want everyone to have a say in how we grow.' },
+            { keywords: ['rewards', 'community rewards'], answer: 'Community rewards allocation is TBD and will be decided by the community. Your voice matters!' },
+            { keywords: ['development', 'dev allocation'], answer: 'Development allocation is TBD and will be decided by the community. We\'re building together.' },
             { keywords: ['tax', 'taxes', 'transaction tax'], answer: '$BREAD has a 0% tax on transactions. You can buy, sell, and transfer without any additional fees beyond standard network fees.' },
-            { keywords: ['burn', 'burned', 'burning'], answer: 'Currently, we have no burn mechanism in place, but the community may vote on future deflationary measures through our governance system.' },
+            { keywords: ['burn', 'burned', 'burning'], answer: 'Burn allocation is TBD. The community may decide on future deflationary measures through our governance system.' },
 
-            // Roadmap
-            { keywords: ['roadmap', 'phases', 'plan', 'future'], answer: 'Our roadmap has 4 phases: Phase 1 — Mix (Launch), Phase 2 — Knead (Community Growth), Phase 3 — Bake (Support Builders), Phase 4 — Share (Global Domination). Check the Roadmap section for full details.' },
-            { keywords: ['phase 1', 'mix', 'launch'], answer: 'Phase 1 — Mix: Launch $BREAD, build our community, spread the word, establish our identity, and fair launch. This is where everything starts.' },
-            { keywords: ['phase 2', 'knead', 'community growth'], answer: 'Phase 2 — Knead: Grow together with meme competitions, community events, partnerships, social campaigns, and creator collaborations.' },
-            { keywords: ['phase 3', 'bake', 'support builders'], answer: 'Phase 3 — Bake: Support the builders with creator spotlight program, community voting, giveaways, marketing support for emerging creators, and expanding the ecosystem.' },
-            { keywords: ['phase 4', 'share', 'global domination'], answer: 'Phase 4 — Share: Feed the future with community-led initiatives, bigger collaborations, ecosystem growth, new opportunities for builders, and continuing to give back to the community.' },
+            // Roadmap (updated)
+            { keywords: ['roadmap', 'phases', 'plan', 'future'], answer: 'Our roadmap has 5 phases: Phase 1 – The Bread Is Baked, Phase 2 – Community Rises, Phase 3 – Build the Loaf, Phase 4 – The Bakery Ecosystem, Phase 5 – Legacy of $BREAD. Check the Roadmap section for full details, goals, and our principles.' },
+            { keywords: ['phase 1', 'bread is baked', 'launch'], answer: 'Phase 1 – The Bread Is Baked: Launch $BREAD token and mascot, create the legend, launch X & Telegram, and build the founding $BREAD Army. Goal: Establish brand, gather community, set foundation.' },
+            { keywords: ['phase 2', 'community rises', 'memes', 'contests'], answer: 'Phase 2 – Community Rises: Daily memes & story content, meme contests, holder perks, voting on lore, and growing a strong culture. Goal: Engage community, drive participation, cultural growth.' },
+            { keywords: ['phase 3', 'build the loaf', 'merch', 'comics', 'animations'], answer: 'Phase 3 – Build the Loaf: Official merch, comics, animations, collabs with artists, and expanding the universe with new characters. Goal: Elevate brand, expand creative universe, strategic partnerships.' },
+            { keywords: ['phase 4', 'bakery ecosystem', 'nfts', 'staking', 'tools'], answer: 'Phase 4 – The Bakery Ecosystem: Community tools (meme generator, profile tools), digital collectibles & NFTs, expand lore with community contributions, new utilities, and launch $BREAD staking & rewards. Goal: Build utility, empower creators, launch ecosystem.' },
+            { keywords: ['phase 5', 'legacy', 'cex listings', 'global'], answer: 'Phase 5 – Legacy of $BREAD: Roadmap complete — new era begins. CEX listings & global expansion, real-world partnerships, and $BREAD becomes a household name. Goal: Sustain legacy, achieve mass adoption, become iconic.' },
+            { keywords: ['principles', 'rises', 'community first', 'built different', 'loyalty over hype'], answer: 'Our principles: Rises. — We never give up. Community First. — Together we grow. Built Different. — Unique. Authentic. Real. Loyalty Over Hype. — We value real ones. The Community Writes the Legend. — You shape the future. Motto: Rises. Bread. Always.' },
+            { keywords: ['motto', 'rises bread always'], answer: 'Motto: Rises. Bread. Always. It represents our unwavering commitment to rise together, build something meaningful, and always stay true to our community.' },
 
             // Buying
             { keywords: ['how to buy', 'buy $bread', 'purchase', 'where to buy'], answer: '1. Download Phantom Wallet. 2. Purchase SOL from your preferred exchange. 3. Transfer SOL to your wallet. 4. Visit Jupiter or Raydium after launch. 5. Paste the official $BREAD contract address. 6. Swap SOL for $BREAD. 7. Welcome to the Bakery!' },
@@ -1743,7 +1863,7 @@
             { keywords: ['how to get involved', 'contribute', 'help'], answer: 'Join our community, participate in discussions, create memes, share our project, and be an active Baker. We appreciate every contribution, big or small!' },
             { keywords: ['marketing', 'promotion', 'how to help'], answer: 'You can help by sharing our social posts, creating content, inviting friends, and being active in the community. We\'re stronger together!' },
             { keywords: ['partnerships', 'collaborations'], answer: 'We\'re open to partnerships and collaborations with creators, artists, and projects that share our values. Reach out to us on Discord or Twitter.' },
-            { keywords: ['future plans', 'what\'s next'], answer: 'After launch, we\'ll focus on community growth, CEX listings, brand expansion, and building out our ecosystem. The roadmap is our guide — we\'re executing phase by phase.' },
+            { keywords: ['future plans', 'what\'s next'], answer: 'After launch, we\'ll follow our 5-phase roadmap: from building the community to global domination. Check the Roadmap section for full details.' },
             { keywords: ['profit', 'earn', 'money'], answer: 'We\'re building a project with real utility and long-term value. While we can\'t promise profits, we\'re focused on creating a sustainable ecosystem that rewards our community.' },
             { keywords: ['risk', 'risks', 'safe investment'], answer: 'As with any crypto investment, there are risks. We encourage everyone to do their own research, understand the volatility, and never invest more than they can afford to lose.' },
             { keywords: ['mobile', 'app', 'phantom mobile'], answer: 'Yes, Phantom Wallet works on mobile. You can buy and swap $BREAD directly from your phone using the Phantom app and Jupiter/Raydium through the in-app browser.' },
@@ -1777,7 +1897,6 @@
             addMessage(text, 'user');
             chatbotInput.value = '';
 
-            // Show typing indicator
             const typingDiv = document.createElement('div');
             typingDiv.className = 'message bot';
             typingDiv.textContent = '...';
@@ -1796,7 +1915,6 @@
             }, 600);
         }
 
-        // Toggle chat window
         chatbotToggle.addEventListener('click', () => {
             chatbotWindow.classList.toggle('active');
             if (chatbotWindow.classList.contains('active')) {
@@ -1813,7 +1931,7 @@
             if (e.key === 'Enter') handleUserMessage();
         });
 
-        console.log('🥖 $BREAD — AI Chatbot added with 50+ Q&A.');
+        console.log('🥖 $BREAD — Roadmap updated to 5 phases + principles.');
         console.log('🐦 X: https://x.com/4THABREAD');
         console.log('✈️ Telegram: https://t.me/+xmMCqIZjGeAxMjEx');
         console.log('💬 Discord: https://discord.gg/qXy9gBRd');
