@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>$BREAD — Get That Bread</title>
-    <!-- Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -562,7 +562,7 @@
             flex-shrink: 0;
         }
 
-        /* ===== BANNER ===== */
+        /* ===== COMMUNITY BANNER ===== */
         #community {
             padding: 20px 0 60px;
         }
@@ -1020,6 +1020,7 @@
         .footer-socials {
             display: flex;
             gap: 18px;
+            flex-wrap: wrap;
         }
         .footer-socials a {
             font-size: 1.2rem;
@@ -1140,6 +1141,10 @@
             .footer-left {
                 flex-direction: column;
             }
+            .footer-socials {
+                gap: 14px;
+                justify-content: center;
+            }
 
             .modal-content {
                 padding: 30px 24px;
@@ -1227,6 +1232,12 @@
                 bottom: 16px;
                 right: 16px;
             }
+            .footer-socials {
+                gap: 12px;
+            }
+            .footer-socials a {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -1247,7 +1258,6 @@
                 <li><a href="#community">COMMUNITY</a></li>
                 <li><a href="#info-grid">FORUM</a></li>
                 <li><a href="#info-grid">FAQ</a></li>
-                <li><a href="#buy" class="nav-cta">BUY $BREAD</a></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Menu">
                 <span></span><span></span><span></span>
@@ -1265,8 +1275,7 @@
                         $BREAD is the ultimate meme token for the grinders, the dreamers, and the dough makers.
                     </p>
                     <div class="hero-buttons">
-                        <a href="#buy" class="btn btn-primary">BUY $BREAD</a>
-                        <a href="#community" class="btn btn-secondary">JOIN COMMUNITY</a>
+                        <a href="#community" class="btn btn-primary">JOIN COMMUNITY</a>
                     </div>
                 </div>
                 <div class="hero-visual">
@@ -1433,24 +1442,6 @@
                     </div>
                     <div class="card-footer">
                         <a class="card-link" id="tokenomicsBtn">SEE TOKENOMICS <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== BUY SECTION ===== -->
-    <section id="buy" style="padding:40px 0 60px;">
-        <div class="container">
-            <div class="banner" style="background-image:url('https://i.ibb.co/sdSXczgw/file-00000000d1bc81f4be44ef6da5b5dde7.jpg');">
-                <div class="content">
-                    <h2 style="font-size:2rem;">🛒 How to Buy $BREAD</h2>
-                    <p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.95rem;">
-                        1. Download Phantom Wallet &nbsp;•&nbsp; 2. Purchase SOL &nbsp;•&nbsp; 3. Transfer to wallet &nbsp;•&nbsp; 4. Visit Jupiter/Raydium &nbsp;•&nbsp; 5. Swap SOL for $BREAD
-                    </p>
-                    <p style="color:var(--text-muted);font-size:0.85rem;">Contract Address: Coming Soon | Tax: 0%</p>
-                    <div style="margin-top:16px;">
-                        <a href="#community" class="btn btn-primary">JOIN THE MOVEMENT</a>
                     </div>
                 </div>
             </div>
@@ -1695,6 +1686,7 @@
                     <a href="https://t.me/+xmMCqIZjGeAxMjEx" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://discord.gg/qXy9gBRd" target="_blank" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
                     <a href="https://www.instagram.com/4thabread?igsh=Y3d3cDMyYjllNXN1&utm_source=qr" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@weare4thebread" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
                 <div class="footer-links">
                     <a href="#">TERMS</a>
@@ -1868,9 +1860,10 @@
             { keywords: ['price', 'current price', 'how much'], answer: 'The price of $BREAD will be determined by the market after launch. Currently, the token is not yet live, so the price is $0.00.' },
 
             // Community
-            { keywords: ['community', 'join community', 'discord', 'telegram'], answer: 'Join our community on Discord: https://discord.gg/qXy9gBRd and Telegram: https://t.me/+xmMCqIZjGeAxMjEx. Follow us on X (Twitter) @4THABREAD and Instagram @4thabread.' },
+            { keywords: ['community', 'join community', 'discord', 'telegram'], answer: 'Join our community on Discord: https://discord.gg/qXy9gBRd and Telegram: https://t.me/+xmMCqIZjGeAxMjEx. Follow us on X (Twitter) @4THABREAD, Instagram @4thabread, and TikTok @weare4thebread.' },
             { keywords: ['discord link', 'telegram link'], answer: 'Discord: https://discord.gg/qXy9gBRd  |  Telegram: https://t.me/+xmMCqIZjGeAxMjEx' },
-            { keywords: ['twitter', 'x', 'social media'], answer: 'Follow us on X (Twitter) at https://x.com/4THABREAD and Instagram at https://www.instagram.com/4thabread' },
+            { keywords: ['twitter', 'x', 'social media'], answer: 'Follow us on X (Twitter) at https://x.com/4THABREAD, Instagram at https://www.instagram.com/4thabread, and TikTok at https://www.tiktok.com/@weare4thebread' },
+            { keywords: ['tiktok', 'tik tok'], answer: 'Follow us on TikTok at https://www.tiktok.com/@weare4thebread for fun content and updates!' },
             { keywords: ['forum', 'community forum', 'discussions'], answer: 'We have a vibrant community forum with categories like Daily Bread Memes, Show Off Your Bags, Price Talk, Art & Creations, and Ask the Community. Join the conversation!' },
 
             // Vision & Mission
@@ -1973,11 +1966,12 @@
             if (e.key === 'Enter') handleUserMessage();
         });
 
-        console.log('🥖 $BREAD — Navigation tabs fixed, all sections scroll properly.');
+        console.log('🥖 $BREAD — TikTok link added to socials.');
         console.log('🐦 X: https://x.com/4THABREAD');
         console.log('✈️ Telegram: https://t.me/+xmMCqIZjGeAxMjEx');
         console.log('💬 Discord: https://discord.gg/qXy9gBRd');
         console.log('📸 Instagram: https://www.instagram.com/4thabread');
+        console.log('🎵 TikTok: https://www.tiktok.com/@weare4thebread');
     </script>
 </body>
 </html>
