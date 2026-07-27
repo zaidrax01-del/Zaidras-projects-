@@ -49,6 +49,7 @@
             color: var(--text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            padding-top: 70px;
         }
 
         a {
@@ -82,6 +83,7 @@
         header {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             z-index: 1000;
             padding: 14px 0;
@@ -140,6 +142,7 @@
             letter-spacing: 0.5px;
             transition: color 0.3s;
             position: relative;
+            cursor: pointer;
         }
         .nav-links a::after {
             content: '';
@@ -205,8 +208,8 @@
         }
 
         /* ===== HERO ===== */
-        .hero {
-            padding: 80px 0 0;
+        #hero {
+            padding: 20px 0 0;
             min-height: auto;
             display: flex;
             align-items: center;
@@ -216,9 +219,11 @@
             background-repeat: no-repeat;
             position: relative;
             overflow: hidden;
+            margin-top: -70px;
+            padding-top: 90px;
         }
 
-        .hero::before {
+        #hero::before {
             content: '';
             position: absolute;
             inset: 0;
@@ -233,6 +238,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
+            padding: 40px 0;
         }
 
         .hero-content h1 {
@@ -330,7 +336,7 @@
         }
 
         /* ===== STATS ===== */
-        .stats-section {
+        #stats {
             padding: 0 0 60px;
             margin-top: -40px;
         }
@@ -371,11 +377,14 @@
         }
 
         /* ===== INFO GRID ===== */
+        #info-grid {
+            padding: 30px 0 60px;
+        }
+
         .info-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 20px;
-            margin-top: 30px;
         }
 
         .info-card {
@@ -443,7 +452,6 @@
             border-bottom: 1px solid rgba(212, 175, 55, 0.06);
         }
 
-        /* ===== ROADMAP CARD ITEMS (updated) ===== */
         .roadmap-item {
             display: flex;
             justify-content: space-between;
@@ -555,6 +563,10 @@
         }
 
         /* ===== BANNER ===== */
+        #community {
+            padding: 20px 0 60px;
+        }
+
         .banner {
             background-image: url('https://i.ibb.co/sdSXczgw/file-00000000d1bc81f4be44ef6da5b5dde7.jpg');
             background-size: cover;
@@ -566,7 +578,6 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            margin-top: 20px;
         }
 
         .banner::before {
@@ -685,7 +696,6 @@
             margin-bottom: 12px;
         }
 
-        /* Roadmap phase detail */
         .modal-content .phase-detail {
             background: rgba(212, 175, 55, 0.04);
             border-left: 2px solid var(--gold);
@@ -1049,12 +1059,13 @@
         }
 
         @media (max-width: 868px) {
-            .hero {
-                padding: 70px 0 0;
+            #hero {
+                padding-top: 80px;
             }
             .hero-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 30px;
             }
             .hero-content .sub {
                 margin-left: auto;
@@ -1072,11 +1083,14 @@
             .hero-content h1 {
                 font-size: 2.8rem;
             }
-            .stats-section {
+            #stats {
                 margin-top: -20px;
             }
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            #info-grid {
+                padding: 20px 0 40px;
             }
             .info-grid {
                 grid-template-columns: 1fr;
@@ -1105,6 +1119,9 @@
                 display: flex;
             }
 
+            #community {
+                padding: 10px 0 40px;
+            }
             .banner {
                 padding: 36px 24px;
             }
@@ -1153,8 +1170,8 @@
         }
 
         @media (max-width: 480px) {
-            .hero {
-                padding: 60px 0 0;
+            #hero {
+                padding-top: 70px;
             }
             .hero-content h1 {
                 font-size: 2.2rem;
@@ -1188,7 +1205,7 @@
             .info-card {
                 padding: 18px 16px;
             }
-            .stats-section {
+            #stats {
                 margin-top: -10px;
             }
             .modal-content {
@@ -1218,19 +1235,19 @@
     <!-- ===== HEADER ===== -->
     <header>
         <div class="nav-container">
-            <a href="#" class="logo-wrapper">
+            <a href="#hero" class="logo-wrapper">
                 <img src="https://i.ibb.co/bMLmpgPR/grok-1784969725199.jpg" alt="$BREAD Logo" class="logo-img" />
                 <span class="logo-text">$BREAD <span>· Bakery</span></span>
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">ABOUT</a></li>
-                <li><a href="#">TOKENOMICS</a></li>
-                <li><a href="#">ROADMAP</a></li>
-                <li><a href="#">COMMUNITY</a></li>
-                <li><a href="#">FORUM</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#" class="nav-cta">BUY $BREAD</a></li>
+                <li><a href="#hero">HOME</a></li>
+                <li><a href="#info-grid">ABOUT</a></li>
+                <li><a href="#info-grid">TOKENOMICS</a></li>
+                <li><a href="#info-grid">ROADMAP</a></li>
+                <li><a href="#community">COMMUNITY</a></li>
+                <li><a href="#info-grid">FORUM</a></li>
+                <li><a href="#info-grid">FAQ</a></li>
+                <li><a href="#buy" class="nav-cta">BUY $BREAD</a></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Menu">
                 <span></span><span></span><span></span>
@@ -1239,7 +1256,7 @@
     </header>
 
     <!-- ===== HERO ===== -->
-    <section class="hero">
+    <section id="hero">
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
@@ -1248,8 +1265,8 @@
                         $BREAD is the ultimate meme token for the grinders, the dreamers, and the dough makers.
                     </p>
                     <div class="hero-buttons">
-                        <a href="#" class="btn btn-primary">BUY $BREAD</a>
-                        <a href="#" class="btn btn-secondary">JOIN COMMUNITY</a>
+                        <a href="#buy" class="btn btn-primary">BUY $BREAD</a>
+                        <a href="#community" class="btn btn-secondary">JOIN COMMUNITY</a>
                     </div>
                 </div>
                 <div class="hero-visual">
@@ -1261,7 +1278,7 @@
     </section>
 
     <!-- ===== STATS ===== -->
-    <section class="stats-section">
+    <section id="stats">
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-card">
@@ -1288,12 +1305,12 @@
         </div>
     </section>
 
-    <!-- ===== INFO GRID ===== -->
-    <section>
+    <!-- ===== INFO GRID (About, Roadmap, Forum, FAQ, Tokenomics) ===== -->
+    <section id="info-grid">
         <div class="container">
             <div class="info-grid">
                 <!-- About -->
-                <div class="info-card">
+                <div class="info-card" id="about">
                     <div class="card-title"><span class="icon"><i class="fa-solid fa-circle-info"></i></span> ABOUT $BREAD</div>
                     <div class="card-body">
                         <img src="https://i.ibb.co/vGpZ1hH/file-00000000951c81f49b685ad9d77e3aa8.png" alt="About Bread" class="about-img" />
@@ -1304,8 +1321,8 @@
                     </div>
                 </div>
 
-                <!-- Roadmap (updated) -->
-                <div class="info-card">
+                <!-- Roadmap -->
+                <div class="info-card" id="roadmap">
                     <div class="card-title"><span class="icon"><i class="fa-solid fa-road"></i></span> ROADMAP</div>
                     <div class="card-body">
                         <div class="roadmap-item">
@@ -1335,7 +1352,7 @@
                 </div>
 
                 <!-- Community Forum -->
-                <div class="info-card">
+                <div class="info-card" id="forum">
                     <div class="card-title"><span class="icon"><i class="fa-solid fa-comments"></i></span> COMMUNITY FORUM</div>
                     <div class="card-body">
                         <div class="forum-item">
@@ -1365,7 +1382,7 @@
                 </div>
 
                 <!-- FAQs -->
-                <div class="info-card">
+                <div class="info-card" id="faq">
                     <div class="card-title"><span class="icon"><i class="fa-solid fa-circle-question"></i></span> FAQS</div>
                     <div class="card-body">
                         <div class="faq-item">
@@ -1395,7 +1412,7 @@
                 </div>
 
                 <!-- Tokenomics -->
-                <div class="info-card">
+                <div class="info-card" id="tokenomics">
                     <div class="card-title"><span class="icon"><i class="fa-solid fa-chart-pie"></i></span> TOKENOMICS</div>
                     <div class="card-body">
                         <div class="chart-wrap">
@@ -1422,8 +1439,26 @@
         </div>
     </section>
 
-    <!-- ===== BANNER ===== -->
-    <section>
+    <!-- ===== BUY SECTION ===== -->
+    <section id="buy" style="padding:40px 0 60px;">
+        <div class="container">
+            <div class="banner" style="background-image:url('https://i.ibb.co/sdSXczgw/file-00000000d1bc81f4be44ef6da5b5dde7.jpg');">
+                <div class="content">
+                    <h2 style="font-size:2rem;">🛒 How to Buy $BREAD</h2>
+                    <p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.95rem;">
+                        1. Download Phantom Wallet &nbsp;•&nbsp; 2. Purchase SOL &nbsp;•&nbsp; 3. Transfer to wallet &nbsp;•&nbsp; 4. Visit Jupiter/Raydium &nbsp;•&nbsp; 5. Swap SOL for $BREAD
+                    </p>
+                    <p style="color:var(--text-muted);font-size:0.85rem;">Contract Address: Coming Soon | Tax: 0%</p>
+                    <div style="margin-top:16px;">
+                        <a href="#community" class="btn btn-primary">JOIN THE MOVEMENT</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMMUNITY BANNER ===== -->
+    <section id="community">
         <div class="container">
             <div class="banner">
                 <div class="content">
@@ -1448,7 +1483,7 @@
         </div>
     </div>
 
-    <!-- Roadmap Modal (updated) -->
+    <!-- Roadmap Modal -->
     <div class="modal-overlay" id="roadmapModal">
         <div class="modal-content">
             <button class="close-btn" data-modal="roadmapModal">&times;</button>
@@ -1512,7 +1547,6 @@
                 </ul>
             </div>
 
-            <!-- Principles -->
             <div class="principles">
                 <h4>Our Principles</h4>
                 <ul>
@@ -1681,6 +1715,14 @@
             navLinks.classList.toggle('open');
         });
 
+        // Close hamburger when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
         // ===== TOKENOMICS CHART (TBD — Solid Gold Ring) =====
         (function() {
             const ctx = document.getElementById('tokenomicsChart');
@@ -1783,7 +1825,7 @@
         });
 
         // ============================================================
-        // CHATBOT LOGIC (updated roadmap knowledge)
+        // CHATBOT LOGIC
         // ============================================================
         const chatbotToggle = document.getElementById('chatbotToggle');
         const chatbotWindow = document.getElementById('chatbotWindow');
@@ -1808,7 +1850,7 @@
             { keywords: ['tax', 'taxes', 'transaction tax'], answer: '$BREAD has a 0% tax on transactions. You can buy, sell, and transfer without any additional fees beyond standard network fees.' },
             { keywords: ['burn', 'burned', 'burning'], answer: 'Burn allocation is TBD. The community may decide on future deflationary measures through our governance system.' },
 
-            // Roadmap (updated)
+            // Roadmap
             { keywords: ['roadmap', 'phases', 'plan', 'future'], answer: 'Our roadmap has 5 phases: Phase 1 – The Bread Is Baked, Phase 2 – Community Rises, Phase 3 – Build the Loaf, Phase 4 – The Bakery Ecosystem, Phase 5 – Legacy of $BREAD. Check the Roadmap section for full details, goals, and our principles.' },
             { keywords: ['phase 1', 'bread is baked', 'launch'], answer: 'Phase 1 – The Bread Is Baked: Launch $BREAD token and mascot, create the legend, launch X & Telegram, and build the founding $BREAD Army. Goal: Establish brand, gather community, set foundation.' },
             { keywords: ['phase 2', 'community rises', 'memes', 'contests'], answer: 'Phase 2 – Community Rises: Daily memes & story content, meme contests, holder perks, voting on lore, and growing a strong culture. Goal: Engage community, drive participation, cultural growth.' },
@@ -1931,7 +1973,7 @@
             if (e.key === 'Enter') handleUserMessage();
         });
 
-        console.log('🥖 $BREAD — Roadmap updated to 5 phases + principles.');
+        console.log('🥖 $BREAD — Navigation tabs fixed, all sections scroll properly.');
         console.log('🐦 X: https://x.com/4THABREAD');
         console.log('✈️ Telegram: https://t.me/+xmMCqIZjGeAxMjEx');
         console.log('💬 Discord: https://discord.gg/qXy9gBRd');
