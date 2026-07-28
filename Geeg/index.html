@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>$GEEG – The Meme Coin of Gaming Culture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Color Variables ── */
+    :root {
+      --bg-primary: #090909;
+      --bg-secondary: #111111;
+      --bg-card: #1A1A1A;
+      --gold: #D4AF37;
+      --gold-bright: #F5C542;
+      --neon-green: #8EFF00;
+      --success-green: #6DFF3B;
+      --text-primary: #FFFFFF;
+      --text-secondary: #B8B8B8;
+      --border-color: #2A2A2A;
+      --gold-glow: rgba(212, 175, 55, 0.35);
+      --green-glow: rgba(142, 255, 0, 0.35);
+      --font-display: 'Orbitron', monospace;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    /* ── Reset & Base ── */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 4px;
+    }
+
+    /* ── Container ── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Hero Background ── */
+    #hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 0 60px;
+      background: radial-gradient(circle at 20% 30%, #1a1a1a, #090909);
+      text-align: center;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(9, 9, 9, 0.6);
+      z-index: -1;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 16px 0;
+      background: rgba(9, 9, 9, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      transition: background 0.3s ease;
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    .nav-logo span {
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .nav-cta {
+      background: var(--gold);
+      color: #000 !important;
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .nav-cta::after {
+      display: none !important;
+    }
+    .nav-cta:hover {
+      background: var(--gold-bright);
+      transform: scale(1.05);
+      box-shadow: 0 0 30px var(--gold-glow);
+    }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      width: 26px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* ── Hero Content ── */
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-logo {
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-logo img {
+      max-width: 280px;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.6)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.3));
+      animation: logoGlow 3s ease-in-out infinite alternate;
+      transition: filter 0.3s ease;
+    }
+
+    .hero-logo img:hover {
+      filter: drop-shadow(0 0 50px rgba(212, 175, 55, 0.8)) drop-shadow(0 0 100px rgba(212, 175, 55, 0.4));
+    }
+
+    @keyframes logoGlow {
+      0% {
+        filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4)) drop-shadow(0 0 40px rgba(212, 175, 55, 0.2));
+      }
+      100% {
+        filter: drop-shadow(0 0 50px rgba(212, 175, 55, 0.8)) drop-shadow(0 0 100px rgba(212, 175, 55, 0.4));
+      }
+    }
+
+    .hero-content h1 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 4.5rem;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .hero-content h1 .highlight {
+      color: var(--gold);
+    }
+    .hero-tagline {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-top: 12px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+    .hero-badge span {
+      color: var(--neon-green);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 32px;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 34px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: #000;
+      box-shadow: 0 0 40px var(--gold-glow);
+    }
+    .btn-primary:hover {
+      background: var(--gold-bright);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 0 60px var(--gold-glow);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--neon-green);
+    }
+    .btn-secondary:hover {
+      background: rgba(142, 255, 0, 0.08);
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px var(--green-glow);
+    }
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border-color);
+      justify-content: center;
+    }
+    .hero-stats .stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-stats .stat-value {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--gold);
+    }
+    .hero-stats .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Section Shared ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 0;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold);
+      background: rgba(212, 175, 55, 0.08);
+      padding: 4px 16px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 2.8rem;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .section-title .highlight {
+      color: var(--gold);
+    }
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 48px;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── About ── */
+    #about {
+      background: var(--bg-secondary);
+    }
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-text p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+    }
+    .about-text p strong {
+      color: var(--text-primary);
+    }
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .about-tag {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .about-tag .icon {
+      margin-right: 6px;
+    }
+
+    /* ── Roadmap ── */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .roadmap-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 36px 28px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .roadmap-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--neon-green));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .roadmap-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold);
+      box-shadow: 0 0 40px var(--gold-glow);
+    }
+    .roadmap-card:hover::before {
+      opacity: 1;
+    }
+    .roadmap-card .phase {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .roadmap-card .phase-num {
+      font-size: 2.2rem;
+      font-weight: 900;
+      font-family: var(--font-display);
+      color: var(--gold);
+      opacity: 0.2;
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 3.5rem;
+    }
+    .roadmap-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      margin-top: 4px;
+    }
+    .roadmap-card h3 .emoji {
+      margin-right: 8px;
+    }
+    .roadmap-card ul {
+      list-style: none;
+      margin-top: 16px;
+    }
+    .roadmap-card ul li {
+      padding: 6px 0;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .roadmap-card ul li::before {
+      content: '▸';
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ── Tokenomics ── */
+    #tokenomics {
+      background: var(--bg-secondary);
+    }
+    .tokenomics-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+    .token-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 40px;
+    }
+    .token-card .token-big {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 2.8rem;
+      color: var(--gold);
+    }
+    .token-card .token-label {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+    .token-divider {
+      height: 1px;
+      background: var(--border-color);
+      margin: 24px 0;
+    }
+    .token-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+    .token-row:last-child {
+      border-bottom: none;
+    }
+    .token-row .label {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .token-row .value {
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .token-row .value .check {
+      color: var(--neon-green);
+    }
+    .token-row .value .ca-text {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.3px;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .copy-btn {
+      background: none;
+      border: none;
+      color: var(--gold);
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: transform 0.2s ease;
+      padding: 0 4px;
+    }
+    .copy-btn:hover {
+      transform: scale(1.2);
+      color: var(--gold-bright);
+    }
+    .copy-btn.copied {
+      color: var(--success-green);
+    }
+
+    .token-ring-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .token-ring {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: conic-gradient(var(--gold) 0% 100%, var(--bg-card) 100% 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .token-ring-inner {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: var(--bg-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .token-ring-inner .big {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 2rem;
+      color: var(--gold);
+    }
+    .token-ring-inner .sub {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+
+    /* ── How to Buy ── */
+    #how-to-buy {
+      background: var(--bg-primary);
+    }
+    .buy-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 30px 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .step-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+      box-shadow: 0 0 30px var(--gold-glow);
+    }
+    .step-card .step-number {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.5;
+      margin-bottom: 8px;
+    }
+    .step-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+    .step-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* ── Chart ── */
+    #chart {
+      background: var(--bg-secondary);
+    }
+    #chart .chart-container {
+      max-width: 900px;
+      margin: 0 auto;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 0 40px var(--gold-glow);
+      background: var(--bg-card);
+      height: 500px;
+    }
+    #chart .chart-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ── Community ── */
+    .community-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .community-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 32px 28px;
+      text-align: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .community-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+      box-shadow: 0 0 30px var(--gold-glow);
+    }
+    .community-card .icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 12px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    .community-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+    .community-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .community-card .arrow {
+      margin-top: 12px;
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 40px 0;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      background: var(--bg-primary);
+    }
+    footer p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+    footer .footer-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--gold);
+    }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 12px;
+    }
+    footer .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s ease;
+    }
+    footer .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    /* ── Chatbot (Floating) ── */
+    .chatbot-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 2000;
+      background: var(--gold);
+      color: #000;
+      border: none;
+      border-radius: 60px;
+      padding: 16px 24px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 30px var(--gold-glow);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .chatbot-toggle:hover {
+      transform: scale(1.05);
+      background: var(--gold-bright);
+    }
+
+    .chatbot-window {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      z-index: 1999;
+      width: 380px;
+      max-height: 500px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 40px var(--gold-glow);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .chatbot-window.open {
+      display: flex;
+    }
+    .chat-header {
+      background: var(--bg-secondary);
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chat-header h4 {
+      font-family: var(--font-display);
+      color: var(--gold);
+      font-size: 1rem;
+      margin: 0;
+    }
+    .chat-header .close-chat {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .chat-header .close-chat:hover {
+      color: var(--text-primary);
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 16px 20px;
+      overflow-y: auto;
+      max-height: 320px;
+      background: var(--bg-primary);
+    }
+    .chat-messages .msg {
+      margin-bottom: 12px;
+      padding: 10px 16px;
+      border-radius: 16px;
+      max-width: 85%;
+      word-wrap: break-word;
+      font-size: 0.9rem;
+    }
+    .chat-messages .msg.user {
+      background: var(--gold);
+      color: #000;
+      align-self: flex-end;
+      margin-left: auto;
+      border-bottom-right-radius: 4px;
+    }
+    .chat-messages .msg.bot {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+
+    .chat-input-area {
+      display: flex;
+      border-top: 1px solid var(--border-color);
+      padding: 12px 16px;
+      background: var(--bg-secondary);
+      gap: 10px;
+    }
+    .chat-input-area input {
+      flex: 1;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      padding: 10px 16px;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .chat-input-area input::placeholder {
+      color: var(--text-secondary);
+    }
+    .chat-input-area input:focus {
+      border-color: var(--gold);
+    }
+    .chat-input-area button {
+      background: var(--gold);
+      border: none;
+      border-radius: 30px;
+      padding: 10px 18px;
+      font-weight: 600;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .chat-input-area button:hover {
+      background: var(--gold-bright);
+    }
+
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 8px 16px 12px;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+    }
+    .suggestions button {
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 30px;
+      padding: 4px 14px;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    .suggestions button:hover {
+      background: rgba(212, 175, 55, 0.2);
+      color: var(--text-primary);
+      border-color: var(--gold);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .hero-content h1 { font-size: 3.4rem; }
+      .roadmap-grid { grid-template-columns: 1fr 1fr; }
+      .hero-logo img { max-width: 220px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(9, 9, 9, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .nav-links.open { display: flex; }
+      .nav-hamburger { display: flex; }
+
+      .hero-content h1 { font-size: 2.8rem; }
+      .hero-tagline { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; gap: 32px; }
+      .hero-logo img { max-width: 180px; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 30px; }
+      .roadmap-grid { grid-template-columns: 1fr; }
+      .tokenomics-wrap { grid-template-columns: 1fr; gap: 30px; }
+      .community-grid { grid-template-columns: 1fr; max-width: 400px; }
+
+      .section-title { font-size: 2rem; }
+      section { padding: 60px 0; }
+      .token-card .token-big { font-size: 2rem; }
+      #chart .chart-container { height: 350px; }
+      .token-row .value .ca-text { max-width: 120px; font-size: 0.7rem; }
+
+      .chatbot-window { width: 90%; right: 5%; bottom: 90px; max-height: 450px; }
+      .chatbot-toggle { padding: 12px 18px; font-size: 0.9rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 { font-size: 2.2rem; }
+      .hero-logo img { max-width: 150px; }
+      .btn { padding: 12px 24px; font-size: 0.9rem; }
+      .token-ring { width: 200px; height: 200px; }
+      .token-ring-inner { width: 150px; height: 150px; }
+      .token-ring-inner .big { font-size: 1.4rem; }
+      #chart .chart-container { height: 280px; }
+      .token-row .value .ca-text { max-width: 80px; font-size: 0.65rem; }
+      .buy-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Nav ─── -->
+  <nav>
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <img src="https://i.ibb.co/FkRbVz2s/file-00000000911081f59e146e52d592c835.png" alt="$GEEG Logo" />
+        $GEEG <span>// meme coin</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li><a href="#tokenomics">Tokenomics</a></li>
+        <li><a href="#how-to-buy">How to Buy</a></li>
+        <li><a href="#chart">Chart</a></li>
+        <li><a href="#community">Community</a></li>
+        <li><a href="#community" class="nav-cta">Join</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ─── Hero ─── -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <!-- Glowing Logo -->
+        <div class="hero-logo">
+          <img src="https://i.ibb.co/FbtbmgMV/IMG-20260728-173154-996.jpg" alt="$GEEG Glowing Logo" />
+        </div>
+
+        <div class="hero-badge">🔥 <span>Pump.fun</span> · Fair Launch</div>
+        <h1>
+          <span class="highlight">$GEEG</span><br />
+          The Meme Coin of<br />Gaming Culture
+        </h1>
+        <p class="hero-tagline">
+          Community-driven meme coin inspired by gaming's most iconic internet moments. Built on Solana.
+        </p>
+        <div class="hero-actions">
+          <a href="#how-to-buy" class="btn btn-primary">🚀 How to Buy</a>
+          <a href="#tokenomics" class="btn btn-secondary">📊 Tokenomics</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-value">1B</span>
+            <span class="stat-label">Total Supply</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">Solana</span>
+            <span class="stat-label">Network</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">⚡</span>
+            <span class="stat-label">Mint Revoked</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── About ─── -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <span class="section-label">📖 About</span>
+          <h2 class="section-title">What is <span class="highlight">$GEEG</span>?</h2>
+          <p>
+            <strong>$GEEG</strong> is a community-driven meme coin inspired by one of gaming's most iconic internet moments.
+          </p>
+          <p>
+            The term <strong>"GEEG"</strong> was popularized by Fortnite streamer <strong>Ali Kabbani (TSM Myth)</strong> during the peak of Fortnite in 2018. Years later, the clip resurfaced across social media, turning the word into a viral meme used to humorously tease that unforgettable gaming era.
+          </p>
+          <p>
+            Built on <strong>Solana</strong>, GEEG embraces internet culture, memes, and a passionate community to create a fun and lasting movement.
+          </p>
+          <div class="about-tags">
+            <span class="about-tag"><span class="icon">🎮</span> Gaming Culture</span>
+            <span class="about-tag"><span class="icon">🧠</span> Community Driven</span>
+            <span class="about-tag"><span class="icon">⚡</span> Solana</span>
+            <span class="about-tag"><span class="icon">🔥</span> Meme Coin</span>
+            <span class="about-tag"><span class="icon">🚀</span> Fair Launch</span>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;align-items:center;">
+          <div style="background:var(--bg-card);border-radius:24px;padding:32px 40px;border:1px solid var(--border-color);text-align:center;max-width:320px;width:100%;">
+            <div style="font-size:4rem;margin-bottom:8px;">🎮</div>
+            <div style="font-family:var(--font-display);font-weight:700;font-size:1.4rem;color:var(--gold);">"GEEG"</div>
+            <div style="color:var(--text-secondary);font-size:0.9rem;margin-top:4px;">TSM Myth · Fortnite 2018</div>
+            <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border-color);color:var(--text-secondary);font-size:0.85rem;font-style:italic;">"The clip that broke the internet."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Roadmap ─── -->
+  <section id="roadmap">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">🗺️ Roadmap</span>
+        <h2 class="section-title">The <span class="highlight">GEEG</span> Journey</h2>
+        <p class="section-desc mx-auto">Three phases to build a global meme movement and a lasting community.</p>
+      </div>
+      <div class="roadmap-grid">
+        <!-- Phase 1 -->
+        <div class="roadmap-card">
+          <span class="phase">Phase 1</span>
+          <span class="phase-num">01</span>
+          <h3><span class="emoji">🌱</span> Community Growth</h3>
+          <ul>
+            <li>Launch daily memes and viral content</li>
+            <li>Grow the X and Telegram communities</li>
+            <li>Host giveaways and community events</li>
+            <li>Build trust through transparency</li>
+            <li>Create a loyal and engaged holder base</li>
+          </ul>
+        </div>
+        <!-- Phase 2 -->
+        <div class="roadmap-card">
+          <span class="phase">Phase 2</span>
+          <span class="phase-num">02</span>
+          <h3><span class="emoji">📈</span> Marketing &amp; Expansion</h3>
+          <ul>
+            <li>Partner with creators &amp; influencers</li>
+            <li>Expand brand awareness across platforms</li>
+            <li>Run viral marketing campaigns</li>
+            <li>Empower holders as ambassadors</li>
+            <li>Strengthen the GEEG brand worldwide</li>
+          </ul>
+        </div>
+        <!-- Phase 3 -->
+        <div class="roadmap-card">
+          <span class="phase">Phase 3</span>
+          <span class="phase-num">03</span>
+          <h3><span class="emoji">🌍</span> Ecosystem &amp; Future</h3>
+          <ul>
+            <li>Launch community rewards programs</li>
+            <li>Expand the GEEG meme ecosystem</li>
+            <li>Build long-term strategic partnerships</li>
+            <li>Explore gaming integrations</li>
+            <li>Grow into a globally recognized brand</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Tokenomics ─── -->
+  <section id="tokenomics">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">📊 Tokenomics</span>
+        <h2 class="section-title">$GEEG <span class="highlight">Token</span> Details</h2>
+        <p class="section-desc mx-auto">Built on Solana with a fair launch and a community-first approach.</p>
+      </div>
+      <div class="tokenomics-wrap">
+        <div class="token-card">
+          <div class="token-big">1,000,000,000</div>
+          <div class="token-label">Total Supply · $GEEG</div>
+          <div class="token-divider"></div>
+          <div class="token-row">
+            <span class="label">Network</span>
+            <span class="value">Solana</span>
+          </div>
+          <div class="token-row">
+            <span class="label">Decimals</span>
+            <span class="value">6</span>
+          </div>
+          <div class="token-row">
+            <span class="label">Mint Authority</span>
+            <span class="value"><span class="check">✓</span> Revoked</span>
+          </div>
+          <div class="token-row">
+            <span class="label">Launch</span>
+            <span class="value">Fair Launch</span>
+          </div>
+          <div class="token-row">
+            <span class="label">Community Driven</span>
+            <span class="value"><span class="check">✓</span> Yes</span>
+          </div>
+          <div class="token-row">
+            <span class="label">Launch Platform</span>
+            <span class="value">Pump.fun</span>
+          </div>
+          <div class="token-divider"></div>
+          <div class="token-row">
+            <span class="label">Contract Address</span>
+            <span class="value">
+              <span class="ca-text" id="caDisplay">GUnj8SzAMYmiqG89aXgiKky29NFE28vwh41NDMEfpump</span>
+              <button class="copy-btn" id="copyCaBtn" title="Copy CA">📋</button>
+            </span>
+          </div>
+        </div>
+        <div class="token-ring-wrap">
+          <div class="token-ring">
+            <div class="token-ring-inner">
+              <div class="big">$GEEG</div>
+              <div class="sub">⚡ Solana</div>
+              <div style="margin-top:4px;font-size:0.7rem;color:var(--text-secondary);">Fair Launch</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── How to Buy ─── -->
+  <section id="how-to-buy">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">🛒 How to Buy</span>
+        <h2 class="section-title">Get <span class="highlight">$GEEG</span> in 4 Steps</h2>
+        <p class="section-desc mx-auto">Follow these simple steps to join the GEEG army.</p>
+      </div>
+      <div class="buy-steps">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>📱 Set up a Solana Wallet</h3>
+          <p>Download Phantom or Solflare wallet. Create a new wallet and securely back up your seed phrase.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>💰 Fund with SOL</h3>
+          <p>Purchase SOL on an exchange (e.g., Binance, Coinbase) and transfer it to your wallet.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>🔗 Connect to Jupiter or Raydium</h3>
+          <p>Go to Jupiter or Raydium, connect your wallet, and paste the $GEEG contract address.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>🚀 Swap SOL for $GEEG</h3>
+          <p>Enter the amount of SOL you want to swap, review the slippage, and confirm the transaction.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px;">
+        <a href="https://jup.ag/swap/SOL-GUnj8SzAMYmiqG89aXgiKky29NFE28vwh41NDMEfpump" target="_blank" class="btn btn-primary">Buy on Jupiter</a>
+        <a href="https://raydium.io/swap/?inputMint=sol&outputMint=GUnj8SzAMYmiqG89aXgiKky29NFE28vwh41NDMEfpump" target="_blank" class="btn btn-secondary" style="margin-left:12px;">Buy on Raydium</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Live Chart ─── -->
+  <section id="chart">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">📈 Live Chart</span>
+        <h2 class="section-title">$GEEG <span class="highlight">Price</span> Action</h2>
+        <p class="section-desc mx-auto">Real-time chart powered by DexScreener. Stay on top of the market.</p>
+      </div>
+      <div class="chart-container">
+        <iframe src="https://dexscreener.com/solana/GUnj8SzAMYmiqG89aXgiKky29NFE28vwh41NDMEfpump?embed=1&theme=dark" 
+                title="DexScreener $GEEG chart" 
+                loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Community ─── -->
+  <section id="community">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">🤝 Join</span>
+        <h2 class="section-title">The <span class="highlight">GEEG</span> Community</h2>
+        <p class="section-desc mx-auto">Stay connected and never miss an update. Join the movement today.</p>
+      </div>
+      <div class="community-grid">
+        <a href="https://t.me/Geegcoin" target="_blank" rel="noopener noreferrer" class="community-card">
+          <div class="icon-wrap">💬</div>
+          <h3>Telegram</h3>
+          <p>Join the chat and vibe with the community.</p>
+          <span class="arrow">→ t.me/Geegcoin</span>
+        </a>
+        <a href="https://x.com/GeegCoin" target="_blank" rel="noopener noreferrer" class="community-card">
+          <div class="icon-wrap">🐦</div>
+          <h3>X (Twitter)</h3>
+          <p>Follow for memes, updates, and hype.</p>
+          <span class="arrow">→ @GeegCoin</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ─── -->
+  <footer>
+    <div class="container">
+      <div class="footer-logo">$GEEG</div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#how-to-buy">How to Buy</a>
+        <a href="#chart">Chart</a>
+        <a href="#community">Community</a>
+      </div>
+      <p style="margin-top:16px;">© 2026 $GEEG · Built on Solana · For the culture.</p>
+      <p style="font-size:0.75rem;margin-top:4px;color:var(--text-secondary);opacity:0.5;">$GEEG is a meme coin — no financial advice, just vibes.</p>
+    </div>
+  </footer>
+
+  <!-- ─── Chatbot ─── -->
+  <button class="chatbot-toggle" id="chatToggle">💬 GEEG Bot</button>
+  <div class="chatbot-window" id="chatWindow">
+    <div class="chat-header">
+      <h4>🤖 GEEG Assistant</h4>
+      <button class="close-chat" id="closeChat">✕</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg bot">Hello! I'm the GEEG bot. Ask me anything about $GEEG, tokenomics, roadmap, or how to buy. I've got over 50 answers!</div>
+    </div>
+    <div class="suggestions" id="suggestions">
+      <button data-q="What is $GEEG?">What is $GEEG?</button>
+      <button data-q="How to buy $GEEG?">How to buy?</button>
+      <button data-q="Total supply?">Total supply?</button>
+      <button data-q="Is mint authority revoked?">Mint revoked?</button>
+      <button data-q="What is the roadmap?">Roadmap?</button>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chatInput" placeholder="Ask a question..." />
+      <button id="sendChat">Send</button>
+    </div>
+  </div>
+
+  <!-- ─── Scripts ─── -->
+  <script>
+    // ── Nav ──
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Nav background on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      nav.style.background = window.scrollY > 40 ? 'rgba(9,9,9,0.95)' : 'rgba(9,9,9,0.85)';
+    });
+
+    // ── Copy CA ──
+    const copyBtn = document.getElementById('copyCaBtn');
+    const caDisplay = document.getElementById('caDisplay');
+    copyBtn.addEventListener('click', async () => {
+      const ca = caDisplay.textContent.trim();
+      try {
+        await navigator.clipboard.writeText(ca);
+        copyBtn.textContent = '✅';
+        copyBtn.classList.add('copied');
+        setTimeout(() => { copyBtn.textContent = '📋'; copyBtn.classList.remove('copied'); }, 2000);
+      } catch {
+        const textArea = document.createElement('textarea');
+        textArea.value = ca;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        copyBtn.textContent = '✅';
+        copyBtn.classList.add('copied');
+        setTimeout(() => { copyBtn.textContent = '📋'; copyBtn.classList.remove('copied'); }, 2000);
+      }
+    });
+
+    // ── Chatbot Logic ──
+    // FAQ database (50+ Q&A)
+    const faq = [
+      { q: "what is $geeg?", a: "$GEEG is a community-driven meme coin inspired by the viral 'GEEG' moment from Fortnite streamer TSM Myth. It's built on Solana with a fair launch." },
+      { q: "who created $geeg?", a: "$GEEG was created by a community of meme lovers and crypto enthusiasts. It's a decentralized project with no single founder." },
+      { q: "what is the total supply?", a: "The total supply is 1,000,000,000 GEEG." },
+      { q: "what network is $geeg on?", a: "$GEEG is built on the Solana blockchain." },
+      { q: "what are the decimals?", a: "$GEEG has 6 decimals." },
+      { q: "is mint authority revoked?", a: "Yes, the mint authority has been revoked, making the supply fixed." },
+      { q: "was it a fair launch?", a: "Absolutely! $GEEG had a fair launch on Pump.fun with no presale or team allocation." },
+      { q: "is it community driven?", a: "Yes, $GEEG is 100% community-driven. Holders are the decision makers." },
+      { q: "what is pump.fun?", a: "Pump.fun is a launchpad for tokens on Solana that enables fair and transparent launches." },
+      { q: "what is the roadmap?", a: "The roadmap has 3 phases: Community Growth, Marketing & Expansion, and Ecosystem & Future." },
+      { q: "phase 1 details?", a: "Phase 1 focuses on community growth through daily memes, growing X and Telegram, giveaways, building trust, and creating a loyal base." },
+      { q: "phase 2 details?", a: "Phase 2 is about marketing and expansion: partnering with influencers, cross-platform awareness, viral campaigns, and empowering holders as ambassadors." },
+      { q: "phase 3 details?", a: "Phase 3 builds the ecosystem: community rewards, expanding the meme ecosystem, strategic partnerships, gaming integrations, and global recognition." },
+      { q: "how to buy $geeg?", a: "1) Set up a Solana wallet (Phantom/Solflare), 2) Fund with SOL, 3) Connect to Jupiter or Raydium, 4) Swap SOL for $GEEG using the contract address." },
+      { q: "where can i buy?", a: "You can buy $GEEG on Jupiter or Raydium. Links are in the 'How to Buy' section." },
+      { q: "what is the contract address?", a: "GUnj8SzAMYmiqG89aXgiKky29NFE28vwh41NDMEfpump" },
+      { q: "is there a chart?", a: "Yes, we have a live chart powered by DexScreener on the Chart section." },
+      { q: "what is the telegram?", a: "Join the Telegram at https://t.me/Geegcoin" },
+      { q: "what is the twitter?", a: "Follow us on X at https://x.com/GeegCoin" },
+      { q: "is there a community?", a: "Yes, we have a vibrant community on Telegram and X. Join us!" },
+      { q: "what is the meme origin?", a: "The term 'GEEG' comes from Fortnite streamer TSM Myth in 2018. The clip went viral and became a meme." },
+      { q: "what is the goal of $geeg?", a: "The goal is to create a fun, lasting movement that celebrates internet culture and gaming, while building a strong community." },
+      { q: "is $geeg a scam?", a: "No, $GEEG is a legitimate community meme coin with a fair launch, revoked mint, and transparent team." },
+      { q: "how can i contribute?", a: "You can contribute by spreading the word, creating memes, participating in events, and being an active holder." },
+      { q: "are there giveaways?", a: "Yes, we host regular giveaways and community events. Stay tuned on Telegram and X." },
+      { q: "what is the token supply?", a: "1,000,000,000 GEEG" },
+      { q: "what blockchain?", a: "Solana" },
+      { q: "what is the launch platform?", a: "Pump.fun" },
+      { q: "what are the tokenomics?", a: "Total supply 1B, decimals 6, mint revoked, fair launch, community driven." },
+      { q: "what is the price?", a: "Check the live chart on the Chart section for real-time price." },
+      { q: "can i stake $geeg?", a: "Staking is not yet available, but may be introduced in future phases." },
+      { q: "what are the future plans?", a: "Future plans include gaming integrations, partnerships, and expanding the meme ecosystem." },
+      { q: "is there a whitepaper?", a: "We don't have a formal whitepaper, but all details are on the website and our socials." },
+      { q: "how can i become an ambassador?", a: "Ambassador program will be launched in Phase 2. Stay active and engage with the community." },
+      { q: "what is the team?", a: "$GEEG is a community project with a doxxed team. We are transparent about our progress." },
+      { q: "how do i contact support?", a: "You can reach out on Telegram or X for any support." },
+      { q: "what is the meme culture?", a: "We embrace gaming and internet memes, celebrating the fun and nostalgic moments." },
+      { q: "is there a liquidity pool?", a: "Yes, liquidity is provided on Raydium and other Solana DEXs." },
+      { q: "what is the market cap?", a: "Check DexScreener for current market cap." },
+      { q: "how to get updates?", a: "Follow us on X and join Telegram for daily updates." },
+      { q: "what is the symbol?", a: "GEEG" },
+      { q: "what is the contract?", a: "GUnj8SzAMYmiqG89aXgiKky29NFE28vwh41NDMEfpump" },
+      { q: "is there a burn mechanism?", a: "Currently no burn mechanism, but community can propose one." },
+      { q: "what is the community like?", a: "It's a fun, welcoming, and passionate group of gamers and crypto enthusiasts." },
+      { q: "how do i promote $geeg?", a: "Create memes, share on social media, tag @GeegCoin, and invite friends." },
+      { q: "what are the risks?", a: "As with any crypto, there is risk. Do your own research and only invest what you can afford." },
+      { q: "what is the long-term vision?", a: "To become a globally recognized meme brand with a strong community and real utility." },
+      { q: "can i mine $geeg?", a: "No, $GEEG is a token on Solana, not mineable." },
+      { q: "what is the initial distribution?", a: "All tokens were launched fairly on Pump.fun, no pre-sale or team allocation." },
+      { q: "how to verify contract?", a: "You can check the contract on Solana explorer using the address." },
+      { q: "what is the slippage tolerance?", a: "Typically 1-2% is recommended when swapping on DEXs." },
+      { q: "what wallet supports $geeg?", a: "Phantom, Solflare, and any Solana-compatible wallet." },
+      { q: "what is the dex?", a: "$GEEG is traded on Raydium and Jupiter." },
+      { q: "is there a governance token?", a: "Currently $GEEG is a meme coin, but community voting may be introduced." },
+      { q: "how to stay safe?", a: "Always double-check the contract address and never share your seed phrase." }
+    ];
+
+    // Helper to find answer
+    function getAnswer(question) {
+      const q = question.toLowerCase().trim();
+      // Try exact match first
+      for (let item of faq) {
+        if (item.q === q) return item.a;
+      }
+      // Then partial match
+      for (let item of faq) {
+        if (q.includes(item.q) || item.q.includes(q)) {
+          return item.a;
+        }
+      }
+      return "I don't have an answer for that yet. But I'm learning! Ask me about $GEEG, tokenomics, roadmap, or how to buy.";
+    }
+
+    // Chat UI
+    const chatToggle = document.getElementById('chatToggle');
+    const chatWindow = document.getElementById('chatWindow');
+    const closeChat = document.getElementById('closeChat');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendChat = document.getElementById('sendChat');
+
+    function toggleChat() {
+      chatWindow.classList.toggle('open');
+    }
+
+    chatToggle.addEventListener('click', toggleChat);
+    closeChat.addEventListener('click', toggleChat);
+
+    function addMessage(text, sender) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `msg ${sender}`;
+      msgDiv.textContent = text;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function handleUserMessage(message) {
+      if (!message.trim()) return;
+      addMessage(message, 'user');
+      const answer = getAnswer(message);
+      setTimeout(() => addMessage(answer, 'bot'), 300);
+      chatInput.value = '';
+    }
+
+    sendChat.addEventListener('click', () => handleUserMessage(chatInput.value));
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') handleUserMessage(chatInput.value);
+    });
+
+    // Suggestions buttons
+    document.querySelectorAll('#suggestions button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const q = btn.getAttribute('data-q');
+        chatInput.value = q;
+        handleUserMessage(q);
+      });
+    });
+
+    // initial bot message already added in HTML
+  </script>
+
+</body>
+</html>
