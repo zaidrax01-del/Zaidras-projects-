@@ -376,7 +376,7 @@
             margin-top: 2px;
         }
 
-        /* ===== INFO GRID ===== */
+        /* ===== INFO GRID (Now with 6 cards) ===== */
         #info-grid {
             padding: 30px 0 60px;
         }
@@ -385,6 +385,10 @@
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 20px;
+        }
+
+        .info-grid .info-card:nth-child(6) {
+            grid-column: span 1;
         }
 
         .info-card {
@@ -505,6 +509,31 @@
             color: var(--gold);
             font-size: 0.7rem;
             opacity: 0.5;
+        }
+
+        /* ===== TEAM CARD — composite placeholder + names ===== */
+        .team-composite-img {
+            width: 100%;
+            border-radius: var(--radius);
+            margin-bottom: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.06);
+        }
+        .team-name-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 12px;
+            margin-top: 4px;
+        }
+        .team-name-list .member-name {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            padding: 2px 0;
+        }
+        .team-name-list .member-name::before {
+            content: '◆ ';
+            color: var(--gold);
+            font-size: 0.5rem;
+            vertical-align: middle;
         }
 
         /* ===== TOKENOMICS CHART (TBD) ===== */
@@ -645,9 +674,9 @@
             background: var(--bg);
             border: 1px solid rgba(212, 175, 55, 0.15);
             border-radius: var(--radius-lg);
-            max-width: 700px;
+            max-width: 800px;
             width: 100%;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
             padding: 40px 36px;
             position: relative;
@@ -694,6 +723,37 @@
             font-size: 1rem;
             line-height: 1.8;
             margin-bottom: 12px;
+        }
+
+        /* Team Modal — 4‑column grid, full images, scrollable */
+        .modal-content .team-grid-modal {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 12px 0;
+        }
+        .modal-content .team-card-modal {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--radius);
+            border: 1px solid rgba(212, 175, 55, 0.06);
+            overflow: hidden;
+            transition: 0.3s;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0b0b0b;
+        }
+        .modal-content .team-card-modal:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.05);
+        }
+        .modal-content .team-card-modal img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
         }
 
         .modal-content .phase-detail {
@@ -1054,8 +1114,11 @@
             .info-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .info-grid .info-card:nth-child(5) {
+            .info-grid .info-card:nth-child(6) {
                 grid-column: span 2;
+            }
+            .modal-content .team-grid-modal {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -1096,7 +1159,7 @@
             .info-grid {
                 grid-template-columns: 1fr;
             }
-            .info-grid .info-card:nth-child(5) {
+            .info-grid .info-card:nth-child(6) {
                 grid-column: span 1;
             }
 
@@ -1157,6 +1220,9 @@
             }
             .modal-content .principles ul {
                 grid-template-columns: 1fr;
+            }
+            .modal-content .team-grid-modal {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .chatbot-window {
@@ -1238,6 +1304,9 @@
             .footer-socials a {
                 font-size: 1rem;
             }
+            .modal-content .team-grid-modal {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -1255,6 +1324,7 @@
                 <li><a href="#info-grid">ABOUT</a></li>
                 <li><a href="#info-grid">TOKENOMICS</a></li>
                 <li><a href="#info-grid">ROADMAP</a></li>
+                <li><a href="#info-grid">TEAM</a></li>
                 <li><a href="#community">COMMUNITY</a></li>
                 <li><a href="#info-grid">FORUM</a></li>
                 <li><a href="#info-grid">FAQ</a></li>
@@ -1314,11 +1384,11 @@
         </div>
     </section>
 
-    <!-- ===== INFO GRID (About, Roadmap, Forum, FAQ, Tokenomics) ===== -->
+    <!-- ===== INFO GRID (About, Roadmap, Forum, FAQ, Tokenomics, Team) ===== -->
     <section id="info-grid">
         <div class="container">
             <div class="info-grid">
-                <!-- About -->
+                <!-- Card 1: About -->
                 <div class="info-card" id="about">
                     <div class="card-title"><span class="icon"><i class="fa-solid fa-circle-info"></i></span> ABOUT $BREAD</div>
                     <div class="card-body">
@@ -1330,7 +1400,7 @@
                     </div>
                 </div>
 
-                <!-- Roadmap -->
+                <!-- Card 2: Roadmap -->
                 <div class="info-card" id="roadmap">
                     <div class="card-title"><span class="icon"><i class="fa-solid fa-road"></i></span> ROADMAP</div>
                     <div class="card-body">
@@ -1360,7 +1430,7 @@
                     </div>
                 </div>
 
-                <!-- Community Forum -->
+                <!-- Card 3: Community Forum -->
                 <div class="info-card" id="forum">
                     <div class="card-title"><span class="icon"><i class="fa-solid fa-comments"></i></span> COMMUNITY FORUM</div>
                     <div class="card-body">
@@ -1390,7 +1460,7 @@
                     </div>
                 </div>
 
-                <!-- FAQs -->
+                <!-- Card 4: FAQs -->
                 <div class="info-card" id="faq">
                     <div class="card-title"><span class="icon"><i class="fa-solid fa-circle-question"></i></span> FAQS</div>
                     <div class="card-body">
@@ -1420,7 +1490,7 @@
                     </div>
                 </div>
 
-                <!-- Tokenomics -->
+                <!-- Card 5: Tokenomics -->
                 <div class="info-card" id="tokenomics">
                     <div class="card-title"><span class="icon"><i class="fa-solid fa-chart-pie"></i></span> TOKENOMICS</div>
                     <div class="card-body">
@@ -1442,6 +1512,29 @@
                     </div>
                     <div class="card-footer">
                         <a class="card-link" id="tokenomicsBtn">SEE TOKENOMICS <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Card 6: Team — composite placeholder + names -->
+                <div class="info-card" id="team">
+                    <div class="card-title"><span class="icon"><i class="fa-solid fa-users"></i></span> THE BAKERY TEAM</div>
+                    <div class="card-body">
+                        <img src="https://i.ibb.co/27pBzsYR/IMG-20260804-035416-028.jpg" alt="Team Composite" class="team-composite-img" />
+                        <div class="team-name-list">
+                            <span class="member-name">𝐙𝐘𝐑𝐈𝐂</span>
+                            <span class="member-name">BREAD</span>
+                            <span class="member-name">Pack Boyzz</span>
+                            <span class="member-name">FANCYCRYPT💲</span>
+                            <span class="member-name">QUDRA \|\| AUREUS</span>
+                            <span class="member-name">Mary Lane</span>
+                            <span class="member-name">IDRISK</span>
+                            <span class="member-name">Zaidra 👻</span>
+                            <span class="member-name">$CryptoNova</span>
+                            <span class="member-name">Sanji</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="card-link" id="teamBtn">MEET THE BAKERS <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -1650,6 +1743,49 @@
         </div>
     </div>
 
+    <!-- Team Modal — 4‑column grid with full images (no cropping) -->
+    <div class="modal-overlay" id="teamModal">
+        <div class="modal-content">
+            <button class="close-btn" data-modal="teamModal">&times;</button>
+            <h2>🧑‍🍳 The Bakery Team</h2>
+            <p style="margin-bottom:16px;color:var(--text-secondary);">Meet the 10 master bakers behind $BREAD. Each image contains the member's name and role — all 10 in full view.</p>
+
+            <div class="team-grid-modal">
+                <div class="team-card-modal">
+                    <img src="https://i.ibb.co/99Ly25hy/IMG-20260804-035333-947.jpg" alt="𝐙𝐘𝐑𝐈𝐂" />
+                </div>
+                <div class="team-card-modal">
+                    <img src="https://i.ibb.co/XxQ0C7ZW/IMG-20260804-035251-969.jpg" alt="BREAD" />
+                </div>
+                <div class="team-card-modal">
+                    <img src="https://i.ibb.co/v4yRcQPZ/IMG-20260804-035245-460.jpg" alt="Pack Boyzz" />
+                </div>
+                <div class="team-card-modal">
+                    <img src="https://i.ibb.co/ccWdpjGR/IMG-20260803-205811-450.jpg" alt="FANCYCRYPT💲" />
+                </div>
+                <div class="team-card-modal">
+                    <img src="https://i.ibb.co/2Y3NF0Vz/IMG-20260803-205807-987.jpg" alt="QUDRA || AUREUS" />
+                </div>
+                <div class="team-card-modal">
+                    <img src="https://i.ibb.co/RpcRxvDT/IMG-20260803-205800-374.jpg" alt="Mary Lane" />
+                </div>
+                <div class="team-card-modal">
+                    <img src="https://i.ibb.co/S76GfcC5/IMG-20260803-205754-508.jpg" alt="IDRISK" />
+                </div>
+                <div class="team-card-modal">
+                    <img src="https://i.ibb.co/67yc7yhM/IMG-20260803-205750-908.jpg" alt="Zaidra 👻" />
+                </div>
+                <div class="team-card-modal">
+                    <img src="https://i.ibb.co/YTDVKxsW/IMG-20260803-205743-980.jpg" alt="$CryptoNova" />
+                </div>
+                <div class="team-card-modal">
+                    <img src="https://i.postimg.cc/3kyqWgcM/IMG-20260804-114657-930.jpg" alt="Sanji" />
+                </div>
+            </div>
+            <p style="margin-top:12px;font-size:0.85rem;color:var(--text-muted);">* All 10 bakers are now revealed!</p>
+        </div>
+    </div>
+
     <!-- ===== CHATBOT ===== -->
     <button class="chatbot-toggle" id="chatbotToggle" aria-label="Chat with AI">
         <i class="fa-regular fa-comment-dots"></i>
@@ -1769,7 +1905,8 @@
             roadmapBtn: 'roadmapModal',
             forumBtn: 'forumModal',
             faqBtn: 'faqModal',
-            tokenomicsBtn: 'tokenomicsModal'
+            tokenomicsBtn: 'tokenomicsModal',
+            teamBtn: 'teamModal'
         };
 
         Object.keys(modalConfigs).forEach(btnId => {
@@ -1830,7 +1967,7 @@
             // General
             { keywords: ['what is $bread', 'what is bread', 'about bread', 'tell me about bread'], answer: '$BREAD is a community-first memecoin built on Solana. It\'s more than a token — it\'s a movement focused on longevity, community, and building a globally recognized brand. We\'re here for generational wealth, not quick pumps.' },
             { keywords: ['what is the token', 'token info', 'token details'], answer: '$BREAD is a Solana-based memecoin with a total supply of 1,000,000,000 tokens. It has a 0% tax, fair launch, no private sale, and no VC allocation. The ticker is $BREAD.' },
-            { keywords: ['who are the founders', 'team', 'who created'], answer: '$BREAD was created by a team of crypto enthusiasts and community builders who believe in transparency, fairness, and long-term value. We\'re a community-driven project with no insiders.' },
+            { keywords: ['who are the founders', 'team', 'who created'], answer: '$BREAD is backed by 10 passionate individuals including 𝐙𝐘𝐑𝐈𝐂, BREAD, Pack Boyzz, FANCYCRYPT💲, QUDRA || AUREUS, Mary Lane, IDRISK, Zaidra 👻, $CryptoNova, and Sanji. Check out the Team section to meet them all!' },
             { keywords: ['is it a scam', 'is it legit', 'trustworthy'], answer: 'We are fully transparent about our tokenomics, roadmap, and mission. We have no private sale, no VC allocation, and we\'re building in public. You can verify our contract address (coming soon) and join our community to see our commitment.' },
 
             // Tokenomics
@@ -1890,7 +2027,7 @@
             { keywords: ['contract address', 'ca'], answer: 'The official contract address will be released at launch. Do not trust any addresses shared before the official announcement.' },
 
             // Other
-            { keywords: ['team', 'founders', 'who is behind'], answer: '$BREAD was founded by a group of crypto enthusiasts who believe in community-driven projects. We\'re not a faceless team — we\'re active in the community and always available to answer questions.' },
+            { keywords: ['team', 'founders', 'who is behind'], answer: 'We have 10 passionate bakers behind $BREAD — including 𝐙𝐘𝐑𝐈𝐂, BREAD, Pack Boyzz, FANCYCRYPT💲, QUDRA || AUREUS, Mary Lane, IDRISK, Zaidra 👻, $CryptoNova, and Sanji. Check the Team section to see them all!' },
             { keywords: ['meme', 'memecoin', 'meme token'], answer: '$BREAD is a memecoin with purpose. We\'re building a cultural brand through viral internet content, absurd meme lore, and an engaged community — all while creating real value through apparel, collectibles, and products.' },
             { keywords: ['solana', 'blockchain', 'network'], answer: '$BREAD is built on Solana, a high-performance blockchain known for its speed, low fees, and scalability. This allows for fast and cheap transactions.' },
             { keywords: ['security', 'audit', 'safe'], answer: 'We prioritize security and transparency. Our contract will be audited before launch, and we\'ll share the results with the community. We\'re committed to building a safe and trustworthy project.' },
@@ -1966,7 +2103,7 @@
             if (e.key === 'Enter') handleUserMessage();
         });
 
-        console.log('🥖 $BREAD — TikTok link added to socials.');
+        console.log('🥖 $BREAD — Team composite placeholder added back, Sanji image updated.');
         console.log('🐦 X: https://x.com/4THABREAD');
         console.log('✈️ Telegram: https://t.me/+xmMCqIZjGeAxMjEx');
         console.log('💬 Discord: https://discord.gg/qXy9gBRd');
