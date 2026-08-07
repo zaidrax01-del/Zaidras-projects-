@@ -87,6 +87,7 @@
   .hero-ctas{ display:flex; gap:16px; margin-top:28px; flex-wrap:wrap; }
 
   .hero-visual { position:relative; display:flex; justify-content:center; align-items:center; }
+  /* Hero mascot image updated */
   .hero-visual .mascot {
     width:100%; max-width:400px;
     filter:drop-shadow(0 10px 30px rgba(0,0,0,0.6));
@@ -100,7 +101,7 @@
     50%{transform:translateY(-16px);}
   }
 
-  /* STATS BAR */
+  /* STATS BAR — Coming Soon style */
   .stats{
     display:grid; grid-template-columns:repeat(5,1fr);
     border-top:1px solid var(--line); border-bottom:1px solid var(--line);
@@ -116,7 +117,10 @@
     display:flex; align-items:center; justify-content:center; color:var(--gold); font-size:14px; flex-shrink:0;
   }
   .stat .label{ font-family:'Helvetica Neue',Arial,sans-serif; font-size:10px; letter-spacing:1.5px; color:var(--muted); text-transform:uppercase; }
-  .stat .value{ font-size:17px; color:var(--cream); margin-top:2px; }
+  .stat .value{
+    font-size:17px; color:var(--gold-light); margin-top:2px;
+    font-weight:600;
+  }
 
   /* GRID SECTION — 5 columns, 5 cards (Tokenomics removed) */
   .grid-section{
@@ -172,7 +176,7 @@
   .faq-row:hover{ color:var(--gold-light); }
   .faq-row:last-child{ border-bottom:none; }
 
-  /* Team name list (below composite image) */
+  /* Team name list (without Zyric and Mary) */
   .team-name-list {
     display:grid; grid-template-columns:1fr 1fr; gap:2px 12px; margin-top:6px;
   }
@@ -239,7 +243,7 @@
   .modal-content .principles ul li strong{ color:var(--cream); }
   .modal-content .principles .motto{ margin-top:8px; text-align:center; color:var(--gold); font-size:15px; letter-spacing:2px; border-top:1px solid var(--line); padding-top:8px; }
 
-  /* Team Grid in Modal */
+  /* Team Grid in Modal — 8 members */
   .team-grid{
     display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:14px;
   }
@@ -315,6 +319,39 @@
   }
   .chatbot-input-area button:hover{ opacity:0.8; }
 
+  /* LAUNCH SOON MODAL */
+  .launch-modal .modal-content {
+    max-width: 480px;
+    text-align: center;
+    padding: 40px 30px;
+  }
+  .launch-modal .modal-content .launch-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+  }
+  .launch-modal .modal-content h2 {
+    color: var(--gold-light);
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  .launch-modal .modal-content p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .launch-modal .modal-content .btn {
+    background: linear-gradient(180deg,var(--gold-light),var(--gold));
+    color: #1a1408;
+    border: none;
+    padding: 12px 32px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .launch-modal .modal-content .btn:hover {
+    opacity: 0.85;
+  }
+
   /* RESPONSIVE */
   @media (max-width:1024px){
     .hero{ grid-template-columns:1fr; text-align:center; padding:40px 24px; }
@@ -367,7 +404,7 @@
     <a href="#forum">FORUM</a>
     <a href="#faq">FAQ</a>
   </nav>
-  <a class="btn btn-gold sans">BUY $BREAD</a>
+  <a class="btn btn-gold sans" id="buyBtn">BUY $BREAD</a>
 </header>
 
 <!-- HERO -->
@@ -377,45 +414,46 @@
     <h1>GET THAT<span class="big">BREAD</span></h1>
     <p>$BREAD is the ultimate meme token for the grinders, the dreamers, and the dough makers.</p>
     <div class="hero-ctas">
-      <a class="btn btn-gold sans">BUY $BREAD</a>
+      <a class="btn btn-gold sans" id="buyBtn2">BUY $BREAD</a>
       <a href="#community" class="btn btn-outline sans">JOIN COMMUNITY</a>
     </div>
   </div>
 
   <div class="hero-visual">
     <img src="https://i.ibb.co/3m4YwHyW/file-0000000025f481f491e531d438c95fbe.png" alt="Lamborghini" class="lamborghini-bg" />
-    <img src="https://i.ibb.co/cKN1KvPC/file-00000000c9d881f497291a1a5cfe1f03.png" alt="$BREAD Mascot" class="mascot" />
+    <!-- Hero mascot image updated -->
+    <img src="https://i.ibb.co/Y7cgPHP5/file-0000000073d081f4983d7e179e39cddc.png" alt="$BREAD Mascot" class="mascot" />
   </div>
 </section>
 
-<!-- STATS -->
+<!-- STATS BAR — Coming Soon -->
 <div class="stats sans">
   <div class="stat">
     <div class="icon">◎</div>
     <div>
       <div class="label">Price</div>
-      <div class="value">$0.00</div>
+      <div class="value">Coming Soon</div>
     </div>
   </div>
   <div class="stat">
     <div class="icon">◎</div>
     <div>
       <div class="label">Holders</div>
-      <div class="value">0</div>
+      <div class="value">Coming Soon</div>
     </div>
   </div>
   <div class="stat">
     <div class="icon">◎</div>
     <div>
       <div class="label">Market Cap</div>
-      <div class="value">$0.00</div>
+      <div class="value">Coming Soon</div>
     </div>
   </div>
   <div class="stat">
     <div class="icon">◎</div>
     <div>
       <div class="label">Liquidity</div>
-      <div class="value">$0.00</div>
+      <div class="value">Coming Soon</div>
     </div>
   </div>
   <div class="stat">
@@ -427,7 +465,7 @@
   </div>
 </div>
 
-<!-- GRID SECTION — 5 columns, 5 cards (Tokenomics removed) -->
+<!-- GRID SECTION — 5 columns, 5 cards -->
 <div class="grid-section">
 
   <!-- ABOUT -->
@@ -481,18 +519,15 @@
     <div class="link-btn" id="faqBtn">VIEW FAQS</div>
   </div>
 
-  <!-- TEAM — with composite image + name list -->
+  <!-- TEAM — without Zyric and Mary -->
   <div class="card" id="team">
     <h3>THE BAKERY TEAM</h3>
     <div class="card-body">
-      <img src="https://i.ibb.co/27pBzsYR/IMG-20260804-035416-028.jpg" class="thumb" alt="Team Composite">
       <div class="team-name-list">
-        <span class="member-name">𝐙𝐘𝐑𝐈𝐂</span>
         <span class="member-name">BREAD</span>
         <span class="member-name">Pack Boyzz</span>
         <span class="member-name">FANCYCRYPT💲</span>
         <span class="member-name">QUDRA \|\| AUREUS</span>
-        <span class="member-name">Mary Lane</span>
         <span class="member-name">IDRISK</span>
         <span class="member-name">Zaidra 👻</span>
         <span class="member-name">$CryptoNova</span>
@@ -504,7 +539,7 @@
 
 </div>
 
-<!-- JOIN MOVEMENT BANNER — ultra-wide background fitted -->
+<!-- JOIN MOVEMENT BANNER -->
 <div class="join-banner" id="community">
   <div class="content">
     <h2>JOIN THE MOVEMENT</h2>
@@ -604,25 +639,34 @@
   </div>
 </div>
 
-<!-- TEAM MODAL -->
+<!-- TEAM MODAL — without Zyric and Mary -->
 <div class="modal-overlay" id="teamModal">
   <div class="modal-content">
     <span class="close-btn" data-modal="teamModal">&times;</span>
     <h2>🧑‍🍳 The Bakery Team</h2>
-    <p style="margin-bottom:14px;color:var(--muted);font-size:13px;">Meet the 10 master bakers behind $BREAD. Each image contains the member's name and role.</p>
+    <p style="margin-bottom:14px;color:var(--muted);font-size:13px;">Meet the 8 master bakers behind $BREAD. Each image contains the member's name and role.</p>
     <div class="team-grid">
-      <div class="team-card"><img src="https://i.ibb.co/99Ly25hy/IMG-20260804-035333-947.jpg" alt="ZYRIC"></div>
       <div class="team-card"><img src="https://i.ibb.co/XxQ0C7ZW/IMG-20260804-035251-969.jpg" alt="BREAD"></div>
       <div class="team-card"><img src="https://i.ibb.co/v4yRcQPZ/IMG-20260804-035245-460.jpg" alt="Pack Boyzz"></div>
       <div class="team-card"><img src="https://i.ibb.co/ccWdpjGR/IMG-20260803-205811-450.jpg" alt="FANCYCRYPT"></div>
       <div class="team-card"><img src="https://i.ibb.co/2Y3NF0Vz/IMG-20260803-205807-987.jpg" alt="QUDRA || AUREUS"></div>
-      <div class="team-card"><img src="https://i.ibb.co/RpcRxvDT/IMG-20260803-205800-374.jpg" alt="Mary Lane"></div>
       <div class="team-card"><img src="https://i.ibb.co/S76GfcC5/IMG-20260803-205754-508.jpg" alt="IDRISK"></div>
       <div class="team-card"><img src="https://i.ibb.co/67yc7yhM/IMG-20260803-205750-908.jpg" alt="Zaidra"></div>
       <div class="team-card"><img src="https://i.ibb.co/YTDVKxsW/IMG-20260803-205743-980.jpg" alt="CryptoNova"></div>
       <div class="team-card"><img src="https://i.postimg.cc/3kyqWgcM/IMG-20260804-114657-930.jpg" alt="Sanji"></div>
     </div>
-    <p style="margin-top:10px;font-size:12px;color:var(--muted);">* All 10 bakers are now revealed!</p>
+    <p style="margin-top:10px;font-size:12px;color:var(--muted);">* All 8 bakers are now revealed!</p>
+  </div>
+</div>
+
+<!-- LAUNCH SOON MODAL -->
+<div class="modal-overlay launch-modal" id="launchModal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="launchModal">&times;</span>
+    <div class="launch-icon">🚀</div>
+    <h2>Launching Soon</h2>
+    <p>We're putting the final touches on the Bakery. The $BREAD token will be live soon. Stay tuned and join our community for the latest updates!</p>
+    <button class="btn" id="launchCloseBtn">Got it!</button>
   </div>
 </div>
 
@@ -695,6 +739,34 @@
     });
   });
 
+  // ===== LAUNCH SOON MODAL =====
+  const launchModal = document.getElementById('launchModal');
+  const launchCloseBtn = document.getElementById('launchCloseBtn');
+  const buyBtns = document.querySelectorAll('#buyBtn, #buyBtn2');
+
+  function openLaunchModal(e) {
+    e.preventDefault();
+    launchModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  buyBtns.forEach(btn => {
+    btn.addEventListener('click', openLaunchModal);
+  });
+
+  launchCloseBtn.addEventListener('click', function() {
+    launchModal.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  // Close launch modal when clicking overlay
+  launchModal.addEventListener('click', function(e) {
+    if (e.target === this) {
+      this.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
   // ===== CHATBOT =====
   const chatbotToggle = document.getElementById('chatbotToggle');
   const chatbotWindow = document.getElementById('chatbotWindow');
@@ -704,10 +776,13 @@
   const chatbotSend = document.getElementById('chatbotSend');
 
   const qaPairs = [
+    // General
     { keywords: ['what is $bread','what is bread','about bread','tell me about bread'], answer: '$BREAD is a community-first memecoin built on Solana. It\'s more than a token — it\'s a movement focused on longevity, community, and building a globally recognized brand. We\'re here for generational wealth, not quick pumps.' },
     { keywords: ['what is the token','token info','token details'], answer: '$BREAD is a Solana-based memecoin with a total supply of 1,000,000,000 tokens. It has a 0% tax, fair launch, no private sale, and no VC allocation. The ticker is $BREAD.' },
-    { keywords: ['who are the founders','team','who created'], answer: '$BREAD is backed by 10 passionate individuals including ZYRIC, BREAD, Pack Boyzz, FANCYCRYPT, QUDRA || AUREUS, Mary Lane, IDRISK, Zaidra, CryptoNova, and Sanji. Check out the Team section to meet them all!' },
+    { keywords: ['who are the founders','team','who created'], answer: '$BREAD is backed by 8 passionate individuals including BREAD, Pack Boyzz, FANCYCRYPT, QUDRA || AUREUS, IDRISK, Zaidra, CryptoNova, and Sanji. Check out the Team section to meet them all!' },
     { keywords: ['is it a scam','is it legit','trustworthy'], answer: 'We are fully transparent about our tokenomics, roadmap, and mission. We have no private sale, no VC allocation, and we\'re building in public. You can verify our contract address (coming soon) and join our community to see our commitment.' },
+    // Tokenomics
+    { keywords: ['tokenomics','supply','distribution','how many tokens'], answer: 'Total supply is 1,000,000,000 $BREAD. Tokenomics distribution is currently being finalized by the community. Allocations will be decided collectively. Check back soon or join our Discord to participate in the discussion!' },
     { keywords: ['tax','taxes','transaction tax'], answer: '$BREAD has a 0% tax on transactions. You can buy, sell, and transfer without any additional fees beyond standard network fees.' },
     { keywords: ['roadmap','phases','plan','future'], answer: 'Our roadmap has 5 phases: Phase 1 – The Bread Is Baked, Phase 2 – Community Rises, Phase 3 – Build the Loaf, Phase 4 – The Bakery Ecosystem, Phase 5 – Legacy of $BREAD. Check the Roadmap section for full details, goals, and our principles.' },
     { keywords: ['phase 1','bread is baked','launch'], answer: 'Phase 1 – The Bread Is Baked: Launch $BREAD token and mascot, create the legend, launch X & Telegram, and build the founding $BREAD Army. Goal: Establish brand, gather community, set foundation.' },
@@ -717,21 +792,25 @@
     { keywords: ['phase 5','legacy','cex listings','global'], answer: 'Phase 5 – Legacy of $BREAD: Roadmap complete — new era begins. CEX listings & global expansion, real-world partnerships, and $BREAD becomes a household name. Goal: Sustain legacy, achieve mass adoption, become iconic.' },
     { keywords: ['principles','rises','community first','built different','loyalty over hype'], answer: 'Our principles: Rises. — We never give up. Community First. — Together we grow. Built Different. — Unique. Authentic. Real. Loyalty Over Hype. — We value real ones. The Community Writes the Legend. — You shape the future. Motto: Rises. Bread. Always.' },
     { keywords: ['motto','rises bread always'], answer: 'Motto: Rises. Bread. Always. It represents our unwavering commitment to rise together, build something meaningful, and always stay true to our community.' },
-    { keywords: ['how to buy','buy $bread','purchase','where to buy'], answer: '1. Download Phantom Wallet. 2. Purchase SOL from your preferred exchange. 3. Transfer SOL to your wallet. 4. Visit Jupiter or Raydium after launch. 5. Paste the official $BREAD contract address. 6. Swap SOL for $BREAD. 7. Welcome to the Bakery!' },
+    // Buying
+    { keywords: ['how to buy','buy $bread','purchase','where to buy'], answer: 'The $BREAD token is launching soon! Join our community to be the first to know when trading goes live. Follow us on X, Telegram, and Discord for the announcement.' },
     { keywords: ['phantom wallet','wallet','which wallet'], answer: 'We recommend Phantom Wallet for Solana. You can download it from the official website or app store. Other Solana wallets like Solflare also work.' },
     { keywords: ['jupiter','raydium','dex'], answer: 'After launch, $BREAD will be available on Jupiter and Raydium, two of the most popular decentralized exchanges on Solana. You can swap SOL for $BREAD there.' },
-    { keywords: ['contract address','ca','address'], answer: 'The official contract address is coming soon. Stay tuned to our social channels for the official announcement.' },
-    { keywords: ['price','current price','how much'], answer: 'The price of $BREAD will be determined by the market after launch. Currently, the token is not yet live, so the price is $0.00.' },
+    { keywords: ['contract address','ca','address'], answer: 'The official contract address will be released at launch. Do not trust any addresses shared before the official announcement.' },
+    { keywords: ['price','current price','how much'], answer: '$BREAD is not yet launched. The price will be determined by the market at launch. Stay tuned for updates!' },
+    // Community
     { keywords: ['community','join community','discord','telegram'], answer: 'Join our community on Discord: https://discord.gg/qXy9gBRd and Telegram: https://t.me/+xmMCqIZjGeAxMjEx. Follow us on X (Twitter) @4THABREAD, Instagram @4thabread, and TikTok @weare4thebread.' },
     { keywords: ['discord link','telegram link'], answer: 'Discord: https://discord.gg/qXy9gBRd  |  Telegram: https://t.me/+xmMCqIZjGeAxMjEx' },
     { keywords: ['twitter','x','social media'], answer: 'Follow us on X (Twitter) at https://x.com/4THABREAD, Instagram at https://www.instagram.com/4thabread, and TikTok at https://www.tiktok.com/@weare4thebread' },
     { keywords: ['tiktok','tik tok'], answer: 'Follow us on TikTok at https://www.tiktok.com/@weare4thebread for fun content and updates!' },
     { keywords: ['forum','community forum','discussions'], answer: 'We have a vibrant community forum with categories like Daily Bread Memes, Show Off Your Bags, Price Talk, Art & Creations, and Ask the Community. Join the conversation!' },
+    // Vision & Mission
     { keywords: ['mission','vision','goal','purpose'], answer: 'Our mission is to build a community where people are heard, creators are supported, and success is shared instead of controlled. We envision a crypto community where collaboration replaces competition, and success isn\'t reserved for the biggest wallets.' },
     { keywords: ['why bread','why this project'], answer: 'Most projects launch to make money. We launched to build a community. While others chase quick pumps, we\'re focused on creating something people actually enjoy following. The strongest communities aren\'t bought — they\'re built.' },
     { keywords: ['longevity','long-term','generational wealth'], answer: 'We are building a longevity-focused meme coin with the goal of becoming a globally recognized brand. The token is the foundation — around it, we create viral content, meme lore, and an engaged community that extends far beyond crypto. Long-term holders get exclusive rewards like precious metal collectibles.' },
     { keywords: ['brand','merch','apparel','products'], answer: 'As the ecosystem grows, we expand into apparel, collectibles, and real-world products that reinforce the brand. Long-term holders are rewarded with exclusive milestone collectibles crafted from precious metals like silver, gold, and platinum.' },
     { keywords: ['collectibles','silver','gold','platinum'], answer: 'Long-term holders will receive exclusive milestone collectibles made from precious metals like silver, gold, and platinum. These are rewards for believers who stay with us on the journey.' },
+    // Values
     { keywords: ['values','community first','transparency','fairness','creativity','respect'], answer: 'Our core values are: Community First, Transparency, Fairness, Creativity, Respect, and Long-Term Building. We believe every holder matters, and we\'re committed to open communication and equal opportunity for all.' },
     { keywords: ['community first','holders matter'], answer: 'We\'re community-first. Every holder matters, and we listen before we speak. We never forget who got us here.' },
     { keywords: ['transparency','open communication'], answer: 'Transparency is key — we have no hidden agendas. We share everything with the community, from tokenomics to roadmap updates.' },
@@ -739,12 +818,14 @@
     { keywords: ['creativity','good ideas'], answer: 'We believe good ideas deserve attention. We encourage creativity and support creators who bring value to the community.' },
     { keywords: ['respect','everyone deserves'], answer: 'Every community member deserves to be heard and respected. We\'re building a positive, inclusive environment for all.' },
     { keywords: ['long-term building','remember'], answer: 'We\'re here to build something people remember. Not a quick pump — a lasting movement and cultural brand.' },
+    // FAQ
     { keywords: ['faq','frequently asked','questions'], answer: 'Check out our FAQ section on the website for answers to the most common questions, including what $BREAD is, how to buy, what makes it different, investment advice, and where to see the roadmap.' },
     { keywords: ['private sale','presale','vc'], answer: 'No private sale, no VC allocation. $BREAD is a fair launch project — everyone gets the same opportunity.' },
     { keywords: ['launch','when launch','launch date'], answer: '$BREAD will launch soon. Follow our social channels for the exact date and time announcement.' },
     { keywords: ['is it launched','live'], answer: '$BREAD is not yet launched. We\'re in the pre-launch phase, building the community and getting everything ready. Stay tuned!' },
     { keywords: ['contract address','ca'], answer: 'The official contract address will be released at launch. Do not trust any addresses shared before the official announcement.' },
-    { keywords: ['team','founders','who is behind'], answer: 'We have 10 passionate bakers behind $BREAD — including ZYRIC, BREAD, Pack Boyzz, FANCYCRYPT, QUDRA || AUREUS, Mary Lane, IDRISK, Zaidra, CryptoNova, and Sanji. Check the Team section to see them all!' },
+    // Other
+    { keywords: ['team','founders','who is behind'], answer: 'We have 8 passionate bakers behind $BREAD — including BREAD, Pack Boyzz, FANCYCRYPT, QUDRA || AUREUS, IDRISK, Zaidra, CryptoNova, and Sanji. Check the Team section to see them all!' },
     { keywords: ['meme','memecoin','meme token'], answer: '$BREAD is a memecoin with purpose. We\'re building a cultural brand through viral internet content, absurd meme lore, and an engaged community — all while creating real value through apparel, collectibles, and products.' },
     { keywords: ['solana','blockchain','network'], answer: '$BREAD is built on Solana, a high-performance blockchain known for its speed, low fees, and scalability. This allows for fast and cheap transactions.' },
     { keywords: ['security','audit','safe'], answer: 'We prioritize security and transparency. Our contract will be audited before launch, and we\'ll share the results with the community. We\'re committed to building a safe and trustworthy project.' },
@@ -805,7 +886,7 @@
   chatbotSend.addEventListener('click', handleUserMessage);
   chatbotInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleUserMessage(); });
 
-  console.log('🥖 $BREAD — Buttons aligned, official social logos added.');
+  console.log('🥖 $BREAD — Hero image updated, stats show Coming Soon, Buy button shows Launching Soon modal.');
 </script>
 </body>
 </html>
