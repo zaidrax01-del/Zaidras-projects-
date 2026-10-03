@@ -2,1191 +2,631 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Press Coffee House — Roastery & Café</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Press Coffee House</title>
 <link rel="icon" type="image/png" href="https://i.ibb.co/tPKx9DmL/file-00000000aaec8210a25f487aec90da6e.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-/* ============ RESET / TOKENS ============ */
+:root{--bg:#070605;--panel:#0d0b09;--gold:#e9c48a;--gold2:#c9964f;--text:#f3ece1;--mute:#b9ad9c;--line:rgba(233,196,138,.35);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root:not([data-theme="light"]){color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070605}}
+:root[data-theme="dark"]{--bg:#070605}
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --espresso:#140D08;
-  --coffee:#2A1C13;
-  --coffee-2:#3C2719;
-  --caramel:#C08A4E;
-  --crema:#D9B382;
-  --terra:#B85C38;
-  --cream:#F7F0E6;
-  --paper:#FFFCF7;
-  --ink:#2A1C13;
-  --muted:#8B7867;
-  --line:rgba(42,28,19,.12);
-  --shadow:0 24px 50px -28px rgba(42,28,19,.45);
-  --ease:cubic-bezier(.2,.7,.3,1);
-}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Inter',system-ui,-apple-system,sans-serif;
-  background:var(--paper);
-  color:var(--ink);
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-  line-height:1.6;
-}
-img,svg{display:block;max-width:100%}
-button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
-input{font:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Montserrat,system-ui,sans-serif;font-size:14px;line-height:1.5;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-::selection{background:var(--caramel);color:#fff}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.serif{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif}
+.script{font-family:'Great Vibes','Brush Script MT',cursive;color:var(--gold)}
+.eyebrow{font-size:10px;letter-spacing:.3em;color:var(--gold);font-weight:600;text-transform:uppercase}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:11px 22px;border-radius:30px;font-size:12px;font-weight:600;border:1px solid var(--gold);color:var(--gold);transition:.25s}
+.btn:hover{background:var(--gold);color:#120d07}
+.btn.fill{background:var(--gold);color:#120d07;border-color:var(--gold)}
+.btn.fill:hover{background:#fff1d6}
+.btn.sm{padding:7px 16px;font-size:11px}
 
-/* ============ TYPE ============ */
-h1,h2,h3,h4,.display{font-family:'Playfair Display',Georgia,serif;font-weight:600;line-height:1.08;letter-spacing:-.02em}
-h1{font-size:clamp(2.7rem,6vw,4.6rem)}
-h2{font-size:clamp(2rem,4vw,3rem)}
-h3{font-size:1.35rem;line-height:1.25}
-em{font-style:italic;color:var(--caramel)}
-.eyebrow{
-  font-size:.7rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--terra);display:inline-flex;align-items:center;gap:10px;
-}
-.eyebrow::before{content:"";width:22px;height:1px;background:currentColor;opacity:.6}
-.lead{font-size:1.05rem;color:var(--muted);max-width:52ch}
-
-/* ============ LAYOUT ============ */
-.wrap{width:min(1200px,92vw);margin-inline:auto}
-section{scroll-margin-top:90px}
-.sec-pad{padding:clamp(70px,10vw,130px) 0}
-.sec-head{max-width:640px;margin-bottom:52px}
-.sec-head h2{margin:16px 0 14px}
-
-/* ============ BUTTONS ============ */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:15px 28px;border-radius:100px;font-size:.9rem;font-weight:600;
-  letter-spacing:.01em;transition:.35s var(--ease);white-space:nowrap;
-}
-.btn-primary{background:var(--terra);color:#fff;box-shadow:0 14px 30px -14px rgba(184,92,56,.75)}
-.btn-primary:hover{background:#a44d2c;transform:translateY(-2px);box-shadow:0 20px 36px -16px rgba(184,92,56,.85)}
-.btn-ghost{border:1px solid rgba(247,240,230,.32);color:var(--cream)}
-.btn-ghost:hover{background:rgba(247,240,230,.1);border-color:rgba(247,240,230,.6)}
-.btn-dark{background:var(--coffee);color:var(--cream)}
-.btn-dark:hover{background:var(--espresso);transform:translateY(-2px)}
-.btn.full{width:100%}
-.btn:active{transform:translateY(0) scale(.985)}
-
-/* ============ HEADER ============ */
-.header{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  --nav-fg:#F7F0E6;
-  transition:background .4s var(--ease), border-color .4s, box-shadow .4s;
-  border-bottom:1px solid transparent;
-}
-.header.scrolled{
-  --nav-fg:var(--ink);
-  background:rgba(255,252,247,.86);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border-bottom-color:var(--line);
-}
-.nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
-.logo{display:flex;align-items:center;gap:11px;color:var(--nav-fg);transition:color .4s}
-.logo-mark{
-  width:34px;height:34px;border-radius:10px;background:#fff;
-  display:grid;place-items:center;flex-shrink:0;overflow:hidden;
-  box-shadow:0 8px 18px -8px rgba(184,92,56,.9);
-}
-.logo-mark img{width:100%;height:100%;object-fit:contain}
-.logo-text{display:flex;flex-direction:column;line-height:1}
-.logo-text b{font-family:'Playfair Display',serif;font-size:1.12rem;font-weight:700;letter-spacing:-.01em}
-.logo-text span{font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;opacity:.6;margin-top:3px}
-.nav-links{display:flex;gap:34px;align-items:center}
-.nav-link{
-  color:var(--nav-fg);font-size:.87rem;font-weight:500;position:relative;
-  padding:6px 0;transition:color .3s;opacity:.85;
-}
-.nav-link::after{
-  content:"";position:absolute;left:0;bottom:0;height:1.5px;width:0;
-  background:var(--caramel);transition:width .35s var(--ease);
-}
-.nav-link:hover{opacity:1}
-.nav-link:hover::after{width:100%}
+/* nav */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(7,6,5,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.05)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+.logo{display:flex;align-items:center;gap:12px}
+.mark{width:46px;height:46px;border:1.5px solid var(--text);border-radius:50%;display:grid;place-items:center;overflow:hidden;padding:0;background:#0a0807;flex-shrink:0}
+.mark img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+.logo b{display:block;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:25px;letter-spacing:.14em;line-height:1}
+.logo small{display:block;font-size:8px;letter-spacing:.32em;font-weight:600;margin-top:3px}
+nav ul{display:flex;gap:38px;list-style:none}
+nav a{font-size:13px;padding:6px 0;color:var(--text)}
+nav a.on{border-bottom:2px solid var(--gold);color:var(--gold)}
+nav a:hover{color:var(--gold)}
 .nav-right{display:flex;align-items:center;gap:14px}
 .cart-btn{
-  position:relative;color:var(--nav-fg);width:44px;height:44px;border-radius:50%;
-  display:grid;place-items:center;transition:.3s;border:1px solid transparent;
+  position:relative;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);color:var(--gold);
+  display:grid;place-items:center;transition:.25s;
 }
-.cart-btn:hover{background:rgba(192,138,78,.16);border-color:rgba(192,138,78,.35)}
-.cart-btn svg{width:21px;height:21px}
+.cart-btn:hover{background:rgba(233,196,138,.12);border-color:var(--gold)}
+.cart-btn svg{width:19px;height:19px}
 .cart-count{
-  position:absolute;top:1px;right:0;min-width:19px;height:19px;padding:0 5px;
-  background:var(--terra);color:#fff;border-radius:100px;font-size:.65rem;font-weight:700;
-  display:grid;place-items:center;transform:scale(0);transition:transform .35s var(--ease);
-  border:2px solid var(--paper);
+  position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;
+  background:var(--gold);color:#120d07;border-radius:20px;
+  font-size:10px;font-weight:700;display:grid;place-items:center;
+  border:2px solid #070605;transform:scale(0);transition:transform .3s cubic-bezier(.34,1.56,.64,1);
 }
 .cart-count.show{transform:scale(1)}
-.burger{display:none;color:var(--nav-fg);width:44px;height:44px;place-items:center}
-.burger svg{width:24px;height:24px}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--gold);width:42px;height:42px;border-radius:50%;font-size:18px}
 
-/* ============ HERO ============ */
-.hero{
-  position:relative;min-height:100svh;display:flex;align-items:center;
-  background:
-    radial-gradient(1100px 700px at 78% 38%, rgba(192,138,78,.28), transparent 62%),
-    radial-gradient(700px 600px at 10% 90%, rgba(184,92,56,.18), transparent 65%),
-    linear-gradient(160deg,#1E140D 0%,#140D08 55%,#0E0805 100%);
-  overflow:hidden;padding:130px 0 80px;
-}
-.hero::after{
-  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
-  background-image:radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
-  background-size:26px 26px;
-  mask-image:radial-gradient(circle at 60% 40%, #000, transparent 72%);
-  -webkit-mask-image:radial-gradient(circle at 60% 40%, #000, transparent 72%);
-}
-.hero-grid{
-  position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;
-  gap:60px;align-items:center;
-}
-.hero h1{color:var(--cream);margin:22px 0 22px}
-.hero .lead{color:rgba(247,240,230,.66);font-size:1.08rem}
-.hero-cta{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
-.hero-stats{
-  display:flex;gap:38px;margin-top:56px;padding-top:30px;
-  border-top:1px solid rgba(247,240,230,.13);flex-wrap:wrap;
-}
-.stat b{
-  display:block;font-family:'Playfair Display',serif;font-size:1.85rem;
-  color:var(--cream);line-height:1;font-weight:600;
-}
-.stat span{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,240,230,.45);margin-top:8px;display:block}
+/* hero */
+.hero{position:relative;min-height:520px;overflow:hidden;display:flex;align-items:center;background:
+  linear-gradient(90deg,rgba(7,6,5,.92) 0%,rgba(7,6,5,.72) 38%,rgba(7,6,5,.35) 62%,rgba(7,6,5,.55) 100%),
+  linear-gradient(180deg,rgba(7,6,5,.55) 0%,rgba(7,6,5,.25) 40%,rgba(7,6,5,.75) 100%),
+  radial-gradient(circle at 18% 40%,rgba(233,160,60,.18),transparent 30%),
+  radial-gradient(circle at 5% 15%,rgba(233,160,60,.22),transparent 22%),
+  url('https://i.ibb.co/fG2r4CjG/file-00000000f2488210adcc41781f713f2b.png') center/cover no-repeat,
+  #070605}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.6fr 1fr;align-items:center;min-height:520px;gap:40px;z-index:2;width:100%}
+.hero h1{font-family:'Playfair Display','Cormorant Garamond',serif;font-weight:400;font-size:clamp(46px,6.2vw,76px);line-height:1;margin:20px 0 22px;letter-spacing:-.01em}
+.hero h1 span{display:block;background:linear-gradient(180deg,#f6dcaa,#c9964f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:380px;font-size:14px;color:#efe6d8;margin-bottom:30px;text-shadow:0 2px 12px rgba(0,0,0,.75)}
+.hero .eyebrow{text-shadow:0 2px 10px rgba(0,0,0,.8)}
+.cta{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.play{display:inline-flex;align-items:center;gap:14px;font-size:11px;color:var(--text)}
+.play i{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:11px;font-style:normal}
+.feat{list-style:none;display:grid;gap:18px;align-self:center;justify-self:end;min-width:180px}
+.feat li{display:flex;align-items:center;gap:14px;font-size:12px;text-shadow:0 2px 10px rgba(0,0,0,.8)}
+.feat i{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);backdrop-filter:blur(6px);display:grid;place-items:center;color:var(--text);font-style:normal;font-size:15px;border:1px solid rgba(255,255,255,.1)}
+.tag{position:absolute;right:50px;bottom:36px;font-size:26px;line-height:1.1;transform:rotate(-12deg);text-shadow:0 4px 18px rgba(0,0,0,.85);z-index:3}
 
-/* hero art */
-.hero-art{position:relative;display:grid;place-items:center;min-height:440px}
-.press-svg{width:min(340px,80%);filter:drop-shadow(0 40px 60px rgba(0,0,0,.55));animation:float 7s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-.steam path{
-  fill:none;stroke:rgba(247,240,230,.55);stroke-width:3.5;stroke-linecap:round;
-  animation:steam 3.6s ease-in-out infinite;
-}
-.steam path:nth-child(2){animation-delay:.7s}
-.steam path:nth-child(3){animation-delay:1.4s}
-@keyframes steam{
-  0%{opacity:0;transform:translateY(10px) scaleX(.85)}
-  35%{opacity:.75}
-  100%{opacity:0;transform:translateY(-26px) scaleX(1.2)}
-}
-.float-card{
-  position:absolute;background:rgba(255,252,247,.96);border-radius:16px;padding:14px 18px;
-  box-shadow:0 22px 44px -20px rgba(0,0,0,.7);backdrop-filter:blur(8px);
-  animation:float 6s ease-in-out infinite;
-}
-.float-card.a{top:6%;left:0;animation-delay:.5s}
-.float-card.b{bottom:10%;right:0;animation-delay:1.6s}
-.float-card .fc-top{display:flex;align-items:center;gap:9px;font-size:.74rem;font-weight:600}
-.float-card .fc-sub{font-size:.68rem;color:var(--muted);margin-top:4px}
-.stars{color:var(--caramel);letter-spacing:1px;font-size:.75rem}
-.pulse-dot{width:8px;height:8px;border-radius:50%;background:#3E9C63;position:relative}
-.pulse-dot::after{
-  content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid #3E9C63;
-  animation:pulse 2s infinite;
-}
-@keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+/* story */
+.story{display:grid;grid-template-columns:1fr 1.15fr 1.2fr;min-height:220px;border-top:1px solid rgba(255,255,255,.06)}
+.sack{position:relative;min-height:240px;background:url('https://i.ibb.co/KnLYWSh/file-00000000fd74824687be2e88878f5baa.png') center/cover no-repeat, #1b0e06}
+.story .txt{padding:34px 40px;background:var(--panel)}
+.story h2{font-weight:500;font-size:32px;line-height:1.05;margin:10px 0 14px}
+.story p{font-size:12.5px;color:#e6dccb;margin-bottom:12px;max-width:290px}
+.room{position:relative;min-height:240px;background:url('https://i.ibb.co/9HYqJbTs/IMG-20261003-010238-254.jpg') center/cover no-repeat, #1a120a}
 
-/* ============ MARQUEE ============ */
-.marquee{
-  background:var(--coffee);color:var(--crema);padding:18px 0;overflow:hidden;
-  border-block:1px solid rgba(217,179,130,.16);
+/* menu */
+.menu{position:relative;padding:40px 0 46px;border-top:1px solid rgba(255,255,255,.06);overflow:hidden;isolation:isolate;background:url('https://i.ibb.co/0pTC41NK/IMG-20261003-010254-523.jpg') center/cover no-repeat, #0d0b09}
+.menu::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(7,6,5,.82) 0%,rgba(7,6,5,.72) 50%,rgba(7,6,5,.86) 100%);
 }
-.marquee-track{display:flex;width:max-content;animation:scroll 34s linear infinite}
-.marquee:hover .marquee-track{animation-play-state:paused}
-@keyframes scroll{to{transform:translateX(-50%)}}
-.marquee-track span{
-  font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
-  padding:0 30px;display:flex;align-items:center;gap:30px;white-space:nowrap;
-}
-.marquee-track span::after{content:"✦";color:var(--terra);font-size:.9rem}
+.menu .wrap{position:relative;z-index:1}
+.mh{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:26px;flex-wrap:wrap;gap:14px}
+.mh h2{font-weight:500;font-size:28px;line-height:1.1;margin-top:4px}
+.mh a{font-size:11px}
 
-/* ============ MENU ============ */
-.tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:42px}
-.tab{
-  padding:11px 22px;border-radius:100px;font-size:.83rem;font-weight:600;
-  border:1px solid var(--line);color:var(--muted);transition:.3s var(--ease);
-  background:#fff;
+.menu-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:18px}
+.cat{
+  background:rgba(10,8,7,.74);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;
+  padding:20px 22px 22px;
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  transition:.28s;
+  animation:cardIn .45s cubic-bezier(.2,.7,.3,1) both;
 }
-.tab:hover{border-color:var(--caramel);color:var(--caramel)}
-.tab.active{background:var(--coffee);color:var(--cream);border-color:var(--coffee)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:24px}
-.card{
-  background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;
-  display:flex;flex-direction:column;transition:.45s var(--ease);
-  animation:cardIn .5s var(--ease) both;
+@keyframes cardIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.cat:hover{border-color:rgba(233,196,138,.55);transform:translateY(-3px);background:rgba(10,8,7,.85)}
+.cat-wide{grid-column:1/-1}
+.cat-h{
+  display:flex;align-items:center;gap:11px;
+  padding-bottom:12px;margin-bottom:14px;
+  border-bottom:1px solid rgba(233,196,138,.25);
 }
-@keyframes cardIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.card:hover{transform:translateY(-7px);box-shadow:var(--shadow);border-color:transparent}
-.card-media{
-  height:168px;position:relative;display:grid;place-items:center;overflow:hidden;
+.cat-emoji{font-size:19px;line-height:1;filter:saturate(1.1)}
+.cat-h h3{
+  font-family:'Cormorant Garamond','Playfair Display',serif;
+  font-weight:500;font-size:20px;letter-spacing:.02em;color:var(--text);
 }
-.card-media::after{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 120%, rgba(255,255,255,.22), transparent 60%);
-}
-.card-media svg{width:64px;height:64px;color:rgba(255,252,247,.92);position:relative;z-index:2;transition:.5s var(--ease)}
-.card:hover .card-media svg{transform:scale(1.1) translateY(-3px)}
-.tag{
-  position:absolute;top:14px;left:14px;z-index:3;background:rgba(255,252,247,.94);
-  color:var(--coffee);font-size:.63rem;font-weight:700;letter-spacing:.11em;
-  text-transform:uppercase;padding:6px 11px;border-radius:100px;
-}
-.card-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:7px;flex:1}
-.card-body h3{font-size:1.16rem}
-.card-body p{font-size:.83rem;color:var(--muted);line-height:1.55}
-.card-foot{margin-top:auto;padding-top:16px;display:flex;align-items:center;justify-content:space-between}
-.price{font-family:'Playfair Display',serif;font-size:1.28rem;font-weight:600}
-.add-btn{
-  width:38px;height:38px;border-radius:50%;background:var(--cream);color:var(--coffee);
-  display:grid;place-items:center;transition:.3s var(--ease);font-size:1.25rem;line-height:1;
-}
-.add-btn:hover{background:var(--terra);color:#fff;transform:rotate(90deg) scale(1.06)}
+.cat-hint{font-size:10px;color:var(--mute);margin-left:auto;letter-spacing:.05em;text-transform:uppercase;font-weight:500}
+.cat-list{list-style:none;display:grid;gap:10px}
+.cat-list li{display:flex;align-items:center;gap:8px;font-size:12.5px}
+.cat-list .n{color:var(--text);font-weight:400}
+.cat-list .dots{flex:1;border-bottom:1px dotted rgba(233,196,138,.28);transform:translateY(-3px);min-width:14px}
+.cat-list .p{color:var(--gold);font-weight:600;font-size:11.5px;white-space:nowrap}
+.cat-wide .cat-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 32px}
 
-/* ============ BUILD ============ */
-.build{
-  background:linear-gradient(155deg,#1E140D,#120C07);color:var(--cream);
-  border-radius:34px;overflow:hidden;position:relative;
+.add{
+  width:22px;height:22px;border-radius:50%;
+  border:1px solid rgba(233,196,138,.5);
+  color:var(--gold);background:rgba(233,196,138,.06);
+  display:grid;place-items:center;
+  font-size:14px;line-height:1;
+  transition:.22s;flex-shrink:0;
 }
-.build::before{
-  content:"";position:absolute;width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle,rgba(192,138,78,.25),transparent 65%);
-  top:-200px;right:-150px;pointer-events:none;
-}
-.build-inner{
-  position:relative;z-index:2;display:grid;grid-template-columns:.85fr 1.15fr;
-  gap:60px;padding:clamp(38px,6vw,72px);align-items:center;
-}
-.build-visual{display:grid;place-items:center;position:relative}
-.cup-preview{width:min(260px,72%);transition:transform .5s var(--ease)}
-.build-price-tag{
-  margin-top:26px;font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:600;
-  color:var(--crema);text-align:center;
-}
-.build-price-tag small{display:block;font-family:'Inter',sans-serif;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,240,230,.42);margin-bottom:8px;font-weight:600}
-.opt{margin-bottom:26px}
-.opt-label{
-  font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(247,240,230,.45);margin-bottom:12px;
-}
-.chips{display:flex;gap:9px;flex-wrap:wrap}
-.chip{
-  padding:10px 18px;border-radius:100px;font-size:.83rem;font-weight:500;
-  border:1px solid rgba(247,240,230,.18);color:rgba(247,240,230,.75);
-  transition:.28s var(--ease);
-}
-.chip:hover{border-color:rgba(217,179,130,.6);color:var(--crema)}
-.chip.is-active{background:var(--caramel);border-color:var(--caramel);color:#1A110A;font-weight:600}
-.chip .plus{opacity:.6;font-size:.75rem;margin-left:5px}
-#addCustom{margin-top:8px}
+.add:hover{background:var(--gold);color:#120d07;border-color:var(--gold);transform:scale(1.12)}
+.add:active{transform:scale(.95)}
 
-/* ============ STORY ============ */
-.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.story-art{
-  border-radius:26px;aspect-ratio:4/3.4;position:relative;overflow:hidden;
-  background:linear-gradient(150deg,#3C2719,#7A4A28 55%,#C08A4E);
-  display:grid;place-items:center;box-shadow:var(--shadow);
+/* SYRUP PILLS — now interactive buttons */
+.pills{display:flex;flex-wrap:wrap;gap:7px}
+.pill{
+  font-size:10.5px;padding:6px 13px 6px 11px;border-radius:20px;
+  border:1px solid rgba(233,196,138,.28);
+  color:var(--mute);background:rgba(233,196,138,.05);
+  transition:.22s;display:inline-flex;align-items:center;gap:6px;
+  font-family:inherit;
 }
-.story-art::after{
-  content:"";position:absolute;inset:0;
-  background:repeating-linear-gradient(115deg,transparent 0 22px,rgba(255,255,255,.045) 22px 23px);
+.pill::before{
+  content:"+";font-size:12px;line-height:1;font-weight:700;
+  color:var(--gold);opacity:.6;transition:.22s;
 }
-.story-art .bean{width:150px;color:rgba(255,252,247,.9);position:relative;z-index:2}
-.story-list{list-style:none;margin-top:28px;display:grid;gap:16px}
-.story-list li{display:flex;gap:14px;font-size:.92rem;color:var(--muted);align-items:flex-start}
-.check{
-  width:22px;height:22px;border-radius:50%;background:var(--cream);color:var(--terra);
-  display:grid;place-items:center;flex-shrink:0;font-size:.7rem;font-weight:700;margin-top:2px;
+.pill:hover{
+  border-color:var(--gold);color:var(--gold);
+  background:rgba(233,196,138,.14);transform:translateY(-1px);
 }
-.story-list b{color:var(--ink);font-weight:600}
+.pill:hover::before{opacity:1;transform:scale(1.15)}
+.pill:active{transform:scale(.96)}
+.pill.just-added{
+  background:var(--gold);color:#120d07;border-color:var(--gold);
+}
+.pill.just-added::before{color:#120d07;opacity:1}
 
-/* ============ VISIT ============ */
-.visit{background:var(--cream)}
-.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
-.hours-card{
-  background:#fff;border-radius:24px;padding:34px;border:1px solid var(--line);
-  box-shadow:0 20px 50px -34px rgba(42,28,19,.5);
+.menu-toggle{
+  display:flex;justify-content:center;margin-top:30px;
 }
-.status{
-  display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border-radius:100px;
-  font-size:.76rem;font-weight:600;margin-bottom:24px;
-}
-.status.open{background:rgba(62,156,99,.12);color:#2E7A4B}
-.status.closed{background:rgba(184,92,56,.12);color:var(--terra)}
-.hours-list{list-style:none;display:grid;gap:2px}
-.hours-list li{
-  display:flex;justify-content:space-between;padding:11px 0;font-size:.89rem;
-  border-bottom:1px dashed var(--line);color:var(--muted);
-}
-.hours-list li:last-child{border-bottom:none}
-.hours-list li.today{color:var(--ink);font-weight:600}
-.hours-list li.today .day::before{
-  content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
-  background:var(--terra);margin-right:9px;vertical-align:middle;
-}
-.info-cards{display:grid;gap:18px;align-content:start}
-.info{
-  background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px 28px;
-  display:flex;gap:18px;transition:.35s var(--ease);
-}
-.info:hover{transform:translateX(5px);border-color:var(--caramel)}
-.info-icon{
-  width:44px;height:44px;border-radius:13px;background:var(--cream);color:var(--terra);
-  display:grid;place-items:center;flex-shrink:0;
-}
-.info-icon svg{width:20px;height:20px}
-.info h4{font-size:1rem;font-family:'Inter',sans-serif;font-weight:600;margin-bottom:4px}
-.info p{font-size:.85rem;color:var(--muted);line-height:1.55}
-.info a{color:var(--terra);font-weight:600;font-size:.83rem;display:inline-block;margin-top:8px}
-.info a:hover{text-decoration:underline}
+.menu-toggle .btn{padding:13px 30px;font-size:12px}
+.menu-toggle .btn svg{width:14px;height:14px;transition:transform .3s}
+.menu-toggle.open .btn svg{transform:rotate(180deg)}
 
-/* ============ FOOTER ============ */
-.footer{background:var(--espresso);color:rgba(247,240,230,.6);padding:76px 0 34px}
-.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.4fr;gap:48px}
-.footer h4{
-  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--crema);margin-bottom:20px;font-weight:700;
-}
-.foot-links{list-style:none;display:grid;gap:11px;font-size:.87rem}
-.foot-links a{transition:.25s}
-.foot-links a:hover{color:var(--crema);padding-left:4px}
-.foot-desc{font-size:.87rem;line-height:1.7;max-width:30ch;margin-top:16px}
-.subscribe{display:flex;gap:8px;margin-top:16px}
-.subscribe input{
-  flex:1;background:rgba(247,240,230,.07);border:1px solid rgba(247,240,230,.16);
-  border-radius:100px;padding:13px 20px;color:var(--cream);font-size:.85rem;outline:none;
-  transition:.3s;min-width:0;
-}
-.subscribe input::placeholder{color:rgba(247,240,230,.35)}
-.subscribe input:focus{border-color:var(--caramel);background:rgba(247,240,230,.11)}
-.subscribe button{
-  background:var(--caramel);color:#1A110A;border-radius:100px;padding:0 22px;
-  font-weight:700;font-size:.82rem;transition:.3s;flex-shrink:0;
-}
-.subscribe button:hover{background:var(--crema)}
-.foot-bottom{
-  margin-top:60px;padding-top:26px;border-top:1px solid rgba(247,240,230,.1);
-  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:.78rem;
-}
-.socials{display:flex;gap:10px}
-.socials a{
-  width:36px;height:36px;border-radius:50%;border:1px solid rgba(247,240,230,.16);
-  display:grid;place-items:center;transition:.3s;
-}
-.socials a:hover{background:var(--caramel);border-color:var(--caramel);color:#1A110A}
-.socials svg{width:16px;height:16px}
+/* space */
+.space{display:grid;grid-template-columns:1.1fr 1.2fr 1.1fr;min-height:170px;border-top:1px solid rgba(255,255,255,.06);background:var(--bg)}
+.sp1{background:url('https://i.ibb.co/Gvktyz0p/file-000000000b1c81f4ae7480db0206e4f0.png') center/cover no-repeat, #0a0705}
+.sp2{display:flex;align-items:center;gap:34px;padding:24px 20px}
+.sp2 h3{font-weight:500;font-size:28px;line-height:1.1;margin:6px 0 8px}
+.sp2 p{font-size:11.5px;color:#e6dccb;margin-bottom:14px;max-width:230px}
+.stats{display:flex;border-left:1px solid var(--line);padding-left:26px;gap:20px;margin-left:auto}
+.stats div{text-align:center;font-size:11px}
+.stats b{display:block;font-size:17px;color:var(--gold);font-weight:600}
+.sp3{position:relative;background:url('https://i.ibb.co/JwdzNS6S/file-00000000a8e88210bfbf1c5f8981e173.png') center/cover no-repeat, #1a1410}
 
-/* ============ CART DRAWER ============ */
-.overlay{
-  position:fixed;inset:0;background:rgba(20,13,8,.55);backdrop-filter:blur(3px);
-  opacity:0;visibility:hidden;transition:.4s var(--ease);z-index:300;
+footer{border-top:1px solid rgba(255,255,255,.06);background:#050403}
+.foot{display:flex;align-items:center;justify-content:space-between;height:70px;gap:20px}
+.foot ul{display:flex;gap:26px;list-style:none;font-size:10px}
+.foot ul a:hover{color:var(--gold)}
+.soc{display:flex;gap:18px;font-size:13px;color:var(--text)}
+.foot .logo .mark{width:32px;height:32px}.foot .logo b{font-size:17px}.foot .logo small{font-size:6px}
+
+/* cart drawer */
+.cart-overlay{
+  position:fixed;inset:0;background:rgba(3,2,1,.68);backdrop-filter:blur(4px);
+  opacity:0;visibility:hidden;transition:.35s;z-index:80;
 }
-.overlay.show{opacity:1;visibility:visible}
-.drawer{
-  position:fixed;top:0;right:0;bottom:0;width:min(410px,100vw);background:var(--paper);
-  z-index:400;display:flex;flex-direction:column;
-  transform:translateX(105%);transition:transform .48s var(--ease);
-  box-shadow:-30px 0 70px -30px rgba(0,0,0,.5);
+.cart-overlay.show{opacity:1;visibility:visible}
+.cart-drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);
+  background:#0b0907;border-left:1px solid rgba(233,196,138,.2);
+  z-index:90;display:flex;flex-direction:column;
+  transform:translateX(105%);transition:transform .45s cubic-bezier(.2,.7,.3,1);
+  box-shadow:-30px 0 70px -20px rgba(0,0,0,.7);
 }
-.drawer.open{transform:none}
-.drawer-head{
-  padding:26px 26px 20px;border-bottom:1px solid var(--line);
-  display:flex;justify-content:space-between;align-items:flex-start;
+.cart-drawer.open{transform:none}
+.cart-head{
+  padding:24px 26px 20px;border-bottom:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
 }
-.drawer-head h3{font-size:1.6rem;margin-top:6px}
-.icon-btn{
-  width:38px;height:38px;border-radius:50%;background:var(--cream);color:var(--coffee);
-  display:grid;place-items:center;transition:.3s;font-size:1rem;
+.cart-head h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;margin-top:6px}
+.close-btn{
+  width:36px;height:36px;border-radius:50%;background:rgba(233,196,138,.1);
+  border:1px solid rgba(233,196,138,.3);color:var(--gold);
+  display:grid;place-items:center;font-size:14px;transition:.25s;flex-shrink:0;
 }
-.icon-btn:hover{background:var(--terra);color:#fff;transform:rotate(90deg)}
-.drawer-body{flex:1;overflow-y:auto;padding:20px 26px;display:grid;gap:14px;align-content:start}
-.empty{
-  text-align:center;padding:60px 10px;color:var(--muted);
-}
-.empty .big{font-size:2.4rem;margin-bottom:14px;opacity:.35}
-.empty p{font-size:.88rem}
+.close-btn:hover{background:var(--gold);color:#120d07;transform:rotate(90deg)}
+.cart-body{flex:1;overflow-y:auto;padding:18px 22px;display:grid;gap:12px;align-content:start}
+.cart-body::-webkit-scrollbar{width:6px}
+.cart-body::-webkit-scrollbar-thumb{background:rgba(233,196,138,.25);border-radius:6px}
+.cart-empty{text-align:center;padding:70px 10px;color:var(--mute)}
+.cart-empty .big{font-size:34px;margin-bottom:14px;opacity:.4}
+.cart-empty p{font-size:12.5px;line-height:1.7}
 .cart-item{
-  display:flex;gap:14px;padding:15px;border:1px solid var(--line);border-radius:16px;
-  background:#fff;animation:cardIn .35s var(--ease) both;
+  display:flex;gap:14px;padding:14px 16px;
+  border:1px solid rgba(255,255,255,.08);border-radius:12px;
+  background:rgba(20,15,11,.7);
+  animation:cardIn .3s cubic-bezier(.2,.7,.3,1) both;
 }
-.ci-thumb{
-  width:52px;height:52px;border-radius:13px;flex-shrink:0;display:grid;place-items:center;
-  color:rgba(255,252,247,.92);
-}
-.ci-thumb svg{width:26px;height:26px}
 .ci-main{flex:1;min-width:0}
-.ci-main h5{font-size:.92rem;font-weight:600;margin-bottom:3px}
-.ci-main .meta{font-size:.73rem;color:var(--muted);line-height:1.45}
-.ci-row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
-.qty{display:flex;align-items:center;gap:2px;background:var(--cream);border-radius:100px;padding:2px}
+.ci-main h5{font-size:13px;font-weight:600;margin-bottom:2px}
+.ci-price{font-size:11px;color:var(--gold);font-weight:600}
+.ci-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:10px}
+.qty{display:flex;align-items:center;gap:2px;background:rgba(233,196,138,.08);border-radius:20px;padding:2px}
 .qty button{
   width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
-  font-size:1rem;color:var(--coffee);transition:.2s;line-height:1;
+  color:var(--gold);font-size:14px;line-height:1;transition:.2s;
 }
-.qty button:hover{background:#fff}
-.qty span{min-width:22px;text-align:center;font-size:.83rem;font-weight:600}
-.ci-price{font-weight:600;font-size:.92rem}
-.drawer-foot{padding:22px 26px 26px;border-top:1px solid var(--line);background:#fff}
-.row{display:flex;justify-content:space-between;font-size:.87rem;color:var(--muted);padding:7px 0}
-.row.total{
-  font-size:1.15rem;color:var(--ink);font-weight:600;padding-top:14px;margin-top:8px;
-  border-top:1px dashed var(--line);font-family:'Playfair Display',serif;
+.qty button:hover{background:rgba(233,196,138,.2)}
+.qty span{min-width:22px;text-align:center;font-size:12px;font-weight:600;color:var(--text)}
+.ci-line{font-size:13px;font-weight:600;color:var(--text)}
+.cart-foot{padding:20px 24px 24px;border-top:1px solid rgba(255,255,255,.07);background:#0a0806}
+.sum-row{display:flex;justify-content:space-between;font-size:12px;color:var(--mute);padding:6px 0}
+.sum-row.total{
+  font-size:16px;color:var(--text);font-weight:600;font-family:'Cormorant Garamond',serif;
+  padding-top:12px;margin-top:8px;border-top:1px dashed rgba(233,196,138,.25);
 }
-.drawer-foot .btn{margin-top:18px}
+.cart-foot .btn{width:100%;justify-content:center;margin-top:16px;padding:14px}
 
-/* ============ TOAST ============ */
-.toasts{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:500;display:grid;gap:10px;width:max-content;max-width:90vw}
-.toast{
-  background:var(--coffee);color:var(--cream);padding:14px 22px;border-radius:100px;
-  font-size:.85rem;font-weight:500;display:flex;align-items:center;gap:11px;
-  box-shadow:0 20px 40px -18px rgba(0,0,0,.6);
-  animation:toastIn .4s var(--ease) both;
+/* toasts */
+.toasts{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%);
+  z-index:200;display:grid;gap:10px;width:max-content;max-width:90vw;
 }
-.toast.out{animation:toastOut .35s var(--ease) forwards}
-.toast .dot{width:7px;height:7px;border-radius:50%;background:var(--caramel);flex-shrink:0}
-@keyframes toastIn{from{opacity:0;transform:translateY(18px) scale(.94)}to{opacity:1;transform:none}}
+.toast{
+  background:#120d07;color:var(--text);padding:13px 22px;border-radius:30px;
+  font-size:12px;font-weight:500;display:flex;align-items:center;gap:11px;
+  border:1px solid rgba(233,196,138,.35);
+  box-shadow:0 20px 40px -18px rgba(0,0,0,.85);
+  animation:toastIn .35s cubic-bezier(.2,.7,.3,1) both;
+}
+.toast.out{animation:toastOut .3s ease forwards}
+.toast .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0}
+@keyframes toastIn{from{opacity:0;transform:translateY(18px) scale(.95)}to{opacity:1;transform:none}}
 @keyframes toastOut{to{opacity:0;transform:translateY(12px) scale(.96)}}
 
-/* ============ REVEAL ============ */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.reveal.in{opacity:1;transform:none}
-
-/* ============ RESPONSIVE ============ */
-@media(max-width:960px){
-  .hero-grid{grid-template-columns:1fr;gap:48px}
-  .hero-art{min-height:340px;order:-1}
-  .hero{padding-top:120px}
-  .build-inner{grid-template-columns:1fr;gap:40px}
-  .story-grid,.visit-grid{grid-template-columns:1fr;gap:40px}
-  .foot-grid{grid-template-columns:1fr 1fr;gap:40px}
+@media(max-width:1000px){
+ nav{display:none}.burger{display:block}
+ nav.open{display:block;position:absolute;top:78px;left:0;right:0;background:#070605;padding:16px 28px 24px;border-bottom:1px solid var(--line)}
+ nav.open ul{flex-direction:column;gap:14px}
+ .hero .wrap{grid-template-columns:1fr;padding-top:36px;gap:30px}
+ .feat{grid-template-columns:1fr 1fr;justify-self:start;min-width:0}.tag{display:none}
+ .story{grid-template-columns:1fr}.sack{min-height:220px}.room{min-height:220px}
+ .menu-cats{grid-template-columns:1fr}
+ .cat-wide .cat-list{grid-template-columns:1fr}
+ .space{grid-template-columns:1fr}.sp1,.sp3{min-height:140px}.sp2{flex-wrap:wrap}.stats{margin-left:0}
+ .foot{height:auto;flex-direction:column;padding:20px 0}.foot ul{flex-wrap:wrap;justify-content:center}
 }
-@media(max-width:860px){
-  .burger{display:grid}
-  .nav-links{
-    position:fixed;top:76px;left:0;right:0;background:var(--paper);
-    flex-direction:column;align-items:stretch;gap:4px;padding:18px 6vw 30px;
-    transform:translateY(-130%);transition:transform .45s var(--ease);
-    box-shadow:0 30px 40px -24px rgba(42,28,19,.3);border-bottom:1px solid var(--line);
-  }
-  .nav-links.open{transform:none}
-  .nav-link{color:var(--ink);padding:14px 0;border-bottom:1px solid var(--line);opacity:1;font-size:1rem}
-  .header.menu-open{background:var(--paper)}
-  .header.menu-open{--nav-fg:var(--ink)}
-}
-@media(max-width:560px){
-  .hero-stats{gap:26px}
-  .stat b{font-size:1.5rem}
-  .foot-grid{grid-template-columns:1fr}
-  .float-card.a{left:-6px}
-  .float-card.b{right:-6px}
-  .drawer{width:100vw}
-}
-@media(prefers-reduced-motion:reduce){
-  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
-  html{scroll-behavior:auto}
-}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 </style>
 </head>
 <body>
 
-<!-- ================= HEADER ================= -->
-<header class="header" id="header">
-  <div class="wrap nav">
-    <a href="#top" class="logo">
-      <span class="logo-mark">
-        <img src="https://i.ibb.co/tPKx9DmL/file-00000000aaec8210a25f487aec90da6e.png" 
-             alt="Press Coffee House logo">
-      </span>
-      <span class="logo-text">
-        <b>Press</b>
-        <span>Coffee House</span>
-      </span>
-    </a>
+<header><div class="wrap nav">
+ <a class="logo" href="#home"><span class="mark"><img src="https://i.ibb.co/tPKx9DmL/file-00000000aaec8210a25f487aec90da6e.png" alt="Press Coffee House logo"></span><span><b>PRESS</b><small>COFFEE HOUSE</small></span></a>
+ <nav id="nav"><ul>
+  <li><a class="on" href="#home">Home</a></li><li><a href="#menu">Menu</a></li><li><a href="#story">Our Story</a></li><li><a href="#space">Gallery</a></li><li><a href="#space">Visit</a></li><li><a href="#foot">Contact</a></li>
+ </ul></nav>
+ <div class="nav-right">
+   <button class="cart-btn" id="cartBtn" aria-label="Open cart">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+       <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+       <path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
+     </svg>
+     <span class="cart-count" id="cartCount">0</span>
+   </button>
+   <a class="btn sm" href="#menu" id="orderNowBtn">Order Now &nbsp;↗</a>
+   <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+ </div>
+</div></header>
 
-    <nav class="nav-links" id="navLinks">
-      <a href="#menu" class="nav-link">Menu</a>
-      <a href="#build" class="nav-link">Build a cup</a>
-      <a href="#story" class="nav-link">Our story</a>
-      <a href="#visit" class="nav-link">Visit</a>
-    </nav>
+<section class="hero" id="home"><div class="wrap">
+ <div>
+  <div class="eyebrow">More than just coffee</div>
+  <h1>PRESS <span>COFFEE HOUSE</span></h1>
+  <p>A cozy space for great coffee, real conversations and good vibes. Crafted for the ones who move different.</p>
+  <div class="cta"><a class="btn fill" href="#menu">Explore Our Menu &nbsp;↗</a><a class="play" href="#story"><i>▶</i>Watch Our Story</a></div>
+ </div>
+ <ul class="feat"><li><i>☕</i>Great Coffee</li><li><i>👥</i>Good Vibes</li><li><i>♡</i>Real Connections</li><li><i>☆</i>Always Fresh</li></ul>
+ <div class="tag script">Good Coffee<br>Bigger Dreams</div>
+</div></section>
 
-    <div class="nav-right">
-      <button class="cart-btn" id="cartBtn" aria-label="Open cart">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-          <path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
-        </svg>
-        <span class="cart-count" id="cartCount">0</span>
-      </button>
-      <button class="burger" id="burger" aria-label="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
-          <path d="M3 6h18M3 12h18M3 18h18"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-</header>
+<section class="story" id="story">
+ <div class="sack"></div>
+ <div class="txt"><div class="eyebrow" style="font-size:8px">Our Story</div>
+  <h2 class="serif">Good Coffee<br>Brought Us Together.</h2>
+  <p>Press Coffee House started with a simple idea — create a place where great coffee, good people and real conversations come together.</p>
+  <p>We're not just about coffee, we're about community, creativity and a better everyday.</p>
+  <a class="btn sm" href="#space">Our Journey &nbsp;↗</a></div>
+ <div class="room"></div>
+</section>
 
-<!-- ================= HERO ================= -->
-<section class="hero" id="top">
-  <div class="wrap hero-grid">
+<section class="menu" id="menu"><div class="wrap">
+ <div class="mh">
+   <div><div class="eyebrow" style="font-size:8px">Our Menu</div><h2 class="serif">Something for Every Mood</h2></div>
+   <span style="font-size:11px;color:var(--mute)" id="menuCount"></span>
+ </div>
+
+ <div class="menu-cats" id="menuCats"></div>
+
+ <div class="menu-toggle" id="menuToggle">
+   <button class="btn" id="toggleBtn">
+     <span id="toggleLabel">View Full Menu</span>
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+   </button>
+ </div>
+</div></section>
+
+<section class="space" id="space">
+ <div class="sp1"></div>
+ <div class="sp2"><div><div class="eyebrow" style="font-size:8px">The Space</div><h3 class="serif">Work. Chill. Connect.</h3><p>Whether you're here to work, relax or catch up, Press Coffee House is your space.</p><a class="btn sm" href="#space">View Gallery &nbsp;↗</a></div>
+  <div class="stats"><div><b>100%</b>Fresh Beans</div><div><b>Daily</b>Brews</div><div><b>1</b>Community</div></div></div>
+ <div class="sp3"></div>
+</section>
+
+<footer id="foot"><div class="wrap foot">
+ <a class="logo" href="#home"><span class="mark"><img src="https://i.ibb.co/tPKx9DmL/file-00000000aaec8210a25f487aec90da6e.png" alt="Press Coffee House logo"></span><span><b>PRESS</b><small>COFFEE HOUSE</small></span></a>
+ <ul><li><a href="#home">Home</a></li><li><a href="#menu">Menu</a></li><li><a href="#story">Our Story</a></li><li><a href="#space">Gallery</a></li><li><a href="#space">Visit</a></li><li><a href="#foot">Contact</a></li></ul>
+ <div class="soc"><span>◎</span><span>𝕏</span><span>♪</span></div>
+ <a class="btn sm" href="#menu">Order Now &nbsp;↗</a>
+</div></footer>
+
+<!-- cart drawer -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Shopping cart">
+  <div class="cart-head">
     <div>
-      <span class="eyebrow" style="color:var(--caramel)">Riverside District · Est. 2016</span>
-      <h1>Coffee worth <em>pressing</em><br>pause for.</h1>
-      <p class="lead">
-        A neighbourhood roastery and café. We roast small batches in the back,
-        pull them fresh out front, and take our time doing it — because good
-        coffee shouldn't be rushed.
-      </p>
-      <div class="hero-cta">
-        <a href="#menu" class="btn btn-primary">
-          Order ahead
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a href="#visit" class="btn btn-ghost">Find us</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><b data-count="4.9" data-dec="1">0.0</b><span>Google rating</span></div>
-        <div class="stat"><b data-count="12">0</b><span>Single origins</span></div>
-        <div class="stat"><b data-count="9">0</b><span>Years roasting</span></div>
-      </div>
-    </div>
-
-    <div class="hero-art">
-      <!-- French press illustration -->
-      <svg class="press-svg" viewBox="0 0 300 400" fill="none" aria-hidden="true">
-        <g class="steam">
-          <path d="M118 96c-9-16 9-24 0-40"/>
-          <path d="M150 90c-9-18 9-26 0-44"/>
-          <path d="M182 96c-9-16 9-24 0-40"/>
-        </g>
-
-        <!-- base -->
-        <rect x="86" y="346" width="128" height="18" rx="9" fill="#C08A4E"/>
-        <!-- handle -->
-        <path d="M200 158c52 12 52 148 0 160" stroke="#C08A4E" stroke-width="13" stroke-linecap="round"/>
-        <!-- glass body -->
-        <path d="M100 118 L200 118 L196 328 Q196 348 176 348 L124 348 Q104 348 104 328 Z"
-              fill="rgba(255,252,247,.07)" stroke="rgba(217,179,130,.55)" stroke-width="2.5"/>
-        <!-- coffee -->
-        <path d="M106 244 L194 244 L196 328 Q196 348 176 348 L124 348 Q104 348 104 328 Z" fill="#402615"/>
-        <!-- crema -->
-        <path d="M106 244 L194 244 L194.6 256 L105.4 256 Z" fill="#6B4326"/>
-        <!-- filter -->
-        <rect x="110" y="232" width="80" height="12" rx="4" fill="#8B6A4A"/>
-        <!-- rod -->
-        <rect x="146" y="40" width="8" height="80" rx="4" fill="#D9B382" opacity=".75"/>
-        <!-- knob -->
-        <rect x="134" y="22" width="32" height="18" rx="9" fill="#C08A4E"/>
-        <!-- lid -->
-        <rect x="92" y="100" width="116" height="20" rx="10" fill="#C08A4E"/>
-        <rect x="92" y="100" width="116" height="7" rx="3.5" fill="#D9B382" opacity=".5"/>
-      </svg>
-
-      <div class="float-card a">
-        <div class="fc-top"><span class="stars">★★★★★</span></div>
-        <div class="fc-sub">"Best flat white in the city."</div>
-      </div>
-      <div class="float-card b">
-        <div class="fc-top"><span class="pulse-dot"></span> Roasted today</div>
-        <div class="fc-sub">Ethiopia Guji · Batch #218</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= MARQUEE ================= -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track" id="marqueeTrack">
-    <span>Single origin</span><span>Roasted in-house daily</span><span>Oat milk always free</span>
-    <span>Open at 7am</span><span>Beans to take home</span><span>No laptops after 6pm</span>
-    <span>Single origin</span><span>Roasted in-house daily</span><span>Oat milk always free</span>
-    <span>Open at 7am</span><span>Beans to take home</span><span>No laptops after 6pm</span>
-  </div>
-</div>
-
-<!-- ================= MENU ================= -->
-<section class="sec-pad" id="menu">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">The menu</span>
-      <h2>Brewed to order,<br>every single time.</h2>
-      <p class="lead">Tap a category to explore. Everything is available for pickup in about eight minutes.</p>
-    </div>
-
-    <div class="tabs reveal" id="tabs">
-      <button class="tab active" data-cat="all">Everything</button>
-      <button class="tab" data-cat="espresso">Espresso</button>
-      <button class="tab" data-cat="filter">Filter</button>
-      <button class="tab" data-cat="cold">Cold</button>
-      <button class="tab" data-cat="bakes">Bakes</button>
-    </div>
-
-    <div class="grid" id="menuGrid"></div>
-  </div>
-</section>
-
-<!-- ================= BUILD YOUR CUP ================= -->
-<section class="sec-pad" id="build">
-  <div class="wrap">
-    <div class="build reveal">
-      <div class="build-inner">
-        <div class="build-visual">
-          <svg class="cup-preview" id="cupPreview" viewBox="0 0 240 260" aria-hidden="true">
-            <defs>
-              <clipPath id="cupClip">
-                <path d="M62 70 h116 v110 a58 58 0 0 1 -58 58 a58 58 0 0 1 -58 -58 z"/>
-              </clipPath>
-            </defs>
-            <ellipse cx="120" cy="244" rx="78" ry="11" fill="rgba(255,252,247,.07)"/>
-            <path d="M178 100 q44 8 44 44 t-44 44" fill="none" stroke="rgba(255,252,247,.28)" stroke-width="12" stroke-linecap="round"/>
-            <path d="M62 70 h116 v110 a58 58 0 0 1 -58 58 a58 58 0 0 1 -58 -58 z"
-                  fill="rgba(255,252,247,.09)" stroke="rgba(255,252,247,.35)" stroke-width="2"/>
-            <g clip-path="url(#cupClip)">
-              <rect id="liquid" x="62" y="104" width="116" height="140" fill="#5A3A22" style="transition:fill .45s ease"/>
-            </g>
-            <ellipse cx="120" cy="70" rx="58" ry="11" fill="rgba(255,252,247,.16)"/>
-          </svg>
-          <div class="build-price-tag">
-            <small>Your cup</small>
-            $<span id="buildPrice">4.35</span>
-          </div>
-        </div>
-
-        <div class="build-panel">
-          <span class="eyebrow" style="color:var(--caramel)">Make it yours</span>
-          <h2 style="color:var(--cream);margin:16px 0 12px">Build your cup</h2>
-          <p style="color:rgba(247,240,230,.6);font-size:.95rem;margin-bottom:34px;max-width:46ch">
-            Start with our house espresso blend, then dial it in exactly how you like it.
-          </p>
-
-          <div class="opt">
-            <div class="opt-label">Size</div>
-            <div class="chips" data-group="size">
-              <button class="chip" data-val="Small" data-add="0">Small · 6oz</button>
-              <button class="chip is-active" data-val="Medium" data-add="0.6">Medium · 10oz</button>
-              <button class="chip" data-val="Large" data-add="1.1">Large · 14oz</button>
-            </div>
-          </div>
-
-          <div class="opt">
-            <div class="opt-label">Milk</div>
-            <div class="chips" data-group="milk">
-              <button class="chip is-active" data-val="Whole milk" data-add="0" data-fill="#C9A176">Whole</button>
-              <button class="chip" data-val="Oat milk" data-add="0" data-fill="#D8BE9A">Oat <span class="plus">free</span></button>
-              <button class="chip" data-val="Almond milk" data-add="0.75" data-fill="#CBB28F">Almond <span class="plus">+0.75</span></button>
-              <button class="chip" data-val="No milk" data-add="0" data-fill="#40260F">None</button>
-            </div>
-          </div>
-
-          <div class="opt">
-            <div class="opt-label">Extras</div>
-            <div class="chips" data-group="extras" data-multi="true">
-              <button class="chip" data-val="Extra shot" data-add="1.00">Extra shot <span class="plus">+1.00</span></button>
-              <button class="chip" data-val="Vanilla syrup" data-add="0.75">Vanilla <span class="plus">+0.75</span></button>
-              <button class="chip" data-val="Decaf" data-add="0">Decaf</button>
-            </div>
-          </div>
-
-          <button class="btn btn-primary" id="addCustom">
-            Add to order · <span id="btnPrice">$4.35</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= STORY ================= -->
-<section class="sec-pad" id="story">
-  <div class="wrap story-grid">
-    <div class="story-art reveal">
-      <svg class="bean" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-        <ellipse cx="50" cy="50" rx="34" ry="44" fill="currentColor"/>
-        <path d="M50 8c-10 14-10 70 0 84" stroke="#7A4A28" stroke-width="5" stroke-linecap="round" fill="none"/>
-        <path d="M50 8c10 14 10 70 0 84" stroke="#7A4A28" stroke-width="5" stroke-linecap="round" fill="none"/>
-      </svg>
-    </div>
-    <div class="reveal">
-      <span class="eyebrow">Our story</span>
-      <h2 style="margin:16px 0 18px">Nine years, one<br>obsession.</h2>
-      <p class="lead">
-        Press started as a single drum roaster in a garage on 4th Street. We still
-        roast every batch by hand, still cup every lot before it hits the shelf,
-        and still argue about grind size more than is reasonable.
-      </p>
-      <ul class="story-list">
-        <li><span class="check">✓</span><span><b>Roasted in-house daily.</b> Never more than four days off the roast.</span></li>
-        <li><span class="check">✓</span><span><b>Direct trade.</b> We buy from nine farms we've visited in person.</span></li>
-        <li><span class="check">✓</span><span><b>Zero waste bar.</b> Spent grounds go to the community garden next door.</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ================= VISIT ================= -->
-<section class="sec-pad visit" id="visit">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Visit us</span>
-      <h2>Come sit a while.</h2>
-    </div>
-
-    <div class="visit-grid">
-      <div class="hours-card reveal">
-        <div class="status" id="statusBadge">
-          <span class="pulse-dot"></span><span id="statusText">Checking hours…</span>
-        </div>
-        <h3 style="margin-bottom:20px">Opening hours</h3>
-        <ul class="hours-list" id="hoursList"></ul>
-      </div>
-
-      <div class="info-cards reveal">
-        <div class="info">
-          <div class="info-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-            </svg>
-          </div>
-          <div>
-            <h4>218 Riverside Walk</h4>
-            <p>Portland, OR 97209<br>Corner of 4th &amp; Riverside</p>
-            <a href="https://maps.google.com" target="_blank" rel="noopener">Get directions →</a>
-          </div>
-        </div>
-
-        <div class="info">
-          <div class="info-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>
-            </svg>
-          </div>
-          <div>
-            <h4>(503) 555-0142</h4>
-            <p>Call ahead for large orders and bean reservations.</p>
-            <a href="tel:5035550142">Call the bar →</a>
-          </div>
-        </div>
-
-        <div class="info">
-          <div class="info-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-            </svg>
-          </div>
-          <div>
-            <h4>Private cupping room</h4>
-            <p>Book the back room for tastings, workshops, and small events.</p>
-            <a href="#top">Enquire about bookings →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <a href="#top" class="logo" style="--nav-fg:var(--cream)">
-          <span class="logo-mark">
-            <img src="https://i.ibb.co/tPKx9DmL/file-00000000aaec8210a25f487aec90da6e.png" 
-                 alt="Press Coffee House logo">
-          </span>
-          <span class="logo-text"><b>Press</b><span>Coffee House</span></span>
-        </a>
-        <p class="foot-desc">Small-batch roastery and café in the Riverside District. Open early, always.</p>
-      </div>
-
-      <div>
-        <h4>Explore</h4>
-        <ul class="foot-links">
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#build">Build a cup</a></li>
-          <li><a href="#story">Our story</a></li>
-          <li><a href="#visit">Visit</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>Shop</h4>
-        <ul class="foot-links">
-          <li><a href="#menu">Whole beans</a></li>
-          <li><a href="#menu">Subscriptions</a></li>
-          <li><a href="#menu">Brew gear</a></li>
-          <li><a href="#menu">Gift cards</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>Stay in the loop</h4>
-        <p style="font-size:.87rem;line-height:1.7">New origins, cupping invites, and the occasional free pastry. No spam, ever.</p>
-        <form class="subscribe" id="subForm">
-          <input type="email" placeholder="you@email.com" required aria-label="Email address">
-          <button type="submit">Join</button>
-        </form>
-      </div>
-    </div>
-
-    <div class="foot-bottom">
-      <span>© 2025 Press Coffee House. All rights reserved.</span>
-      <div class="socials">
-        <a href="#top" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-          </svg>
-        </a>
-        <a href="#top" aria-label="X">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.1 8.1L23.2 22h-6.6l-5.1-6.7L5.6 22H2.5l7.6-8.7L1.2 2h6.7l4.6 6.1L18.9 2zm-1.1 18h1.7L7.3 3.8H5.5L17.8 20z"/></svg>
-        </a>
-        <a href="#top" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- ================= CART ================= -->
-<div class="overlay" id="overlay"></div>
-<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Shopping cart">
-  <div class="drawer-head">
-    <div>
-      <span class="eyebrow">Your order</span>
+      <div class="eyebrow" style="font-size:8px">Your Order</div>
       <h3>Cart</h3>
     </div>
-    <button class="icon-btn" id="closeCart" aria-label="Close cart">✕</button>
+    <button class="close-btn" id="closeCart" aria-label="Close cart">✕</button>
   </div>
-  <div class="drawer-body" id="cartItems"></div>
-  <div class="drawer-foot">
-    <div class="row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
-    <div class="row"><span>Tax (8.5%)</span><span id="tax">$0.00</span></div>
-    <div class="row total"><span>Total</span><span id="total">$0.00</span></div>
-    <button class="btn btn-primary full" id="checkout">Checkout · <span id="checkoutTotal">$0.00</span></button>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-foot">
+    <div class="sum-row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+    <div class="sum-row"><span>Tax (8.5%)</span><span id="tax">$0.00</span></div>
+    <div class="sum-row total"><span>Total</span><span id="total">$0.00</span></div>
+    <button class="btn fill" id="checkoutBtn">Checkout · <span id="checkoutTotal">$0.00</span></button>
   </div>
 </aside>
 
 <div class="toasts" id="toasts"></div>
 
 <script>
-/* ============================================================
-   DATA
-============================================================ */
-const ICONS = {
-  espresso: `<svg viewBox="0 0 64 64" fill="none"><path d="M16 24h26v12a13 13 0 0 1-13 13 13 13 0 0 1-13-13V24z" fill="currentColor"/><path d="M42 27h4.5a6.5 6.5 0 0 1 0 13H42" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><ellipse cx="29" cy="24" rx="13" ry="3.4" fill="currentColor"/><path d="M24 15c-2.5-3.5 2.5-5 0-8.5M34 15c-2.5-3.5 2.5-5 0-8.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity=".7"/></svg>`,
-  filter: `<svg viewBox="0 0 64 64" fill="none"><path d="M12 16h40L36 42v12h-8V42L12 16z" fill="currentColor"/><path d="M18 24h28" stroke="#fff" stroke-width="2.6" stroke-linecap="round" opacity=".55"/><rect x="24" y="52" width="16" height="5" rx="2.5" fill="currentColor"/></svg>`,
-  cold: `<svg viewBox="0 0 64 64" fill="none"><path d="M21 14h22l-3 38a6 6 0 0 1-6 5.5h-4A6 6 0 0 1 24 52L21 14z" fill="currentColor" opacity=".92"/><rect x="24" y="24" width="9" height="9" rx="2" transform="rotate(-14 24 24)" fill="#fff" opacity=".5"/><rect x="34" y="34" width="8" height="8" rx="2" transform="rotate(12 34 34)" fill="#fff" opacity=".4"/><rect x="25" y="42" width="7" height="7" rx="2" transform="rotate(-8 25 42)" fill="#fff" opacity=".35"/><rect x="20" y="8" width="24" height="5" rx="2.5" fill="currentColor"/></svg>`,
-  bakes: `<svg viewBox="0 0 64 64" fill="none"><path d="M32 20c-7 0-12.5 3.5-15.5 9-1.8 3.3-4.3 5.4-7.5 5.4 2.3 4.5 7.6 7.1 13 7.1 3.3 0 6.6-1 9.9-3 3.3 2 6.6 3 9.9 3 5.4 0 10.7-2.6 13-7.1-3.2 0-5.7-2.1-7.5-5.4C44.5 23.5 39 20 32 20z" fill="currentColor"/><path d="M32 22v19" stroke="#fff" stroke-width="2.2" opacity=".35" stroke-linecap="round"/></svg>`
-};
-
-const GRADS = {
-  espresso: 'linear-gradient(140deg,#3A2418,#6B4326)',
-  filter:   'linear-gradient(140deg,#5A3A22,#A9764A)',
-  cold:     'linear-gradient(140deg,#2C3330,#5E6E63)',
-  bakes:    'linear-gradient(140deg,#7A4A22,#C68B4E)'
-};
+/* ==========================================================
+   MENU DATA
+========================================================== */
+const SYRUP_PRICE = 0.75; // each syrup add-on
 
 const MENU = [
-  { id:'e1', name:'Flat White',        cat:'espresso', price:4.50, desc:'Double ristretto, silky microfoam, served at 6oz.', tag:'Bestseller' },
-  { id:'e2', name:'Cortado',           cat:'espresso', price:4.00, desc:'Equal parts espresso and steamed milk. No fuss.' },
-  { id:'e3', name:'Caramel Latte',     cat:'espresso', price:5.25, desc:'House caramel, 12oz, finished with a whisper of sea salt.' },
-
-  { id:'f1', name:'House Drip',        cat:'filter',   price:3.50, desc:'Our everyday blend. Bottomless if you\'re staying a while.' },
-  { id:'f2', name:'Ethiopia Guji V60', cat:'filter',   price:5.50, desc:'Jasmine, peach, bergamot. Brewed one cup at a time.', tag:'New' },
-  { id:'f3', name:'Colombia Huila',    cat:'filter',   price:5.25, desc:'Red apple, cocoa nib, brown sugar. Comfort in a cup.' },
-
-  { id:'c1', name:'Cold Brew',         cat:'cold',     price:4.75, desc:'Steeped 18 hours, poured over a single big cube.' },
-  { id:'c2', name:'Iced Latte',        cat:'cold',     price:5.00, desc:'Double shot over cold milk and ice. Simple, perfect.' },
-  { id:'c3', name:'Espresso Tonic',    cat:'cold',     price:5.50, desc:'Tonic, orange peel, ristretto. Sharper than it sounds.', tag:'Cult favourite' },
-
-  { id:'b1', name:'Butter Croissant',  cat:'bakes',    price:4.25, desc:'Laminated over three days. Baked at 5am, gone by 11.' },
-  { id:'b2', name:'Almond Croissant',  cat:'bakes',    price:5.00, desc:'Filled with frangipane, showered in toasted flakes.' },
-  { id:'b3', name:'Cardamom Bun',      cat:'bakes',    price:5.25, desc:'Hand-rolled, heavy on the cardamom. Vegan.' }
+  {
+    emoji:'☕', name:'Coffee',
+    items:[
+      {name:'Americano', price:3.50},
+      {name:'Frappe', price:5.25},
+      {name:'Latte', price:4.50},
+      {name:'Specialty drinks', price:5.50}
+    ]
+  },
+  {
+    emoji:'🥤', name:'Non-Coffee',
+    items:[
+      {name:'Chai', price:4.25},
+      {name:'Hot Chocolate / Steamers', price:4.00},
+      {name:'Matcha', price:5.00},
+      {name:'Steeped Decaf', price:3.25}
+    ]
+  },
+  {
+    emoji:'🍵', name:'Tea',
+    items:[
+      {name:'Hot Tea', price:2.75},
+      {name:'London Fog', price:4.50},
+      {name:'Flavored Tea', price:3.25},
+      {name:'House Brewed Black Tea', price:2.95}
+    ]
+  },
+  {
+    emoji:'🍋', name:'Lemonade',
+    items:[
+      {name:'Arnold Palmer', price:3.75},
+      {name:'Lemonade', price:3.50},
+      {name:'Frozen Lemonade', price:4.25}
+    ]
+  },
+  {
+    emoji:'⚡', name:'Energy',
+    items:[
+      {name:'Red Bull Spritzer', price:5.50},
+      {name:'Sugar-Free Red Bull Spritzer', price:5.50},
+      {name:'White Lotus / Skinny White Lotus', price:6.00}
+    ]
+  },
+  {
+    emoji:'🥯', name:'Quick Bites',
+    items:[
+      {name:'Bagel & Cream Cheese', price:3.95},
+      {name:'Muffin Tops', price:3.50}
+    ]
+  },
+  {
+    emoji:'🍯', name:'Coffee Syrups', wide:true, hint:'Tap to add · $0.75 each',
+    pills:['Almond','Caramel','Coconut','English Toffee','French Vanilla','Hazelnut','Huckleberry','Irish Cream','Kona Mocha','Lavender','Macadamia Nut','Mexican Mocha','Mocha','Peppermint','Vanilla','Vanilla Bean','White Mocha']
+  },
+  {
+    emoji:'🍓', name:'Fruity Syrups', wide:true, hint:'Tap to add · $0.75 each',
+    pills:['Blackberry','Blueberry','Blue Raspberry','Cherry','Coconut','Huckleberry','Kiwi','Lavender','Lime','Mango','Peach','Pomegranate','Raspberry','Strawberry','Watermelon']
+  },
+  {
+    emoji:'➕', name:'Extras', wide:true,
+    items:[
+      {name:'Breve', price:1.00},
+      {name:'Espresso', price:1.25},
+      {name:'Sweet Foam', price:0.75},
+      {name:'Dairy-Free Milk Alternative', price:0.75},
+      {name:'Extra Syrup', price:0.75}
+    ]
+  }
 ];
 
-const HOURS = [
-  { day:'Monday',    idx:1, open:7,  close:19 },
-  { day:'Tuesday',   idx:2, open:7,  close:19 },
-  { day:'Wednesday', idx:3, open:7,  close:19 },
-  { day:'Thursday',  idx:4, open:7,  close:19 },
-  { day:'Friday',    idx:5, open:7,  close:21 },
-  { day:'Saturday',  idx:6, open:8,  close:21 },
-  { day:'Sunday',    idx:0, open:8,  close:17 }
-];
+const INITIAL_VISIBLE = 3;
+let showAll = false;
 
-/* ============================================================
-   HELPERS
-============================================================ */
-const $  = s => document.querySelector(s);
-const $$ = s => [...document.querySelectorAll(s)];
-const money = n => '$' + n.toFixed(2);
-const fmtHour = h => {
-  const suffix = h >= 12 ? 'pm' : 'am';
-  const hr = h % 12 === 0 ? 12 : h % 12;
-  return hr + suffix;
-};
+/* ==========================================================
+   RENDER MENU
+========================================================== */
+const menuCatsEl  = document.getElementById('menuCats');
+const menuToggle  = document.getElementById('menuToggle');
+const toggleBtn   = document.getElementById('toggleBtn');
+const toggleLabel = document.getElementById('toggleLabel');
+const menuCount   = document.getElementById('menuCount');
 
-/* ============================================================
-   HEADER / NAV
-============================================================ */
-const header = $('#header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive:true });
+function renderCategory(cat, i) {
+  const itemsHtml = cat.items ? `<ul class="cat-list">${cat.items.map(it => `
+    <li>
+      <span class="n">${it.name}</span>
+      <span class="dots"></span>
+      <span class="p">$${it.price.toFixed(2)}</span>
+      <button class="add" data-name="${it.name}" data-price="${it.price}" aria-label="Add ${it.name}">+</button>
+    </li>`).join('')}</ul>` : '';
 
-const navLinks = $('#navLinks');
-$('#burger').addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-  header.classList.toggle('menu-open', navLinks.classList.contains('open'));
-});
-navLinks.addEventListener('click', e => {
-  if (e.target.classList.contains('nav-link')) {
-    navLinks.classList.remove('open');
-    header.classList.remove('menu-open');
+  const pillsHtml = cat.pills ? `<div class="pills">${cat.pills.map(p =>
+    `<button class="pill" data-syrup="${p}" aria-label="Add ${p} syrup">${p}</button>`).join('')}</div>` : '';
+
+  const hintHtml = cat.hint ? `<span class="cat-hint">${cat.hint}</span>` : '';
+
+  return `<article class="cat ${cat.wide ? 'cat-wide' : ''}" style="animation-delay:${i*45}ms">
+    <header class="cat-h">
+      <span class="cat-emoji">${cat.emoji}</span>
+      <h3>${cat.name}</h3>
+      ${hintHtml}
+    </header>
+    ${itemsHtml}${pillsHtml}
+  </article>`;
+}
+
+function renderMenu() {
+  const visible = showAll ? MENU : MENU.slice(0, INITIAL_VISIBLE);
+  menuCatsEl.innerHTML = visible.map(renderCategory).join('');
+  menuCount.textContent = showAll
+    ? `${MENU.length} categories`
+    : `Showing ${INITIAL_VISIBLE} of ${MENU.length} categories`;
+}
+
+renderMenu();
+
+toggleBtn.addEventListener('click', () => {
+  showAll = !showAll;
+  toggleLabel.textContent = showAll ? 'Show Less' : 'View Full Menu';
+  menuToggle.classList.toggle('open', showAll);
+  renderMenu();
+  if (!showAll) {
+    document.getElementById('menu').scrollIntoView({ behavior:'smooth', block:'start' });
   }
 });
 
-/* ============================================================
-   TOASTS
-============================================================ */
-const toasts = $('#toasts');
+/* ==========================================================
+   CART STATE
+========================================================== */
+let cart = [];
+
+const cartDrawer = document.getElementById('cartDrawer');
+const cartOverlay = document.getElementById('cartOverlay');
+const cartBody = document.getElementById('cartBody');
+const cartCount = document.getElementById('cartCount');
+const toasts = document.getElementById('toasts');
+
+function money(n) { return '$' + n.toFixed(2); }
+
 function toast(msg) {
   const el = document.createElement('div');
   el.className = 'toast';
   el.innerHTML = `<span class="dot"></span>${msg}`;
   toasts.appendChild(el);
-  setTimeout(() => {
-    el.classList.add('out');
-    setTimeout(() => el.remove(), 350);
-  }, 2400);
+  setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 320); }, 2200);
 }
 
-/* ============================================================
-   MENU RENDER
-============================================================ */
-const menuGrid = $('#menuGrid');
-let activeCat = 'all';
-
-function renderMenu(cat) {
-  activeCat = cat;
-  const items = cat === 'all' ? MENU : MENU.filter(m => m.cat === cat);
-  menuGrid.innerHTML = items.map((m, i) => `
-    <article class="card" style="animation-delay:${i * 45}ms">
-      <div class="card-media" style="background:${GRADS[m.cat]}">
-        ${m.tag ? `<span class="tag">${m.tag}</span>` : ''}
-        ${ICONS[m.cat]}
-      </div>
-      <div class="card-body">
-        <h3>${m.name}</h3>
-        <p>${m.desc}</p>
-        <div class="card-foot">
-          <span class="price">${money(m.price)}</span>
-          <button class="add-btn" data-add="${m.id}" aria-label="Add ${m.name} to order">+</button>
-        </div>
-      </div>
-    </article>
-  `).join('');
-}
-renderMenu('all');
-
-$('#tabs').addEventListener('click', e => {
-  const tab = e.target.closest('.tab');
-  if (!tab) return;
-  $$('.tab').forEach(t => t.classList.toggle('active', t === tab));
-  renderMenu(tab.dataset.cat);
-});
-
-menuGrid.addEventListener('click', e => {
-  const btn = e.target.closest('[data-add]');
-  if (!btn) return;
-  const item = MENU.find(m => m.id === btn.dataset.add);
-  if (item) {
-    addToCart({ id: item.id, name: item.name, price: item.price, meta: '' });
-    toast(`${item.name} added to your order`);
-  }
-});
-
-/* ============================================================
-   BUILD YOUR CUP
-============================================================ */
-const BASE_PRICE = 3.75;
-const buildState = {
-  size:  { val:'Medium', add:0.60 },
-  milk:  { val:'Whole milk', add:0, fill:'#C9A176' },
-  extras: []
-};
-
-const buildPriceEl = $('#buildPrice');
-const btnPriceEl   = $('#btnPrice');
-const liquidEl     = $('#liquid');
-const cupPreview   = $('#cupPreview');
-
-function calcBuild() {
-  const extrasTotal = buildState.extras.reduce((s, e) => s + e.add, 0);
-  return BASE_PRICE + buildState.size.add + buildState.milk.add + extrasTotal;
-}
-
-function updateBuild() {
-  const total = calcBuild();
-  buildPriceEl.textContent = total.toFixed(2);
-  btnPriceEl.textContent   = money(total);
-  liquidEl.setAttribute('fill', buildState.milk.fill);
-
-  const scale = buildState.size.val === 'Small' ? 0.86
-              : buildState.size.val === 'Large' ? 1.1 : 1;
-  cupPreview.style.transform = `scale(${scale})`;
-}
-
-$$('.chips').forEach(group => {
-  group.addEventListener('click', e => {
-    const chip = e.target.closest('.chip');
-    if (!chip) return;
-    const key = group.dataset.group;
-    const isMulti = group.dataset.multi === 'true';
-
-    if (isMulti) {
-      chip.classList.toggle('is-active');
-      buildState.extras = $$('.chips[data-group="extras"] .chip.is-active').map(c => ({
-        val: c.dataset.val,
-        add: parseFloat(c.dataset.add) || 0
-      }));
-    } else {
-      [...group.children].forEach(c => c.classList.remove('is-active'));
-      chip.classList.add('is-active');
-      buildState[key] = {
-        val: chip.dataset.val,
-        add: parseFloat(chip.dataset.add) || 0,
-        fill: chip.dataset.fill || buildState.milk.fill
-      };
-    }
-    updateBuild();
-  });
-});
-
-$('#addCustom').addEventListener('click', () => {
-  const extras = buildState.extras.map(e => e.val);
-  const meta = [buildState.size.val, buildState.milk.val, ...extras].join(' · ');
-  addToCart({
-    id: 'custom-' + buildState.size.val + '-' + buildState.milk.val + '-' + extras.join(','),
-    name: 'House Latte (Custom)',
-    price: calcBuild(),
-    meta
-  });
-  toast('Custom latte added to your order');
-});
-
-updateBuild();
-
-/* ============================================================
-   CART
-============================================================ */
-let cart = [];
-
-const drawer     = $('#drawer');
-const overlay    = $('#overlay');
-const cartItems  = $('#cartItems');
-const cartCount  = $('#cartCount');
-
-function openCart() {
-  drawer.classList.add('open');
-  overlay.classList.add('show');
-  drawer.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-}
-function closeCart() {
-  drawer.classList.remove('open');
-  overlay.classList.remove('show');
-  drawer.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-}
-
-$('#cartBtn').addEventListener('click', openCart);
-$('#closeCart').addEventListener('click', closeCart);
-overlay.addEventListener('click', closeCart);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
-
-function addToCart(item) {
-  const existing = cart.find(c => c.id === item.id);
+function addToCart(name, price) {
+  const existing = cart.find(c => c.name === name);
   if (existing) existing.qty++;
-  else cart.push({ ...item, qty: 1, cat: guessCat(item.id) });
+  else cart.push({ name, price, qty:1 });
   renderCart();
   cartCount.classList.remove('show');
   void cartCount.offsetWidth;
   cartCount.classList.add('show');
+  toast(`${name} added to your order`);
 }
 
-function guessCat(id) {
-  if (id.startsWith('f')) return 'filter';
-  if (id.startsWith('c')) return 'cold';
-  if (id.startsWith('b')) return 'bakes';
-  return 'espresso';
-}
-
-function changeQty(id, delta) {
-  const item = cart.find(c => c.id === id);
+function changeQty(name, delta) {
+  const item = cart.find(c => c.name === name);
   if (!item) return;
   item.qty += delta;
-  if (item.qty <= 0) cart = cart.filter(c => c.id !== id);
+  if (item.qty <= 0) cart = cart.filter(c => c.name !== name);
   renderCart();
 }
 
 function renderCart() {
-  const count = cart.reduce((s, c) => s + c.qty, 0);
-  cartCount.textContent = count;
-  cartCount.classList.toggle('show', count > 0);
+  const totalQty = cart.reduce((s,c) => s + c.qty, 0);
+  cartCount.textContent = totalQty;
+  cartCount.classList.toggle('show', totalQty > 0);
 
   if (!cart.length) {
-    cartItems.innerHTML = `
-      <div class="empty">
+    cartBody.innerHTML = `
+      <div class="cart-empty">
         <div class="big">☕</div>
-        <p>Your order is empty.<br>Go pick something delicious.</p>
+        <p>Your order is empty.<br>Add something delicious from the menu.</p>
       </div>`;
   } else {
-    cartItems.innerHTML = cart.map(c => `
+    cartBody.innerHTML = cart.map(item => `
       <div class="cart-item">
-        <div class="ci-thumb" style="background:${GRADS[c.cat]}">${ICONS[c.cat]}</div>
         <div class="ci-main">
-          <h5>${c.name}</h5>
-          ${c.meta ? `<div class="meta">${c.meta}</div>` : ''}
+          <h5>${item.name}</h5>
+          <span class="ci-price">${money(item.price)}</span>
           <div class="ci-row">
             <div class="qty">
-              <button data-dec="${c.id}" aria-label="Decrease">−</button>
-              <span>${c.qty}</span>
-              <button data-inc="${c.id}" aria-label="Increase">+</button>
+              <button data-dec="${item.name}" aria-label="Decrease">−</button>
+              <span>${item.qty}</span>
+              <button data-inc="${item.name}" aria-label="Increase">+</button>
             </div>
-            <span class="ci-price">${money(c.price * c.qty)}</span>
+            <span class="ci-line">${money(item.price * item.qty)}</span>
           </div>
         </div>
-      </div>
-    `).join('');
+      </div>`).join('');
   }
 
-  const subtotal = cart.reduce((s, c) => s + c.price * c.qty, 0);
+  const subtotal = cart.reduce((s,c) => s + c.price * c.qty, 0);
   const tax = subtotal * 0.085;
   const total = subtotal + tax;
-
-  $('#subtotal').textContent = money(subtotal);
-  $('#tax').textContent = money(tax);
-  $('#total').textContent = money(total);
-  $('#checkoutTotal').textContent = money(total);
+  document.getElementById('subtotal').textContent = money(subtotal);
+  document.getElementById('tax').textContent = money(tax);
+  document.getElementById('total').textContent = money(total);
+  document.getElementById('checkoutTotal').textContent = money(total);
 }
 
-cartItems.addEventListener('click', e => {
+function openCart() {
+  cartDrawer.classList.add('open');
+  cartOverlay.classList.add('show');
+  cartDrawer.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  cartDrawer.classList.remove('open');
+  cartOverlay.classList.remove('show');
+  cartDrawer.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('cartBtn').addEventListener('click', openCart);
+document.getElementById('closeCart').addEventListener('click', closeCart);
+cartOverlay.addEventListener('click', closeCart);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
+
+/* ==========================================================
+   EVENT DELEGATION
+========================================================== */
+menuCatsEl.addEventListener('click', e => {
+  // Item + buttons
+  const addBtn = e.target.closest('.add');
+  if (addBtn) {
+    addToCart(addBtn.dataset.name, parseFloat(addBtn.dataset.price));
+    return;
+  }
+  // Syrup pills
+  const pill = e.target.closest('.pill');
+  if (pill) {
+    const syrupName = pill.dataset.syrup + ' Syrup';
+    addToCart(syrupName, SYRUP_PRICE);
+    // little visual confirmation
+    pill.classList.add('just-added');
+    setTimeout(() => pill.classList.remove('just-added'), 600);
+  }
+});
+
+cartBody.addEventListener('click', e => {
   const inc = e.target.closest('[data-inc]');
   const dec = e.target.closest('[data-dec]');
   if (inc) changeQty(inc.dataset.inc, 1);
   if (dec) changeQty(dec.dataset.dec, -1);
 });
 
-$('#checkout').addEventListener('click', () => {
+document.getElementById('checkoutBtn').addEventListener('click', () => {
   if (!cart.length) { toast('Your order is empty'); return; }
   toast('Order placed — ready in about 8 minutes ☕');
   cart = [];
@@ -1194,92 +634,12 @@ $('#checkout').addEventListener('click', () => {
   closeCart();
 });
 
-renderCart();
-
-/* ============================================================
-   HOURS / OPEN STATUS
-============================================================ */
-function renderHours() {
-  const now = new Date();
-  const todayIdx = now.getDay();
-  const list = $('#hoursList');
-
-  list.innerHTML = HOURS.map(h => `
-    <li class="${h.idx === todayIdx ? 'today' : ''}">
-      <span class="day">${h.day}</span>
-      <span>${fmtHour(h.open)} – ${fmtHour(h.close)}</span>
-    </li>
-  `).join('');
-
-  const today = HOURS.find(h => h.idx === todayIdx);
-  const minutes = now.getHours() * 60 + now.getMinutes();
-  const openM = today.open * 60;
-  const closeM = today.close * 60;
-
-  const badge = $('#statusBadge');
-  const text  = $('#statusText');
-
-  if (minutes >= openM && minutes < closeM) {
-    badge.className = 'status open';
-    text.textContent = `Open now · until ${fmtHour(today.close)}`;
-  } else if (minutes < openM) {
-    badge.className = 'status closed';
-    text.textContent = `Closed · opens ${fmtHour(today.open)} today`;
-  } else {
-    const tomorrow = HOURS.find(h => h.idx === (todayIdx + 1) % 7);
-    badge.className = 'status closed';
-    text.textContent = `Closed · opens ${fmtHour(tomorrow.open)} tomorrow`;
-  }
-}
-renderHours();
-
-/* ============================================================
-   NEWSLETTER
-============================================================ */
-$('#subForm').addEventListener('submit', e => {
+document.getElementById('orderNowBtn').addEventListener('click', e => {
   e.preventDefault();
-  const input = e.target.querySelector('input');
-  toast(`You're on the list, ${input.value.split('@')[0]} ☕`);
-  input.value = '';
+  document.getElementById('menu').scrollIntoView({ behavior:'smooth', block:'start' });
 });
 
-/* ============================================================
-   SCROLL REVEAL + COUNTERS
-============================================================ */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('in');
-    io.unobserve(entry.target);
-  });
-}, { threshold: 0.14 });
-
-$$('.reveal').forEach(el => io.observe(el));
-
-function animateCount(el) {
-  const target = parseFloat(el.dataset.count);
-  const dec = parseInt(el.dataset.dec || '0', 10);
-  const dur = 1400;
-  const start = performance.now();
-
-  function tick(now) {
-    const p = Math.min((now - start) / dur, 1);
-    const eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = (target * eased).toFixed(dec);
-    if (p < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
-const statIo = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    animateCount(entry.target);
-    statIo.unobserve(entry.target);
-  });
-}, { threshold: 0.6 });
-
-$$('[data-count]').forEach(el => statIo.observe(el));
+renderCart();
 </script>
 </body>
 </html>
