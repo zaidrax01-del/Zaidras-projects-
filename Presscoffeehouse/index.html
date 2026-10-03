@@ -179,17 +179,52 @@ nav a:hover{color:var(--gold)}
 .stats b{display:block;font-size:17px;color:var(--gold);font-weight:600}
 .sp3{position:relative;background:url('https://i.ibb.co/JwdzNS6S/file-00000000a8e88210bfbf1c5f8981e173.png') center/cover no-repeat, #1a1410}
 
-/* visit */
-.visit{position:relative;padding:52px 0 58px;background:var(--panel);border-top:1px solid rgba(255,255,255,.06)}
+/* visit — section background image */
+.visit{
+  position:relative;padding:52px 0 58px;border-top:1px solid rgba(255,255,255,.06);
+  overflow:hidden;isolation:isolate;
+  background:url('https://i.ibb.co/d0sksV3c/file-000000000b788210a78ca478258509af.png') center/cover no-repeat, #0d0b09;
+}
+.visit::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(7,6,5,.82) 0%,rgba(7,6,5,.72) 50%,rgba(7,6,5,.86) 100%);
+}
+.visit .wrap{position:relative;z-index:1}
 .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 .visit-card{
-  background:rgba(10,8,7,.75);
+  background:rgba(10,8,7,.78);
   border:1px solid rgba(255,255,255,.1);
   border-radius:14px;
   padding:28px 30px;
   transition:.28s;
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
 }
-.visit-card:hover{border-color:rgba(233,196,138,.45)}
+.visit-card:hover{border-color:rgba(233,196,138,.55);transform:translateY(-3px)}
+
+/* LOCATION CARD with its own background image */
+.visit-card.location{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:url('https://i.ibb.co/MxmY6nNz/file-00000000be248210814f15a0243cd751.png') center/cover no-repeat, #0a0807;
+  border-color:rgba(233,196,138,.28);
+}
+.visit-card.location::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(160deg,rgba(7,6,5,.82) 0%,rgba(7,6,5,.72) 55%,rgba(7,6,5,.88) 100%);
+  transition:.3s;
+}
+.visit-card.location:hover::before{
+  background:linear-gradient(160deg,rgba(7,6,5,.75) 0%,rgba(7,6,5,.62) 55%,rgba(7,6,5,.82) 100%);
+}
+.visit-card.location .eyebrow,
+.visit-card.location h3,
+.visit-card.location .addr-line,
+.visit-card.location .visit-note{
+  position:relative;z-index:1;
+}
+
 .status{
   display:inline-flex;align-items:center;gap:9px;
   padding:8px 16px;border-radius:30px;
@@ -219,8 +254,8 @@ nav a:hover{color:var(--gold)}
 }
 .hours-list .day{display:flex;align-items:center}
 .addr-line{font-size:13px;color:var(--mute);line-height:1.75;margin-bottom:22px}
-.addr-line b{color:var(--text);font-weight:500;display:block;font-size:15px;margin-bottom:6px;font-family:'Cormorant Garamond',serif;font-size:18px}
-.visit-actions{display:flex;gap:10px;flex-wrap:wrap}
+.addr-line b{color:var(--text);font-weight:500;display:block;margin-bottom:6px;font-family:'Cormorant Garamond',serif;font-size:18px}
+.visit-actions{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
 .visit-note{font-size:11px;color:var(--mute);margin-top:20px;line-height:1.65;padding-top:18px;border-top:1px dashed rgba(233,196,138,.15)}
 
 footer{border-top:1px solid rgba(255,255,255,.06);background:#050403}
@@ -404,7 +439,7 @@ footer{border-top:1px solid rgba(255,255,255,.06);background:#050403}
    </div>
 
    <!-- LOCATION CARD -->
-   <div class="visit-card">
+   <div class="visit-card location">
      <div class="eyebrow" style="font-size:8px">Find Us</div>
      <h3 class="serif" style="font-size:22px;margin:8px 0 16px">Press Coffee House</h3>
      <p class="addr-line">
@@ -744,7 +779,7 @@ function renderHours() {
   }
 }
 renderHours();
-setInterval(renderHours, 60000); // refresh every minute
+setInterval(renderHours, 60000);
 </script>
 </body>
 </html>
