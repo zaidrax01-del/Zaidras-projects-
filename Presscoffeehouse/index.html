@@ -138,7 +138,6 @@ nav a:hover{color:var(--gold)}
 .add:hover{background:var(--gold);color:#120d07;border-color:var(--gold);transform:scale(1.12)}
 .add:active{transform:scale(.95)}
 
-/* SYRUP PILLS — now interactive buttons */
 .pills{display:flex;flex-wrap:wrap;gap:7px}
 .pill{
   font-size:10.5px;padding:6px 13px 6px 11px;border-radius:20px;
@@ -179,6 +178,50 @@ nav a:hover{color:var(--gold)}
 .stats div{text-align:center;font-size:11px}
 .stats b{display:block;font-size:17px;color:var(--gold);font-weight:600}
 .sp3{position:relative;background:url('https://i.ibb.co/JwdzNS6S/file-00000000a8e88210bfbf1c5f8981e173.png') center/cover no-repeat, #1a1410}
+
+/* visit */
+.visit{position:relative;padding:52px 0 58px;background:var(--panel);border-top:1px solid rgba(255,255,255,.06)}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.visit-card{
+  background:rgba(10,8,7,.75);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  padding:28px 30px;
+  transition:.28s;
+}
+.visit-card:hover{border-color:rgba(233,196,138,.45)}
+.status{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:8px 16px;border-radius:30px;
+  font-size:11px;font-weight:600;margin-bottom:20px;
+  transition:.3s;
+}
+.status.open{background:rgba(120,220,150,.12);color:#7ddc96;border:1px solid rgba(120,220,150,.32)}
+.status.closed{background:rgba(233,196,138,.1);color:var(--gold);border:1px solid rgba(233,196,138,.35)}
+.status .dot{width:8px;height:8px;border-radius:50%;background:currentColor;position:relative;flex-shrink:0}
+.status.open .dot::after{
+  content:"";position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid currentColor;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.7);opacity:0}}
+.hours-list{list-style:none;display:grid;gap:0}
+.hours-list li{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:11px 0;font-size:12.5px;
+  border-bottom:1px dashed rgba(233,196,138,.15);
+  color:var(--mute);transition:.2s;
+}
+.hours-list li:last-child{border-bottom:none}
+.hours-list li.today{color:var(--text);font-weight:600}
+.hours-list li.today .day::before{
+  content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--gold);margin-right:9px;vertical-align:middle;
+}
+.hours-list .day{display:flex;align-items:center}
+.addr-line{font-size:13px;color:var(--mute);line-height:1.75;margin-bottom:22px}
+.addr-line b{color:var(--text);font-weight:500;display:block;font-size:15px;margin-bottom:6px;font-family:'Cormorant Garamond',serif;font-size:18px}
+.visit-actions{display:flex;gap:10px;flex-wrap:wrap}
+.visit-note{font-size:11px;color:var(--mute);margin-top:20px;line-height:1.65;padding-top:18px;border-top:1px dashed rgba(233,196,138,.15)}
 
 footer{border-top:1px solid rgba(255,255,255,.06);background:#050403}
 .foot{display:flex;align-items:center;justify-content:space-between;height:70px;gap:20px}
@@ -271,6 +314,7 @@ footer{border-top:1px solid rgba(255,255,255,.06);background:#050403}
  .menu-cats{grid-template-columns:1fr}
  .cat-wide .cat-list{grid-template-columns:1fr}
  .space{grid-template-columns:1fr}.sp1,.sp3{min-height:140px}.sp2{flex-wrap:wrap}.stats{margin-left:0}
+ .visit-grid{grid-template-columns:1fr}
  .foot{height:auto;flex-direction:column;padding:20px 0}.foot ul{flex-wrap:wrap;justify-content:center}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
@@ -282,7 +326,7 @@ footer{border-top:1px solid rgba(255,255,255,.06);background:#050403}
 <header><div class="wrap nav">
  <a class="logo" href="#home"><span class="mark"><img src="https://i.ibb.co/tPKx9DmL/file-00000000aaec8210a25f487aec90da6e.png" alt="Press Coffee House logo"></span><span><b>PRESS</b><small>COFFEE HOUSE</small></span></a>
  <nav id="nav"><ul>
-  <li><a class="on" href="#home">Home</a></li><li><a href="#menu">Menu</a></li><li><a href="#story">Our Story</a></li><li><a href="#space">Gallery</a></li><li><a href="#space">Visit</a></li><li><a href="#foot">Contact</a></li>
+  <li><a class="on" href="#home">Home</a></li><li><a href="#menu">Menu</a></li><li><a href="#story">Our Story</a></li><li><a href="#space">Gallery</a></li><li><a href="#visit">Visit</a></li><li><a href="#foot">Contact</a></li>
  </ul></nav>
  <div class="nav-right">
    <button class="cart-btn" id="cartBtn" aria-label="Open cart">
@@ -341,9 +385,51 @@ footer{border-top:1px solid rgba(255,255,255,.06);background:#050403}
  <div class="sp3"></div>
 </section>
 
+<!-- ================= VISIT ================= -->
+<section class="visit" id="visit"><div class="wrap">
+ <div class="mh" style="margin-bottom:26px">
+   <div><div class="eyebrow" style="font-size:8px">Visit Us</div><h2 class="serif">Come Sit A While</h2></div>
+ </div>
+
+ <div class="visit-grid">
+
+   <!-- HOURS CARD -->
+   <div class="visit-card">
+     <div class="status" id="statusBadge">
+       <span class="dot"></span>
+       <span id="statusText">Checking hours…</span>
+     </div>
+     <h3 class="serif" style="font-size:22px;margin-bottom:14px">Opening Hours</h3>
+     <ul class="hours-list" id="hoursList"></ul>
+   </div>
+
+   <!-- LOCATION CARD -->
+   <div class="visit-card">
+     <div class="eyebrow" style="font-size:8px">Find Us</div>
+     <h3 class="serif" style="font-size:22px;margin:8px 0 16px">Press Coffee House</h3>
+     <p class="addr-line">
+       <b>218 Riverside Walk</b>
+       Corner of 4th &amp; Riverside<br>
+       Portland, OR 97209
+     </p>
+     <div class="visit-actions">
+       <a class="btn sm fill" href="https://www.google.com/maps/dir/?api=1&destination=218+Riverside+Walk+Portland+OR+97209" target="_blank" rel="noopener">
+         Get Directions
+         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+       </a>
+       <a class="btn sm" href="tel:+15035550142">Call Us</a>
+     </div>
+     <p class="visit-note">
+       Street parking on 4th. Two blocks from the Riverside MAX stop. Bike racks out front.
+     </p>
+   </div>
+
+ </div>
+</div></section>
+
 <footer id="foot"><div class="wrap foot">
  <a class="logo" href="#home"><span class="mark"><img src="https://i.ibb.co/tPKx9DmL/file-00000000aaec8210a25f487aec90da6e.png" alt="Press Coffee House logo"></span><span><b>PRESS</b><small>COFFEE HOUSE</small></span></a>
- <ul><li><a href="#home">Home</a></li><li><a href="#menu">Menu</a></li><li><a href="#story">Our Story</a></li><li><a href="#space">Gallery</a></li><li><a href="#space">Visit</a></li><li><a href="#foot">Contact</a></li></ul>
+ <ul><li><a href="#home">Home</a></li><li><a href="#menu">Menu</a></li><li><a href="#story">Our Story</a></li><li><a href="#space">Gallery</a></li><li><a href="#visit">Visit</a></li><li><a href="#foot">Contact</a></li></ul>
  <div class="soc"><span>◎</span><span>𝕏</span><span>♪</span></div>
  <a class="btn sm" href="#menu">Order Now &nbsp;↗</a>
 </div></footer>
@@ -373,84 +459,61 @@ footer{border-top:1px solid rgba(255,255,255,.06);background:#050403}
 /* ==========================================================
    MENU DATA
 ========================================================== */
-const SYRUP_PRICE = 0.75; // each syrup add-on
+const SYRUP_PRICE = 0.75;
 
 const MENU = [
-  {
-    emoji:'☕', name:'Coffee',
-    items:[
+  { emoji:'☕', name:'Coffee', items:[
       {name:'Americano', price:3.50},
       {name:'Frappe', price:5.25},
       {name:'Latte', price:4.50},
       {name:'Specialty drinks', price:5.50}
-    ]
-  },
-  {
-    emoji:'🥤', name:'Non-Coffee',
-    items:[
+  ]},
+  { emoji:'🥤', name:'Non-Coffee', items:[
       {name:'Chai', price:4.25},
       {name:'Hot Chocolate / Steamers', price:4.00},
       {name:'Matcha', price:5.00},
       {name:'Steeped Decaf', price:3.25}
-    ]
-  },
-  {
-    emoji:'🍵', name:'Tea',
-    items:[
+  ]},
+  { emoji:'🍵', name:'Tea', items:[
       {name:'Hot Tea', price:2.75},
       {name:'London Fog', price:4.50},
       {name:'Flavored Tea', price:3.25},
       {name:'House Brewed Black Tea', price:2.95}
-    ]
-  },
-  {
-    emoji:'🍋', name:'Lemonade',
-    items:[
+  ]},
+  { emoji:'🍋', name:'Lemonade', items:[
       {name:'Arnold Palmer', price:3.75},
       {name:'Lemonade', price:3.50},
       {name:'Frozen Lemonade', price:4.25}
-    ]
-  },
-  {
-    emoji:'⚡', name:'Energy',
-    items:[
+  ]},
+  { emoji:'⚡', name:'Energy', items:[
       {name:'Red Bull Spritzer', price:5.50},
       {name:'Sugar-Free Red Bull Spritzer', price:5.50},
       {name:'White Lotus / Skinny White Lotus', price:6.00}
-    ]
-  },
-  {
-    emoji:'🥯', name:'Quick Bites',
-    items:[
+  ]},
+  { emoji:'🥯', name:'Quick Bites', items:[
       {name:'Bagel & Cream Cheese', price:3.95},
       {name:'Muffin Tops', price:3.50}
-    ]
-  },
-  {
-    emoji:'🍯', name:'Coffee Syrups', wide:true, hint:'Tap to add · $0.75 each',
+  ]},
+  { emoji:'🍯', name:'Coffee Syrups', wide:true, hint:'Tap to add · $0.75 each',
     pills:['Almond','Caramel','Coconut','English Toffee','French Vanilla','Hazelnut','Huckleberry','Irish Cream','Kona Mocha','Lavender','Macadamia Nut','Mexican Mocha','Mocha','Peppermint','Vanilla','Vanilla Bean','White Mocha']
   },
-  {
-    emoji:'🍓', name:'Fruity Syrups', wide:true, hint:'Tap to add · $0.75 each',
+  { emoji:'🍓', name:'Fruity Syrups', wide:true, hint:'Tap to add · $0.75 each',
     pills:['Blackberry','Blueberry','Blue Raspberry','Cherry','Coconut','Huckleberry','Kiwi','Lavender','Lime','Mango','Peach','Pomegranate','Raspberry','Strawberry','Watermelon']
   },
-  {
-    emoji:'➕', name:'Extras', wide:true,
-    items:[
+  { emoji:'➕', name:'Extras', wide:true, items:[
       {name:'Breve', price:1.00},
       {name:'Espresso', price:1.25},
       {name:'Sweet Foam', price:0.75},
       {name:'Dairy-Free Milk Alternative', price:0.75},
       {name:'Extra Syrup', price:0.75}
-    ]
-  }
+  ]}
 ];
 
 const INITIAL_VISIBLE = 3;
 let showAll = false;
 
 /* ==========================================================
-   RENDER MENU
+   MENU RENDER
 ========================================================== */
 const menuCatsEl  = document.getElementById('menuCats');
 const menuToggle  = document.getElementById('menuToggle');
@@ -489,7 +552,6 @@ function renderMenu() {
     ? `${MENU.length} categories`
     : `Showing ${INITIAL_VISIBLE} of ${MENU.length} categories`;
 }
-
 renderMenu();
 
 toggleBtn.addEventListener('click', () => {
@@ -497,23 +559,21 @@ toggleBtn.addEventListener('click', () => {
   toggleLabel.textContent = showAll ? 'Show Less' : 'View Full Menu';
   menuToggle.classList.toggle('open', showAll);
   renderMenu();
-  if (!showAll) {
-    document.getElementById('menu').scrollIntoView({ behavior:'smooth', block:'start' });
-  }
+  if (!showAll) document.getElementById('menu').scrollIntoView({behavior:'smooth', block:'start'});
 });
 
 /* ==========================================================
-   CART STATE
+   CART
 ========================================================== */
 let cart = [];
 
-const cartDrawer = document.getElementById('cartDrawer');
+const cartDrawer  = document.getElementById('cartDrawer');
 const cartOverlay = document.getElementById('cartOverlay');
-const cartBody = document.getElementById('cartBody');
-const cartCount = document.getElementById('cartCount');
-const toasts = document.getElementById('toasts');
+const cartBody    = document.getElementById('cartBody');
+const cartCount   = document.getElementById('cartCount');
+const toasts      = document.getElementById('toasts');
 
-function money(n) { return '$' + n.toFixed(2); }
+const money = n => '$' + n.toFixed(2);
 
 function toast(msg) {
   const el = document.createElement('div');
@@ -598,22 +658,12 @@ document.getElementById('closeCart').addEventListener('click', closeCart);
 cartOverlay.addEventListener('click', closeCart);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
 
-/* ==========================================================
-   EVENT DELEGATION
-========================================================== */
 menuCatsEl.addEventListener('click', e => {
-  // Item + buttons
   const addBtn = e.target.closest('.add');
-  if (addBtn) {
-    addToCart(addBtn.dataset.name, parseFloat(addBtn.dataset.price));
-    return;
-  }
-  // Syrup pills
+  if (addBtn) { addToCart(addBtn.dataset.name, parseFloat(addBtn.dataset.price)); return; }
   const pill = e.target.closest('.pill');
   if (pill) {
-    const syrupName = pill.dataset.syrup + ' Syrup';
-    addToCart(syrupName, SYRUP_PRICE);
-    // little visual confirmation
+    addToCart(pill.dataset.syrup + ' Syrup', SYRUP_PRICE);
     pill.classList.add('just-added');
     setTimeout(() => pill.classList.remove('just-added'), 600);
   }
@@ -636,10 +686,65 @@ document.getElementById('checkoutBtn').addEventListener('click', () => {
 
 document.getElementById('orderNowBtn').addEventListener('click', e => {
   e.preventDefault();
-  document.getElementById('menu').scrollIntoView({ behavior:'smooth', block:'start' });
+  document.getElementById('menu').scrollIntoView({behavior:'smooth', block:'start'});
 });
 
 renderCart();
+
+/* ==========================================================
+   VISIT — LIVE OPEN/CLOSED STATUS
+========================================================== */
+const HOURS = [
+  { day:'Sunday',    idx:0, open:8,  close:17 },
+  { day:'Monday',    idx:1, open:7,  close:19 },
+  { day:'Tuesday',   idx:2, open:7,  close:19 },
+  { day:'Wednesday', idx:3, open:7,  close:19 },
+  { day:'Thursday',  idx:4, open:7,  close:19 },
+  { day:'Friday',    idx:5, open:7,  close:21 },
+  { day:'Saturday',  idx:6, open:8,  close:21 }
+];
+
+function fmtHour(h) {
+  const suffix = h >= 12 ? 'pm' : 'am';
+  const hr = h % 12 === 0 ? 12 : h % 12;
+  return hr + suffix;
+}
+
+function renderHours() {
+  const now = new Date();
+  const todayIdx = now.getDay();
+  const list = document.getElementById('hoursList');
+
+  list.innerHTML = HOURS.map(h => `
+    <li class="${h.idx === todayIdx ? 'today' : ''}">
+      <span class="day">${h.day}</span>
+      <span>${fmtHour(h.open)} – ${fmtHour(h.close)}</span>
+    </li>`).join('');
+
+  const today = HOURS.find(h => h.idx === todayIdx);
+  const mins = now.getHours() * 60 + now.getMinutes();
+  const openM = today.open * 60;
+  const closeM = today.close * 60;
+
+  const badge = document.getElementById('statusBadge');
+  const text  = document.getElementById('statusText');
+
+  if (mins >= openM && mins < closeM) {
+    badge.className = 'status open';
+    const left = closeM - mins;
+    const closingSoon = left <= 60 ? ` · closing in ${left}m` : '';
+    text.textContent = `Open now · until ${fmtHour(today.close)}${closingSoon}`;
+  } else if (mins < openM) {
+    badge.className = 'status closed';
+    text.textContent = `Closed · opens ${fmtHour(today.open)} today`;
+  } else {
+    const tomorrow = HOURS.find(h => h.idx === (todayIdx + 1) % 7);
+    badge.className = 'status closed';
+    text.textContent = `Closed · opens ${fmtHour(tomorrow.open)} tomorrow`;
+  }
+}
+renderHours();
+setInterval(renderHours, 60000); // refresh every minute
 </script>
 </body>
 </html>
