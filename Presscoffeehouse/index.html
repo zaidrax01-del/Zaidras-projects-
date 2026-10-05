@@ -522,43 +522,23 @@ footer{border-top:1px solid rgba(255,255,255,.06);background:#050403}
   background:radial-gradient(circle,rgba(233,196,138,.13),transparent 62%);mix-blend-mode:screen;
   transition:opacity .4s;opacity:0;will-change:transform}
 
-/* ===========================================================
-   WELCOME LOADER — 5 seconds
-   Timeline:
-     0.0s  black screen + blurred bg (still hidden by curtains)
-     0.4s  "Welcome to" fades in
-     0.8s  "PRESS" title blur-in (1.8s duration → 2.6s)
-     1.4s  gold line grows (1.4s → 2.8s)
-     1.8s  "COFFEE HOUSE" fades in
-     2.5s  "Brewing your experience…" fades in
-     3.5s  curtains open — blurred bg revealed (1.1s → 4.6s)
-     4.6s  whole intro fades out (0.5s → 5.1s)
-     5.3s  intro removed from DOM
-   =========================================================== */
+/* WELCOME LOADER — 5 seconds with blurred bg */
 .cin-intro{position:fixed;inset:0;z-index:10000;background:#000;display:grid;place-items:center;overflow:hidden;
   animation:introOut .5s var(--e) 4.6s forwards}
-
-/* blurred background image layer */
 .cin-intro-bg{position:absolute;inset:-60px;z-index:0;
   background:url('https://i.ibb.co/1GdFV1zX/IMG-20261003-010238-254.jpg') center/cover no-repeat;
   filter:blur(26px) brightness(.42) saturate(.85);
   animation:introBgZoom 7s ease-out both}
 @keyframes introBgZoom{from{transform:scale(1.18)}to{transform:scale(1)}}
-
-/* dark veil over the blurred bg for extra text contrast */
 .cin-intro-veil{position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
     radial-gradient(ellipse at center, rgba(0,0,0,.25) 0%, rgba(0,0,0,.6) 70%, rgba(0,0,0,.85) 100%),
     linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.1) 50%, rgba(0,0,0,.5) 100%)}
-
-/* curtains */
 .cin-intro::before,.cin-intro::after{content:"";position:absolute;left:0;right:0;height:50.2%;background:#000;z-index:2;
   transition:transform 1.1s var(--e) 3.5s}
 .cin-intro::before{top:0}.cin-intro::after{bottom:0}
 .cin-intro.open::before{transform:translateY(-101%)}
 .cin-intro.open::after{transform:translateY(101%)}
-
-/* text content */
 .cin-intro-in{position:relative;z-index:3;text-align:center;color:var(--gold);padding:0 20px}
 .cin-intro-in .eyebrow{display:block;opacity:0;animation:iFade 1s var(--e) .4s forwards}
 .cin-intro-in b{display:block;font-weight:500;font-size:clamp(54px,14vw,130px);letter-spacing:.5em;margin-right:-.5em;
@@ -577,8 +557,6 @@ footer{border-top:1px solid rgba(255,255,255,.06);background:#050403}
 @keyframes iLine{to{width:min(320px,70vw)}}
 @keyframes introOut{to{opacity:0;visibility:hidden}}
 body.cin-lock{overflow:hidden}
-
-/* loading ring */
 .cin-load-ring{position:absolute;left:50%;top:calc(50% + 120px);transform:translate(-50%,-50%);
   width:34px;height:34px;border-radius:50%;z-index:3;opacity:0;
   border:1.5px solid rgba(233,196,138,.18);animation:iFade .6s var(--e) .5s forwards}
@@ -587,7 +565,7 @@ body.cin-lock{overflow:hidden}
   animation:ringSpin 1s linear infinite}
 @keyframes ringSpin{to{transform:rotate(360deg)}}
 
-/* header entry — pushed back to align with 5s intro */
+/* header entry */
 header{animation:hdrIn 1.4s var(--e) 5.05s both}
 @keyframes hdrIn{from{translate:0 -100%;opacity:0}to{translate:0 0;opacity:1}}
 
@@ -610,7 +588,6 @@ header{animation:hdrIn 1.4s var(--e) 5.05s both}
 @keyframes sweep{0%{translate:-60% 0}60%,100%{translate:60% 0}}
 .hero-dust{position:absolute;inset:0;z-index:1;pointer-events:none;width:100%;height:100%}
 
-/* hero entry timings — shifted for 5s intro */
 .hero .eyebrow,.hero p,.hero .cta,.hero .feat li,.hero .tag{animation:heroIn 1.4s var(--e) both}
 .hero .eyebrow{animation-delay:5.2s}
 .hero p{animation-delay:5.8s}
@@ -754,19 +731,18 @@ header{animation:hdrIn 1.4s var(--e) 5.05s both}
      <div class="eyebrow" style="font-size:8px">Find Us</div>
      <h3 class="serif" style="font-size:22px;margin:8px 0 16px">Press Coffee House</h3>
      <p class="addr-line">
-       <b>218 Riverside Walk</b>
-       Corner of 4th &amp; Riverside<br>
-       Portland, OR 97209
+       <b>1005 Broyles Ranch Rd</b>
+       Battle Mountain, NV 89820
      </p>
      <div class="visit-actions">
-       <a class="btn sm fill" href="https://www.google.com/maps/dir/?api=1&destination=218+Riverside+Walk+Portland+OR+97209" target="_blank" rel="noopener">
+       <a class="btn sm fill" href="https://www.google.com/maps/dir/?api=1&destination=1005+Broyles+Ranch+Rd+Battle+Mountain+NV+89820" target="_blank" rel="noopener">
          Get Directions
          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
        </a>
-       <a class="btn sm" href="tel:+15035550142">Call Us</a>
+       <a class="btn sm" href="tel:+17755550142">Call Us</a>
      </div>
      <p class="visit-note">
-       Street parking on 4th. Two blocks from the Riverside MAX stop. Bike racks out front.
+       Free parking on site. Easy access from I-80. Dog-friendly patio out back.
      </p>
    </div>
  </div>
@@ -1254,7 +1230,7 @@ function scan(){
 scan();
 let mt;new MutationObserver(()=>{clearTimeout(mt);mt=setTimeout(scan,80)}).observe(body,{childList:true,subtree:true});
 
-/* Safety net — after 1.5s reveal anything in viewport that IO missed */
+/* Safety net */
 setTimeout(()=>{
   qa('.rv:not(.in)').forEach(el=>{
     const r=el.getBoundingClientRect();
