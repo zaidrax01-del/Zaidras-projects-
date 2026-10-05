@@ -1,1 +1,888 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TreeCoin – More People. More Trees. More Impact.</title>
+<meta name="description" content="TREECOIN is a community-driven Web3 project on Solana, on a mission to plant 10,000 trees and build a global movement for real-world environmental impact.">
+<meta name="theme-color" content="#06180f">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TreeCoin – More People. More Trees. More Impact.">
+<meta property="og:description" content="Community-driven on Solana. Mission: plant 10,000 trees.">
+<meta property="og:image" content="https://i.ibb.co/DgWzghKM/IMG-20261005-091333-634.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/jpeg" href="https://i.ibb.co/DgWzghKM/IMG-20261005-091333-634.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06180f; --bg2:#0a2216; --panel:#0c2a1b; --line:#1f4a31;
+  --lime:#8fd62b; --lime2:#b6f03c; --green:#2f8f3a; --text:#f3f7ee; --muted:#a8bfae; --gold:#d9c36a;
+  --tg:#29a9eb;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;overflow-x:clip;padding-bottom:env(safe-area-inset-bottom)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--lime2);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* ---------- NAV ---------- */
+header{position:sticky;top:0;z-index:20;background:rgba(6,24,15,.9);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.05);padding-top:env(safe-area-inset-top)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:20px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-mark{position:relative;width:50px;height:50px;border-radius:50%;overflow:hidden;flex:none;display:grid;place-items:center;background:#0d2a18}
+.logo-mark svg{width:100%;height:100%;display:block}
+.logo-mark img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.logo b{display:block;font-family:'Playfair Display',serif;font-size:28px;letter-spacing:1px;color:var(--lime);line-height:1}
+.logo small{display:block;font-size:13px;letter-spacing:3px;color:var(--gold);text-align:center;margin-top:2px}
+nav ul{display:flex;gap:34px;list-style:none;font-size:14px;font-weight:500}
+nav a{padding:6px 0;color:#e6efe3;transition:color .2s}
+nav a.on{color:var(--lime2);border-bottom:2px solid var(--lime)}
+nav a:hover{color:var(--lime2)}
+.right{display:flex;align-items:center;gap:10px}
+.ico{width:34px;height:34px;border-radius:50%;background:#12301f;border:1px solid var(--line);display:grid;place-items:center;transition:.2s}
+.ico svg{width:15px;height:15px;fill:#fff;display:block}
+.ico:hover{border-color:var(--lime);background:#1a3d28}
+.ico.tg:hover{border-color:var(--tg);background:#0e3550}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 26px;border-radius:999px;font-weight:600;font-size:15px;border:1px solid var(--lime);transition:.2s;cursor:pointer;font-family:inherit}
+.btn.sm{padding:8px 16px;font-size:13px;color:var(--lime2);background:transparent}
+.btn.pri{background:linear-gradient(180deg,#2f9a3d,#1f7a2e);border-color:#4fc15a;color:#fff;box-shadow:0 6px 22px rgba(60,180,70,.25)}
+.btn.ghost{border-color:rgba(255,255,255,.55);background:rgba(0,0,0,.2)}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
+.burger{display:none;background:none;border:1px solid var(--line);color:#fff;width:40px;height:40px;border-radius:10px;font-size:20px;cursor:pointer;font-family:inherit}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:660px;overflow:hidden;
+  background:
+    linear-gradient(90deg, rgba(6,24,15,.94) 0%, rgba(6,24,15,.62) 36%, rgba(6,24,15,.22) 62%, transparent 82%),
+    url("https://i.ibb.co/cKx24Frv/file-00000000be048246aad79ae8b4b42ebf.png") right center / cover no-repeat,
+    linear-gradient(180deg,#183a22 0%,#0d2a18 60%,#06180f 100%);
+}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,var(--bg) 22%,rgba(6,24,15,.5) 45%,transparent 68%);pointer-events:none}
+.hero .wrap{position:relative;z-index:2;padding-top:64px;padding-bottom:44px}
+.eyebrow{font-size:12px;letter-spacing:5px;color:#d5e2cf;margin-bottom:18px;font-weight:500}
+.eyebrow i{color:var(--lime);font-style:normal;margin:0 8px}
+h1{font-size:clamp(40px,5.2vw,58px);line-height:1.05;font-weight:700;letter-spacing:-1px}
+h1>span:not(.w){color:var(--lime)}
+.lead{max-width:380px;margin:22px 0 28px;font-size:15px;color:#e8f0e4}
+.lead b{color:#fff}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.ca-pill{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:8px 18px;border:1px dashed rgba(143,214,43,.4);border-radius:999px;background:rgba(0,0,0,.35);font-size:13px;flex-wrap:wrap}
+.ca-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(143,214,43,.15);flex:none}
+.ca-pill b{color:var(--muted);font-weight:500}
+.ca-pill code{font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--lime2);font-size:12.5px;letter-spacing:.5px}
+.tag{position:absolute;right:6%;bottom:90px;z-index:3;font-family:Caveat,cursive;font-size:56px;color:var(--lime2);transform:rotate(-12deg);line-height:.95;text-shadow:0 2px 12px rgba(0,0,0,.5);pointer-events:none}
+.feats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px;position:relative;z-index:2;max-width:860px}
+.feat{display:flex;gap:12px;align-items:center;font-size:13px}
+.feat .c{flex:0 0 44px;height:44px;border-radius:50%;background:rgba(15,51,32,.9);border:1px solid var(--line);display:grid;place-items:center;color:var(--lime);backdrop-filter:blur(4px)}
+.feat .c svg{width:20px;height:20px;stroke:var(--lime);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.feat b{display:block;font-weight:600;color:#fff}
+.feat span{color:var(--muted);font-size:11px}
+
+/* ---------- STATS ---------- */
+.stats{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0}
+.sgrid{display:grid;grid-template-columns:1fr 1.6fr .8fr;gap:18px}
+.box{border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);padding:18px 22px;display:flex;align-items:center;gap:18px}
+.box .big{font-size:26px;font-weight:700;color:#fff}
+.badge{display:inline-block;background:var(--green);font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 10px;border-radius:6px;margin-top:4px;color:#fff}
+.mile{flex-direction:row;justify-content:space-between}
+.mile small{font-size:11px;letter-spacing:2px;color:var(--lime);font-weight:600}
+.track{flex:1;position:relative;display:flex;justify-content:space-between;max-width:420px;padding-top:6px}
+.track::before{content:"";position:absolute;top:13px;left:10px;right:10px;height:2px;background:var(--line)}
+.track::after{content:"";position:absolute;top:13px;left:10px;width:22%;height:2px;background:var(--lime)}
+.step{position:relative;text-align:center;font-size:11px;color:var(--muted);width:50px}
+.step i{display:block;width:14px;height:14px;border-radius:50%;border:2px solid var(--line);background:var(--bg2);margin:0 auto 8px;position:relative;z-index:1}
+.step.done i{background:var(--lime);border-color:var(--lime);box-shadow:0 0 0 4px rgba(143,214,43,.2)}
+.step b{display:block;color:#fff;font-weight:600}
+.sol{justify-content:center;font-size:12px;transition:.2s}
+.sol b{display:block;font-size:15px;color:#fff}
+.sol:hover{border-color:var(--lime);transform:translateY(-2px)}
+
+/* ---------- ABOUT ---------- */
+.about{padding:80px 0;display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:40px;align-items:center}
+.about .eyebrow{color:var(--lime)}
+h2{font-size:clamp(26px,3.4vw,34px);line-height:1.15;letter-spacing:-.5px;font-weight:700}
+.about p{color:#cfdccb;font-size:14px;line-height:1.65}
+.orb{
+  position:relative;aspect-ratio:1.5;border-radius:24px;
+  background:radial-gradient(circle at 50% 60%,#3f8f2f,#0d2a18 70%);
+  border:1px solid var(--line);overflow:hidden;
+  display:grid;place-items:center;
+}
+.orb svg{width:60%}
+.orb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+/* ---------- SECTIONS ---------- */
+.section{padding:80px 0}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 46px}
+.sec-head .eyebrow{color:var(--lime);margin-bottom:12px}
+.sec-head p{color:var(--muted);font-size:14.5px;margin-top:14px;line-height:1.6}
+
+/* ---------- PILLARS ---------- */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.pillar{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.02);padding:24px;transition:.25s}
+.pillar:hover{border-color:rgba(143,214,43,.4);transform:translateY(-3px)}
+.pillar .c{width:48px;height:48px;border-radius:14px;background:#0f3320;border:1px solid var(--line);display:grid;place-items:center;color:var(--lime);margin-bottom:16px}
+.pillar .c svg{width:22px;height:22px;stroke:var(--lime);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:block}
+.pillar b{display:block;font-size:16px;font-weight:600;margin-bottom:6px;color:#fff}
+.pillar p{font-size:13.5px;color:var(--muted);line-height:1.55}
+
+/* ---------- TOKENOMICS ---------- */
+.tk-sub{font-size:11px;letter-spacing:3px;font-weight:700;color:var(--lime);text-transform:uppercase;margin:0 0 16px;display:flex;align-items:center;gap:14px}
+.tk-sub::after{content:"";flex:1;height:1px;background:var(--line)}
+.tk-sub+.tk-grid{margin-bottom:34px}
+.tk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:12px}
+.tk-item{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);font-size:14px;transition:.2s}
+.tk-item:hover{border-color:rgba(143,214,43,.3)}
+.tk-item .k{color:var(--muted);font-size:13px;font-weight:500}
+.tk-item .v{font-weight:600;color:#fff;text-align:right}
+.tk-item .v.tba{color:#6f8a78;font-weight:500;letter-spacing:.5px}
+.tk-item .v.ca{color:var(--gold)}
+.tk-note{margin-top:28px;text-align:center;font-size:13.5px;color:var(--muted);line-height:1.6}
+.tk-note strong{color:var(--gold);font-weight:600}
+
+/* ---------- PILL ---------- */
+.pill{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.pill.ok{background:rgba(47,143,58,.3);border-color:var(--green);color:#a8e8a8}
+.pill.next{background:rgba(143,214,43,.14);border-color:var(--lime);color:var(--lime2)}
+
+/* ============================================================
+   ROADMAP V2 — glowing spine timeline
+   ============================================================ */
+.roadmap-v2{position:relative;max-width:920px;margin:0 auto;padding:24px 0 8px}
+.roadmap-v2::before{
+  content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;transform:translateX(-50%);border-radius:3px;
+  background:linear-gradient(180deg,rgba(143,214,43,0) 0%,var(--lime) 4%,var(--lime) 18%,rgba(143,214,43,.55) 45%,rgba(143,214,43,.22) 78%,rgba(143,214,43,0) 100%);
+  pointer-events:none;
+}
+.roadmap-v2::after{
+  content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;transform:translateX(-50%);border-radius:3px;
+  background:linear-gradient(180deg,transparent,var(--lime2),transparent);filter:blur(10px);opacity:.5;
+  animation:spineGlow 4s ease-in-out infinite;pointer-events:none;
+}
+@keyframes spineGlow{0%,100%{opacity:.35}50%{opacity:.85}}
+
+.rm-item{display:grid;grid-template-columns:1fr 96px 1fr;align-items:center;margin-bottom:44px;position:relative;opacity:0;transform:translateY(38px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.8,.3,1)}
+.rm-item.in{opacity:1;transform:translateY(0)}
+.rm-item:last-child{margin-bottom:0}
+
+.rm-node{
+  grid-column:2;grid-row:1;justify-self:center;position:relative;z-index:2;
+  width:66px;height:66px;border-radius:50%;
+  background:radial-gradient(circle at 35% 28%,#173a24,#081d12);
+  border:2px solid var(--line);display:grid;place-items:center;
+  font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--muted);transition:.4s ease;
+}
+.rm-item.done .rm-node{background:radial-gradient(circle at 35% 28%,#48c255,#1a7a2e);border-color:var(--lime);color:#fff;box-shadow:0 0 0 7px rgba(143,214,43,.14),0 0 32px rgba(143,214,43,.55)}
+.rm-item.active .rm-node{background:radial-gradient(circle at 35% 28%,#2c5f1c,#0f2e17);border-color:var(--lime2);color:var(--lime2);animation:nodePulse 2.4s ease-in-out infinite}
+@keyframes nodePulse{
+  0%,100%{box-shadow:0 0 0 7px rgba(143,214,43,.14),0 0 26px rgba(143,214,43,.4)}
+  50%{box-shadow:0 0 0 14px rgba(143,214,43,.05),0 0 48px rgba(143,214,43,.75)}
+}
+
+.rm-card{
+  grid-row:1;position:relative;border:1px solid var(--line);border-radius:18px;
+  background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.008));
+  padding:24px 26px;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+}
+.rm-item:nth-child(odd) .rm-card{grid-column:1}
+.rm-item:nth-child(even) .rm-card{grid-column:3}
+.rm-item.done .rm-card{border-color:rgba(143,214,43,.35);background:linear-gradient(180deg,rgba(143,214,43,.07),rgba(255,255,255,.008))}
+.rm-item.active .rm-card{border-color:rgba(143,214,43,.5);box-shadow:0 0 50px rgba(143,214,43,.14)}
+.rm-card:hover{border-color:rgba(143,214,43,.6);transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.35)}
+
+.rm-card::after{content:"";position:absolute;top:50%;width:28px;height:2px;background:var(--line);transform:translateY(-50%)}
+.rm-item.done .rm-card::after{background:var(--lime);box-shadow:0 0 10px rgba(143,214,43,.6)}
+.rm-item.active .rm-card::after{background:var(--lime2)}
+.rm-item:nth-child(odd) .rm-card::after{right:-28px}
+.rm-item:nth-child(even) .rm-card::after{left:-28px}
+
+.rm-ghost{
+  position:absolute;right:14px;bottom:2px;font-family:'Playfair Display',serif;font-size:96px;font-weight:700;
+  line-height:1;letter-spacing:-6px;color:rgba(143,214,43,.055);pointer-events:none;user-select:none;z-index:0;
+}
+.rm-item.done .rm-ghost{color:rgba(143,214,43,.1)}
+.rm-item.active .rm-ghost{color:rgba(143,214,43,.075)}
+.rm-card > *{position:relative;z-index:1}
+
+.rm-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.rm-card-head small{font-size:11px;letter-spacing:3px;color:var(--lime);font-weight:600;display:block}
+.rm-card-head h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;letter-spacing:-.3px;margin-top:5px;color:#fff}
+
+.rm-target{display:inline-block;margin-bottom:14px;padding:6px 14px;border-radius:8px;background:rgba(0,0,0,.4);border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--gold)}
+.rm-list{list-style:none;display:grid;gap:8px;margin:0;padding:0}
+.rm-list li{position:relative;padding-left:22px;font-size:14px;color:#cfdccb;line-height:1.5}
+.rm-list li::before{content:"";position:absolute;left:4px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--lime);opacity:.75}
+.rm-item.done .rm-list li::before{background:var(--lime2);box-shadow:0 0 6px rgba(143,214,43,.8)}
+
+/* ---------- CONNECT ---------- */
+.connect-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:860px;margin:0 auto}
+.connect-card{
+  border:1px solid var(--line);border-radius:20px;padding:30px 28px;
+  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));
+  display:flex;flex-direction:column;gap:16px;transition:.25s;position:relative;overflow:hidden;
+}
+.connect-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--tg),transparent);opacity:.6}
+.connect-card.chat::before{background:linear-gradient(90deg,var(--lime),transparent)}
+.connect-card:hover{transform:translateY(-4px);border-color:rgba(41,169,235,.4)}
+.connect-card.chat:hover{border-color:rgba(143,214,43,.4)}
+.connect-icon{width:56px;height:56px;border-radius:16px;background:#0e3550;border:1px solid rgba(41,169,235,.4);display:grid;place-items:center;color:var(--tg)}
+.connect-card.chat .connect-icon{background:#0f3320;border-color:rgba(143,214,43,.4);color:var(--lime)}
+.connect-icon svg{width:28px;height:28px;fill:currentColor;display:block}
+.connect-card h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;letter-spacing:-.3px;color:#fff}
+.connect-card p{font-size:14px;color:var(--muted);line-height:1.55;flex:1}
+.connect-card .btn{align-self:flex-start}
+.btn.tg{background:linear-gradient(180deg,#35b3f0,#1a8ecb);border-color:#54c3f5;color:#fff;box-shadow:0 6px 22px rgba(41,169,235,.3)}
+.btn.tg.chat{background:linear-gradient(180deg,#2f9a3d,#1f7a2e);border-color:#4fc15a;box-shadow:0 6px 22px rgba(60,180,70,.3)}
+.connect-card .handle{font-size:12.5px;color:var(--muted);font-family:ui-monospace,Menlo,Consolas,monospace;letter-spacing:.5px}
+
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13px}
+.fgrid{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.fbrand{display:flex;align-items:center;gap:12px}
+.fbrand b{font-family:'Playfair Display',serif;font-size:20px;letter-spacing:1px;color:var(--lime);display:block;line-height:1}
+.fbrand small{font-size:10px;letter-spacing:2.5px;color:var(--gold);font-weight:600}
+.fsoc{display:flex;gap:12px}
+.fsoc .ico{width:38px;height:38px}
+.fsoc .ico svg{width:17px;height:17px}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:960px){
+  nav{display:none}
+  nav.open{display:block;position:absolute;top:76px;left:0;right:0;background:var(--bg);padding:20px 24px;border-bottom:1px solid var(--line)}
+  nav.open ul{flex-direction:column;gap:16px}
+  .burger{display:block}
+  .right .ico{display:none}
+  .hero{background:
+    linear-gradient(180deg, rgba(6,24,15,.9) 0%, rgba(6,24,15,.6) 45%, rgba(6,24,15,.92) 100%),
+    url("https://i.ibb.co/cKx24Frv/file-00000000be048246aad79ae8b4b42ebf.png") center / cover no-repeat,
+    linear-gradient(180deg,#183a22 0%,#0d2a18 60%,#06180f 100%)}
+  .hero::after{background:linear-gradient(180deg,rgba(6,24,15,.55) 0%,rgba(6,24,15,.2) 55%,rgba(6,24,15,.85) 100%)}
+  .tag{font-size:38px;bottom:30px}
+  .feats{grid-template-columns:1fr 1fr}
+  .sgrid{grid-template-columns:1fr}
+  .mile{flex-direction:column;align-items:flex-start}
+  .track{width:100%}
+  .about{grid-template-columns:1fr}
+}
+
+@media(max-width:820px){
+  .roadmap-v2::before,.roadmap-v2::after{left:26px;transform:none}
+  .rm-item{grid-template-columns:54px 1fr;gap:18px;margin-bottom:32px}
+  .rm-node{grid-column:1;grid-row:1;justify-self:start;width:54px;height:54px;font-size:18px}
+  .rm-card,.rm-item:nth-child(odd) .rm-card,.rm-item:nth-child(even) .rm-card{grid-column:2;grid-row:1}
+  .rm-card::after{display:none}
+  .rm-card{padding:20px 22px}
+  .rm-ghost{font-size:72px;right:10px}
+  .rm-orb{left:27px;margin-left:-9px}
+}
+
+@media(max-width:520px){
+  .btn.sm{display:none}
+  .feats{grid-template-columns:1fr}
+  .tag{display:none}
+  .section{padding:60px 0}
+  .about{padding:60px 0}
+  .connect-card{padding:24px 22px}
+  .rm-card-head{gap:8px}
+  .rm-card-head h3{font-size:19px}
+  .rm-ghost{font-size:60px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  .rm-item{opacity:1;transform:none}
+}
+
+/* ============ CINEMATIC LAYER ============ */
+html.lock,html.lock body{overflow:hidden}
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:5;pointer-events:none}
+.cglow{position:fixed;left:0;top:0;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;background:radial-gradient(circle,rgba(143,214,43,.12),transparent 65%);pointer-events:none;z-index:4;mix-blend-mode:screen;transition:transform .25s ease-out}
+.pbar{position:fixed;top:0;left:0;right:0;height:3px;z-index:30;background:linear-gradient(90deg,var(--green),var(--lime2),var(--gold));transform:scaleX(var(--sp,0));transform-origin:0 50%;box-shadow:0 0 14px var(--lime)}
+/* intro */
+#intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;perspective:900px;animation:introGone 0s 5s forwards}
+@keyframes introGone{to{visibility:hidden;pointer-events:none}}
+.ip{position:absolute;left:0;right:0;height:50.5%;background:#04100a;transition:transform 1.2s cubic-bezier(.77,0,.18,1)}
+.ip.t{top:0}.ip.b{bottom:0}
+#intro.open .ip.t{transform:translateY(-101%)}#intro.open .ip.b{transform:translateY(101%)}
+.ic{position:relative;text-align:center;transition:transform 1.1s cubic-bezier(.6,0,.2,1),opacity .9s,filter 1s}
+#intro.open .ic{transform:translateZ(520px) scale(2.2);opacity:0;filter:blur(12px)}
+.ic b{display:block;margin-top:18px;padding-left:12px;font-family:'Playfair Display',serif;font-size:34px;letter-spacing:12px;color:var(--lime);opacity:0;animation:trk 1.4s .5s forwards}
+.ic small{display:block;margin-top:6px;font-size:11px;letter-spacing:5px;color:var(--gold);opacity:0;animation:fadeIn 1s 1.1s forwards}
+.bar{width:180px;height:2px;background:var(--line);margin:22px auto 0;overflow:hidden}
+.bar u{display:block;height:100%;background:var(--lime2);transform:scaleX(0);transform-origin:left;animation:barGo 1.9s forwards}
+/* intro logo (image + svg fallback) */
+.intro-mark{position:relative;width:140px;height:140px;margin:0 auto;border-radius:50%;overflow:hidden;display:grid;place-items:center;border:2px solid var(--lime);box-shadow:0 0 0 8px rgba(143,214,43,.08),0 0 60px rgba(143,214,43,.45);animation:coinSpin 2.2s ease-in-out;background:radial-gradient(circle at 50% 50%,#143a22,#06180f)}
+.intro-mark svg{width:70%;height:70%;display:block}
+.intro-mark img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes barGo{to{transform:scaleX(1)}}
+@keyframes trk{from{opacity:0;letter-spacing:40px;filter:blur(8px)}to{opacity:1;letter-spacing:12px;filter:none}}
+@keyframes coinSpin{from{transform:perspective(500px) rotateY(0)}to{transform:perspective(500px) rotateY(720deg)}}
+/* hero choreography */
+.hero h1{perspective:900px}
+.w{display:inline-block}
+.wi{display:inline-block;transform-origin:50% 100%;opacity:0}
+body.ready .wi{animation:wordIn 1.2s cubic-bezier(.16,.84,.24,1) calc(.15s + var(--i)*.13s) both}
+@keyframes wordIn{from{opacity:0;transform:perspective(700px) translateY(70px) translateZ(-200px) rotateX(-90deg);filter:blur(12px)}to{opacity:1;transform:none;filter:none}}
+.hx{opacity:0}
+body.ready .hx{animation:hxIn 1s cubic-bezier(.16,.84,.24,1) var(--d,0s) both}
+@keyframes hxIn{from{opacity:0;transform:perspective(800px) translateY(36px) rotateX(-25deg)}to{opacity:1;transform:none}}
+.hero::before{content:"";position:absolute;inset:-25%;z-index:1;pointer-events:none;mix-blend-mode:screen;opacity:.55;filter:blur(5px);transform-origin:80% 0;
+ background:conic-gradient(from 165deg at 80% 0%,transparent 0 4deg,rgba(182,240,60,.22) 9deg,transparent 17deg 25deg,rgba(182,240,60,.15) 31deg,transparent 41deg 52deg,rgba(255,240,150,.14) 58deg,transparent 68deg);animation:rays 12s ease-in-out infinite alternate}
+@keyframes rays{from{transform:rotate(-7deg) scale(1)}to{transform:rotate(7deg) scale(1.12)}}
+.hero .wrap{transform:translate3d(calc(var(--mx,0)*-10px),calc(var(--my,0)*-7px),0)}
+.tag{translate:calc(var(--mx,0)*26px) calc(var(--my,0)*16px);animation:tagFloat 5s ease-in-out infinite}
+@keyframes tagFloat{0%,100%{transform:rotate(-12deg) translateY(0)}50%{transform:rotate(-9deg) translateY(-14px)}}
+.logo-mark{animation:coinSpin 9s linear infinite}
+.btn.pri{position:relative;overflow:hidden}
+.btn.pri::after{content:"";position:absolute;top:0;left:-70%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);animation:shine 3.4s 3s infinite}
+@keyframes shine{0%{left:-70%}35%,100%{left:140%}}
+/* 3D scroll reveal */
+.rv:not(.in){opacity:0}
+.rv.in{animation:rvIn 1.1s cubic-bezier(.16,.84,.24,1) backwards}
+@keyframes rvIn{from{opacity:0;transform:perspective(1000px) translateY(70px) translateZ(-180px) rotateX(24deg) rotateY(-8deg);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+.pillar .c{transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.pillar:hover .c{transform:rotateY(360deg) scale(1.12)}
+.stats .track::after{width:0}
+.stats.in .track::after{animation:grow 1.8s .4s cubic-bezier(.2,.8,.2,1) forwards;box-shadow:0 0 12px var(--lime)}
+@keyframes grow{to{width:22%}}
+/* roadmap travelling light */
+.rm-orb{position:absolute;left:50%;top:0;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:#eaffb8;z-index:3;pointer-events:none;will-change:transform;box-shadow:0 0 0 6px rgba(182,240,60,.25),0 0 30px 10px rgba(182,240,60,.8),0 0 90px 30px rgba(143,214,43,.4)}
+.rm-item.passed .rm-node{transform:scale(1.12) rotate(360deg)}
+.rm-item.active .rm-node::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--lime2);animation:ripple 2.4s ease-out infinite}
+@keyframes ripple{from{transform:scale(1);opacity:.8}to{transform:scale(2.2);opacity:0}}
+@media(max-width:960px){.cglow{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ===================== INTRO ===================== -->
+<div id="intro" aria-hidden="true">
+  <i class="ip t"></i><i class="ip b"></i>
+  <div class="ic">
+    <div class="intro-mark">
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="42" r="20" fill="#58b030"/>
+        <circle cx="44" cy="54" r="13" fill="#4aa028"/>
+        <circle cx="76" cy="54" r="13" fill="#6cc03a"/>
+        <path d="M60 98V66M60 78l-15-14M60 70l14-16" stroke="#d9c36a" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+      <img src="https://i.ibb.co/DgWzghKM/IMG-20261005-091333-634.jpg" alt="" onerror="this.remove()">
+    </div>
+    <b>TREECOIN</b>
+    <small>PLANT · PROTECT · PROSPER</small>
+    <div class="bar"><u></u></div>
+  </div>
+</div>
+
+<div class="pbar"></div>
+<div class="cglow"></div>
+
+<header>
+  <div class="wrap nav">
+    <a href="#home" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="28" fill="#0d2a18" stroke="#8fd62b" stroke-width="2"/><path d="M30 50V32M30 38l-8-8M30 34l8-9" stroke="#d9c36a" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="30" cy="20" r="11" fill="#58b030"/><circle cx="21" cy="26" r="7" fill="#4aa028"/><circle cx="39" cy="26" r="7" fill="#6cc03a"/></svg>
+        <img src="https://i.ibb.co/DgWzghKM/IMG-20261005-091333-634.jpg" alt="TreeCoin logo" onerror="this.remove()">
+      </span>
+      <div><b>TREE</b><small>COIN</small></div>
+    </a>
+
+    <nav id="menu"><ul>
+      <li><a class="on" href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#tokenomics">Tokenomics</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#community">Community</a></li>
+      <li><a href="#connect">Connect</a></li>
+    </ul></nav>
+
+    <div class="right">
+      <a class="ico" href="https://x.com/treecoinofc" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.2 2h3.4l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.4l7.9-9.1L1 2h7l4.8 6.4L18.2 2z"/></svg>
+      </a>
+      <a class="ico tg" href="https://t.me/Treecoin_ofc" target="_blank" rel="noopener noreferrer" aria-label="Telegram Channel">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 3.5 2.6 11c-1.3.5-1.3 1.3-.2 1.6l4.9 1.5 1.9 5.8c.2.6.4.8.9.8s.7-.2 1-.5l2.4-2.3 4.9 3.6c.9.5 1.5.2 1.8-.8L23 4.9c.3-1.3-.5-1.9-1.1-1.4zM8.5 13.5l9.8-6.2c.5-.3.9-.1.5.2l-8.2 7.4-.3 3.3-1.8-4.7z"/></svg>
+      </a>
+      <a class="ico tg" href="https://t.me/+2Yeutn5bHO42ZTY1" target="_blank" rel="noopener noreferrer" aria-label="Community Chat">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.6 1.5 4.9 3.9 6.4L5 21l4-2c1 .2 2 .3 3 .3 5.5 0 10-3.6 10-8s-4.5-8-10-8zm-3.5 9a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm3.5 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm3.5 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4z"/></svg>
+      </a>
+      <a class="btn sm" href="#connect">Join Community →</a>
+      <button class="burger" aria-label="Toggle menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <p class="eyebrow">PLANT <i>•</i> PROTECT <i>•</i> PROSPER</p>
+    <h1>More People.<br><span>More Trees.</span><br>More Impact.</h1>
+    <p class="lead"><b>TREECOIN</b> is a community-driven Web3 project built on Solana, combining technology, people and real-world action to plant 10,000 trees and create a greener future.</p>
+    <div class="cta">
+      <a class="btn pri" href="#connect">Join Community →</a>
+      <a class="btn ghost" href="#about">▶ Learn More</a>
+    </div>
+
+    <div class="ca-pill">
+      <span class="dot" aria-hidden="true"></span>
+      <b>Contract Address</b>
+      <code id="contract-address">Coming Soon</code>
+    </div>
+
+    <div class="feats">
+      <div class="feat"><div class="c"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19C5 9 11 4 20 4c0 9-5 15-15 15zM5 19l8-8"/></svg></div><div><b>Real-World Impact</b><span>10,000 trees planted</span></div></div>
+      <div class="feat"><div class="c"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div><div><b>Built on Solana</b><span>Fast. Secure. Scalable.</span></div></div>
+      <div class="feat"><div class="c"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-4 3-6 6-6s6 2 6 6M15 15c3 0 6 1.5 6 5"/></svg></div><div><b>Community Driven</b><span>Global movement</span></div></div>
+      <div class="feat"><div class="c"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div><div><b>A Greener Future</b><span>Together we grow</span></div></div>
+    </div>
+  </div>
+  <div class="tag">10,000<br>&nbsp;Trees</div>
+</section>
+
+<!-- ===================== STATS BAR ===================== -->
+<section class="stats">
+  <div class="wrap sgrid">
+    <div class="box">
+      <svg width="62" height="62" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="29" fill="#0d2a18" stroke="#2f8f3a" stroke-width="2"/><circle cx="30" cy="22" r="12" fill="#58b030"/><circle cx="21" cy="28" r="8" fill="#4aa028"/><circle cx="39" cy="28" r="8" fill="#6cc03a"/><rect x="28" y="30" width="4" height="18" fill="#6b4a2a"/></svg>
+      <div><div class="big">500+</div><div style="font-size:14px">Early Supporters</div><span class="badge">ACHIEVED</span></div>
+    </div>
+    <div class="box mile">
+      <div><small>NEXT MILESTONE</small><div class="big" style="margin:4px 0">1,000</div><div style="font-size:13px">👥 Supporters</div></div>
+      <div class="track">
+        <div class="step done"><i></i><b>500</b>Done</div>
+        <div class="step"><i></i><b>1,000</b>Next</div>
+        <div class="step"><i></i><b>5,000</b>Later</div>
+        <div class="step"><i></i><b>10,000</b>Trees</div>
+      </div>
+    </div>
+    <a class="box sol" href="https://solana.com" target="_blank" rel="noopener">
+      <svg width="34" height="30" viewBox="0 0 34 30" aria-hidden="true"><path d="M6 2h26l-4 6H2zM2 12h26l4 6H6zM6 22h26l-4 6H2z" fill="#9b6bff"/></svg>
+      <div>Built on<b>Solana</b></div><span>→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="wrap about" id="about">
+  <div>
+    <p class="eyebrow">ABOUT TREECOIN</p>
+    <h2>A Greener Future,<br>Powered by Community</h2>
+  </div>
+  <p>TREECOIN is more than a token — it's a movement. We're building a global community that uses the power of Web3 and Solana to drive real environmental change. Together, we can plant trees, create lasting impact, and grow something that lasts.</p>
+  <div class="orb">
+    <svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="22" r="14" fill="#8fd62b"/><circle cx="20" cy="30" r="9" fill="#58b030"/><circle cx="40" cy="30" r="9" fill="#6cc03a"/><rect x="28" y="32" width="4" height="20" fill="#4a3320"/></svg>
+    <img src="https://i.ibb.co/RkWmdk6n/file-0000000010148210b411ca15b2a327b2.png" alt="TreeCoin — growing a greener future" onerror="this.remove()">
+  </div>
+</section>
+
+<!-- ===================== TOKENOMICS ===================== -->
+<section class="section" id="tokenomics">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">TOKENOMICS</p>
+      <h2>Transparent by Design</h2>
+      <p>Full tokenomics will be published ahead of launch. Follow our community channels for the latest updates.</p>
+    </div>
+
+    <p class="tk-sub">Confirmed</p>
+    <div class="tk-grid">
+      <div class="tk-item"><span class="k">Token Name</span><span class="v">TREECOIN</span></div>
+      <div class="tk-item"><span class="k">Blockchain</span><span class="v">Solana</span></div>
+    </div>
+
+    <p class="tk-sub">To Be Announced</p>
+    <div class="tk-grid">
+      <div class="tk-item"><span class="k">Contract Address</span><span class="v ca">Coming Soon</span></div>
+      <div class="tk-item"><span class="k">Total Supply</span><span class="v tba">TBA</span></div>
+      <div class="tk-item"><span class="k">Circulating Supply</span><span class="v tba">TBA</span></div>
+      <div class="tk-item"><span class="k">Liquidity Allocation</span><span class="v tba">TBA</span></div>
+      <div class="tk-item"><span class="k">Community Allocation</span><span class="v tba">TBA</span></div>
+      <div class="tk-item"><span class="k">Team Allocation</span><span class="v tba">TBA</span></div>
+      <div class="tk-item"><span class="k">Marketing Allocation</span><span class="v tba">TBA</span></div>
+      <div class="tk-item"><span class="k">Treasury Allocation</span><span class="v tba">TBA</span></div>
+      <div class="tk-item"><span class="k">Burn Mechanism</span><span class="v tba">TBA</span></div>
+      <div class="tk-item"><span class="k">Staking</span><span class="v tba">TBA</span></div>
+      <div class="tk-item"><span class="k">Launch Date</span><span class="v tba">TBA</span></div>
+    </div>
+
+    <p class="tk-note">
+      <strong>Early supporters:</strong> the first 500 are recognized as the project's founding community.
+      Additional details on future phases will be revealed when ready.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== ROADMAP ===================== -->
+<section class="section" id="roadmap" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">ROADMAP</p>
+      <h2>Growing, Phase by Phase</h2>
+      <p>From 500 founding supporters to a global movement — and 10,000 trees planted.</p>
+    </div>
+
+    <div class="roadmap-v2">
+
+      <article class="rm-item done">
+        <div class="rm-node">01</div>
+        <div class="rm-card">
+          <span class="rm-ghost" aria-hidden="true">01</span>
+          <div class="rm-card-head">
+            <div>
+              <small>PHASE 1</small>
+              <h3>Genesis 🌱</h3>
+            </div>
+            <span class="pill ok">✓ 500 Achieved</span>
+          </div>
+          <div class="rm-target">🎯 500 Early Supporters</div>
+          <ul class="rm-list">
+            <li>Reach the first 500 Early Supporters</li>
+            <li>Open the Community Chat</li>
+            <li>Establish the founding community</li>
+            <li>Recognize the project's earliest supporters</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="rm-item active">
+        <div class="rm-node">02</div>
+        <div class="rm-card">
+          <span class="rm-ghost" aria-hidden="true">02</span>
+          <div class="rm-card-head">
+            <div>
+              <small>PHASE 2</small>
+              <h3>Community Growth 👥</h3>
+            </div>
+            <span class="pill next">Next Target</span>
+          </div>
+          <div class="rm-target">🎯 1,000 Supporters</div>
+          <ul class="rm-list">
+            <li>Expand the TREECOIN community</li>
+            <li>Grow X, Telegram and Community Chat</li>
+            <li>Strengthen global participation</li>
+            <li>Prepare the next stage of the ecosystem</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="rm-item">
+        <div class="rm-node">03</div>
+        <div class="rm-card">
+          <span class="rm-ghost" aria-hidden="true">03</span>
+          <div class="rm-card-head">
+            <div>
+              <small>PHASE 3</small>
+              <h3>Global Movement 🌍</h3>
+            </div>
+          </div>
+          <div class="rm-target">🎯 5,000 Supporters</div>
+          <ul class="rm-list">
+            <li>Scale the community internationally</li>
+            <li>Increase awareness of TREECOIN</li>
+            <li>Expand participation in the environmental mission</li>
+            <li>Grow the TREECOIN ecosystem</li>
+            <li>Strengthen community-driven initiatives</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="rm-item">
+        <div class="rm-node">04</div>
+        <div class="rm-card">
+          <span class="rm-ghost" aria-hidden="true">04</span>
+          <div class="rm-card-head">
+            <div>
+              <small>PHASE 4</small>
+              <h3>Tree Planting 🌳</h3>
+            </div>
+          </div>
+          <div class="rm-target">🎯 10,000 Trees Planted</div>
+          <ul class="rm-list">
+            <li>Continue real-world tree planting</li>
+            <li>Increase environmental impact</li>
+            <li>Provide plantation / community updates</li>
+            <li>Connect the digital community with real-world environmental activity</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="rm-item">
+        <div class="rm-node">05</div>
+        <div class="rm-card">
+          <span class="rm-ghost" aria-hidden="true">05</span>
+          <div class="rm-card-head">
+            <div>
+              <small>PHASE 5</small>
+              <h3>The Bigger Movement 🚀</h3>
+            </div>
+          </div>
+          <div class="rm-target">🎯 10,000+ Community</div>
+          <ul class="rm-list">
+            <li>Build a larger global TREECOIN movement</li>
+            <li>Expand the ecosystem</li>
+            <li>Introduce additional opportunities and community benefits</li>
+            <li>Continue growing the environmental mission</li>
+            <li>Develop the project beyond its initial community-building stage</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="tk-note" style="margin-top:40px">
+      <strong>Vision:</strong> 10,000+ supporters → bigger community → more trees → greater real-world impact.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== COMMUNITY / PILLARS ===================== -->
+<section class="section" id="community">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">COMMUNITY</p>
+      <h2>Built by the People, for the Planet</h2>
+      <p>Four principles guide everything we build — from the first 500 supporters to the global movement ahead.</p>
+    </div>
+
+    <div class="pillars">
+      <article class="pillar">
+        <div class="c"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19C5 9 11 4 20 4c0 9-5 15-15 15zM5 19l8-8"/></svg></div>
+        <b>Real-World Impact</b>
+        <p>Tree planting and environmental contribution — not just on-chain.</p>
+      </article>
+      <article class="pillar">
+        <div class="c"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
+        <b>Built on Solana</b>
+        <p>The project is positioned within the fast, low-fee Solana ecosystem.</p>
+      </article>
+      <article class="pillar">
+        <div class="c"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-4 3-6 6-6s6 2 6 6M15 15c3 0 6 1.5 6 5"/></svg></div>
+        <b>Community Driven</b>
+        <p>Early supporters and the wider community are central to everything.</p>
+      </article>
+      <article class="pillar">
+        <div class="c"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div>
+        <b>Global Movement</b>
+        <p>Actively building an international community around the mission.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONNECT ===================== -->
+<section class="section" id="connect" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">CONNECT</p>
+      <h2>Join the Movement</h2>
+      <p>Follow the channel for official updates, and jump into the community chat to talk with other supporters.</p>
+    </div>
+
+    <div class="connect-grid">
+      <article class="connect-card">
+        <div class="connect-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 3.5 2.6 11c-1.3.5-1.3 1.3-.2 1.6l4.9 1.5 1.9 5.8c.2.6.4.8.9.8s.7-.2 1-.5l2.4-2.3 4.9 3.6c.9.5 1.5.2 1.8-.8L23 4.9c.3-1.3-.5-1.9-1.1-1.4zM8.5 13.5l9.8-6.2c.5-.3.9-.1.5.2l-8.2 7.4-.3 3.3-1.8-4.7z"/></svg>
+        </div>
+        <h3>Telegram Channel</h3>
+        <p>Official announcements, roadmap updates, and project news — straight from the team.</p>
+        <span class="handle">@Treecoin_ofc</span>
+        <a class="btn tg" href="https://t.me/Treecoin_ofc" target="_blank" rel="noopener noreferrer">
+          Open Channel →
+        </a>
+      </article>
+
+      <article class="connect-card chat">
+        <div class="connect-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.6 1.5 4.9 3.9 6.4L5 21l4-2c1 .2 2 .3 3 .3 5.5 0 10-3.6 10-8s-4.5-8-10-8zm-3.5 9a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm3.5 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm3.5 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4z"/></svg>
+        </div>
+        <h3>Community Chat</h3>
+        <p>Real conversations with supporters worldwide. Ask questions, share ideas, grow together.</p>
+        <span class="handle">Telegram Group</span>
+        <a class="btn tg chat" href="https://t.me/+2Yeutn5bHO42ZTY1" target="_blank" rel="noopener noreferrer">
+          Join Chat →
+        </a>
+      </article>
+
+      <article class="connect-card">
+        <div class="connect-icon" style="background:#1a1a1a;border-color:rgba(255,255,255,.25);color:#fff">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.2 2h3.4l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.4l7.9-9.1L1 2h7l4.8 6.4L18.2 2z"/></svg>
+        </div>
+        <h3>X / Twitter</h3>
+        <p>Daily updates, community highlights, and the latest TREECOIN news as it happens.</p>
+        <span class="handle">@treecoinofc</span>
+        <a class="btn tg" style="background:linear-gradient(180deg,#333,#111);border-color:#555;box-shadow:0 6px 22px rgba(0,0,0,.4)" href="https://x.com/treecoinofc" target="_blank" rel="noopener noreferrer">
+          Follow on X →
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FUTURE FEATURE SLOTS — hidden until flags enabled.
+     ============================================================ -->
+<section class="section" data-feature="genesisPass" hidden id="genesis-pass-root">
+  <div class="wrap"></div>
+</section>
+
+<section class="section" data-feature="referralProgram" hidden id="referral-root">
+  <div class="wrap"></div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap fgrid">
+    <div class="fbrand">
+      <span class="logo-mark" style="width:44px;height:44px">
+        <svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="28" fill="#0d2a18" stroke="#8fd62b" stroke-width="2"/><path d="M30 50V32M30 38l-8-8M30 34l8-9" stroke="#d9c36a" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="30" cy="20" r="11" fill="#58b030"/><circle cx="21" cy="26" r="7" fill="#4aa028"/><circle cx="39" cy="26" r="7" fill="#6cc03a"/></svg>
+        <img src="https://i.ibb.co/DgWzghKM/IMG-20261005-091333-634.jpg" alt="" onerror="this.remove()">
+      </span>
+      <div><b>TREECOIN</b><small>PLANT · PROTECT · PROSPER</small></div>
+    </div>
+
+    <div class="fsoc">
+      <a class="ico" href="https://x.com/treecoinofc" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.2 2h3.4l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.4l7.9-9.1L1 2h7l4.8 6.4L18.2 2z"/></svg>
+      </a>
+      <a class="ico tg" href="https://t.me/Treecoin_ofc" target="_blank" rel="noopener noreferrer" aria-label="Telegram Channel">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 3.5 2.6 11c-1.3.5-1.3 1.3-.2 1.6l4.9 1.5 1.9 5.8c.2.6.4.8.9.8s.7-.2 1-.5l2.4-2.3 4.9 3.6c.9.5 1.5.2 1.8-.8L23 4.9c.3-1.3-.5-1.9-1.1-1.4zM8.5 13.5l9.8-6.2c.5-.3.9-.1.5.2l-8.2 7.4-.3 3.3-1.8-4.7z"/></svg>
+      </a>
+      <a class="ico tg" href="https://t.me/+2Yeutn5bHO42ZTY1" target="_blank" rel="noopener noreferrer" aria-label="Community Chat">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.6 1.5 4.9 3.9 6.4L5 21l4-2c1 .2 2 .3 3 .3 5.5 0 10-3.6 10-8s-4.5-8-10-8zm-3.5 9a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm3.5 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm3.5 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4z"/></svg>
+      </a>
+    </div>
+
+    <div>© 2026 TREECOIN · Plant. Protect. Prosper.</div>
+  </div>
+</footer>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script>
+  /* Feature flags */
+  const FEATURES = {
+    genesisPass:     false,
+    referralProgram: false,
+    contractAddress: false,
+  };
+  const CONTRACT_ADDRESS = "";
+
+  document.querySelectorAll('[data-feature]').forEach(el => {
+    el.hidden = !FEATURES[el.dataset.feature];
+  });
+
+  if (FEATURES.contractAddress && CONTRACT_ADDRESS) {
+    const ca = document.getElementById('contract-address');
+    if (ca) { ca.textContent = CONTRACT_ADDRESS; }
+  }
+
+  /* Roadmap scroll reveal */
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const rmObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          rmObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.rm-item').forEach((el, i) => {
+      el.style.transitionDelay = Math.min(i * 80, 320) + 'ms';
+      rmObserver.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.rm-item').forEach(el => el.classList.add('in'));
+  }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(()=>{
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches, $=s=>[...document.querySelectorAll(s)];
+const html=document.documentElement, intro=document.getElementById('intro');
+
+/* split headline into words */
+let wc=0;(function sp(n){[...n.childNodes].forEach(c=>{
+ if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(t=>{if(!t.trim()){f.append(t);return}
+  const w=document.createElement('span');w.className='w';const i=document.createElement('span');i.className='wi';i.style.setProperty('--i',wc++);i.textContent=t;w.append(i);f.append(w)});c.replaceWith(f)}
+ else if(c.nodeType===1&&c.tagName!=='BR')sp(c)})})(document.querySelector('.hero h1'));
+
+let d=1;['.hero .eyebrow','.hero .lead','.hero .cta','.hero .ca-pill','.hero .feat'].forEach((q,k)=>$(q).forEach((e,j)=>{e.classList.add('hx');e.style.setProperty('--d',(k===0?0:.9+k*.15+j*.1)+'s')}));
+
+/* intro timeline */
+if(RM){intro.remove();document.body.classList.add('ready')}
+else{html.classList.add('lock');
+ setTimeout(()=>intro.classList.add('open'),2000);
+ setTimeout(()=>document.body.classList.add('ready'),2250);
+ setTimeout(()=>{intro.remove();html.classList.remove('lock')},3400)}
+
+/* 3D reveal */
+const rv=$('.sec-head,.about>*,.pillar,.tk-item,.tk-sub,.tk-note,.connect-card,.box,.stats');
+rv.forEach(e=>e.classList.add('rv'));
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(!x.isIntersecting)return;const e=x.target,p=e.parentElement;
+ e.style.animationDelay=Math.min([...p.children].indexOf(e),8)*90+'ms';e.classList.add('in');io.unobserve(e);
+ if(e.classList.contains('stats'))count()}),{threshold:.15});
+if(RM)rv.forEach(e=>e.classList.add('in'));else rv.forEach(e=>io.observe(e));
+
+/* counters */
+function count(){$('.stats .big').forEach(el=>{const m=el.textContent.match(/[\d,]+/);if(!m)return;const to=+m[0].replace(/,/g,''),pre=el.textContent.replace(m[0],'#'),t0=performance.now();
+ (function f(t){const k=Math.min((t-t0)/1800,1),v=Math.round(to*(1-Math.pow(1-k,4)));el.textContent=pre.replace('#',v.toLocaleString('en-US'));if(k<1)requestAnimationFrame(f)})(t0)})}
+
+/* roadmap travelling light + scroll progress */
+const rm=document.querySelector('.roadmap-v2'),orb=document.createElement('div');orb.className='rm-orb';rm.append(orb);
+const items=$('.rm-item');let sv=0;
+function onScroll(){const h=html.scrollHeight-innerHeight;html.style.setProperty('--sp',h>0?scrollY/h:0);
+ const r=rm.getBoundingClientRect(),p=Math.max(0,Math.min(1,(innerHeight*.55-r.top)/r.height)),y=p*r.height;
+ orb.style.transform='translateY('+y+'px)';items.forEach(i=>i.classList.toggle('passed',i.offsetTop+33<y))}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+if(RM)return;
+
+/* mouse: parallax, glow, tilt, magnetic */
+let mx=0,my=0;const glow=document.querySelector('.cglow');
+addEventListener('mousemove',e=>{mx=e.clientX/innerWidth*2-1;my=e.clientY/innerHeight*2-1;html.style.setProperty('--mx',mx);html.style.setProperty('--my',my);glow.style.transform='translate3d('+e.clientX+'px,'+e.clientY+'px,0)'},{passive:true});
+if(matchMedia('(hover:hover)').matches){
+ $('.pillar,.connect-card,.rm-card,.box,.tk-item,.orb').forEach(el=>{
+  el.addEventListener('mousemove',e=>{const b=el.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;
+   el.style.transition='transform .12s,border-color .3s';el.style.transform='perspective(800px) rotateX('+(-y*12)+'deg) rotateY('+(x*14)+'deg) translateY(-5px) scale(1.025)'});
+  el.addEventListener('mouseleave',()=>{el.style.transition='transform .7s cubic-bezier(.2,.8,.2,1),border-color .3s';el.style.transform=''})});
+ $('.cta .btn,.connect-card .btn').forEach(el=>{
+  el.addEventListener('mousemove',e=>{const b=el.getBoundingClientRect();el.style.transform='translate('+((e.clientX-b.left-b.width/2)*.25)+'px,'+((e.clientY-b.top-b.height/2)*.35)+'px)'});
+  el.addEventListener('mouseleave',()=>el.style.transform='')})}
+
+/* three.js: firefly particle field only (no coin) */
+if(!window.THREE)return;
+const mob=innerWidth<960,cv=document.createElement('canvas');cv.id='fx';document.body.append(cv);
+const R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
+const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(50,1,.1,100);cam.position.z=10;
+const tex=(draw,sz)=>{const c=document.createElement('canvas');c.width=c.height=sz;draw(c.getContext('2d'),sz);return new THREE.CanvasTexture(c)};
+const glowT=tex((g,n)=>{const r=g.createRadialGradient(n/2,n/2,0,n/2,n/2,n/2);r.addColorStop(0,'rgba(255,255,255,1)');r.addColorStop(.3,'rgba(255,255,255,.35)');r.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=r;g.fillRect(0,0,n,n)},64);
+const N=mob?200:520,P=new Float32Array(N*3),C=new Float32Array(N*3),Z=[],S=[],pal=[0x8fd62b,0xb6f03c,0xd9c36a,0x58b030].map(h=>new THREE.Color(h));
+for(let i=0;i<N;i++){Z[i]=Math.random()*14-6;S[i]=.2+Math.random()*.6;P[i*3]=(Math.random()-.5)*34;P[i*3+1]=Math.random()*20;const c=pal[i%4];C.set([c.r,c.g,c.b],i*3)}
+const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(P,3));geo.setAttribute('color',new THREE.BufferAttribute(C,3));
+sc.add(new THREE.Points(geo,new THREE.PointsMaterial({size:.26,map:glowT,vertexColors:true,transparent:true,opacity:.85,depthWrite:false,blending:THREE.AdditiveBlending})));
+
+let W,H,hw,hh;function rs(){W=innerWidth;H=innerHeight;R.setSize(W,H,false);cam.aspect=W/H;cam.updateProjectionMatrix();hh=Math.tan(25*Math.PI/180)*10;hw=hh*cam.aspect}rs();addEventListener('resize',rs);
+
+let last=scrollY,t=0;
+(function loop(){requestAnimationFrame(loop);t+=.016;const y=scrollY,v=y-last;last=y;sv+=(v-sv)*.12;const boost=Math.min(Math.abs(sv),60);
+ const pa=geo.attributes.position;
+ for(let i=0;i<N;i++){
+   P[i*3+1]+=(.004+S[i]*.006)*(1+boost*.15)*(sv<0?-1:1);
+   if(P[i*3+1]>20)P[i*3+1]-=20;if(P[i*3+1]<0)P[i*3+1]+=20;
+   P[i*3+2]=Z[i];
+ }
+ pa.needsUpdate=true;
+ sc.children[0].position.set(-mx*.5,0,0);
+ sc.children[0].rotation.z=Math.sin(t*.2)*.03;
+ sc.children[0].position.y=-10;
+ R.render(sc,cam)})();
+})();
+</script>
+</body>
+</html>
