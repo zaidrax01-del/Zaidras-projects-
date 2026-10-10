@@ -368,4 +368,1363 @@ body.lock{overflow:hidden}
 .prog{position:fixed;left:0;right:0;top:0;height:3px;z-index:80;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--y),var(--y2));box-shadow:0 0 14px var(--y);pointer-events:none}
 .grain{position:fixed;inset:-10%;z-index:40;pointer-events:none;opacity:.055;animation:grain 1s steps(6) infinite;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
-@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}60%{transform:t
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(4%,3%)}100%{transform:translate(0,0)}}
+.cur{position:fixed;left:0;top:0;width:420px;height:420px;margin:-210px 0 0 -210px;z-index:30;pointer-events:none;border-radius:50%;
+  background:radial-gradient(circle,#f6c32120,transparent 62%);mix-blend-mode:screen;will-change:transform}
+
+/* ---------- HERO: dolly-in photo, 3D letters, embers, floating ingredients ---------- */
+html.js .hero{isolation:isolate;background-image:none}
+.hero>.hero-bg{position:absolute;inset:-4%;z-index:-1;pointer-events:none;will-change:transform}
+.hero-bg i{position:absolute;inset:0;background:url('https://i.ibb.co/Q3wP4Kkj/file-00000000911c82079d040fa9f16836d2.png') center/cover no-repeat}
+@media(max-width:860px){.hero-bg i{background-position:64% center}}
+html.js:not(.go) .hero-bg i{opacity:0;transform:scale(1.5)}
+html.go .hero-bg i{animation:dolly 2.8s cubic-bezier(.16,1,.3,1) backwards}
+@keyframes dolly{from{opacity:0;transform:scale(1.55) translateY(3%)}to{opacity:1;transform:none}}
+
+.hero>.fx,.hero>.flare,.hero>.floaters{position:absolute;z-index:0;pointer-events:none}
+.hero>.fx{inset:0;width:100%;height:100%}
+.hero>.floaters{inset:0;overflow:hidden;transition:opacity 1.6s 1.3s}
+html.js:not(.go) .floaters{opacity:0}
+.fl{position:absolute;left:0;top:0;line-height:1;will-change:transform,opacity}
+
+.hero>.flare{left:0;right:0;top:46%;height:3px;opacity:0;transform:scaleX(0);
+  background:linear-gradient(90deg,transparent,#fff7d6 42%,#f6c321 50%,#fff7d6 58%,transparent);
+  box-shadow:0 0 30px 6px #f6c32199,0 0 120px 24px #f6c32140}
+html.go .flare{animation:flare 1.8s .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes flare{0%{opacity:0;transform:scaleX(0)}25%{opacity:1}100%{opacity:0;transform:scaleX(1.2)}}
+
+.hero>.hero-inner{will-change:transform,opacity;perspective:1000px;transform-origin:30% 50%}
+.hero-inner h1{perspective:900px}
+/* .ch must beat `.hero h1 span{display:block}` — do not "clean up" this selector */
+.hero h1 span.ch{display:inline-block;color:inherit;transform-origin:50% 100%;backface-visibility:hidden}
+html.js:not(.go) .ch{opacity:0}
+html.go .ch{animation:charIn 1.15s cubic-bezier(.2,.9,.15,1) backwards;animation-delay:calc(.75s + var(--c)*55ms)}
+@keyframes charIn{0%{opacity:0;transform:translate3d(0,.5em,-260px) rotateX(-115deg) rotateY(25deg);filter:blur(12px)}60%{opacity:1}100%{opacity:1;transform:none;filter:blur(0)}}
+html.js:not(.go) .hero-inner>:not(h1){opacity:0}
+html.go .hero-inner>:not(h1){animation:heroIn 1.1s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(.5s + var(--h,0)*.18s)}
+@keyframes heroIn{from{opacity:0;transform:translate3d(0,34px,-120px) rotateX(-24deg);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+
+html.go .crest{animation:coinIn 1.4s .3s cubic-bezier(.2,.8,.2,1) backwards}
+@keyframes coinIn{from{transform:rotateY(-540deg) scale(.4);opacity:0}to{transform:none;opacity:1}}
+
+/* ---------- 3D TACO CAROUSEL ---------- */
+.reel{position:relative;height:430px;overflow:hidden;border-top:1px solid #f6c32122;border-bottom:1px solid #f6c32122;background:radial-gradient(ellipse at 50% 55%,#1c1508,#0a0a0a 72%)}
+.reel:after{content:"";position:absolute;left:50%;bottom:30px;width:560px;max-width:90%;height:60px;transform:translateX(-50%);background:radial-gradient(ellipse,#f6c32138,transparent 70%);filter:blur(8px);pointer-events:none}
+.reel-bg{position:absolute;inset:0;display:flex;align-items:center;white-space:nowrap;pointer-events:none}
+.reel-bg span{font-family:'Permanent Marker',cursive;font-style:italic;font-size:clamp(130px,22vw,300px);line-height:1;color:transparent;-webkit-text-stroke:2px #f6c32136;will-change:transform}
+.stage{position:absolute;inset:0;perspective:1200px;perspective-origin:50% 36%}
+.cyl{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
+.pnl{position:absolute;left:50%;top:50%;width:150px;height:208px;margin:-104px 0 0 -75px;border:1.5px solid var(--y);border-radius:16px;
+  background:linear-gradient(165deg,#1c1508,#0c0c0c 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  backface-visibility:hidden;box-shadow:0 0 40px #f6c32122,inset 0 0 30px #f6c32110}
+.pnl b{font-size:62px;font-weight:400;line-height:1}
+.pnl span{font-family:'Permanent Marker',cursive;color:var(--y);font-size:19px;transform:skew(-6deg)}
+
+/* ---------- SCROLL REVEALS (3D flip-up) ---------- */
+html.js .r3d:not(.in){opacity:0}
+.r3d.in{animation:rise3d 1.05s cubic-bezier(.2,.85,.15,1) backwards;animation-delay:calc(var(--i,0)*110ms)}
+@keyframes rise3d{
+  0%{opacity:0;transform:perspective(1100px) translate3d(0,90px,-340px) rotateX(48deg) rotateZ(-3deg);filter:blur(10px)}
+  55%{opacity:1}
+  100%{opacity:1;transform:perspective(1100px) translate3d(0,0,0) rotateX(0) rotateZ(0);filter:blur(0)}
+}
+.sec-head h2{perspective:700px}
+.w{display:inline-block;transform-origin:50% 100%}
+html.js .sec-head:not(.in) .w{opacity:0}
+.sec-head.in .w{animation:wordIn .95s cubic-bezier(.2,.9,.15,1) backwards;animation-delay:calc(var(--w)*80ms + .1s)}
+@keyframes wordIn{0%{opacity:0;transform:translate3d(0,.7em,-150px) rotateX(-85deg);filter:blur(8px)}100%{opacity:1;transform:none;filter:blur(0)}}
+.label:after{transform-origin:left;transition:transform 1s .5s cubic-bezier(.2,.8,.2,1)}
+html.js .sec-head:not(.in) .label:after{transform:scaleX(0)}
+html.js .sec-head:not(.in) .lead{opacity:0}
+.sec-head.in .lead{animation:heroIn 1s .55s cubic-bezier(.2,.8,.2,1) backwards}
+
+/* menu rows flip in one by one, dotted leaders draw themselves */
+html.js .menu-col:not(.in) .price-list li{opacity:0}
+.menu-col.in .price-list li{animation:rowIn .7s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(.45s + var(--i,0)*70ms)}
+@keyframes rowIn{from{opacity:0;transform:perspective(600px) translate3d(-30px,0,-60px) rotateY(25deg)}to{opacity:1;transform:perspective(600px) translate3d(0,0,0) rotateY(0)}}
+.menu-col.in .price-list li i{transform-origin:left;animation:leader .9s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(.6s + var(--i,0)*70ms)}
+@keyframes leader{from{transform:translateY(-4px) scaleX(0)}to{transform:translateY(-4px) scaleX(1)}}
+
+/* ---------- CARD TILT + GLARE (pointer) ---------- */
+.tilt.tilt{position:relative;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));
+  transition:border-color .2s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.tilt.tilt.hov{transition:border-color .2s,transform .12s linear;--ty:-4px}
+.tilt::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),#ffffff1c,transparent 55%)}
+.tilt.hov::before{opacity:1}
+
+/* ---------- SMALLER SET PIECES ---------- */
+.btn{transition:transform .18s,background .18s,box-shadow .18s,translate .25s cubic-bezier(.2,.8,.2,1)}
+.btn:not(.ghost){position:relative;overflow:hidden}
+.btn:not(.ghost):after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;transform:skewX(-20deg);
+  background:linear-gradient(90deg,transparent,#ffffff80,transparent);animation:shine 5s 2s ease-in-out infinite;pointer-events:none}
+@keyframes shine{0%,70%{left:-60%}100%{left:160%}}
+.special-emoji{display:inline-block;animation:coin 6s ease-in-out infinite;animation-delay:calc(var(--i,0)*1.4s)}
+@keyframes coin{0%,72%{transform:perspective(300px) rotateY(0)}100%{transform:perspective(300px) rotateY(360deg)}}
+.badges b{animation:bob 4s ease-in-out infinite}
+.badges div:nth-child(2) b{animation-delay:-1.3s}
+.badges div:nth-child(3) b{animation-delay:-2.6s}
+@keyframes bob{0%,100%{transform:perspective(300px) translateY(0) rotateY(-14deg)}50%{transform:perspective(300px) translateY(-7px) rotateY(14deg)}}
+.deal{position:relative;overflow:hidden}
+.deal:after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:30%;transform:skewX(-22deg);
+  background:linear-gradient(90deg,transparent,#ffffff55,transparent);animation:shine 6s 1s ease-in-out infinite;pointer-events:none}
+.tag{animation:wig 3.2s ease-in-out infinite}
+@keyframes wig{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(-3deg)}}
+.tear{transform-origin:bottom;animation:tearWave 4s ease-in-out infinite}
+@keyframes tearWave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.35)}}
+.special-price b,.pkg .from b{font-variant-numeric:tabular-nums}
+
+@media(max-width:640px){
+  .reel{height:350px}
+  .cur{display:none}
+}
+
+/* =====================================================================
+   ORDERING + CART
+   ===================================================================== */
+
+/* ---- Menu rows become add buttons (built by JS, styled here) ---- */
+.price-list li{padding:0}
+.price-list .add-row{
+  display:flex;align-items:baseline;gap:10px;width:100%;
+  background:none;border:0;color:inherit;font:inherit;
+  padding:9px 38px 9px 8px;margin:0 -8px;
+  border-radius:8px;cursor:pointer;text-align:left;
+  position:relative;transition:background .18s;
+}
+.price-list .add-row:hover,.price-list .add-row:focus-visible{background:#f6c32112}
+.price-list .add-row:hover span{color:var(--y)}
+.price-list .add-row b,.price-list .add-row i{pointer-events:none}
+.price-list .add-row:after{
+  content:"+";position:absolute;right:6px;top:50%;
+  width:24px;height:24px;margin-top:-12px;border-radius:50%;
+  border:1.5px solid var(--y);color:var(--y);
+  display:grid;place-items:center;font-size:15px;font-weight:600;line-height:1;
+  opacity:0;transform:scale(.6);
+  transition:opacity .2s,transform .25s cubic-bezier(.2,1.4,.4,1),background .2s,color .2s;
+}
+.price-list .add-row:hover:after,.price-list .add-row:focus-visible:after{opacity:1;transform:scale(1)}
+.price-list .add-row:hover:after{background:var(--y);color:#111}
+
+/* ---- Add buttons on specials / deal ---- */
+.special-add{margin-top:18px}
+.special-add,.deal .btn{font-family:inherit}
+.deal-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+
+/* ---- Floating cart button ---- */
+.cart-fab{
+  position:fixed;right:22px;
+  bottom:calc(22px + env(safe-area-inset-bottom,0px));
+  z-index:190;
+  width:62px;height:62px;border-radius:50%;
+  background:var(--y);color:#111;border:0;cursor:pointer;
+  display:grid;place-items:center;
+  box-shadow:0 14px 40px #f6c32155,0 6px 20px #000a;
+  transition:background .2s,box-shadow .25s;
+}
+.cart-fab:hover{background:var(--y2);box-shadow:0 18px 50px #f6c32177,0 6px 20px #000a}
+.cart-fab svg{width:27px;height:27px}
+.cart-count{
+  position:absolute;top:-5px;right:-5px;
+  min-width:24px;height:24px;padding:0 6px;border-radius:999px;
+  background:#111;color:var(--y);border:2px solid var(--y);
+  font-size:12px;font-weight:700;line-height:1;
+  display:grid;place-items:center;
+  transform:scale(0);transition:transform .3s cubic-bezier(.2,1.5,.4,1);
+}
+body.has-items .cart-count{transform:scale(1)}
+.cart-count.bump{animation:cntBump .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes cntBump{0%{scale:1}45%{scale:1.35}100%{scale:1}}
+
+/* ---- Scrim + drawer ---- */
+.cart-scrim{
+  position:fixed;inset:0;z-index:200;
+  background:#000000c9;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  opacity:0;visibility:hidden;
+  transition:opacity .38s,visibility .38s;
+}
+body.cart-open .cart-scrim{opacity:1;visibility:visible}
+body.cart-open{overflow:hidden}
+
+.cart{
+  position:fixed;top:0;right:0;bottom:0;z-index:210;
+  width:min(430px,94vw);
+  display:flex;flex-direction:column;
+  background:linear-gradient(170deg,#13100a,#0a0a0a 55%);
+  border-left:1px solid #f6c32133;
+  box-shadow:-30px 0 80px #000c;
+  transform:translateX(102%);
+  transition:transform .5s cubic-bezier(.2,.9,.15,1);
+}
+body.cart-open .cart{transform:none}
+
+.cart-head{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:22px 22px 18px;
+  border-bottom:1px solid #f6c3211f;
+}
+.cart-head h2{
+  font-family:'Permanent Marker',cursive;font-style:italic;transform:skew(-6deg);
+  color:var(--y);font-size:24px;font-weight:400;margin:0;
+}
+.cart-close{
+  width:38px;height:38px;border-radius:10px;flex:none;
+  border:1.5px solid var(--line);background:none;color:var(--m);
+  font-size:17px;line-height:1;cursor:pointer;display:grid;place-items:center;
+  transition:border-color .2s,color .2s,background .2s;
+}
+.cart-close:hover{border-color:var(--y);color:var(--y);background:#f6c3210f}
+
+.cart-body{
+  flex:1;overflow-y:auto;overscroll-behavior:contain;
+  padding:4px 22px 20px;
+  scrollbar-width:thin;scrollbar-color:#f6c32155 transparent;
+}
+.cart-body::-webkit-scrollbar{width:6px}
+.cart-body::-webkit-scrollbar-thumb{background:#f6c32144;border-radius:3px}
+
+.cart-empty{
+  display:grid;justify-items:center;gap:14px;text-align:center;
+  padding:64px 10px;
+}
+.cart-empty div{font-size:56px;opacity:.5}
+.cart-empty p{font-size:14.5px;color:var(--m);line-height:1.6}
+.cart-empty .btn{margin-top:6px}
+
+.ci{
+  display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;
+  padding:15px 0;border-bottom:1px solid #1a1a1a;
+  animation:ciIn .45s cubic-bezier(.2,.9,.2,1) backwards;
+}
+@keyframes ciIn{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+.ci-name{font-size:14.5px;color:#fff;font-weight:500;line-height:1.35}
+.ci-price{font-size:12.5px;color:var(--y);margin-top:4px;font-variant-numeric:tabular-nums}
+.ci-price s{color:#777;margin-right:6px}
+
+.qty{
+  display:flex;align-items:center;
+  border:1px solid var(--line);border-radius:999px;overflow:hidden;
+  flex:none;
+}
+.qty button{
+  width:32px;height:32px;background:none;border:0;color:var(--y);
+  font-size:17px;line-height:1;cursor:pointer;
+  display:grid;place-items:center;
+  transition:background .18s;
+}
+.qty button:hover{background:#f6c3211f}
+.qty span{min-width:28px;text-align:center;font-size:13.5px;font-weight:600;font-variant-numeric:tabular-nums}
+
+.cart-foot{
+  padding:20px 22px calc(20px + env(safe-area-inset-bottom,0px));
+  border-top:1px solid #f6c3211f;
+  background:#0c0c0c;
+}
+.cart-sum{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  font-size:13.5px;color:var(--m);
+}
+.cart-sum+.cart-sum{margin-top:8px}
+.cart-sum.total{font-size:15px;color:#fff;margin:16px 0 18px;padding-top:14px;border-top:1px dashed #3a3a3a}
+.cart-sum.total b{font-size:27px;color:var(--y);font-weight:600;font-variant-numeric:tabular-nums}
+.cart-actions{display:flex;gap:10px;flex-wrap:wrap}
+.cart-actions .btn{flex:1;justify-content:center;min-width:132px}
+.cart-note{font-size:11.5px;color:#7d7d7d;line-height:1.6;margin-top:14px;text-align:center}
+
+/* ---- Fly-to-cart dot + toast ---- */
+.fly{
+  position:fixed;z-index:230;pointer-events:none;
+  font-size:20px;line-height:1;
+  will-change:transform,opacity;
+}
+.toast{
+  position:fixed;left:50%;z-index:220;
+  bottom:calc(100px + env(safe-area-inset-bottom,0px));
+  transform:translate(-50%,16px);opacity:0;
+  display:flex;align-items:center;gap:9px;
+  background:#181818;border:1px solid #f6c32166;border-radius:999px;
+  padding:11px 20px;font-size:13.5px;color:#fff;
+  box-shadow:0 14px 44px #000d;
+  pointer-events:none;max-width:86vw;
+  transition:opacity .3s,transform .35s cubic-bezier(.2,.9,.2,1);
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast b{color:var(--y);font-weight:600}
+
+@media(max-width:640px){
+  .cart-fab{right:16px;width:56px;height:56px}
+  .cart-fab svg{width:24px;height:24px}
+  .cart{width:100vw;border-left:0}
+  .deal-actions{justify-content:flex-start;width:100%}
+  .deal-actions .btn{flex:1;justify-content:center}
+}
+</style>
+</head>
+<body>
+<noscript><style>#intro{display:none!important}</style></noscript>
+<div id="intro" aria-hidden="true">
+  <div class="sh t"></div><div class="sh b"></div>
+  <div class="i-core">
+    <div class="coin"><img src="https://i.ibb.co/VYmG1CZz/IMG-20261009-193526-382-2.jpg" alt=""></div>
+    <div class="i-ring r1"></div><div class="i-ring r2"></div>
+    <div class="i-title">STREETSIDE TAQUERIA</div>
+    <div class="i-bar"><i></i></div>
+    <div class="i-skip">tap anywhere to skip</div>
+  </div>
+</div>
+
+<header>
+  <a class="brand" href="#home">
+    <div class="crest">
+      <img src="https://i.ibb.co/VYmG1CZz/IMG-20261009-193526-382-2.jpg" alt="">
+    </div>
+    <b>STREETSIDE<br>TAQUERIA</b>
+  </a>
+  <nav>
+    <a class="on" href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#specials">Specials</a>
+    <a href="#about">About</a>
+    <a href="#find">Find Us</a>
+    <a href="#catering">Catering</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="btn sm" type="button" data-open-cart>🌮 Order Now</button>
+</header>
+
+<!-- ============ HOME / HERO ============ -->
+<section class="hero" id="home">
+  <div class="eyebrow">REAL TACOS &nbsp;•&nbsp; FRESH INGREDIENTS &nbsp;•&nbsp; BOLD FLAVORS</div>
+  <h1 class="marker">STREETSIDE<span>TAQUERIA</span></h1>
+  <p>Authentic Mexican flavor, made fresh and served with pride. Tacos, burritos, quesadillas and more — straight from our kitchen to your street.</p>
+  <div class="hero-actions">
+    <a class="btn" href="#menu">🌮 View Our Menu →</a>
+    <a class="btn ghost" href="#find">📍 Find Our Truck</a>
+  </div>
+  <div class="hero-facts">
+    <span>📍 <b>Battle Mountain, NV</b></span>
+    <span>🕚 Open Daily <b>11 AM – 9 PM</b></span>
+    <span>🚚 <b>Dine-in · Takeout · Catering</b></span>
+  </div>
+</section>
+
+<!-- ============ OUR MENU ============ -->
+<section class="sec" id="menu">
+  <div class="sec-head">
+    <div class="label">OUR MENU</div>
+    <h2 class="marker">REAL MEXICAN <em>GOODNESS</em></h2>
+    <p class="lead">Tap any item to add it to your order. Nothing is sent until you call or text — no accounts, no checkout forms.</p>
+  </div>
+
+  <div class="menu-grid">
+
+    <article class="menu-col">
+      <h3 class="menu-title">🌮 Tacos</h3>
+      <p class="menu-note">Served on soft corn tortillas with onion, cilantro &amp; lime.</p>
+      <ul class="price-list">
+        <li><span>Carne Asada<span class="hot">POPULAR</span></span><i></i><b>$3.50</b></li>
+        <li><span>Al Pastor</span><i></i><b>$3.50</b></li>
+        <li><span>Pollo Asado</span><i></i><b>$3.25</b></li>
+        <li><span>Carnitas</span><i></i><b>$3.50</b></li>
+        <li><span>Birria</span><i></i><b>$4.25</b></li>
+        <li><span>Pescado <small>(fish)</small></span><i></i><b>$4.00</b></li>
+        <li><span>Nopales <small>(veg)</small></span><i></i><b>$3.00</b></li>
+      </ul>
+    </article>
+
+    <article class="menu-col">
+      <h3 class="menu-title">🌯 Burritos</h3>
+      <p class="menu-note">Big flour tortillas, loaded with rice, beans, cheese &amp; salsa.</p>
+      <ul class="price-list">
+        <li><span>California Burrito<span class="hot">POPULAR</span></span><i></i><b>$12.50</b></li>
+        <li><span>Carne Asada Burrito</span><i></i><b>$11.50</b></li>
+        <li><span>Al Pastor Burrito</span><i></i><b>$11.00</b></li>
+        <li><span>Chicken Burrito</span><i></i><b>$10.50</b></li>
+        <li><span>Bean &amp; Cheese</span><i></i><b>$8.00</b></li>
+        <li><span>Breakfast Burrito <small>(until 11 AM)</small></span><i></i><b>$9.00</b></li>
+      </ul>
+    </article>
+
+    <article class="menu-col">
+      <h3 class="menu-title">🧀 Quesadillas</h3>
+      <p class="menu-note">Griddled flour tortilla, melted cheese, your choice of meat.</p>
+      <ul class="price-list">
+        <li><span>Cheese Quesadilla</span><i></i><b>$7.00</b></li>
+        <li><span>Chicken Quesadilla</span><i></i><b>$10.00</b></li>
+        <li><span>Carne Asada Quesadilla</span><i></i><b>$11.00</b></li>
+        <li><span>Birria Quesadilla<span class="hot">NEW</span></span><i></i><b>$12.00</b></li>
+        <li><span>Veggie Quesadilla</span><i></i><b>$9.00</b></li>
+      </ul>
+    </article>
+
+    <article class="menu-col">
+      <h3 class="menu-title">🍟 Sides</h3>
+      <p class="menu-note">The perfect complements to any order.</p>
+      <ul class="price-list">
+        <li><span>Loaded Nachos</span><i></i><b>$10.50</b></li>
+        <li><span>Chips &amp; Guacamole</span><i></i><b>$6.50</b></li>
+        <li><span>Chips &amp; Salsa</span><i></i><b>$4.00</b></li>
+        <li><span>Elote <small>(street corn)</small></span><i></i><b>$4.50</b></li>
+        <li><span>Rice &amp; Beans</span><i></i><b>$4.50</b></li>
+        <li><span>Side of Guacamole</span><i></i><b>$3.00</b></li>
+        <li><span>Side of Queso</span><i></i><b>$3.50</b></li>
+      </ul>
+    </article>
+
+    <article class="menu-col">
+      <h3 class="menu-title">🥤 Drinks</h3>
+      <p class="menu-note">Ice-cold and made fresh daily.</p>
+      <ul class="price-list">
+        <li><span>Horchata <small>(house-made)</small></span><i></i><b>$4.00</b></li>
+        <li><span>Jamaica <small>(hibiscus)</small></span><i></i><b>$4.00</b></li>
+        <li><span>Tamarindo</span><i></i><b>$4.00</b></li>
+        <li><span>Mexican Coca-Cola <small>(glass)</small></span><i></i><b>$3.50</b></li>
+        <li><span>Fountain Drink</span><i></i><b>$2.75</b></li>
+        <li><span>Bottled Water</span><i></i><b>$2.00</b></li>
+      </ul>
+    </article>
+
+    <article class="menu-col" style="display:flex;flex-direction:column;justify-content:center;background:linear-gradient(160deg,#161009,#0d0d0d 60%);border-color:#f6c32155">
+      <h3 class="menu-title">🌮 Build Your Own</h3>
+      <p class="menu-note" style="min-height:0">Mix and match any three items from the menu and save.</p>
+      <div style="margin:6px 0 20px">
+        <div style="font-family:'Permanent Marker',cursive;font-style:italic;transform:skew(-6deg);color:var(--y);font-size:38px;line-height:1">$9.99</div>
+        <div style="font-size:12px;color:var(--m);margin-top:6px">Pick any 3 · tacos, sides &amp; a drink</div>
+      </div>
+      <button class="btn" type="button" style="align-self:flex-start"
+              data-name="Build Your Own · any 3" data-price="9.99">+ Add to Order</button>
+    </article>
+
+  </div>
+
+  <div class="menu-foot">
+    <span>💵 Cash &amp; card accepted · Prices include tax · <b style="color:#fff;font-weight:500">Ask about our salsa bar</b></span>
+    <a class="btn ghost sm" href="#catering">Catering Menu →</a>
+  </div>
+</section>
+
+<!-- ============ TODAY'S SPECIALS ============ -->
+<section class="sec alt" id="specials">
+  <div class="sec-head">
+    <div class="label">TODAY'S SPECIALS</div>
+    <h2 class="marker">FEATURED <em>MEALS &amp; DEALS</em></h2>
+    <p class="lead">Rotating daily specials, combo plates, and limited-time offers. Follow us on social for the day's board — it changes fast and sells out faster.</p>
+  </div>
+
+  <div class="specials">
+
+    <article class="special">
+      <div class="special-top">
+        <span class="pill">TODAY ONLY</span>
+        <span class="special-emoji" aria-hidden="true">🌮</span>
+      </div>
+      <h3>Taco Tuesday</h3>
+      <p>Any three street tacos plus a fountain drink. Mix your meats — asada, pastor, pollo, or carnitas.</p>
+      <div class="special-price"><s>$13.50</s><b>$9.99</b></div>
+      <button class="btn sm special-add" type="button"
+              data-name="Taco Tuesday · 3 tacos + drink" data-price="9.99">+ Add to Order</button>
+    </article>
+
+    <article class="special">
+      <div class="special-top">
+        <span class="pill">FAMILY SIZE</span>
+        <span class="special-emoji" aria-hidden="true">🌯</span>
+      </div>
+      <h3>Burrito + Drink Combo</h3>
+      <p>Any burrito off the menu with chips, salsa, and a 20oz drink. The lunch rush special, 11 AM – 2 PM.</p>
+      <div class="special-price"><s>$16.00</s><b>$12.99</b></div>
+      <button class="btn sm special-add" type="button"
+              data-name="Burrito + Drink Combo" data-price="12.99">+ Add to Order</button>
+    </article>
+
+    <article class="special">
+      <div class="special-top">
+        <span class="pill">LIMITED</span>
+        <span class="special-emoji" aria-hidden="true">🔥</span>
+      </div>
+      <h3>Birria Weekend</h3>
+      <p>Slow-braised birria tacos with consommé for dipping. Friday through Sunday only — while it lasts.</p>
+      <div class="special-price"><s>$16.00</s><b>$12.50</b></div>
+      <button class="btn sm special-add" type="button"
+              data-name="Birria Weekend · with consommé" data-price="12.50">+ Add to Order</button>
+    </article>
+
+  </div>
+
+  <div class="deal">
+    <div class="big">FEED<br>THE CREW</div>
+    <p><b style="font-weight:600">Family Pack — $39.99.</b> Ten street tacos, a large order of loaded nachos, chips &amp; guacamole, and four drinks. Feeds 4–5 people. Call ahead and we'll have it ready when you pull up.</p>
+    <div class="deal-actions">
+      <button class="btn" type="button" data-name="Family Pack · feeds 4–5" data-price="39.99">+ Add Family Pack</button>
+      <a class="btn ghost" href="tel:+17755550142">📞 Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT US ============ -->
+<section class="sec" id="about">
+  <div class="sec-head">
+    <div class="label">ABOUT US</div>
+    <h2 class="marker">GOOD FOOD.<br><em>GOOD VIBES.</em></h2>
+  </div>
+
+  <div class="about-grid">
+    <div>
+      <p><strong>Streetside Taqueria started with a simple idea:</strong> Battle Mountain deserved real Mexican food — not the kind that comes out of a freezer, but the kind you'd find on a corner in a border town. Food with smoke on it, salsa with actual heat, tortillas pressed and griddled to order.</p>
+      <p>We're a family operation under <strong>Compañía de Ochoa</strong>. The recipes come from our grandmother's kitchen — the marinades, the birria, the horchata made fresh every morning. We didn't invent any of it. We just refused to cut corners on it.</p>
+      <div class="pull">"Real ingredients. Bold taste. People together over great food."</div>
+      <p>We opened the truck in 2025 and we've been parked in the same spot ever since, feeding shift workers, road-trippers off I-80, and anybody who pulls over because they smelled asada on the grill. That's still the whole business plan.</p>
+
+      <div class="badges">
+        <div><b class="ic" aria-hidden="true">🌮</b>Fresh Ingredients</div>
+        <div><b class="ic" aria-hidden="true">🔥</b>Authentic Flavors</div>
+        <div><b class="ic" aria-hidden="true">👥</b>Locally Owned</div>
+      </div>
+    </div>
+
+    <aside class="about-card">
+      <h4>HOURS</h4>
+      <ul class="hours-list">
+        <li><b>Monday – Thursday</b><span>11:00 AM – 9:00 PM</span></li>
+        <li><b>Friday – Saturday</b><span>11:00 AM – 10:00 PM</span></li>
+        <li><b>Sunday</b><span>11:00 AM – 8:00 PM</span></li>
+      </ul>
+      <p style="font-size:12.5px;color:#8f8f8f;line-height:1.6;margin-top:18px">Hours shift with weather and private events. Call ahead if you're making a drive.</p>
+      <a class="btn ghost sm" style="margin-top:18px" href="#find">📍 Get Directions</a>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ FIND OUR TRUCK ============ -->
+<section class="sec alt" id="find">
+  <div class="sec-head">
+    <div class="label">FIND OUR TRUCK</div>
+    <h2 class="marker">WHERE TO <em>CATCH US</em></h2>
+    <p class="lead">We're parked in Battle Mountain, right off the I-80 corridor. Look for the yellow seal and the smoke.</p>
+  </div>
+
+  <div class="find-grid">
+    <div class="map-wrap">
+      <iframe
+        src="https://www.google.com/maps?q=Battle%20Mountain,%20Nevada&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Google Map showing Streetside Taqueria's location in Battle Mountain, Nevada"></iframe>
+    </div>
+
+    <div class="find-side">
+      <div class="info-card">
+        <span class="ic" aria-hidden="true">📍</span>
+        <div>
+          <span class="k">OUR LOCATION</span>
+          <p><b>Battle Mountain, NV 89820</b><br>
+          <small style="color:#8f8f8f">Exact parking spot &amp; cross street coming soon — call and we'll talk you in.</small></p>
+          <p style="margin-top:10px">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Battle+Mountain,+NV" target="_blank" rel="noopener">Get Google Maps directions →</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <span class="ic" aria-hidden="true">🕚</span>
+        <div>
+          <span class="k">OPENING HOURS</span>
+          <p><b>Mon – Thu</b> · 11:00 AM – 9:00 PM<br>
+             <b>Fri – Sat</b> · 11:00 AM – 10:00 PM<br>
+             <b>Sunday</b> · 11:00 AM – 8:00 PM</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <span class="ic" aria-hidden="true">📞</span>
+        <div>
+          <span class="k">CALL AHEAD</span>
+          <p><a href="tel:+17755550142">(775) 555-0142</a><br>
+          <small style="color:#8f8f8f">Skip the line — order ahead and pick up at the window.</small></p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <span class="ic" aria-hidden="true">🚚</span>
+        <div>
+          <span class="k">TRAVELING?</span>
+          <p>Booking us for an event or festival?<br>
+          <a href="#catering">See catering packages →</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATERING ============ -->
+<section class="sec alt" id="catering">
+  <div class="sec-head">
+    <div class="label">CATERING</div>
+    <h2 class="marker">BOOK THE TRUCK <em>FOR YOUR EVENT</em></h2>
+    <p class="lead">We roll up, set up, and serve your guests hot food made to order. Weddings, birthdays, company lunches, job sites, festivals — if there's a parking spot and a crowd, we can feed it.</p>
+  </div>
+
+  <div class="cater-grid">
+    <article class="pkg">
+      <h3>Taco Bar</h3>
+      <div class="from">Starting at <b>$14</b> / person</div>
+      <ul>
+        <li>Choice of 3 meats</li>
+        <li>Soft corn &amp; flour tortillas</li>
+        <li>Onion, cilantro, lime, radish</li>
+        <li>Rice, beans &amp; chips</li>
+        <li>Salsa bar (mild / medium / hot)</li>
+        <li>Minimum 25 guests</li>
+      </ul>
+      <a class="btn ghost sm" href="#contact">Request a Quote</a>
+    </article>
+
+    <article class="pkg feat">
+      <span class="pill">MOST BOOKED</span>
+      <h3>Full Street Menu</h3>
+      <div class="from">Starting at <b>$19</b> / person</div>
+      <ul>
+        <li>Everything in the Taco Bar</li>
+        <li>Tacos, burritos &amp; quesadillas</li>
+        <li>Loaded nachos &amp; elote</li>
+        <li>Agua frescas (horchata, jamaica)</li>
+        <li>Dedicated 2-person serving crew</li>
+        <li>2.5 hours of service included</li>
+        <li>Minimum 40 guests</li>
+      </ul>
+      <a class="btn sm" href="#contact">Request a Quote</a>
+    </article>
+
+    <article class="pkg">
+      <h3>Drop-Off Catering</h3>
+      <div class="from">Starting at <b>$11</b> / person</div>
+      <ul>
+        <li>We deliver, you serve</li>
+        <li>Party trays: tacos, rice, beans</li>
+        <li>Chips, salsa &amp; guacamole</li>
+        <li>Great for offices &amp; meetings</li>
+        <li>No minimum — 10 guests and up</li>
+      </ul>
+      <a class="btn ghost sm" href="#contact">Request a Quote</a>
+    </article>
+  </div>
+
+  <div class="cta-band">
+    <div>
+      <h3 class="marker">Planning something?</h3>
+      <p>Tell us the date, the headcount, and the location. We'll come back with a quote within 24 hours. Booking 2–3 weeks out is ideal — summer weekends fill up early.</p>
+    </div>
+    <a class="btn" href="tel:+17755550142">📞 Call (775) 555-0142</a>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec" id="contact">
+  <div class="sec-head">
+    <div class="label">CONTACT US</div>
+    <h2 class="marker">CALL, TEXT, <em>OR PULL UP</em></h2>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-main">
+      <span class="k">PHONE — FASTEST WAY TO REACH US</span>
+      <a class="phone" href="tel:+17755550142">(775) 555-0142</a>
+      <p>Call or text for orders, catering quotes, or daily special questions. During the lunch and dinner rush we may not pick up — leave a text and we'll get right back to you.</p>
+      <div class="contact-actions">
+        <a class="btn" href="tel:+17755550142">📞 Call Now</a>
+        <a class="btn ghost" href="sms:+17755550142">💬 Send a Text</a>
+      </div>
+    </div>
+
+    <div class="contact-side">
+      <div class="info-card">
+        <span class="ic" aria-hidden="true">✉️</span>
+        <div>
+          <span class="k">EMAIL</span>
+          <p><a href="mailto:hello@streetsidetaqueria.com">hello@streetsidetaqueria.com</a><br>
+          <small style="color:#8f8f8f">Best for catering inquiries &amp; invoices.</small></p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <span class="ic" aria-hidden="true">📍</span>
+        <div>
+          <span class="k">LOCATION</span>
+          <p>Battle Mountain, NV 89820<br>
+          <a href="#find">See the map →</a></p>
+        </div>
+      </div>
+
+      <div class="info-card" style="flex-direction:column;gap:0">
+        <span class="k" style="margin-bottom:2px">FOLLOW US</span>
+        <p style="margin-bottom:4px">Daily specials get posted here first.</p>
+        <div class="soc">
+          <a href="#" aria-label="Instagram">◎</a>
+          <a href="#" aria-label="TikTok">♪</a>
+          <a href="#" aria-label="Facebook">f</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tear" aria-hidden="true"></div>
+
+<footer>
+  <div class="foot-top">
+    <div>
+      <span class="ic" aria-hidden="true">📍</span>
+      <div><span class="k">OUR LOCATION</span>Battle Mountain, NV<br><small>(Exact address coming soon)</small></div>
+    </div>
+    <div>
+      <span class="ic" aria-hidden="true">🕚</span>
+      <div><span class="k">HOURS</span>Mon – Sun<br>11:00 AM – 9:00 PM</div>
+    </div>
+    <div>
+      <span class="ic" aria-hidden="true">📞</span>
+      <div><span class="k">PHONE</span><a href="tel:+17755550142">(775) 555-0142</a><br><small>Call or text</small></div>
+    </div>
+    <div class="tag">Tacos<br>Hit Different 👑</div>
+  </div>
+
+  <div class="foot-bottom">
+    <span>© 2025 Streetside Taqueria · Compañía de Ochoa · Battle Mountain, NV</span>
+    <span>Made with 🌮 &amp; 🔥</span>
+  </div>
+</footer>
+
+<!-- ============ CART UI ============ -->
+<button class="cart-fab" type="button" data-open-cart aria-label="Open your order">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="9" cy="20" r="1.4"/><circle cx="18.5" cy="20" r="1.4"/>
+    <path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L22 7H6"/>
+  </svg>
+  <span class="cart-count" aria-hidden="true">0</span>
+</button>
+
+<div class="cart-scrim" data-close-cart hidden></div>
+
+<aside class="cart" id="cart" role="dialog" aria-modal="true" aria-label="Your order" aria-hidden="true">
+  <div class="cart-head">
+    <h2>Your Order</h2>
+    <button class="cart-close" type="button" data-close-cart aria-label="Close your order">✕</button>
+  </div>
+
+  <div class="cart-body" id="cartBody"></div>
+
+  <div class="cart-foot">
+    <div class="cart-sum"><span>Items</span><span id="cartCount">0</span></div>
+    <div class="cart-sum total"><span>Subtotal</span><b id="cartTotal">$0.00</b></div>
+    <div class="cart-actions">
+      <a class="btn" id="cartCall" href="tel:+17755550142">📞 Call to Order</a>
+      <a class="btn ghost" id="cartText" href="sms:+17755550142">💬 Text Order</a>
+    </div>
+    <p class="cart-note">Nothing is charged here. Your order is read back over the phone — pay at the window, cash or card.</p>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// Scroll-spy: highlights the nav link for the section in view.
+(function () {
+  const links = [...document.querySelectorAll('nav a[href^="#"]')];
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const targets = [...map.keys()].map(id => document.getElementById(id)).filter(Boolean);
+  if (!targets.length || !('IntersectionObserver' in window)) return;
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(a => a.classList.remove('on'));
+      const link = map.get(e.target.id);
+      if (link) link.classList.add('on');
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+  targets.forEach(t => io.observe(t));
+})();
+</script>
+
+<script>
+// ======================================================================
+// CINEMATIC 3D MOTION LAYER
+// ======================================================================
+(function () {
+  'use strict';
+  const root = document.documentElement, body = document.body;
+  root.classList.add('js');
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const FINE = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const $ = (s, c) => (c || document).querySelector(s);
+  const $$ = (s, c) => [...(c || document).querySelectorAll(s)];
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  /* ---------- INTRO SEQUENCE ---------- */
+  const intro = $('#intro');
+  let started = false;
+  const go = () => { if (!started) { started = true; root.classList.add('go'); } };
+  if (RM || !intro) {
+    if (intro) intro.remove();
+    go();
+  } else {
+    body.classList.add('lock');
+    const open = () => {
+      if (intro.classList.contains('open')) return;
+      intro.classList.add('open');
+      setTimeout(go, 520);
+      setTimeout(() => { intro.remove(); body.classList.remove('lock'); }, 1700);
+    };
+    const timer = setTimeout(open, 2700);
+    intro.addEventListener('click', () => { clearTimeout(timer); open(); });
+  }
+
+  /* ---------- HERO SETUP ---------- */
+  const hero = $('.hero');
+  const h1 = $('.hero h1');
+
+  // split headline into letters for the 3D flip-in
+  h1.setAttribute('aria-label', 'Streetside Taqueria');
+  let c = 0;
+  (function split(node) {
+    [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const f = document.createDocumentFragment();
+        [...n.textContent].forEach(ch => {
+          const s = document.createElement('span');
+          s.className = 'ch';
+          s.setAttribute('aria-hidden', 'true');
+          s.style.setProperty('--c', c++);
+          s.textContent = ch;
+          f.appendChild(s);
+        });
+        n.replaceWith(f);
+      } else if (n.nodeType === 1) split(n);
+    });
+  })(h1);
+
+  // wrap hero copy so it can fly in 3D on scroll
+  const inner = document.createElement('div');
+  inner.className = 'hero-inner';
+  [...hero.children].forEach(el => inner.appendChild(el));
+  const hmap = { eyebrow: 0, P: 5, 'hero-actions': 6, 'hero-facts': 7 };
+  [...inner.children].forEach(el => {
+    const k = el.classList.contains('eyebrow') ? 'eyebrow' : el.classList.contains('hero-actions') ? 'hero-actions' : el.classList.contains('hero-facts') ? 'hero-facts' : el.tagName;
+    if (k in hmap) el.style.setProperty('--h', hmap[k]);
+  });
+
+  const bg = document.createElement('div'); bg.className = 'hero-bg'; bg.setAttribute('aria-hidden', 'true'); bg.appendChild(document.createElement('i'));
+  const cv = document.createElement('canvas'); cv.className = 'fx'; cv.setAttribute('aria-hidden', 'true');
+  const flare = document.createElement('div'); flare.className = 'flare'; flare.setAttribute('aria-hidden', 'true');
+  const flo = document.createElement('div'); flo.className = 'floaters'; flo.setAttribute('aria-hidden', 'true');
+  hero.append(bg, cv, flare, flo, inner);
+
+  // floating 3D ingredients orbiting the hero
+  const EM = ['🌮', '🌶️', '🍋', '🥑', '🌯', '🧅', '🧀', '🔥'];
+  const fl = EM.map((e, i) => {
+    const d = document.createElement('span');
+    d.className = 'fl'; d.textContent = e;
+    d.style.fontSize = (46 + (i % 4) * 14) + 'px';
+    flo.appendChild(d);
+    return { d, a: (i / EM.length) * Math.PI * 2, sp: .16 + (i % 3) * .05, ph: i * 1.7 };
+  });
+
+  // embers + smoke sprites
+  const ctx = cv.getContext('2d');
+  function sprite(stops, size) {
+    const k = document.createElement('canvas'); k.width = k.height = size;
+    const g = k.getContext('2d');
+    const gr = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    stops.forEach(s => gr.addColorStop(s[0], s[1]));
+    g.fillStyle = gr; g.fillRect(0, 0, size, size);
+    return k;
+  }
+  const emberS = sprite([[0, 'rgba(255,248,210,1)'], [.22, 'rgba(255,196,64,.85)'], [.55, 'rgba(255,120,20,.25)'], [1, 'rgba(255,100,0,0)']], 64);
+  const smokeS = sprite([[0, 'rgba(190,190,190,.5)'], [1, 'rgba(190,190,190,0)']], 128);
+  let W = 1, H = 1, DPR = 1, P = [], S = [];
+  const mkP = init => ({ x: Math.random() * W, y: init ? Math.random() * H : H + 30, z: Math.random(), v: 35 + Math.random() * 95, ph: Math.random() * 6.28, r: 6 + Math.random() * 12 });
+  const mkS = init => ({ x: Math.random() * W, y: init ? H * (.4 + Math.random() * .6) : H + 120, v: 14 + Math.random() * 22, s: 220 + Math.random() * 260, ph: Math.random() * 6.28, a: .05 + Math.random() * .05 });
+  function sizeHero() {
+    W = hero.offsetWidth; H = hero.offsetHeight;
+    DPR = Math.min(devicePixelRatio || 1, 1.5);
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    const n = Math.round(clamp(W / 16, 26, 80));
+    while (P.length < n) P.push(mkP(true));
+    P.length = n;
+    while (S.length < 8) S.push(mkS(true));
+  }
+
+  /* ---------- 3D TACO CAROUSEL ---------- */
+  const reel = document.createElement('section');
+  reel.className = 'reel';
+  reel.setAttribute('aria-hidden', 'true');
+  reel.innerHTML = '<div class="reel-bg"><span>TACOS HIT DIFFERENT &nbsp; TACOS HIT DIFFERENT</span></div><div class="stage"><div class="cyl"></div></div>';
+  const menu = $('#menu');
+  menu.parentNode.insertBefore(reel, menu);
+  const cyl = $('.cyl', reel), reelBg = $('.reel-bg span', reel);
+  const NAMES = [['🌮', 'Asada'], ['🍍', 'Pastor'], ['🔥', 'Birria'], ['🐖', 'Carnitas'], ['🌯', 'Burrito'], ['🧀', 'Nachos'], ['🌽', 'Elote'], ['🥑', 'Guac'], ['🥛', 'Horchata'], ['🌺', 'Jamaica']];
+  const N = NAMES.length, STEP = 360 / N;
+  const panels = NAMES.map(n => {
+    const p = document.createElement('div');
+    p.className = 'pnl';
+    p.innerHTML = '<b>' + n[0] + '</b><span>' + n[1] + '</span>';
+    cyl.appendChild(p);
+    return p;
+  });
+  let R = 300;
+  function layoutReel() {
+    const pw = clamp(innerWidth * .3, 104, 168), ph = pw * 1.38;
+    R = pw / 2 / Math.tan(Math.PI / N) + 14;
+    panels.forEach((p, i) => {
+      p.style.width = pw + 'px'; p.style.height = ph + 'px';
+      p.style.margin = (-ph / 2) + 'px 0 0 ' + (-pw / 2) + 'px';
+      p.style.transform = 'rotateY(' + (i * STEP) + 'deg) translateZ(' + R + 'px)';
+      p.firstChild.style.fontSize = (pw * .4) + 'px';
+    });
+  }
+
+  /* ---------- SCROLL REVEALS ---------- */
+  const groups = new Map();
+  $$('.menu-col,.special,.pkg,.info-card,.about-card,.cta-band,.deal,.contact-main,.map-wrap,.menu-foot,.badges div').forEach(el => {
+    const k = el.parentElement, i = groups.get(k) || 0;
+    groups.set(k, i + 1);
+    el.classList.add('r3d');
+    el.style.setProperty('--i', Math.min(i, 5));
+  });
+  $$('.price-list').forEach(ul => [...ul.children].forEach((li, i) => li.style.setProperty('--i', i)));
+  $$('.special-emoji').forEach((el, i) => el.style.setProperty('--i', i));
+
+  // headline words flip up
+  $$('.sec-head h2').forEach(h => {
+    let w = 0;
+    (function wrap(node) {
+      [...node.childNodes].forEach(n => {
+        if (n.nodeType === 3) {
+          const f = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(tok => {
+            if (!tok) return;
+            if (/^\s+$/.test(tok)) { f.appendChild(document.createTextNode(' ')); return; }
+            const s = document.createElement('span');
+            s.className = 'w'; s.style.setProperty('--w', w++); s.textContent = tok;
+            f.appendChild(s);
+          });
+          n.replaceWith(f);
+        } else if (n.nodeType === 1 && n.tagName !== 'BR') wrap(n);
+      });
+    })(h);
+  });
+
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+  $$('.r3d,.sec-head').forEach(el => RM ? el.classList.add('in') : io.observe(el));
+
+  /* ---------- PRICE COUNT-UP ---------- */
+  if (!RM) {
+    const co = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      co.unobserve(e.target);
+      const el = e.target, d = el._cu, t0 = performance.now() + 500;
+      (function tick(now) {
+        const p = clamp((now - t0) / 1200, 0, 1), k = 1 - Math.pow(2, -10 * p);
+        el.textContent = p >= 1 ? d.orig : d.pre + (d.n * k).toFixed(d.dec) + d.suf;
+        if (p < 1) requestAnimationFrame(tick);
+      })(performance.now());
+    }), { threshold: .6 });
+    $$('.special-price b,.pkg .from b').forEach(el => {
+      const t = el.textContent, m = t.match(/^(\D*)([\d.]+)(.*)$/);
+      if (!m) return;
+      el._cu = { pre: m[1], n: parseFloat(m[2]), dec: (m[2].split('.')[1] || '').length, suf: m[3], orig: t };
+      el.textContent = m[1] + (0).toFixed(el._cu.dec) + m[3];
+      co.observe(el);
+    });
+  }
+
+  /* ---------- POINTER: card tilt, magnetic buttons ---------- */
+  let tx = 0, ty = 0, mx = 0, my = 0, px = innerWidth / 2, py = innerHeight / 2;
+  addEventListener('pointermove', e => {
+    tx = (e.clientX / innerWidth - .5) * 2;
+    ty = (e.clientY / innerHeight - .5) * 2;
+    px = e.clientX; py = e.clientY;
+  }, { passive: true });
+
+  if (FINE && !RM) {
+    $$('.menu-col,.special,.pkg,.about-card,.contact-main').forEach(el => {
+      el.classList.add('tilt');
+      el.addEventListener('pointermove', e => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        const f = clamp(380 / r.width, .4, 1);
+        el.classList.add('hov');
+        el.style.setProperty('--ry', ((x - .5) * 14 * f).toFixed(2) + 'deg');
+        el.style.setProperty('--rx', ((.5 - y) * 10 * f).toFixed(2) + 'deg');
+        el.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+        el.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+      });
+      el.addEventListener('pointerleave', () => {
+        el.classList.remove('hov');
+        el.style.setProperty('--rx', '0deg');
+        el.style.setProperty('--ry', '0deg');
+      });
+    });
+    // NB: [data-name] elements are excluded — they get their own pop, not a magnet
+    $$('.btn:not([data-name])').forEach(b => {
+      b.addEventListener('pointermove', e => {
+        const r = b.getBoundingClientRect();
+        b.style.translate = ((e.clientX - r.left - r.width / 2) * .22).toFixed(1) + 'px ' + ((e.clientY - r.top - r.height / 2) * .3).toFixed(1) + 'px';
+      });
+      b.addEventListener('pointerleave', () => { b.style.translate = '0 0'; });
+    });
+  }
+
+  /* ---------- FURNITURE ---------- */
+  const prog = document.createElement('div'); prog.className = 'prog'; prog.setAttribute('aria-hidden', 'true');
+  body.appendChild(prog);
+  let cur = null, cx = px, cy = py;
+  if (!RM) {
+    const g = document.createElement('div'); g.className = 'grain'; g.setAttribute('aria-hidden', 'true'); body.appendChild(g);
+    if (FINE) { cur = document.createElement('div'); cur.className = 'cur'; cur.setAttribute('aria-hidden', 'true'); body.appendChild(cur); }
+  }
+
+  /* ---------- MAIN LOOP ---------- */
+  let heroVis = true, reelVis = false;
+  new IntersectionObserver(es => es.forEach(e => { heroVis = e.isIntersecting; }), { threshold: 0 }).observe(hero);
+  new IntersectionObserver(es => es.forEach(e => { reelVis = e.isIntersecting; }), { threshold: 0 }).observe(reel);
+
+  sizeHero(); layoutReel();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { sizeHero(); layoutReel(); });
+
+  // cache layout reads (avoids 2 forced reflows per frame)
+  let heroH = hero.offsetHeight, reelTop = 0;
+  const measure = () => {
+    heroH = hero.offsetHeight;
+    reelTop = reel.getBoundingClientRect().top + scrollY;
+  };
+  measure();
+  let rt;
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { sizeHero(); layoutReel(); measure(); }, 120); });
+
+  if (RM) {
+    // leave the carousel in a sane static pose instead of a half-built stack
+    cyl.style.transform = 'translateZ(' + (-R * .55).toFixed(0) + 'px) rotateX(-8deg)';
+    return;
+  }
+
+  let t0 = performance.now(), lastY = scrollY, vel = 0, rot = 0;
+  function frame(now) {
+    const dt = Math.min(.05, (now - t0) / 1000); t0 = now;
+    const t = now / 1000, y = scrollY, vh = innerHeight;
+    vel = lerp(vel, y - lastY, .12); lastY = y;
+
+    const max = root.scrollHeight - vh;
+    prog.style.transform = 'scaleX(' + (max > 0 ? clamp(y / max, 0, 1) : 0).toFixed(4) + ')';
+
+    if (!FINE) { tx = Math.sin(t * .5) * .6; ty = Math.cos(t * .4) * .4; }
+    mx = lerp(mx, tx, .06); my = lerp(my, ty, .06);
+
+    if (cur) {
+      cx = lerp(cx, px, .12); cy = lerp(cy, py, .12);
+      cur.style.transform = 'translate3d(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px,0)';
+    }
+
+    if (heroVis) {
+      const p = clamp(y / Math.max(1, heroH), 0, 1);
+      bg.style.transform = 'perspective(1400px) translate3d(' + (-mx * 24).toFixed(1) + 'px,' + (-my * 14 + y * .3).toFixed(1) + 'px,0) rotateY(' + (mx * 2.4).toFixed(2) + 'deg) rotateX(' + (-my * 1.8).toFixed(2) + 'deg) scale(' + (1.04 + p * .14).toFixed(3) + ')';
+      inner.style.transform = 'perspective(1200px) translate3d(' + (mx * 10).toFixed(1) + 'px,' + (y * .22).toFixed(1) + 'px,0) rotateX(' + (p * 14).toFixed(2) + 'deg) rotateY(' + (-mx * 3).toFixed(2) + 'deg) scale(' + (1 - p * .1).toFixed(3) + ')';
+      inner.style.opacity = clamp(1 - p * 1.15, 0, 1).toFixed(3);
+
+      // embers + smoke
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'source-over';
+      S.forEach(s => {
+        s.y -= s.v * dt; s.x += Math.sin(t * .3 + s.ph) * 10 * dt;
+        if (s.y < -s.s) Object.assign(s, mkS(false));
+        ctx.globalAlpha = s.a * clamp((H + 120 - s.y) / 200, 0, 1) * clamp((s.y + s.s * .5) / (H * .5), 0, 1);
+        ctx.drawImage(smokeS, s.x - s.s / 2, s.y - s.s / 2, s.s, s.s);
+      });
+      ctx.globalCompositeOperation = 'lighter';
+      P.forEach(q => {
+        q.y -= q.v * (.5 + q.z) * dt;
+        if (q.y < -20) Object.assign(q, mkP(false));
+        const x = q.x + Math.sin(t * .9 + q.ph) * 26 * q.z + mx * q.z * 50;
+        const a = (.35 + .65 * q.z) * (.7 + .3 * Math.sin(t * 9 + q.ph)) * clamp(q.y / (H * .9), 0, 1);
+        const s = q.r * (.5 + q.z);
+        ctx.globalAlpha = clamp(a, 0, 1);
+        ctx.drawImage(emberS, x - s / 2, q.y - s / 2, s, s);
+      });
+      ctx.globalAlpha = 1;
+
+      // orbiting ingredients with depth (no per-frame blur filter — opacity+scale carry it)
+      const wide = W > 860;
+      const ox = W * (wide ? .7 : .5), oy = H * .5, rx = W * (wide ? .24 : .34), ry = H * .4, mult = wide ? 1 : .45;
+      fl.forEach((f, i) => {
+        f.a += dt * f.sp;
+        const z = Math.cos(f.a), k = (z + 1) / 2;
+        const x = ox + Math.sin(f.a) * rx + mx * z * 30;
+        const yy = oy + Math.sin(f.a * 2 + f.ph) * ry * .35 + z * ry * .15 + Math.sin(t + f.ph) * 8;
+        f.d.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + yy.toFixed(1) + 'px,0) translate(-50%,-50%) rotate(' + (Math.sin(f.a * 1.7) * 25 + mx * 10).toFixed(1) + 'deg) scale(' + (.55 + .6 * k).toFixed(3) + ')';
+        f.d.style.opacity = ((.3 + .7 * k) * mult).toFixed(3);
+        f.d.style.zIndex = Math.round(k * 10);
+      });
+    }
+
+    if (reelVis) {
+      rot += dt * 16 + vel * .45;
+      cyl.style.transform = 'translateZ(' + (-R * .55).toFixed(0) + 'px) rotateX(-8deg) rotateY(' + rot.toFixed(2) + 'deg)';
+      panels.forEach((p, i) => {
+        const face = Math.cos((rot + i * STEP) * Math.PI / 180);
+        p.style.filter = 'brightness(' + (.35 + .65 * Math.max(0, face)).toFixed(2) + ')';
+      });
+      reelBg.style.transform = 'translate3d(' + ((reelTop - y) * .7 - 300).toFixed(1) + 'px,0,0)';
+    }
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+<script>
+// ======================================================================
+// ORDERING + CART
+// ======================================================================
+(function () {
+  'use strict';
+  const $ = (s, c) => (c || document).querySelector(s);
+  const $$ = (s, c) => [...(c || document).querySelectorAll(s)];
+  const PHONE = '+17755550142';
+  const KEY = 'streetside.order.v1';
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const fab = $('.cart-fab');
+  const fabCount = $('.cart-count');
+  const drawer = $('#cart');
+  const scrim = $('.cart-scrim');
+  const bodyEl = $('#cartBody');
+  const totalEl = $('#cartTotal');
+  const countEl = $('#cartCount');
+  const toastEl = $('#toast');
+  const callEl = $('#cartCall');
+  const textEl = $('#cartText');
+
+  /* ---------- STATE ---------- */
+  let cart = load();
+  function load() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(KEY));
+      if (!Array.isArray(raw)) return [];
+      return raw
+        .filter(i => i && typeof i.name === 'string' && isFinite(i.price) && i.qty > 0)
+        .map(i => ({ name: i.name, price: +i.price, qty: Math.min(99, Math.round(i.qty)) }));
+    } catch (e) { return []; }
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch (e) { /* private mode */ }
+  }
+  const total = () => cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const units = () => cart.reduce((s, i) => s + i.qty, 0);
+  const money = n => '$' + n.toFixed(2);
+  const esc = s => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  /* ---------- TURN MENU ROWS INTO ADD BUTTONS ---------- */
+  $$('.price-list li').forEach(li => {
+    if (li.querySelector('.add-row')) return;
+    const nameEl = li.querySelector('span');
+    const priceEl = li.querySelector('b');
+    if (!nameEl || !priceEl) return;
+
+    const clone = nameEl.cloneNode(true);
+    clone.querySelectorAll('.hot').forEach(n => n.remove());
+    const name = clone.textContent.replace(/\s+/g, ' ').trim();
+    const price = parseFloat(priceEl.textContent.replace(/[^0-9.]/g, ''));
+    if (!name || !isFinite(price)) return;
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'add-row';
+    btn.dataset.name = name;
+    btn.dataset.price = price;
+    btn.setAttribute('aria-label', 'Add ' + name + ' for ' + money(price));
+
+    while (li.firstChild) btn.appendChild(li.firstChild);
+    li.appendChild(btn);
+  });
+
+  /* ---------- ADD / REMOVE ---------- */
+  function add(name, price) {
+    const hit = cart.find(i => i.name === name);
+    if (hit) hit.qty = Math.min(99, hit.qty + 1);
+    else cart.push({ name, price, qty: 1 });
+    save(); render();
+    fabCount.classList.remove('bump');
+    void fabCount.offsetWidth;
+    fabCount.classList.add('bump');
+    toast(name);
+  }
+
+  function step(name, delta) {
+    const i = cart.findIndex(x => x.name === name);
+    if (i < 0) return;
+    cart[i].qty += delta;
+    if (cart[i].qty <= 0) cart.splice(i, 1);
+    save(); render();
+  }
+
+  /* ---------- RENDER ---------- */
+  function render() {
+    const n = units(), t = total();
+
+    fabCount.textContent = n > 99 ? '99+' : n;
+    document.body.classList.toggle('has-items', n > 0);
+    countEl.textContent = n;
+    totalEl.textContent = money(t);
+
+    if (!cart.length) {
+      bodyEl.innerHTML =
+        '<div class="cart-empty">' +
+          '<div aria-hidden="true">🌮</div>' +
+          '<p>Your order is empty.<br>Tap anything on the menu to add it.</p>' +
+          '<button class="btn ghost sm" type="button" data-close-cart>Browse the Menu</button>' +
+        '</div>';
+    } else {
+      bodyEl.innerHTML = cart.map(i =>
+        '<div class="ci">' +
+          '<div>' +
+            '<div class="ci-name">' + esc(i.name) + '</div>' +
+            '<div class="ci-price">' + money(i.price) + ' each · ' + money(i.price * i.qty) + '</div>' +
+          '</div>' +
+          '<div class="qty">' +
+            '<button type="button" data-step="-1" data-for="' + esc(i.name) + '" aria-label="Remove one ' + esc(i.name) + '">−</button>' +
+            '<span aria-live="polite">' + i.qty + '</span>' +
+            '<button type="button" data-step="1" data-for="' + esc(i.name) + '" aria-label="Add one ' + esc(i.name) + '">+</button>' +
+          '</div>' +
+        '</div>'
+      ).join('');
+    }
+
+    callEl.href = 'tel:' + PHONE;
+    if (cart.length) {
+      const raw = "Hi Streetside Taqueria! I'd like to order:\n" +
+        cart.map(i => i.qty + 'x ' + i.name).join('\n') +
+        '\n\nSubtotal: ' + money(t) + '\nName: ';
+      textEl.href = 'sms:' + PHONE + '?body=' + encodeURIComponent(raw);
+      textEl.removeAttribute('aria-disabled');
+      textEl.style.opacity = '';
+      textEl.style.pointerEvents = '';
+    } else {
+      textEl.href = 'sms:' + PHONE;
+      textEl.setAttribute('aria-disabled', 'true');
+      textEl.style.opacity = '.45';
+      textEl.style.pointerEvents = 'none';
+    }
+  }
+
+  /* ---------- TOAST ---------- */
+  let toastTimer;
+  function toast(name) {
+    toastEl.innerHTML = '<span aria-hidden="true">🌮</span> Added <b>' + esc(name) + '</b>';
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
+  }
+
+  /* ---------- FLY TO CART ---------- */
+  function fly(fromEl) {
+    if (RM) return;
+    const a = fromEl.getBoundingClientRect(), b = fab.getBoundingClientRect();
+    const dx = (b.left + b.width / 2) - (a.left + a.width / 2);
+    const dy = (b.top + b.height / 2) - (a.top + a.height / 2);
+    const dot = document.createElement('div');
+    dot.className = 'fly';
+    dot.textContent = '🌮';
+    dot.style.left = (a.left + a.width / 2) + 'px';
+    dot.style.top = (a.top + a.height / 2) + 'px';
+    document.body.appendChild(dot);
+    dot.animate([
+      { transform: 'translate(-50%,-50%) scale(1)', opacity: 1, offset: 0 },
+      { transform: 'translate(calc(-50% + ' + (dx * .5) + 'px), calc(-50% + ' + (dy * .5 - 40) + 'px)) scale(1.25)', opacity: 1, offset: .45 },
+      { transform: 'translate(calc(-50% + ' + dx + 'px), calc(-50% + ' + dy + 'px)) scale(.28)', opacity: .2, offset: 1 }
+    ], { duration: 700, easing: 'cubic-bezier(.25,.7,.3,1)' }).onfinish = () => dot.remove();
+  }
+
+  /* ---------- OPEN / CLOSE ---------- */
+  let lastFocus = null;
+  function openCart() {
+    if (document.body.classList.contains('cart-open')) return;
+    lastFocus = document.activeElement;
+    document.body.classList.add('cart-open');
+    drawer.setAttribute('aria-hidden', 'false');
+    scrim.hidden = false;
+    const first = drawer.querySelector('.cart-close');
+    if (first) first.focus();
+  }
+  function closeCart() {
+    if (!document.body.classList.contains('cart-open')) return;
+    document.body.classList.remove('cart-open');
+    drawer.setAttribute('aria-hidden', 'true');
+    setTimeout(() => { if (!document.body.classList.contains('cart-open')) scrim.hidden = true; }, 400);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  /* ---------- EVENTS (delegated) ---------- */
+  document.addEventListener('click', e => {
+    const addBtn = e.target.closest('[data-name][data-price]');
+    if (addBtn) {
+      e.preventDefault();
+      add(addBtn.dataset.name, parseFloat(addBtn.dataset.price));
+      fly(addBtn);
+      return;
+    }
+
+    const stepBtn = e.target.closest('[data-step]');
+    if (stepBtn) {
+      e.preventDefault();
+      step(stepBtn.dataset.for, parseInt(stepBtn.dataset.step, 10));
+      return;
+    }
+
+    if (e.target.closest('[data-open-cart]')) {
+      e.preventDefault();
+      openCart();
+      return;
+    }
+
+    if (e.target.closest('[data-close-cart]')) {
+      e.preventDefault();
+      closeCart();
+    }
+  });
+
+  // close when the empty-state button (rendered into the drawer) is clicked
+  bodyEl.addEventListener('click', e => {
+    if (e.target.closest('[data-close-cart]')) {
+      e.preventDefault();
+      closeCart();
+      location.hash = '#menu';
+    }
+  });
+
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeCart();
+  });
+
+  // basic focus trap while the drawer is open
+  addEventListener('keydown', e => {
+    if (e.key !== 'Tab' || !document.body.classList.contains('cart-open')) return;
+    const f = $$('a[href],button:not([disabled]),input,select,textarea', drawer)
+      .filter(el => el.offsetParent !== null);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  render();
+  scrim.hidden = true;
+})();
+</script>
+</body>
+</html>
