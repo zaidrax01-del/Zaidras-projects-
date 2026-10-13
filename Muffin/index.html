@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Madame Muffin ($MM) – Build Your Way Out</title>
+
+<meta name="description" content="Madame Muffin ($MM) is a Solana memecoin community built around memes, creativity and culture. Build Your Way Out.">
+<meta name="theme-color" content="#07040c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Madame Muffin ($MM) – Build Your Way Out">
+<meta property="og:description" content="Sweet but deadly. A Solana memecoin built around community, memes and creativity.">
+<meta property="og:image" content="https://i.ibb.co/Mywr9G5P/file-0000000057b0820bb2be34dfbb8fc7bc.png">
+<meta property="og:logo" content="https://i.ibb.co/8D3wNm8s/IMG-20261013-153302-079.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="https://i.ibb.co/8D3wNm8s/IMG-20261013-153302-079.jpg">
+<link rel="apple-touch-icon" href="https://i.ibb.co/8D3wNm8s/IMG-20261013-153302-079.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="https://i.ibb.co/Mywr9G5P/file-0000000057b0820bb2be34dfbb8fc7bc.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Kaushan+Script&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg:#07040c;--card:#0f0914;--pink:#ff2d9b;--pink2:#ff5cb8;--gold:#f5c04a;
+--line:rgba(255,45,155,.25);--mut:#c9bcd0;--w:#fff;
+box-sizing:border-box;
+}
+*,*::before,*::after{box-sizing:inherit}
+
+html{
+background:var(--bg);
+-webkit-text-size-adjust:100%;
+text-size-adjust:100%;
+}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+body{
+margin:0;background:var(--bg);color:var(--w);
+font-family:Poppins,system-ui,sans-serif;
+font-size:clamp(14px,1.5vw,15px);
+line-height:1.55;
+overflow-x:hidden;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale;
+}
+
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto}
+.script{font-family:'Kaushan Script',cursive;color:var(--pink);font-weight:400}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pink2);font-weight:600;margin:0 0 6px}
+h2{font-size:clamp(24px,3.2vw,30px);font-weight:800;line-height:1.1;margin:0 0 14px;text-transform:uppercase}
+h2 .script{display:block;font-size:clamp(30px,4vw,38px);text-transform:none}
+.pink{color:var(--pink)}
+
+.sol{width:18px;height:14px;display:inline-block;vertical-align:middle;flex:0 0 auto}
+
+section[id]{scroll-margin-top:calc(84px + env(safe-area-inset-top,0px))}
+.btn,.ic,nav a,summary,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+
+/* ─────────── BUTTONS ─────────── */
+.btn{
+display:inline-flex;align-items:center;justify-content:center;gap:8px;
+padding:11px 22px;border-radius:999px;border:1px solid rgba(255,255,255,.35);
+font-weight:600;font-size:13px;background:rgba(255,255,255,.03);
+cursor:pointer;color:#fff;font-family:inherit;transition:.2s;text-align:center;
+}
+.btn.p{background:var(--pink);border-color:var(--pink);box-shadow:0 0 22px rgba(255,45,155,.5)}
+.btn.sm{padding:8px 18px;font-size:12px}
+
+/* ─────────── NAV ─────────── */
+header{
+position:sticky;top:0;z-index:50;
+background:rgba(7,4,12,.92);
+backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+border-bottom:1px solid var(--line);
+padding-top:env(safe-area-inset-top,0px)
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;line-height:1;flex:0 0 auto}
+.logo .av{
+width:42px;height:42px;border-radius:50%;border:2px solid var(--pink);
+overflow:hidden;flex:0 0 42px;display:grid;place-items:center;
+background:#1a0f22;box-shadow:0 0 12px rgba(255,45,155,.35)
+}
+.logo .av img{width:100%;height:100%;object-fit:cover;display:block}
+.logo b{display:block;font-weight:800;letter-spacing:.06em;font-size:15px}
+.logo .script{font-size:26px;display:block;margin-bottom:-6px}
+nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:13px;font-weight:500}
+nav a{padding:8px 0;display:inline-block}
+nav a.on{color:var(--pink2);border-bottom:2px solid var(--pink)}
+.nav-r{display:flex;align-items:center;gap:10px}
+.ic{
+width:42px;height:42px;border-radius:50%;
+background:#1a1220;border:1px solid var(--line);
+display:grid;place-items:center;font-size:15px;transition:.2s
+}
+
+/* ─────────── HERO ─────────── */
+.hero{
+position:relative;overflow:hidden;
+background:
+linear-gradient(100deg,rgba(7,4,12,.95) 0%,rgba(7,4,12,.86) 38%,rgba(7,4,12,.55) 62%,rgba(7,4,12,.12) 100%),
+url("https://i.ibb.co/Mywr9G5P/file-0000000057b0820bb2be34dfbb8fc7bc.png") right center / cover no-repeat,
+var(--bg);
+border-bottom:1px solid var(--line)
+}
+.hero .wrap{
+display:flex;flex-direction:column;justify-content:center;
+min-height:clamp(380px,46vw,500px);
+padding-top:56px;padding-bottom:56px
+}
+.hero .wrap > div:first-child{max-width:560px}
+.chip{display:flex;align-items:center;gap:10px;font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.hero h1{margin:0;font-size:clamp(40px,6.5vw,66px);font-weight:800;line-height:.95;text-transform:uppercase}
+.hero h1 .script{
+display:block;
+font-size:clamp(50px,8.5vw,92px);font-weight:700;font-style:italic;
+text-transform:none;line-height:1;margin-top:4px;
+transform:rotate(-3deg);transform-origin:left
+}
+.lead{font-weight:700;font-size:clamp(15px,1.6vw,16px);margin:22px 0 6px}
+.hero p{margin:0 0 20px;max-width:420px;color:#e8dff0;font-size:clamp(13px,1.4vw,13.5px)}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ─────────── TICKER ─────────── */
+.ticker{
+position:relative;overflow:hidden;
+border-bottom:1px solid var(--line);
+background:linear-gradient(90deg,rgba(255,45,155,.05),rgba(255,45,155,.14),rgba(255,45,155,.05));
+padding:13px 0;
+}
+.ticker::before,.ticker::after{
+content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none;
+}
+.ticker::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.ticker::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.ticker-track{display:flex;width:max-content;will-change:transform}
+.ticker-track span{
+padding:0 30px;font-size:12px;font-weight:700;letter-spacing:.16em;
+text-transform:uppercase;color:var(--pink2);white-space:nowrap
+}
+.ticker-track span b{color:#fff}
+
+/* ─────────── SECTIONS ─────────── */
+.sec{border-bottom:1px solid var(--line)}
+
+/* ─────────── ABOUT ─────────── */
+.about .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start;padding-top:44px;padding-bottom:44px}
+.about p{margin:0 0 12px;font-size:13px;color:#e4d9ec}
+.about .big{font-size:14px}
+.feats{border-left:1px solid var(--line);padding-left:30px;display:grid;gap:18px}
+.feat{display:flex;gap:14px;align-items:flex-start}
+.feat i{flex:0 0 42px;height:42px;border-radius:50%;border:1px solid var(--pink);display:grid;place-items:center;font-style:normal;background:#1a0f22}
+.feat b{display:block;font-size:13px}
+.feat span{font-size:12px;color:var(--mut);line-height:1.45;display:block}
+
+/* ─────────── TOKEN ─────────── */
+.tok .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center;padding-top:44px;padding-bottom:44px}
+.box{
+position:relative;border-radius:12px;padding:20px;
+border:1px solid transparent;
+background:
+linear-gradient(var(--card),var(--card)) padding-box,
+linear-gradient(120deg,var(--pink),var(--gold),var(--pink2),var(--pink)) border-box;
+background-size:100% 100%,300% 300%;
+background-position:0 0,0% 50%;
+}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px}
+.lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-bottom:4px}
+.val{font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}
+.ca{font-size:13px;word-break:break-all;margin:6px 0 14px}
+.disc{font-size:11.5px;color:#9a8ca6;margin:14px 0 0;line-height:1.5}
+
+/* ─────────── CHART ─────────── */
+.chart .wrap{padding-top:44px;padding-bottom:44px}
+.chart-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+.chart-frame{
+border:1px solid var(--line);border-radius:14px;overflow:hidden;
+background:#0b0710;
+aspect-ratio:16/9;min-height:380px;
+box-shadow:0 0 60px rgba(255,45,155,.10) inset;
+}
+.chart-frame iframe{width:100%;height:100%;border:0;display:block}
+
+/* ─────────── BUY ─────────── */
+.buy .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:44px;padding-bottom:44px}
+.buy-intro{font-size:13px;color:#e4d9ec;margin:0 0 20px;max-width:520px}
+.buy-art img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid var(--line)}
+.steps{display:grid;gap:16px;margin-top:6px}
+.step{display:flex;align-items:flex-start;gap:14px}
+.num{flex:0 0 36px;height:36px;border-radius:50%;background:var(--pink);display:grid;place-items:center;font-weight:700;font-size:12px;box-shadow:0 0 14px rgba(255,45,155,.6)}
+.step i{flex:0 0 40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-style:normal;background:#150d1b}
+.step b{display:block;font-size:13px;margin-bottom:2px}
+.step span{font-size:12px;color:var(--mut);line-height:1.45;display:block}
+.buy-note{
+font-size:12px;color:var(--mut);line-height:1.5;
+border-left:2px solid var(--pink);padding:6px 0 6px 14px;margin:22px 0 0
+}
+
+/* ─────────── CLUB ─────────── */
+.club{
+position:relative;overflow:hidden;
+background:
+linear-gradient(100deg,rgba(16,5,24,.96) 0%,rgba(16,5,24,.90) 34%,rgba(60,10,70,.58) 62%,rgba(16,5,24,.10) 100%),
+url("https://i.ibb.co/JWQTyWgx/file-000000003f64820a91ab4c53444e7415.png") right center / cover no-repeat,
+#14061e;
+border-bottom:1px solid var(--line)
+}
+.club .wrap{
+display:flex;flex-direction:column;justify-content:center;
+min-height:clamp(320px,36vw,440px);
+padding-top:48px;padding-bottom:48px
+}
+.club .wrap > div{max-width:540px}
+.club h2{color:var(--pink2);margin-bottom:6px}
+.club .perks{display:flex;gap:20px;flex-wrap:wrap;font-size:12px;margin:14px 0 18px}
+
+/* ─────────── ROADMAP ─────────── */
+.road .wrap{display:grid;grid-template-columns:200px 1fr;gap:26px;padding-top:38px;padding-bottom:38px}
+.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.ph{position:relative;border:1px solid var(--line);border-radius:10px;padding:16px;background:var(--card)}
+.ph:not(:last-child)::after{content:"›";position:absolute;right:-17px;top:50%;color:var(--pink);font-size:18px}
+.ph .e{font-size:22px;color:var(--pink)}
+.ph .lbl{margin-top:6px;color:var(--pink2)}
+.ph b{display:block;font-size:13px;margin-bottom:6px}
+.ph span{font-size:12px;color:var(--mut);line-height:1.45;display:block}
+
+/* ─────────── FAQ ─────────── */
+.faq .wrap{display:grid;grid-template-columns:200px 1fr;gap:26px;padding-top:30px;padding-bottom:30px}
+.qs{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;align-content:start;align-items:start}
+details{border:1px solid var(--line);border-radius:8px;background:var(--card);padding:9px 14px;font-size:12.5px;font-weight:500}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px;padding:4px 0}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--pink2);font-size:16px;line-height:1;transition:transform .3s ease}
+details[open] summary::after{content:"–"}
+details p{margin:8px 0 2px;font-size:12px;color:var(--mut);font-weight:400}
+
+/* ─────────── CTA ─────────── */
+.cta{
+position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+background:linear-gradient(90deg,#2a0a40,#4a0f55 40%,#1a0828);
+background-size:200% 100%;
+}
+.cta .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:26px;padding-bottom:26px}
+.cta h3{margin:0;font-size:clamp(17px,2vw,19px);font-weight:800;text-transform:uppercase}
+.cta .script{font-size:clamp(17px,2vw,19px);color:var(--pink2)}
+.cta .r{text-align:center;font-size:12.5px;font-weight:600}
+.cta .r .btns{justify-content:center;margin-top:8px}
+
+/* ─────────── FOOTER ─────────── */
+footer .wrap{display:grid;grid-template-columns:1.1fr 1.3fr 1.3fr;gap:24px;align-items:center;padding-top:26px;padding-bottom:20px}
+footer small{font-size:11.5px;color:#8d7f99;line-height:1.5;display:block}
+footer ul{list-style:none;display:flex;gap:16px;margin:0;padding:0;font-size:11.5px;flex-wrap:wrap}
+.soc{display:flex;gap:8px}
+.copy{text-align:center;font-size:11px;color:#6e6279;padding:0 0 22px}
+
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* ═══════════════ ANIMATIONS ═══════════════ */
+@media(prefers-reduced-motion:no-preference){
+
+.reveal{
+opacity:0;transform:translateY(22px);
+transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);
+transition-delay:var(--d,0ms);
+}
+.reveal.in{opacity:1;transform:none}
+
+.hero h1 .script{
+background:linear-gradient(100deg,var(--pink) 0%,var(--pink2) 28%,#fff 50%,var(--pink2) 72%,var(--pink) 100%);
+background-size:250% 100%;
+-webkit-background-clip:text;background-clip:text;
+color:transparent;-webkit-text-fill-color:transparent;
+animation:shimmer 7s linear infinite;
+}
+@keyframes shimmer{0%{background-position:150% 0}100%{background-position:-50% 0}}
+
+.btn.glow{animation:pulse 3.4s ease-in-out infinite}
+@keyframes pulse{
+0%,100%{box-shadow:0 0 22px rgba(255,45,155,.5)}
+50%{box-shadow:0 0 38px rgba(255,45,155,.9)}
+}
+
+.ticker-track{animation:marquee 30s linear infinite}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+.box{animation:borderflow 9s ease infinite}
+@keyframes borderflow{
+0%,100%{background-position:0 0,0% 50%}
+50%{background-position:0 0,100% 50%}
+}
+
+.cta{animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{from{background-position:0% 50%}to{background-position:100% 50%}}
+
+.phases .ph{opacity:0;transform:translateX(-14px);transition:opacity .6s ease,transform .6s ease}
+.phases.in .ph{opacity:1;transform:none}
+.phases.in .ph:nth-child(1){transition-delay:0ms}
+.phases.in .ph:nth-child(2){transition-delay:100ms}
+.phases.in .ph:nth-child(3){transition-delay:200ms}
+.phases.in .ph:nth-child(4){transition-delay:300ms}
+
+.steps .step{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+.steps.in .step{opacity:1;transform:none}
+.steps.in .step:nth-child(1){transition-delay:0ms}
+.steps.in .step:nth-child(2){transition-delay:120ms}
+.steps.in .step:nth-child(3){transition-delay:240ms}
+.steps.in .step:nth-child(4){transition-delay:360ms}
+}
+@media(prefers-reduced-motion:reduce){
+.reveal,.phases .ph,.steps .step{opacity:1 !important;transform:none !important}
+}
+
+@media(hover:hover) and (pointer:fine){
+.btn:hover{border-color:var(--pink2);box-shadow:0 0 18px rgba(255,45,155,.4)}
+.btn.p:hover{box-shadow:0 0 30px rgba(255,45,155,.75)}
+.ic:hover{border-color:var(--pink2);background:#221528}
+nav a:hover{color:var(--pink2);border-bottom:2px solid var(--pink)}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ph{transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
+.ph:hover{transform:translateY(-4px);border-color:var(--pink);box-shadow:0 10px 30px rgba(255,45,155,.18)}
+.feat i{transition:border-color .3s ease,box-shadow .3s ease}
+.feat:hover i{border-color:var(--pink2);box-shadow:0 0 16px rgba(255,45,155,.45)}
+}
+
+/* ── tablet ── */
+@media(max-width:1100px){
+.hero .wrap{min-height:clamp(340px,42vw,440px)}
+.about .wrap{grid-template-columns:1fr;gap:28px;padding-top:38px;padding-bottom:38px}
+.feats{border-left:0;border-top:1px solid var(--line);padding:24px 0 0;grid-template-columns:1fr 1fr;gap:20px}
+.tok .wrap,.buy .wrap{gap:32px;padding-top:38px;padding-bottom:38px}
+.phases{grid-template-columns:1fr 1fr;gap:18px}
+.ph:not(:last-child)::after{display:none}
+.road .wrap{grid-template-columns:1fr;gap:22px}
+.chart-frame{min-height:420px}
+}
+
+/* ── mobile ── */
+@media(max-width:900px){
+section[id]{scroll-margin-top:calc(128px + env(safe-area-inset-top,0px))}
+
+.nav{flex-wrap:wrap;height:auto;padding:10px 0;row-gap:6px}
+nav{order:3;width:100%}
+nav ul{
+display:flex;gap:20px;overflow-x:auto;font-size:12.5px;
+padding:2px 0 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch
+}
+nav ul::-webkit-scrollbar{display:none}
+nav a{white-space:nowrap;padding:6px 0}
+.nav-r .btn{padding:8px 14px;font-size:11.5px}
+
+.hero{
+background:
+linear-gradient(180deg,rgba(7,4,12,.90) 0%,rgba(7,4,12,.78) 50%,rgba(7,4,12,.94) 100%),
+url("https://i.ibb.co/Mywr9G5P/file-0000000057b0820bb2be34dfbb8fc7bc.png") center top / cover no-repeat,
+var(--bg)
+}
+.hero .wrap{min-height:auto;padding-top:44px;padding-bottom:44px}
+.hero .wrap > div:first-child{max-width:none}
+.hero p{max-width:none}
+
+.about .wrap,.tok .wrap,.buy .wrap,.faq .wrap,footer .wrap{grid-template-columns:1fr}
+.feats{grid-template-columns:1fr;gap:16px}
+.buy-art{max-width:420px;margin:0 auto;order:-1}
+
+.chart-head{align-items:flex-start}
+.chart-frame{aspect-ratio:auto;min-height:480px;border-radius:12px}
+
+.club{
+background:
+linear-gradient(180deg,rgba(16,5,24,.92) 0%,rgba(16,5,24,.80) 45%,rgba(16,5,24,.96) 100%),
+url("https://i.ibb.co/JWQTyWgx/file-000000003f64820a91ab4c53444e7415.png") center top / cover no-repeat,
+#14061e
+}
+.club .wrap{min-height:auto;padding-top:44px;padding-bottom:44px}
+.club .wrap > div{max-width:none}
+
+.phases{grid-template-columns:1fr;gap:14px}
+.qs{grid-template-columns:1fr}
+
+.cta .wrap{flex-direction:column;text-align:center;gap:14px}
+.cta .r{width:100%}
+
+footer .wrap{gap:18px;text-align:center;justify-items:center}
+footer .logo{justify-content:center}
+footer ul{justify-content:center}
+.soc{justify-content:center}
+
+.btn{padding:13px 22px;font-size:13px;min-height:48px}
+.btn.sm{padding:11px 18px;font-size:12px;min-height:44px}
+.ic{width:44px;height:44px}
+}
+
+/* ── small phones ── */
+@media(max-width:560px){
+.wrap{padding:0 18px}
+.hero h1{font-size:clamp(34px,10vw,44px)}
+.hero h1 .script{font-size:clamp(42px,13vw,56px)}
+.hero .wrap{padding-top:36px;padding-bottom:36px}
+.btns{gap:10px}
+.hero .btns .btn{flex:1 1 100%}
+.row2{grid-template-columns:1fr;gap:10px}
+.box{padding:16px}
+.logo .script{font-size:22px}
+.logo b{font-size:13px}
+.logo .av{width:38px;height:38px;flex-basis:38px}
+.nav-r{gap:8px}
+.nav-r .btn span{display:none}
+.chart-frame{min-height:420px}
+.chart-head .btns{width:100%}
+.chart-head .btns .btn{flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="solgrad" x1="0" y1="1" x2="1" y2="0">
+<stop offset="0" stop-color="#9945ff"/>
+<stop offset="1" stop-color="#14f195"/>
+</linearGradient>
+</defs>
+</svg>
+
+<header><div class="wrap nav">
+<a class="logo" href="#home">
+<span class="av"><img src="https://i.ibb.co/8D3wNm8s/IMG-20261013-153302-079.jpg" alt="" width="42" height="42" decoding="async"></span>
+<span><span class="script">Madame</span><b>MUFFIN</b></span>
+</a>
+<nav><ul>
+<li><a class="on" href="#home" aria-current="page">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#token">Token</a></li>
+<li><a href="#chart">Chart</a></li>
+<li><a href="#buy">How to Buy</a></li>
+<li><a href="#community">Community</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ul></nav>
+<div class="nav-r">
+<a class="ic" href="https://t.me/MadameMuffinCommunity" target="_blank" rel="noopener noreferrer" aria-label="Telegram">✈</a>
+<a class="ic" href="https://x.com/madamemuffins0l" target="_blank" rel="noopener noreferrer" aria-label="X">𝕏</a>
+<a class="btn p sm glow" href="https://pump.fun/coin/Av56MWXnb5ZE3b7ZRffievu4sn5RWZPjhBaQvQHQpump?caller=HyVVXUKtjPdcQh5gjaTXxdx5Mu5qrFiu5bJumscdtNiH" target="_blank" rel="noopener noreferrer">👑<span> Buy $MM</span></a>
+</div>
+</div></header>
+
+<section class="hero" id="home"><div class="wrap">
+<div>
+<div class="chip">
+<svg class="sol" viewBox="0 0 397 311" aria-hidden="true" focusable="false"><path fill="url(#solgrad)" d="M64.6 237.9a10.4 10.4 0 017.4-3.1h320a5.2 5.2 0 013.7 8.9l-63.7 63.7a10.4 10.4 0 01-7.4 3.1h-320a5.2 5.2 0 01-3.7-8.9z"/><path fill="url(#solgrad)" d="M64.6 3.1A10.7 10.7 0 0172 .1h320a5.2 5.2 0 013.7 8.9L332 72.7a10.4 10.4 0 01-7.4 3.1h-320a5.2 5.2 0 01-3.7-8.9z"/><path fill="url(#solgrad)" d="M332 120.4a10.4 10.4 0 00-7.4-3.1h-320a5.2 5.2 0 00-3.7 8.9l63.7 63.7a10.4 10.4 0 007.4 3.1h320a5.2 5.2 0 003.7-8.9z"/></svg>
+Solana Memecoin
+</div>
+<h1>Build Your <span class="script">Way Out.</span></h1>
+<p class="lead">The future isn't waiting. Neither should you.</p>
+<p>Madame Muffin is a Solana-powered memecoin community built around creativity, memes, and the courage to create something different.</p>
+<div class="btns">
+<a class="btn p glow" href="https://pump.fun/coin/Av56MWXnb5ZE3b7ZRffievu4sn5RWZPjhBaQvQHQpump?caller=HyVVXUKtjPdcQh5gjaTXxdx5Mu5qrFiu5bJumscdtNiH" target="_blank" rel="noopener noreferrer">⇄ Buy $MM on pump.fun</a>
+<a class="btn" href="#chart">📈 Live Chart</a>
+<a class="btn" href="https://t.me/MadameMuffinCommunity" target="_blank" rel="noopener noreferrer">✈ Join Community</a>
+</div>
+</div>
+</div></section>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-track">
+<span><b>$MM</b> • Build Your Way Out</span>
+<span><b>Solana</b> • Fast &amp; Cheap</span>
+<span><b>Muffin Club</b> • Now Open 👑</span>
+<span><b>One Muffin</b> • One Community</span>
+<span><b>Sweet</b> • But Deadly</span>
+<span><b>$MM</b> • Build Your Way Out</span>
+<span><b>Solana</b> • Fast &amp; Cheap</span>
+<span><b>Muffin Club</b> • Now Open 👑</span>
+<span><b>One Muffin</b> • One Community</span>
+<span><b>Sweet</b> • But Deadly</span>
+</div></div>
+
+<section class="sec about" id="about"><div class="wrap">
+<div class="reveal">
+<p class="eyebrow">About Madame Muffin</p>
+<h2>Not just another <span class="script">Muffin.</span></h2>
+<p class="big">A little sweet. A little chaotic. Built for the culture.</p>
+<p>Madame Muffin brings a fresh personality to Solana meme culture. We're creating a space where humor meets creativity, where community members can share ideas, create memes, and participate in something bigger than themselves.</p>
+<p><b>One muffin. One community. Endless possibilities.</b></p>
+</div>
+<div class="feats">
+<div class="feat reveal" style="--d:0ms"><i aria-hidden="true">📷</i><div><b>Meme-Powered Culture</b><span>Memes bring people together. Creativity, humor and internet culture are at the heart of Madame Muffin.</span></div></div>
+<div class="feat reveal" style="--d:100ms"><i aria-hidden="true">👥</i><div><b>Community First</b><span>Every genuine member matters. Whether you're creating memes, sharing ideas or just vibing — there's a place for you.</span></div></div>
+<div class="feat reveal" style="--d:200ms"><i aria-hidden="true"><svg class="sol" viewBox="0 0 397 311" focusable="false"><path fill="url(#solgrad)" d="M64.6 237.9a10.4 10.4 0 017.4-3.1h320a5.2 5.2 0 013.7 8.9l-63.7 63.7a10.4 10.4 0 01-7.4 3.1h-320a5.2 5.2 0 01-3.7-8.9z"/><path fill="url(#solgrad)" d="M64.6 3.1A10.7 10.7 0 0172 .1h320a5.2 5.2 0 013.7 8.9L332 72.7a10.4 10.4 0 01-7.4 3.1h-320a5.2 5.2 0 01-3.7-8.9z"/><path fill="url(#solgrad)" d="M332 120.4a10.4 10.4 0 00-7.4-3.1h-320a5.2 5.2 0 00-3.7 8.9l63.7 63.7a10.4 10.4 0 007.4 3.1h320a5.2 5.2 0 003.7-8.9z"/></svg></i><div><b>Powered by Solana</b><span>Fast transactions, low fees, and an active memecoin culture.</span></div></div>
+<div class="feat reveal" style="--d:300ms"><i aria-hidden="true">💡</i><div><b>Creativity Without Limits</b><span>Think beyond the ordinary. Bring your ideas and help shape the community.</span></div></div>
+</div>
+</div></section>
+
+<section class="sec tok" id="token"><div class="wrap">
+<div class="reveal">
+<p class="eyebrow">Token Information</p>
+<h2>The <span class="pink">$MM</span> Details</h2>
+<p style="font-size:13px;color:var(--mut);margin:0">Everything you need before you swap. Always verify the contract through official channels.</p>
+</div>
+<div class="box reveal" style="--d:120ms">
+<div class="row2">
+<div><div class="lbl">Token Name</div><div class="val">Madame Muffin</div></div>
+<div><div class="lbl">Blockchain</div><div class="val">
+<svg class="sol" viewBox="0 0 397 311" aria-hidden="true" focusable="false"><path fill="url(#solgrad)" d="M64.6 237.9a10.4 10.4 0 017.4-3.1h320a5.2 5.2 0 013.7 8.9l-63.7 63.7a10.4 10.4 0 01-7.4 3.1h-320a5.2 5.2 0 01-3.7-8.9z"/><path fill="url(#solgrad)" d="M64.6 3.1A10.7 10.7 0 0172 .1h320a5.2 5.2 0 013.7 8.9L332 72.7a10.4 10.4 0 01-7.4 3.1h-320a5.2 5.2 0 01-3.7-8.9z"/><path fill="url(#solgrad)" d="M332 120.4a10.4 10.4 0 00-7.4-3.1h-320a5.2 5.2 0 00-3.7 8.9l63.7 63.7a10.4 10.4 0 007.4 3.1h320a5.2 5.2 0 003.7-8.9z"/></svg>
+Solana
+</div></div>
+</div>
+<div class="lbl">Contract Address</div>
+<div class="ca" id="ca" data-ca="HyVVXUKtjPdcQh5gjaTXxdx5Mu5qrFiu5bJumscdtNiH">📄 HyVVXUKtjPdcQh5gjaTXxdx5Mu5qrFiu5bJumscdtNiH</div>
+<div class="btns">
+<button class="btn p sm" id="copy" type="button">⧉ Copy CA</button>
+<a class="btn sm" href="https://pump.fun/coin/Av56MWXnb5ZE3b7ZRffievu4sn5RWZPjhBaQvQHQpump?caller=HyVVXUKtjPdcQh5gjaTXxdx5Mu5qrFiu5bJumscdtNiH" target="_blank" rel="noopener noreferrer">⇄ Buy on pump.fun ↗</a>
+</div>
+<p class="disc">Always verify the contract address through official channels before interacting. This is a high-risk memecoin — only use funds you can afford to lose.</p>
+</div>
+</div></section>
+
+<!-- ══════════ LIVE CHART ══════════ -->
+<section class="sec chart" id="chart"><div class="wrap">
+<div class="chart-head reveal">
+<div>
+<p class="eyebrow">Live Market</p>
+<h2>$MM <span class="pink">Chart</span></h2>
+</div>
+<div class="btns">
+<a class="btn p sm" href="https://pump.fun/coin/Av56MWXnb5ZE3b7ZRffievu4sn5RWZPjhBaQvQHQpump?caller=HyVVXUKtjPdcQh5gjaTXxdx5Mu5qrFiu5bJumscdtNiH" target="_blank" rel="noopener noreferrer">⇄ Buy on pump.fun</a>
+<a class="btn sm" href="https://dexscreener.com/solana/999Yx9GFpVrDeNgCwfMGhpqdDH1M5c27Kvk7FUvES9cu" target="_blank" rel="noopener noreferrer">📈 Open full chart ↗</a>
+</div>
+</div>
+<div class="chart-frame reveal" style="--d:120ms">
+<iframe
+  src="https://dexscreener.com/solana/999Yx9GFpVrDeNgCwfMGhpqdDH1M5c27Kvk7FUvES9cu?embed=1&theme=dark&trades=0&info=0"
+  title="Madame Muffin ($MM) live price chart"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  allowfullscreen></iframe>
+</div>
+<p class="disc" style="margin-top:12px">Chart data is provided by DexScreener. Prices are extremely volatile — nothing here is financial advice.</p>
+</div></section>
+
+<!-- ══════════ HOW TO BUY ══════════ -->
+<section class="sec buy" id="buy"><div class="wrap">
+<div class="reveal">
+<p class="eyebrow">How to Buy</p>
+<h2>Get your <span class="pink">$MM</span></h2>
+<p class="buy-intro">Four steps and you're in the club. Set up a Solana wallet, load it with SOL, and swap on pump.fun. No exchanges, no waiting — just verify the contract address before you confirm anything.</p>
+
+<div class="steps" id="steps">
+<div class="step">
+<span class="num">01</span>
+<i aria-hidden="true">👛</i>
+<div>
+<b>Get a Solana Wallet</b>
+<span>Download Phantom or Solflare on your phone or as a browser extension. Create a fresh wallet and write your recovery phrase down somewhere offline. Never share it with anyone — no legitimate project will ever ask for it.</span>
+</div>
+</div>
+
+<div class="step">
+<span class="num">02</span>
+<i aria-hidden="true"><svg class="sol" viewBox="0 0 397 311" focusable="false"><path fill="url(#solgrad)" d="M64.6 237.9a10.4 10.4 0 017.4-3.1h320a5.2 5.2 0 013.7 8.9l-63.7 63.7a10.4 10.4 0 01-7.4 3.1h-320a5.2 5.2 0 01-3.7-8.9z"/><path fill="url(#solgrad)" d="M64.6 3.1A10.7 10.7 0 0172 .1h320a5.2 5.2 0 013.7 8.9L332 72.7a10.4 10.4 0 01-7.4 3.1h-320a5.2 5.2 0 01-3.7-8.9z"/><path fill="url(#solgrad)" d="M332 120.4a10.4 10.4 0 00-7.4-3.1h-320a5.2 5.2 0 00-3.7 8.9l63.7 63.7a10.4 10.4 0 007.4 3.1h320a5.2 5.2 0 003.7-8.9z"/></svg></i>
+<div>
+<b>Add SOL to Your Wallet</b>
+<span>Buy SOL on any major exchange and send it to your wallet address. You'll need SOL to pay for the swap itself plus a small network fee. Keep a little extra aside so the transaction doesn't fail.</span>
+</div>
+</div>
+
+<div class="step">
+<span class="num">03</span>
+<i aria-hidden="true">🔍</i>
+<div>
+<b>Open the pump.fun Page</b>
+<span>Click the Buy button on this site, or search for Madame Muffin directly on pump.fun. Confirm the contract address matches the one in the Token section above — this is the single most important step. Scammers clone popular tokens constantly.</span>
+</div>
+</div>
+
+<div class="step">
+<span class="num">04</span>
+<i aria-hidden="true">⇄</i>
+<div>
+<b>Review and Swap</b>
+<span>Enter the amount of SOL you want to swap, then check the price impact, slippage and network fee before confirming. If the price impact looks unusually high, stop and recheck the address. Approve the transaction in your wallet and your $MM will appear shortly.</span>
+</div>
+</div>
+</div>
+
+<p class="buy-note"><b>Heads up:</b> memecoins are extremely volatile and can go to zero. Only ever use funds you can genuinely afford to lose, and never invest based on hype alone. Nothing here is financial advice.</p>
+
+<div class="btns" style="margin-top:22px">
+<a class="btn p glow" href="https://pump.fun/coin/Av56MWXnb5ZE3b7ZRffievu4sn5RWZPjhBaQvQHQpump?caller=HyVVXUKtjPdcQh5gjaTXxdx5Mu5qrFiu5bJumscdtNiH" target="_blank" rel="noopener noreferrer">⇄ Buy $MM now</a>
+<a class="btn" href="#chart">📈 Check the chart</a>
+</div>
+</div>
+
+<div class="buy-art reveal" style="--d:140ms">
+<img src="https://i.ibb.co/LhDQtjyY/file-00000000f11081faaa5d85fd8ec2ba1f.png" alt="How to buy Madame Muffin ($MM) on Solana" loading="lazy" decoding="async">
+</div>
+</div></section>
+
+<section class="sec club" id="community"><div class="wrap">
+<div class="reveal">
+<h2>The Muffin Club is open. 👑</h2>
+<div style="font-weight:500">Good memes. Great people. One community.</div>
+<p style="font-size:13px;color:var(--mut);max-width:400px;margin:8px 0 0">Madame Muffin is more than a token name. It's a place for people who enjoy the fun, creativity, and unpredictable meme culture.</p>
+<div class="perks"><span>😀 Memes &amp; community vibes</span><span>📢 Project updates</span><span>💬 Share ideas and get involved</span></div>
+<div class="btns">
+<a class="btn p" href="https://t.me/MadameMuffinCommunity" target="_blank" rel="noopener noreferrer">✈ Join Telegram</a>
+<a class="btn" href="https://x.com/madamemuffins0l" target="_blank" rel="noopener noreferrer">𝕏 Follow on X</a>
+</div>
+</div>
+</div></section>
+
+<section class="sec road"><div class="wrap">
+<div class="reveal">
+<p class="eyebrow">Our Journey</p>
+<h2>Community <span class="pink">Roadmap</span></h2>
+<p style="font-weight:600;font-size:13px;margin:16px 0 4px">The journey is just beginning.</p>
+<p style="font-size:12.5px;color:var(--mut);margin:0">Here's what we're building together:</p>
+</div>
+<div class="phases" id="phases">
+<div class="ph"><div class="e" aria-hidden="true">👑</div><div class="lbl">Phase 01</div><b>The First Batch</b><span>Launch the Madame Muffin identity, community channels and introduce the mascot.</span></div>
+<div class="ph"><div class="e" aria-hidden="true">👥</div><div class="lbl">Phase 02</div><b>The Muffin Club</b><span>Encourage collaborations, creative challenges and genuine participation.</span></div>
+<div class="ph"><div class="e" aria-hidden="true">🚀</div><div class="lbl">Phase 03</div><b>Spread the Sweetness</b><span>Explore community-inspired creative campaigns and wider awareness.</span></div>
+<div class="ph"><div class="e" aria-hidden="true">★</div><div class="lbl">Phase 04</div><b>Beyond the Bakery</b><span>Explore community-inspired experiences and future ideas based on feedback.</span></div>
+</div>
+</div></section>
+
+<section class="sec faq" id="faq"><div class="wrap">
+<div class="reveal"><p class="eyebrow">Frequently Asked Questions</p><h2>FAQ</h2></div>
+<div class="qs">
+<details class="reveal" style="--d:0ms"><summary>What is Madame Muffin?</summary><p>A Solana memecoin community built around creativity, memes and culture.</p></details>
+<details class="reveal" style="--d:80ms"><summary>Where can I find the contract address?</summary><p>In the Token section above. Always verify it through official channels.</p></details>
+<details class="reveal" style="--d:0ms"><summary>Which blockchain is Madame Muffin on?</summary><p>Madame Muffin lives on Solana.</p></details>
+<details class="reveal" style="--d:80ms"><summary>How can I buy $MM?</summary><p>Set up a Solana wallet, add SOL, then swap on pump.fun using the Buy button on this site. Verify the contract address before confirming.</p></details>
+<details class="reveal" style="--d:0ms"><summary>How can I join the community?</summary><p>Join the Telegram and follow on X using the buttons on this page.</p></details>
+<details class="reveal" style="--d:80ms"><summary>Is Madame Muffin a guaranteed investment?</summary><p>No. It is a high-risk memecoin. Only use funds you can afford to lose.</p></details>
+</div>
+</div></section>
+
+<section class="cta"><div class="wrap">
+<div><h3>The future isn't baked yet.</h3><div class="script">Let's create something worth remembering.</div></div>
+<div class="r">Build Your Way Out. Join the Muffin Movement. 🧁
+<div class="btns">
+<a class="btn p sm glow" href="https://pump.fun/coin/Av56MWXnb5ZE3b7ZRffievu4sn5RWZPjhBaQvQHQpump?caller=HyVVXUKtjPdcQh5gjaTXxdx5Mu5qrFiu5bJumscdtNiH" target="_blank" rel="noopener noreferrer">⇄ Buy $MM</a>
+<a class="btn sm" href="https://t.me/MadameMuffinCommunity" target="_blank" rel="noopener noreferrer">✈ Join Community</a>
+</div>
+</div>
+</div></section>
+
+<footer><div class="wrap">
+<div class="logo">
+<span class="av"><img src="https://i.ibb.co/8D3wNm8s/IMG-20261013-153302-079.jpg" alt="" width="42" height="42" loading="lazy" decoding="async"></span>
+<span><span class="script">Madame</span><b>MUFFIN</b></span>
+</div>
+<div>
+<small style="color:#fff;font-weight:600;font-size:11px">Build Your Way Out.</small>
+<small>Powered by Solana. Driven by memes. Built around community.</small>
+</div>
+<small>Madame Muffin is a high-risk memecoin created around internet culture and community participation. Cryptocurrency prices can be extremely volatile, and participants may lose their entire investment. Nothing on this website constitutes financial advice. Always do your own research.</small>
+</div>
+<div class="wrap" style="padding-top:0;padding-bottom:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px">
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#token">Token</a></li>
+<li><a href="#chart">Chart</a></li>
+<li><a href="#buy">How to Buy</a></li>
+<li><a href="#community">Community</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ul>
+<div class="soc">
+<a class="ic" href="https://t.me/MadameMuffinCommunity" target="_blank" rel="noopener noreferrer" aria-label="Telegram">✈</a>
+<a class="ic" href="https://x.com/madamemuffins0l" target="_blank" rel="noopener noreferrer" aria-label="X">𝕏</a>
+</div>
+</div>
+<div class="copy">© 2026 Madame Muffin. All rights reserved.</div>
+</footer>
+
+<script>
+/* ── copy contract address ── */
+document.getElementById('copy')?.addEventListener('click', async function(){
+  const btn = this;
+  const ca = document.getElementById('ca').dataset.ca;
+  const orig = btn.textContent;
+  try{
+    await navigator.clipboard.writeText(ca);
+  }catch{
+    const ta = Object.assign(document.createElement('textarea'), {value: ca});
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); }catch{}
+    ta.remove();
+  }
+  btn.textContent = '✓ Copied!';
+  setTimeout(() => { btn.textContent = orig; }, 1600);
+});
+
+/* ── scroll reveal + staggered groups ── */
+(function(){
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const targets = document.querySelectorAll('.reveal, #phases, #steps');
+  if(!('IntersectionObserver' in window) || reduced){
+    targets.forEach(el => el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12, rootMargin: '0px 0px -8% 0px'});
+  targets.forEach(el => io.observe(el));
+})();
+
+/* ── active nav link on scroll ── */
+(function(){
+  const links = [...document.querySelectorAll('nav a[href^="#"]')];
+  const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  if(!sections.length || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        links.forEach(l => l.classList.remove('on'));
+        const active = links.find(l => l.getAttribute('href') === '#' + e.target.id);
+        if(active) active.classList.add('on');
+      }
+    });
+  }, {rootMargin: '-45% 0px -50% 0px'});
+  sections.forEach(s => io.observe(s));
+})();
+</script>
+
+</body>
+</html>
