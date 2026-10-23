@@ -1,0 +1,1579 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AlphaVest AI — Platform Mockup</title>
+<style>
+  :root{
+    --bg:#080d18; --surface:#101a2e; --surface2:#0c1524; --border:#1d2a44;
+    --text:#e9eefb; --muted:#8fa3c4; --accent:#6366f1; --accent2:#4f46e5;
+    --accent-soft:#1e1b4b; --ok:#22c55e; --warn:#f59e0b; --danger:#ef4444;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    background:radial-gradient(1100px 560px at 85% -12%, #1a1a4a 0%, var(--bg) 58%) no-repeat, var(--bg);
+    color:var(--text); line-height:1.5; padding-bottom:96px;
+  }
+  a{color:var(--accent);text-decoration:none;cursor:pointer}
+  h1,h2,h3,h4{margin:0 0 .5rem;line-height:1.2}
+  h1{font-size:clamp(28px,5vw,44px);letter-spacing:-.02em}
+  h2{font-size:clamp(20px,3vw,26px);letter-spacing:-.01em}
+  h3{font-size:17px}
+  p{margin:0 0 .75rem}
+  .muted{color:var(--muted);font-size:14px}
+  .tiny{font-size:12px}
+  .container{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  .mockbar{
+    background:repeating-linear-gradient(45deg,#3a2c07,#3a2c07 10px,#2d2205 10px,#2d2205 20px);
+    color:#ffd88a;font-size:12px;text-align:center;padding:6px 12px;
+    letter-spacing:.04em;text-transform:uppercase;font-weight:600;
+  }
+
+  header.app{
+    position:sticky;top:0;z-index:40;background:rgba(8,13,24,.88);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--border);
+  }
+  .header-in{display:flex;align-items:center;gap:16px;padding:14px 20px;max-width:1120px;margin:0 auto}
+  .logo{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:17px;letter-spacing:-.01em;color:var(--text);white-space:nowrap}
+  .logo img{height:34px;width:auto;max-width:180px;object-fit:contain;border-radius:8px;display:block}
+  nav.main{margin-left:auto;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  nav.main button{
+    background:none;border:0;color:var(--muted);font:inherit;font-size:14px;
+    padding:8px 10px;border-radius:10px;cursor:pointer;
+  }
+  nav.main button:hover{color:var(--text);background:#16203a}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--accent);color:#fff;border:1px solid transparent;
+    padding:10px 16px;border-radius:11px;font:inherit;font-weight:600;font-size:14px;
+    cursor:pointer;transition:.15s;
+  }
+  .btn:hover{background:var(--accent2)}
+  .btn.ghost{background:transparent;border-color:#2a3a5f;color:var(--text)}
+  .btn.ghost:hover{background:#16203a}
+  .btn.ok{background:#15803d}
+  .btn.ok:hover{background:#166534}
+  .btn.danger{background:#b91c1c}
+  .btn.danger:hover{background:#991b1b}
+  .btn.sm{padding:6px 10px;font-size:12px;border-radius:8px}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+
+  .view{display:none;padding:28px 0 40px}
+  .view.active{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .grid{display:grid;gap:16px}
+  .grid.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .grid.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .card{
+    background:linear-gradient(180deg,var(--surface) 0%, #0d1526 100%);
+    border:1px solid var(--border);border-radius:var(--radius);padding:20px;
+  }
+  .card.flat{background:var(--surface2)}
+  .card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+  .stat{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.02em}
+  .kicker{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+
+  .hero{padding:26px 0 8px}
+  .hero p.lead{font-size:17px;color:var(--muted);max-width:620px}
+  .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .trust{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+  .trust .chip{
+    border:1px dashed #33456b;border-radius:999px;padding:6px 12px;
+    font-size:12px;color:var(--muted);background:#0b1322;
+  }
+
+  .step-num{
+    width:30px;height:30px;border-radius:9px;background:#252060;color:#c4b5fd;
+    display:grid;place-items:center;font-weight:800;font-size:14px;margin-bottom:10px;
+  }
+
+  .warn{
+    background:#2a1f08;border:1px solid #6b4a0e;color:#ffd88a;
+    border-radius:var(--radius);padding:16px;font-size:13.5px;margin-top:22px;
+  }
+  .warn strong{color:#ffc45e}
+  .info{
+    background:#0c1f33;border:1px solid #1e4066;color:#a9d0f5;
+    border-radius:var(--radius);padding:14px;font-size:13.5px;
+  }
+
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:600}
+  input,select,textarea{
+    width:100%;padding:11px 12px;border-radius:10px;border:1px solid #2a3a5f;
+    background:var(--surface2);color:var(--text);font:inherit;font-size:14px;
+  }
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+  input::placeholder{color:#5c7099}
+  .checkbox{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);margin-bottom:10px}
+  .checkbox input{width:16px;height:16px;margin-top:2px;flex:0 0 auto}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.row2{grid-template-columns:1fr}}
+
+  .auth-wrap{max-width:470px;margin:0 auto}
+  .auth-head{text-align:center;margin-bottom:22px}
+  .auth-head h1{margin-bottom:6px}
+  .auth-tabs{justify-content:center;margin-bottom:16px}
+  .auth-foot{text-align:center;font-size:12px;color:var(--muted);margin-top:14px}
+
+  .table-wrap{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+  th{
+    text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--muted);padding:10px;border-bottom:1px solid var(--border);white-space:nowrap;
+  }
+  td{padding:12px 10px;border-bottom:1px solid #16203a;vertical-align:middle}
+  tr:last-child td{border-bottom:0}
+  .empty{color:var(--muted);font-size:13.5px;padding:18px 10px;text-align:center}
+
+  .badge{
+    display:inline-block;padding:3px 9px;border-radius:999px;font-size:11.5px;
+    font-weight:700;border:1px solid;white-space:nowrap;
+  }
+  .b-pending{background:#2c2208;color:#fbbf24;border-color:#5d470e}
+  .b-ok{background:#0c2a19;color:#6ee7a5;border-color:#1c5c37}
+  .b-bad{background:#2b0f12;color:#fca5a5;border-color:#6b1d22}
+  .b-info{background:#0b1f33;color:#93c5fd;border-color:#1e4066}
+  .b-violet{background:#1e1b4b;color:#c4b5fd;border-color:#3730a3}
+
+  .divider{height:1px;background:var(--border);margin:24px 0}
+  .flex{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .spread{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .kv{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #16203a;font-size:14px}
+  .kv:last-child{border-bottom:0}
+  .kv .k{color:var(--muted)}
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+  .tabs button{
+    background:var(--surface2);border:1px solid var(--border);color:var(--muted);
+    padding:8px 14px;border-radius:10px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;
+  }
+  .tabs button.active{background:#252060;color:#c4b5fd;border-color:#3730a3}
+  .hidden{display:none!important}
+
+  .addr-box{
+    display:flex;gap:10px;align-items:center;
+    background:#070c16;border:1px dashed #2f4370;border-radius:12px;
+    padding:12px 14px;margin:8px 0 4px;
+  }
+  .addr-box code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:12.5px;color:#c7dbff;word-break:break-all;flex:1;line-height:1.5;
+  }
+  .qr{
+    width:148px;height:148px;border-radius:12px;flex:0 0 auto;
+    border:1px dashed #2f4370;background:
+      linear-gradient(135deg,#0b1322 25%,transparent 25%) 0 0/16px 16px,
+      linear-gradient(225deg,#0b1322 25%,transparent 25%) 0 0/16px 16px,
+      #0e1626;
+    display:grid;place-items:center;text-align:center;
+    font-size:10.5px;color:#5c7099;line-height:1.4;padding:10px;
+  }
+  .countdown{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:15px;font-weight:800;color:#fbbf24;letter-spacing:.04em;
+  }
+  .asset-note{
+    font-size:11.5px;color:#7d90b4;margin-top:4px;
+  }
+  .step-hint{
+    font-size:11px;color:#5c7099;text-transform:uppercase;letter-spacing:.08em;
+    font-weight:800;margin-bottom:6px;
+  }
+
+  footer.app{border-top:1px solid var(--border);margin-top:36px;padding:24px 0 8px;color:var(--muted);font-size:13px}
+  footer.app .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+  footer.app a{color:var(--muted);display:block;padding:3px 0;font-size:13px}
+  footer.app a:hover{color:var(--text)}
+  .legal-line{margin-top:20px;padding-top:16px;border-top:1px solid var(--border);font-size:12px;line-height:1.7}
+
+  .demo{
+    position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:60;
+    background:rgba(11,18,32,.96);border:1px solid #2a3a5f;border-radius:999px;
+    padding:8px 10px;display:flex;gap:4px;flex-wrap:wrap;justify-content:center;
+    box-shadow:0 12px 34px rgba(0,0,0,.55);max-width:calc(100vw - 24px);
+  }
+  .demo .lbl{font-size:10px;color:#5c7099;text-transform:uppercase;letter-spacing:.1em;padding:0 8px;align-self:center;font-weight:800}
+  .demo button{
+    background:transparent;border:0;color:var(--muted);font:inherit;font-size:12px;
+    font-weight:600;padding:7px 11px;border-radius:999px;cursor:pointer;white-space:nowrap;
+  }
+  .demo button:hover{background:#1a2540;color:var(--text)}
+  .demo button.active{background:var(--accent);color:#fff}
+
+  #toast{
+    position:fixed;top:70px;left:50%;transform:translateX(-50%) translateY(-16px);
+    background:#0e2a1a;border:1px solid #1c5c37;color:#a7f3c6;padding:11px 18px;
+    border-radius:11px;font-size:13.5px;font-weight:600;opacity:0;pointer-events:none;
+    transition:.25s;z-index:80;max-width:calc(100vw - 32px);text-align:center;
+  }
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  #toast.err{background:#2b0f12;border-color:#6b1d22;color:#fca5a5}
+</style>
+</head>
+<body>
+
+<header class="app">
+  <div class="header-in">
+    <a class="logo" href="#" onclick="go('landing');return false;">
+      <img src="https://i.ibb.co/Ld6rWh4W/IMG-20261019-WA0070.jpg" alt="AlphaVest AI logo" />
+    </a>
+    <nav class="main" id="main-nav"></nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- LANDING -->
+  <section id="view-landing" class="view active">
+    <div class="hero">
+      <div class="kicker">AI-assisted portfolio management</div>
+      <h1>Invest with clarity.</h1>
+      <p class="lead">
+        Verified accounts. Transparent fees. Clear risk disclosures.
+        AlphaVest AI publishes <strong>annualised target returns</strong> — not guarantees.
+        <span class="muted">All figures on this page are illustrative.</span>
+      </p>
+      <div class="cta-row">
+        <button class="btn" onclick="go('login');switchAuth('signup')">Create account</button>
+        <button class="btn ghost" onclick="go('login');switchAuth('login')">Log in</button>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 id="how">How it works</h2>
+    <p class="muted">Three steps. No hidden steps.</p>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card">
+        <div class="step-num">1</div>
+        <h3>Create account</h3>
+        <p class="muted">Email or phone, strong password, two-factor authentication.</p>
+      </div>
+      <div class="card">
+        <div class="step-num">2</div>
+        <h3>Fund your wallet</h3>
+        <p class="muted">Fiat via Monnify/Paystack, or crypto via a licensed on-ramp.</p>
+      </div>
+      <div class="card">
+        <div class="step-num">3</div>
+        <h3>Choose a plan</h3>
+        <p class="muted">Review the risk disclosure and target return before you invest.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 id="products">Investment plans</h2>
+    <p class="muted">
+      Target returns are <strong>annualised and illustrative</strong>. They are not fixed, not guaranteed, and are
+      shown for illustration only. Actual returns vary and capital is at risk.
+    </p>
+
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card">
+        <div class="flex" style="justify-content:space-between">
+          <h3 style="margin:0">Bronze — Conservative</h3>
+          <span class="badge b-ok">Lower risk</span>
+        </div>
+        <p class="muted" style="margin-top:8px">
+          Target return: <strong style="color:var(--text)">~8% p.a.</strong> (illustrative)
+        </p>
+        <div class="kv"><span class="k">Minimum</span><span>$50</span></div>
+        <div class="kv"><span class="k">Lock-up</span><span>90 days</span></div>
+        <div class="kv"><span class="k">Strategy</span><span>Money-market / T-bills</span></div>
+        <div class="kv"><span class="k">Management fee</span><span>1.5% p.a.</span></div>
+        <button class="btn ghost" style="width:100%;margin-top:14px" onclick="go('login');switchAuth('signup')">View details</button>
+      </div>
+
+      <div class="card">
+        <div class="flex" style="justify-content:space-between">
+          <h3 style="margin:0">Silver — Balanced</h3>
+          <span class="badge b-info">Medium risk</span>
+        </div>
+        <p class="muted" style="margin-top:8px">
+          Target return: <strong style="color:var(--text)">~11% p.a.</strong> (illustrative)
+        </p>
+        <div class="kv"><span class="k">Minimum</span><span>$150</span></div>
+        <div class="kv"><span class="k">Lock-up</span><span>180 days</span></div>
+        <div class="kv"><span class="k">Strategy</span><span>Corporate bonds + equity mix</span></div>
+        <div class="kv"><span class="k">Management fee</span><span>1.8% p.a.</span></div>
+        <button class="btn ghost" style="width:100%;margin-top:14px" onclick="go('login');switchAuth('signup')">View details</button>
+      </div>
+
+      <div class="card">
+        <div class="flex" style="justify-content:space-between">
+          <h3 style="margin:0">Gold — Growth</h3>
+          <span class="badge b-pending">High risk</span>
+        </div>
+        <p class="muted" style="margin-top:8px">
+          Target return: <strong style="color:var(--text)">~14% p.a.</strong> (illustrative)
+        </p>
+        <div class="kv"><span class="k">Minimum</span><span>$670</span></div>
+        <div class="kv"><span class="k">Lock-up</span><span>365 days</span></div>
+        <div class="kv"><span class="k">Strategy</span><span>Diversified equities</span></div>
+        <div class="kv"><span class="k">Management fee</span><span>2.0% p.a.</span></div>
+        <button class="btn ghost" style="width:100%;margin-top:14px" onclick="go('login');switchAuth('signup')">View details</button>
+      </div>
+
+      <div class="card">
+        <div class="flex" style="justify-content:space-between">
+          <h3 style="margin:0">Platinum — Managed</h3>
+          <span class="badge b-violet">High risk</span>
+        </div>
+        <p class="muted" style="margin-top:8px">
+          Target return: <strong style="color:var(--text)">10–16% p.a.</strong> (range, illustrative)
+        </p>
+        <div class="kv"><span class="k">Minimum</span><span>$5,000</span></div>
+        <div class="kv"><span class="k">Lock-up</span><span>365 days</span></div>
+        <div class="kv"><span class="k">Strategy</span><span>Discretionary managed portfolio</span></div>
+        <div class="kv"><span class="k">Management fee</span><span>2.2% p.a. + perf fee</span></div>
+        <button class="btn ghost" style="width:100%;margin-top:14px" onclick="go('login');switchAuth('signup')">View details</button>
+      </div>
+    </div>
+
+    <div class="warn">
+      <strong>Risk warning.</strong> Investments carry risk. Returns shown are annualised targets, not guarantees
+      and not promises of payment. The value of your investment can go down as well as up and you may lose some
+      or all of your capital. Past performance is not a reliable indicator of future results.
+      <em>Replace with the client's lawyer-approved disclosure before launch.</em>
+    </div>
+
+    <div class="info" style="margin-top:16px">
+      <strong>Referral programmes.</strong> This mockup does not include a recruitment-based referral bonus.
+      If the client wants a referral scheme, it must pay a one-off marketing credit — never a percentage that
+      incentivises recruiting new depositors.
+    </div>
+  </section>
+
+  <!-- LOGIN -->
+  <section id="view-login" class="view">
+    <div class="auth-wrap">
+      <div class="auth-head">
+        <div class="kicker">AlphaVest AI</div>
+        <h1>Welcome back</h1>
+        <p class="muted">Log in to reach your dashboard, deposits and withdrawals.</p>
+      </div>
+
+      <div class="tabs auth-tabs">
+        <button class="active" data-auth="login" onclick="switchAuth('login')">Log in</button>
+        <button data-auth="signup" onclick="switchAuth('signup')">Create account</button>
+      </div>
+
+      <div class="card" id="auth-login">
+        <form onsubmit="doLogin(event)">
+          <div class="field">
+            <label for="li-email">Email</label>
+            <input id="li-email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div class="field">
+            <label for="li-pass">Password</label>
+            <input id="li-pass" type="password" placeholder="Your password" required />
+          </div>
+          <div class="field">
+            <label for="li-otp">Two-factor code (optional in demo)</label>
+            <input id="li-otp" inputmode="numeric" maxlength="6" placeholder="6-digit code" />
+          </div>
+          <div class="flex" style="justify-content:space-between;margin-bottom:14px">
+            <div class="checkbox" style="margin:0">
+              <input type="checkbox" id="li-remember" />
+              <label for="li-remember" style="font-weight:400">Remember me</label>
+            </div>
+            <a onclick="toast('Password reset flow would open here.')" class="tiny">Forgot password?</a>
+          </div>
+          <button class="btn" type="submit" style="width:100%">Log in</button>
+          <p class="auth-foot">Demo: any valid email + password logs you in.</p>
+        </form>
+      </div>
+
+      <div class="card hidden" id="auth-signup">
+        <form id="signup-form" onsubmit="doSignup(event)">
+          <div class="field">
+            <label for="au-name">Full name</label>
+            <input id="au-name" placeholder="Chidi Okonkwo" required />
+          </div>
+          <div class="field">
+            <label for="au-email">Email</label>
+            <input id="au-email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div class="field">
+            <label for="au-pass">Password</label>
+            <input id="au-pass" type="password" placeholder="Minimum 10 characters" required />
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" id="au-terms" required />
+            <label for="au-terms" style="font-weight:400">I accept the Terms of Service and Risk Disclosure.</label>
+          </div>
+          <button class="btn" type="submit" id="signup-btn" style="width:100%">Create account</button>
+          <p class="auth-foot" id="signup-status">
+            Demo: any name + email + password creates an account.
+          </p>
+        </form>
+      </div>
+
+      <div class="info" style="margin-top:16px;font-size:12.5px">
+        <strong>Gated access.</strong> Only this page and the landing page are reachable before login.
+        Everything else unlocks after authentication.
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="view-dashboard" class="view">
+    <div class="spread" style="margin-bottom:18px">
+      <div>
+        <div class="kicker">Investor dashboard</div>
+        <h1 style="margin:4px 0 0">Welcome back, <span id="dash-name">Demo User</span></h1>
+      </div>
+      <div class="flex">
+        <button class="btn" onclick="go('deposit')">Deposit</button>
+        <button class="btn ghost" onclick="go('crypto')">Deposit crypto</button>
+        <button class="btn ghost" onclick="go('withdraw')">Withdraw</button>
+      </div>
+    </div>
+
+    <div class="grid g3">
+      <div class="card">
+        <div class="kicker">Available balance</div>
+        <div class="stat" id="stat-available">$0.00</div>
+        <p class="muted tiny" style="margin:6px 0 0">Ready to invest or withdraw</p>
+      </div>
+      <div class="card">
+        <div class="kicker">Total invested</div>
+        <div class="stat" id="stat-invested">$0.00</div>
+        <p class="muted tiny" style="margin:6px 0 0">Across all active plans</p>
+      </div>
+      <div class="card">
+        <div class="kicker">Pending withdrawals</div>
+        <div class="stat" id="stat-pending">$0.00</div>
+        <p class="muted tiny" style="margin:6px 0 0">Awaiting approval/settlement</p>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card">
+        <div class="card-head">
+          <h3 style="margin:0">Portfolio</h3>
+          <span class="badge b-info" id="portfolio-count">0 holdings</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Plan</th><th>Amount</th><th>Start</th><th>Maturity</th><th>Status</th></tr></thead>
+            <tbody id="portfolio-body">
+              <tr><td colspan="5" class="empty">No holdings yet. Make a deposit to get started.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3 style="margin:0">Recent transactions</h3>
+          <span class="muted tiny" id="tx-count">0 records</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Date</th><th>Type</th><th>Amount</th><th>Status</th><th>Reference</th></tr></thead>
+            <tbody id="tx-body">
+              <tr><td colspan="5" class="empty">No transactions yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="info" style="margin-top:16px">
+      <strong>Audit trail:</strong> every deposit and withdrawal is logged immutably with user ID,
+      IP and timestamp.
+    </div>
+  </section>
+
+  <!-- DEPOSIT FIAT -->
+  <section id="view-deposit" class="view">
+    <h1>Deposit funds</h1>
+    <p class="muted">Funds settle to the client's licensed settlement account. Fees are shown before you confirm.</p>
+
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card">
+        <form onsubmit="submitDeposit(event)">
+          <div class="field">
+            <label for="dep-amount">Amount (USD)</label>
+            <input id="dep-amount" type="number" min="10" step="10" placeholder="500" oninput="calcDepositFee()" required />
+          </div>
+          <div class="field">
+            <label for="dep-method">Payment method</label>
+            <select id="dep-method" onchange="calcDepositFee()">
+              <option value="monnify">Monnify — bank transfer / card</option>
+              <option value="paystack">Paystack — bank transfer / card</option>
+            </select>
+          </div>
+
+          <div class="card flat" style="padding:14px;margin-bottom:14px">
+            <div class="kv"><span class="k">Amount</span><span id="dep-f-amount">$0.00</span></div>
+            <div class="kv"><span class="k">Processing fee (1.5%, cap $10)</span><span id="dep-f-fee">$0.00</span></div>
+            <div class="kv"><span class="k"><strong>Credited to wallet</strong></span><span id="dep-f-net"><strong>$0.00</strong></span></div>
+          </div>
+
+          <button class="btn" type="submit" style="width:100%">Continue to payment</button>
+          <p class="muted tiny" style="margin-top:10px">
+            Fees shown are illustrative. Confirm actual pricing with Monnify/Paystack.
+          </p>
+        </form>
+
+        <div class="divider"></div>
+        <div class="spread">
+          <div>
+            <strong style="font-size:14px">Prefer crypto?</strong>
+            <p class="muted tiny" style="margin:4px 0 0">Deposit via a licensed on-ramp with per-user addresses.</p>
+          </div>
+          <button class="btn ghost sm" onclick="go('crypto')">Deposit crypto →</button>
+        </div>
+      </div>
+
+      <div class="card flat">
+        <h3>Settlement details</h3>
+        <div class="kv"><span class="k">Settlement account</span><span>[Client company name]</span></div>
+        <div class="kv"><span class="k">Bank</span><span>[Bank name]</span></div>
+        <div class="kv"><span class="k">Account no.</span><span>[•••• 1234]</span></div>
+        <div class="kv"><span class="k">Processor</span><span id="dep-processor">Monnify</span></div>
+        <div class="divider"></div>
+        <p class="muted tiny">
+          Deposits are reconciled daily. Failed or abandoned payments are automatically reversed by the processor.
+        </p>
+        <div class="warn" style="margin-top:14px">
+          Never send funds to a personal account. Only use the in-app payment flow.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOSIT CRYPTO -->
+  <section id="view-crypto" class="view">
+    <h1>Deposit crypto</h1>
+    <p class="muted" style="max-width:700px">
+      Addresses are issued <strong>per user, per deposit</strong> by the licensed on-ramp. Never send to an address
+      from outside this page, and never reuse an address after the invoice expires.
+    </p>
+
+    <div class="warn" style="margin-top:16px">
+      <strong>Addresses on this page are placeholders.</strong> They are non-functional by design — invalid
+      base58 / hex strings with <code>DEMO</code> embedded. Real addresses come from the processor's API after the
+      invoice is created.
+    </div>
+
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card">
+        <div class="step-hint">Step 1 — Create a deposit invoice</div>
+        <h3>Choose asset &amp; amount</h3>
+
+        <form onsubmit="createCryptoInvoice(event)">
+          <div class="field">
+            <label for="crypto-asset">Asset &amp; network</label>
+            <select id="crypto-asset" onchange="onAssetChange()">
+              <option value="USDT" data-net="TRC20 (Tron)" data-dec="2">Tether (USDT) — TRC20 (Tron)</option>
+              <option value="BTC"  data-net="Bitcoin"      data-dec="8">Bitcoin (BTC) — Bitcoin</option>
+              <option value="TRX"  data-net="Tron (TRX)"   data-dec="2">Tron (TRX) — Tron</option>
+              <option value="ETH"  data-net="ERC20 (Ethereum)" data-dec="6">Ethereum (ETH) — ERC20</option>
+              <option value="LTC"  data-net="Litecoin"     data-dec="8">Litecoin (LTC) — Litecoin</option>
+            </select>
+            <p class="asset-note" id="crypto-net-note">Network: TRC20 (Tron) · send only USDT on this network</p>
+          </div>
+
+          <div class="field">
+            <label for="crypto-amount">Amount to credit (USD)</label>
+            <input id="crypto-amount" type="number" min="20" step="10" placeholder="250" oninput="previewCrypto()" required />
+            <p class="asset-note" id="crypto-preview">Enter an amount to see the estimated crypto amount.</p>
+          </div>
+
+          <div class="card flat" style="padding:14px;margin-bottom:14px">
+            <div class="kv"><span class="k">Minimum</span><span>$20.00</span></div>
+            <div class="kv"><span class="k">Network fee</span><span>Paid by sender on-chain</span></div>
+            <div class="kv"><span class="k">Platform fee</span><span id="crypto-fee">$0.00</span></div>
+            <div class="kv"><span class="k"><strong>Credited to wallet</strong></span><span id="crypto-net-credit"><strong>$0.00</strong></span></div>
+          </div>
+
+          <div class="divider" style="margin:16px 0"></div>
+
+          <div class="step-hint">Step 2 — Source of funds (required)</div>
+          <div class="field">
+            <label for="crypto-sof">Where is this money coming from?</label>
+            <select id="crypto-sof" required>
+              <option value="">Select one…</option>
+              <option>Salary / employment income</option>
+              <option>Business income</option>
+              <option>Personal savings</option>
+              <option>Sale of assets</option>
+              <option>Other (describe in the next field)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="crypto-sof-detail">Additional detail (optional)</label>
+            <textarea id="crypto-sof-detail" rows="2" placeholder="Anything the compliance team should know"></textarea>
+          </div>
+
+          <div class="checkbox">
+            <input type="checkbox" id="crypto-attest" required />
+            <label for="crypto-attest" style="font-weight:400">
+              I confirm the funds are not the proceeds of crime, and I am not acting on behalf of a sanctioned person.
+            </label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" id="crypto-wallet-own" required />
+            <label for="crypto-wallet-own" style="font-weight:400">
+              I control the sending wallet and can prove ownership if asked.
+            </label>
+          </div>
+
+          <button class="btn" type="submit" style="width:100%;margin-top:6px">Create deposit invoice</button>
+        </form>
+      </div>
+
+      <div class="card flat">
+        <div class="step-hint">Step 3 — Send the funds</div>
+        <div id="crypto-invoice-empty">
+          <p class="muted">No invoice yet. Complete step 1 to generate a per-user deposit address.</p>
+          <div class="kv"><span class="k">Invoice</span><span>—</span></div>
+          <div class="kv"><span class="k">Address</span><span>—</span></div>
+          <div class="kv"><span class="k">Expires</span><span>—</span></div>
+        </div>
+
+        <div id="crypto-invoice-live" class="hidden">
+          <div class="spread" style="margin-bottom:10px">
+            <span class="badge b-pending" id="crypto-inv-badge">Awaiting payment</span>
+            <span class="countdown" id="crypto-countdown">30:00</span>
+          </div>
+
+          <div class="kv"><span class="k">Invoice ref</span><span id="crypto-inv-ref" style="font-family:ui-monospace,monospace;font-size:12.5px">—</span></div>
+          <div class="kv"><span class="k">Asset</span><span id="crypto-inv-asset">—</span></div>
+          <div class="kv"><span class="k">Amount to send</span><span id="crypto-inv-crypto">—</span></div>
+          <div class="kv"><span class="k">Credits to wallet</span><span id="crypto-inv-usd">—</span></div>
+
+          <div class="addr-box">
+            <div class="qr">QR issued<br />per user by<br />processor</div>
+            <code id="crypto-inv-addr">—</code>
+            <button class="btn ghost sm" onclick="copyAddr()" title="Copy address">Copy</button>
+          </div>
+          <p class="asset-note" id="crypto-inv-net">Network: —</p>
+
+          <div class="warn" style="margin-top:14px;font-size:12.5px">
+            <strong>Send only the stated asset on the stated network.</strong> Wrong-network transfers are usually unrecoverable.
+          </div>
+
+          <div class="info" style="margin-top:12px;font-size:12.5px">
+            <strong>Reconciliation:</strong> the processor emits a webhook on confirmation. Balance credited only after
+            <strong>[N] confirmations</strong> and AML screening clear.
+          </div>
+
+          <div class="flex" style="margin-top:14px">
+            <button class="btn ok" onclick="markSent()">I've sent the funds</button>
+            <button class="btn ghost" onclick="cancelInvoice()">Cancel invoice</button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <h3 style="font-size:14px">How this is wired in production</h3>
+        <ol class="muted tiny" style="padding-left:18px;margin:0">
+          <li>Backend calls the licensed on-ramp API → gets a per-user address + reference.</li>
+          <li>Address and reference are shown to the user; nothing is hardcoded.</li>
+          <li>Processor webhook hits <code>/webhooks/crypto</code> → matched by reference.</li>
+          <li>Source-of-funds + sanctions screening runs before crediting.</li>
+          <li>Only then is the ledger updated, with an immutable audit entry.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- WITHDRAW -->
+  <section id="view-withdraw" class="view">
+    <h1>Withdraw funds</h1>
+    <p class="muted">Withdrawals require two-factor confirmation and go through compliance review.</p>
+
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card">
+        <form onsubmit="submitWithdraw(event)">
+          <div class="field">
+            <label for="wd-amount">Amount (USD)</label>
+            <input id="wd-amount" type="number" min="10" step="10" placeholder="200" oninput="calcWithdrawFee()" required />
+            <p class="muted tiny" style="margin:6px 0 0">Available: <span id="wd-available">$0.00</span></p>
+          </div>
+          <div class="field">
+            <label for="wd-wallet">Destination crypto wallet</label>
+            <select id="wd-wallet" onchange="calcWithdrawFee()">
+              <option value="">No saved wallets — add one below</option>
+            </select>
+            <p class="muted tiny" style="margin:6px 0 0" id="wd-wallet-note">Add a wallet address and its chain to withdraw.</p>
+          </div>
+
+          <div class="card flat" style="padding:14px;margin-bottom:14px">
+            <div class="step-hint">Add a new wallet</div>
+            <div class="row2">
+              <div class="field">
+                <label for="wd-new-asset">Asset</label>
+                <select id="wd-new-asset" onchange="onWalletAssetChange()">
+                  <option value="USDT">Tether (USDT)</option>
+                  <option value="BTC">Bitcoin (BTC)</option>
+                  <option value="ETH">Ethereum (ETH)</option>
+                  <option value="TRX">Tron (TRX)</option>
+                  <option value="LTC">Litecoin (LTC)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="wd-new-chain">Chain / network</label>
+                <select id="wd-new-chain"></select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="wd-new-address">Wallet address</label>
+              <input id="wd-new-address" placeholder="Paste your wallet address" autocomplete="off" spellcheck="false" />
+            </div>
+            <div class="field">
+              <label for="wd-new-label">Label (optional)</label>
+              <input id="wd-new-label" placeholder="e.g. My Trust Wallet" maxlength="40" />
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="wd-new-confirm" />
+              <label for="wd-new-confirm" style="font-weight:400">I confirm this address belongs to me and supports the chain selected. Funds sent to a wrong address or network cannot be recovered.</label>
+            </div>
+            <button class="btn ghost sm" type="button" onclick="addWallet()">Save wallet</button>
+          </div>
+
+          <div class="field">
+            <label for="wd-otp">Two-factor code</label>
+            <input id="wd-otp" inputmode="numeric" maxlength="6" placeholder="6-digit code" />
+            <p class="muted tiny" style="margin:6px 0 0">Demo: any 6 digits will pass.</p>
+          </div>
+
+          <div class="card flat" style="padding:14px;margin-bottom:14px">
+            <div class="kv"><span class="k">Amount</span><span id="wd-f-amount">$0.00</span></div>
+            <div class="kv"><span class="k">Withdrawal fee (flat)</span><span id="wd-f-fee">$1.00</span></div>
+            <div class="kv"><span class="k"><strong>You receive</strong></span><span id="wd-f-net"><strong>$0.00</strong></span></div>
+            <div class="kv"><span class="k">Estimated crypto</span><span id="wd-f-crypto">—</span></div>
+          </div>
+
+          <button class="btn" type="submit" style="width:100%">Request withdrawal</button>
+        </form>
+      </div>
+
+      <div class="card flat">
+        <h3>Processing</h3>
+        <div class="kv"><span class="k">Review</span><span>Compliance approval</span></div>
+        <div class="kv"><span class="k">Estimated arrival</span><span>[X] business hours</span></div>
+        <div class="kv"><span class="k">Daily limit</span><span>[limit]</span></div>
+        <div class="divider"></div>
+        <p class="muted tiny">
+          Withdrawals are reviewed by the compliance team. Large or unusual withdrawals may require additional documentation.
+        </p>
+        <div class="warn" style="margin-top:14px">
+          Funds are sent to the wallet and chain you choose. Check the address and network carefully — blockchain transfers are irreversible.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEGAL -->
+  <section id="view-legal" class="view">
+    <h1>Risk &amp; legal</h1>
+    <p class="muted">Placeholder pages. The client's lawyer must review and approve every word before launch.</p>
+
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card">
+        <h3>Risk disclosure</h3>
+        <p class="muted">
+          Investments carry risk. The value of your investment can go down as well as up. Returns shown on this
+          platform are annualised targets or illustrations, not guarantees. You may lose some or all of your
+          capital. Past performance is not a reliable indicator of future results.
+        </p>
+        <p class="muted tiny">[Lawyer-approved disclosure to be inserted here.]</p>
+      </div>
+
+      <div class="card">
+        <h3>Terms of Service</h3>
+        <p class="muted">
+          [Placeholder] Eligibility, account obligations, fees, plan terms, suspension, liability limits,
+          governing law and dispute resolution.
+        </p>
+        <h3 style="margin-top:16px">Privacy Policy</h3>
+        <p class="muted">
+          [Placeholder] What data is collected, lawful basis, retention period, third-party processors, and
+          data-subject rights under NDPA/GDPR as applicable.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Identity verification (KYC)</h3>
+        <p class="muted">
+          [Placeholder] In production, all depositors must complete identity verification via the licensed
+          provider. Deposits are blocked until verification clears. This screen is intentionally omitted from
+          the current mockup.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Crypto custody &amp; AML</h3>
+        <p class="muted">
+          [Placeholder] Name the licensed custodian or on-ramp. State custody model, key control, source-of-funds
+          screening, travel-rule handling, and withdrawal whitelisting.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Complaints procedure</h3>
+        <div class="kv"><span class="k">Step 1</span><span>Contact support — [email/phone]</span></div>
+        <div class="kv"><span class="k">Step 2</span><span>Escalate to compliance — [email]</span></div>
+        <div class="kv"><span class="k">Step 3</span><span>External regulator/ombudsman — [details]</span></div>
+      </div>
+
+      <div class="card">
+        <h3>Company &amp; regulatory details</h3>
+        <div class="kv"><span class="k">Legal name</span><span>[Client company]</span></div>
+        <div class="kv"><span class="k">CAC number</span><span>[number]</span></div>
+        <div class="kv"><span class="k">Registered address</span><span>[address]</span></div>
+        <div class="kv"><span class="k">Licence / registration</span><span>[regulator + number]</span></div>
+        <div class="warn" style="margin-top:14px">
+          Do not publish a licence number until it has been verified with the regulator.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="app">
+    <div class="cols">
+      <div>
+        <div class="logo" style="margin-bottom:8px">
+          <img src="https://i.ibb.co/Ld6rWh4W/IMG-20261019-WA0070.jpg" alt="AlphaVest AI logo" style="height:38px" />
+        </div>
+      </div>
+      <div>
+        <strong style="color:var(--text);font-size:13px">Platform</strong>
+        <a onclick="go('landing')">Plans</a>
+        <a onclick="go('login')">Create account</a>
+        <a onclick="go('dashboard')">Dashboard</a>
+        <a onclick="go('crypto')">Deposit crypto</a>
+      </div>
+      <div>
+        <strong style="color:var(--text);font-size:13px">Legal</strong>
+        <a onclick="go('legal')">Terms of Service</a>
+        <a onclick="go('legal')">Privacy Policy</a>
+        <a onclick="go('legal')">Risk Disclosure</a>
+        <a onclick="go('legal')">Complaints</a>
+      </div>
+      <div>
+        <strong style="color:var(--text);font-size:13px">Contact</strong>
+        <a>[support email]</a>
+        <a>[phone]</a>
+        <a>[registered address]</a>
+      </div>
+    </div>
+    <div class="legal-line">
+      © <span id="year"></span>. Capital at risk. Returns are not guaranteed.
+    </div>
+  </footer>
+</main>
+
+<div class="demo" id="demo-bar" role="navigation" aria-label="Mockup screens"></div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<!-- ============================================================
+     EMAILJS SDK
+     ============================================================ -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+/* =========================================================
+   EMAILJS CONFIG — REPLACE THESE WITH YOUR OWN
+   =========================================================
+   1. Sign up at https://www.emailjs.com/
+   2. Add an email service (Gmail, Outlook, etc.) → copy SERVICE_ID
+   3. Create an email template → copy TEMPLATE_ID
+   4. Account → API Keys → copy PUBLIC_KEY
+   ========================================================= */
+const EMAILJS_CONFIG = {
+  PUBLIC_KEY:  '1SaetMR3i0lxTCgQG',
+  SERVICE_ID:  'service_na13v2b',
+  TEMPLATE_ID: 'template_hcd1m3n'
+};
+
+// Initialize EmailJS (safe to call even with placeholder keys)
+try {
+  emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
+} catch (e) {
+  console.warn('EmailJS init skipped — placeholder key.', e);
+}
+
+/* =========================================================
+   STATE
+   ========================================================= */
+const state = {
+  auth: { loggedIn: false },
+  user: { name:'Demo User', email:'demo@example.com' },
+  balance: 0,
+  invested: 0,
+  pending: 0,
+  portfolio: [],
+  tx: [],
+  cryptoInvoice: null
+};
+
+const VIEWS         = ['landing','login','dashboard','deposit','crypto','withdraw','legal'];
+const PUBLIC_VIEWS  = ['landing','login'];
+
+const DEMO_LOGGED_OUT = ['landing','login'];
+const DEMO_LOGGED_IN  = ['landing','dashboard','deposit','crypto','withdraw','legal'];
+const VIEW_LABELS = {
+  landing:'Landing', login:'Login', dashboard:'Dashboard',
+  deposit:'Deposit', crypto:'Crypto', withdraw:'Withdraw',
+  legal:'Legal'
+};
+
+/* =========================================================
+   AUTH-GATED ROUTING
+   ========================================================= */
+function go(name, silent){
+  if(!VIEWS.includes(name)) name = 'landing';
+
+  if(!PUBLIC_VIEWS.includes(name) && !state.auth.loggedIn){
+    if(!silent) toast('Log in to continue.', true);
+    name = 'login';
+  }
+
+  VIEWS.forEach(v => {
+    const el = document.getElementById('view-' + v);
+    if(el) el.classList.toggle('active', v === name);
+  });
+
+  document.querySelectorAll('#demo-bar button[data-view]').forEach(b => {
+    b.classList.toggle('active', b.dataset.view === name);
+  });
+
+  if(location.hash !== '#' + name) history.replaceState(null, '', '#' + name);
+  window.scrollTo({ top:0, behavior:'smooth' });
+
+  if(name === 'dashboard') renderDashboard();
+  if(name === 'withdraw')  renderWithdraw();
+  if(name === 'crypto'){ onAssetChange(); renderCryptoInvoice(); }
+}
+
+window.addEventListener('hashchange', () => {
+  go(location.hash.replace('#','') || 'landing');
+});
+
+function scrollToId(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+/* =========================================================
+   NAV & DEMO BAR
+   ========================================================= */
+function renderNav(){
+  const nav = document.getElementById('main-nav');
+  if(!nav) return;
+
+  if(!state.auth.loggedIn){
+    nav.innerHTML = `
+      <button onclick="go('landing');scrollToId('products')">Plans</button>
+      <button onclick="go('landing');scrollToId('how')">How it works</button>
+      <button onclick="go('login');switchAuth('login')">Log in</button>
+      <button class="btn sm" onclick="go('login');switchAuth('signup')">Get started</button>
+    `;
+  } else {
+    nav.innerHTML = `
+      <button onclick="go('landing')">Home</button>
+      <button onclick="go('dashboard')">Dashboard</button>
+      <button onclick="go('deposit')">Deposit</button>
+      <button onclick="go('crypto')">Crypto</button>
+      <button onclick="go('withdraw')">Withdraw</button>
+      <button onclick="go('legal')">Legal</button>
+      <button class="btn ghost sm" onclick="logout()">Log out</button>
+    `;
+  }
+}
+
+function renderDemoBar(){
+  const bar = document.getElementById('demo-bar');
+  if(!bar) return;
+
+  const views = state.auth.loggedIn ? DEMO_LOGGED_IN : DEMO_LOGGED_OUT;
+  const current = location.hash.replace('#','') || 'landing';
+
+  bar.innerHTML = `<span class="lbl">Screens</span>` +
+    views.map(v => `<button data-view="${v}" class="${v===current?'active':''}" onclick="go('${v}')">${VIEW_LABELS[v]||v}</button>`).join('') +
+    (state.auth.loggedIn
+      ? `<button onclick="logout()" style="color:#fca5a5">Log out</button>`
+      : '');
+}
+
+/* =========================================================
+   AUTH ACTIONS
+   ========================================================= */
+function switchAuth(tab){
+  document.querySelectorAll('.auth-tabs button').forEach(b => {
+    b.classList.toggle('active', b.dataset.auth === tab);
+  });
+  document.getElementById('auth-login').classList.toggle('hidden', tab !== 'login');
+  document.getElementById('auth-signup').classList.toggle('hidden', tab !== 'signup');
+}
+
+function doLogin(e){
+  e.preventDefault();
+  const email = document.getElementById('li-email').value.trim();
+  if(!email) return toast('Enter your email.', true);
+
+  state.auth.loggedIn = true;
+  state.user.email = email;
+  state.user.name  = email.split('@')[0] || 'Investor';
+
+  renderNav();
+  renderDemoBar();
+  toast('Logged in (demo).');
+  go('dashboard');
+}
+
+/* ---------------------------------------------------------
+   SIGNUP — sends a real email via EmailJS
+   --------------------------------------------------------- */
+async function doSignup(e){
+  e.preventDefault();
+
+  const name  = document.getElementById('au-name').value.trim();
+  const email = document.getElementById('au-email').value.trim();
+  const pass  = document.getElementById('au-pass').value;
+
+  if(!name)  return toast('Enter your full name.', true);
+  if(!email) return toast('Enter your email address.', true);
+  if(pass.length < 10) return toast('Password must be at least 10 characters.', true);
+
+  const btn    = document.getElementById('signup-btn');
+  const status = document.getElementById('signup-status');
+
+  // Loading state
+  btn.disabled = true;
+  btn.textContent = 'Sending welcome email…';
+  status.textContent = 'Creating your account and sending a confirmation email…';
+  status.style.color = 'var(--muted)';
+
+  // Generate a simple welcome reference
+  const welcomeRef = 'AV-' + Date.now().toString(36).toUpperCase();
+
+  const templateParams = {
+    to_name:      name,
+    to_email:     email,
+    from_name:    'AlphaVest AI',
+    reply_to:     'support@alpha-vest.ai',
+    subject:      'Welcome to AlphaVest AI — verify your account',
+    welcome_ref:  welcomeRef,
+    account_email: email,
+    signup_date:  new Date().toLocaleString('en-GB', {
+      dateStyle:'medium', timeStyle:'short'
+    })
+  };
+
+  try {
+    // ── REAL EMAIL SEND ─────────────────────────────────
+    const result = await emailjs.send(
+      EMAILJS_CONFIG.SERVICE_ID,
+      EMAILJS_CONFIG.TEMPLATE_ID,
+      templateParams
+    );
+
+    console.log('EmailJS success:', result.status, result.text);
+
+    // Only log the user in AFTER the email succeeds
+    state.auth.loggedIn = true;
+    state.user.name  = name;
+    state.user.email = email;
+
+    renderNav();
+    renderDemoBar();
+
+    status.textContent = `✓ Welcome email sent to ${email}. Logging you in…`;
+    status.style.color = 'var(--ok)';
+    toast('Account created — confirmation email sent.');
+
+    // Brief pause so the user sees the success state
+    setTimeout(() => go('dashboard'), 900);
+
+  } catch (err) {
+    console.error('EmailJS error:', err);
+
+    // Show the error but still create the account (demo-friendly)
+    const msg = err?.text || err?.message || 'Unknown error';
+    status.textContent = `⚠ Account created, but the welcome email could not be sent (${msg}). Logging you in anyway.`;
+    status.style.color = 'var(--warn)';
+
+    state.auth.loggedIn = true;
+    state.user.name  = name;
+    state.user.email = email;
+
+    renderNav();
+    renderDemoBar();
+
+    toast('Account created — email failed (see console).', true);
+    setTimeout(() => go('dashboard'), 1200);
+
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Create account';
+  }
+}
+
+function logout(){
+  state.auth.loggedIn = false;
+  state.cryptoInvoice = null;
+
+  renderNav();
+  renderDemoBar();
+  toast('Logged out.');
+  go('landing');
+}
+
+/* =========================================================
+   FORMATTERS
+   ========================================================= */
+const usd = n => '$' + Number(n || 0).toLocaleString('en-US', { minimumFractionDigits:2, maximumFractionDigits:2 });
+
+function cryptoAmt(v, dec){
+  return Number(v).toLocaleString('en-US', {
+    minimumFractionDigits: Math.min(dec, 8),
+    maximumFractionDigits: dec
+  });
+}
+
+let toastTimer;
+function toast(msg, isError){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.toggle('err', !!isError);
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3400);
+}
+
+function nowStamp(){
+  const d = new Date();
+  return d.toISOString().slice(0,16).replace('T',' ');
+}
+
+function ref(prefix){
+  return prefix + '-' + Math.random().toString(36).slice(2,8).toUpperCase();
+}
+
+/* Placeholder addresses — deliberately invalid */
+const PLACEHOLDER_ADDR = {
+  USDT: 'TXDEMO000000000000000000000000000',
+  BTC:  '1DEMOxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  TRX:  'TXDEMO000000000000000000000000001',
+  ETH:  '0xDEMO0000000000000000000000000000000000',
+  LTC:  'ltc1qdemo000000000000000000000000000000'
+};
+
+const RATES = { USDT:1.00, BTC:65000, TRX:0.13, ETH:3200, LTC:75 };
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+function renderDashboard(){
+  document.getElementById('dash-name').textContent = state.user.name.split(' ')[0] || 'Investor';
+  document.getElementById('stat-available').textContent = usd(state.balance);
+  document.getElementById('stat-invested').textContent  = usd(state.invested);
+  document.getElementById('stat-pending').textContent   = usd(state.pending);
+
+  const pBody = document.getElementById('portfolio-body');
+  document.getElementById('portfolio-count').textContent =
+    state.portfolio.length + (state.portfolio.length === 1 ? ' holding' : ' holdings');
+
+  if(!state.portfolio.length){
+    pBody.innerHTML = '<tr><td colspan="5" class="empty">No holdings yet. Make a deposit to get started.</td></tr>';
+  } else {
+    pBody.innerHTML = state.portfolio.map(p => `
+      <tr>
+        <td>${p.plan}</td>
+        <td>${usd(p.amount)}</td>
+        <td>${p.start}</td>
+        <td>${p.maturity}</td>
+        <td><span class="badge ${p.status === 'Active' ? 'b-ok' : 'b-info'}">${p.status}</span></td>
+      </tr>`).join('');
+  }
+
+  const tBody = document.getElementById('tx-body');
+  document.getElementById('tx-count').textContent =
+    state.tx.length + (state.tx.length === 1 ? ' record' : ' records');
+
+  if(!state.tx.length){
+    tBody.innerHTML = '<tr><td colspan="5" class="empty">No transactions yet.</td></tr>';
+  } else {
+    tBody.innerHTML = state.tx.map(t => {
+      const cls = t.status === 'Completed' ? 'b-ok'
+                : t.status === 'Pending' || t.status === 'Awaiting confirmation' ? 'b-pending'
+                : 'b-bad';
+      return `
+        <tr>
+          <td>${t.date}</td>
+          <td>${t.type}</td>
+          <td>${usd(t.amount)}</td>
+          <td><span class="badge ${cls}">${t.status}</span></td>
+          <td class="muted tiny">${t.ref}</td>
+        </tr>`;
+    }).join('');
+  }
+}
+
+function pushTx(type, amount, status, reference){
+  state.tx.unshift({
+    date: nowStamp(),
+    type,
+    amount,
+    status,
+    ref: reference || ref(type === 'Deposit' ? 'DEP' : type === 'Crypto deposit' ? 'CRY' : 'WDR')
+  });
+}
+
+/* =========================================================
+   FIAT DEPOSIT
+   ========================================================= */
+function depositFee(amount){ return Math.min(amount * 0.015, 10); }
+
+function calcDepositFee(){
+  const amount = parseFloat(document.getElementById('dep-amount').value) || 0;
+  const fee = depositFee(amount);
+  document.getElementById('dep-f-amount').textContent = usd(amount);
+  document.getElementById('dep-f-fee').textContent    = usd(fee);
+  document.getElementById('dep-f-net').innerHTML      = '<strong>' + usd(amount - fee) + '</strong>';
+  document.getElementById('dep-processor').textContent =
+    document.getElementById('dep-method').value === 'monnify' ? 'Monnify' : 'Paystack';
+}
+
+function submitDeposit(e){
+  e.preventDefault();
+  const amount = parseFloat(document.getElementById('dep-amount').value) || 0;
+  if(amount < 10) return toast('Minimum deposit is $10.', true);
+
+  const fee = depositFee(amount);
+  const net = amount - fee;
+  state.balance += net;
+  pushTx('Deposit', net, 'Completed');
+  renderDashboard();
+
+
+  toast('Deposit successful (demo). ' + usd(net) + ' credited.');
+  go('dashboard');
+}
+
+/* =========================================================
+   CRYPTO DEPOSIT
+   ========================================================= */
+function assetMeta(){
+  const sel = document.getElementById('crypto-asset');
+  const opt = sel.options[sel.selectedIndex];
+  return {
+    symbol: sel.value,
+    network: opt.dataset.net,
+    decimals: parseInt(opt.dataset.dec, 10)
+  };
+}
+
+function onAssetChange(){
+  const m = assetMeta();
+  const note = document.getElementById('crypto-net-note');
+  if(note) note.textContent = `Network: ${m.network} · send only ${m.symbol} on this network`;
+  previewCrypto();
+}
+
+function cryptoFee(amount){ return Math.min(amount * 0.01, 5); }
+
+function previewCrypto(){
+  const amountEl = document.getElementById('crypto-amount');
+  const prevEl   = document.getElementById('crypto-preview');
+  if(!amountEl || !prevEl) return;
+
+  const amount = parseFloat(amountEl.value) || 0;
+  const m = assetMeta();
+  const fee = cryptoFee(amount);
+  const net = Math.max(amount - fee, 0);
+
+  document.getElementById('crypto-fee').textContent      = usd(fee);
+  document.getElementById('crypto-net-credit').innerHTML = '<strong>' + usd(net) + '</strong>';
+
+  if(amount <= 0){
+    prevEl.textContent = 'Enter an amount to see the estimated crypto amount.';
+    return;
+  }
+  const rate = RATES[m.symbol] || 1;
+  const coin = net / rate;
+  prevEl.textContent = `≈ ${cryptoAmt(coin, m.decimals)} ${m.symbol} at an illustrative rate — actual amount set by the processor at invoice time.`;
+}
+
+function createCryptoInvoice(e){
+  e.preventDefault();
+
+  const amount = parseFloat(document.getElementById('crypto-amount').value) || 0;
+  const sof    = document.getElementById('crypto-sof').value;
+  const attest = document.getElementById('crypto-attest').checked;
+  const own    = document.getElementById('crypto-wallet-own').checked;
+
+  if(amount < 20)  return toast('Minimum crypto deposit is $20.', true);
+  if(!sof)         return toast('Select a source of funds.', true);
+  if(!attest)      return toast('Confirm the funds are not proceeds of crime.', true);
+  if(!own)         return toast('Confirm you control the sending wallet.', true);
+
+  const m = assetMeta();
+  const fee = cryptoFee(amount);
+  const net = amount - fee;
+  const rate = RATES[m.symbol] || 1;
+
+  state.cryptoInvoice = {
+    ref: ref('CRY'),
+    symbol: m.symbol,
+    network: m.network,
+    decimals: m.decimals,
+    usdAmount: net,
+    coinAmount: net / rate,
+    address: PLACEHOLDER_ADDR[m.symbol],
+    expiresAt: Date.now() + 30 * 60 * 1000,
+    status: 'Awaiting payment'
+  };
+
+  renderCryptoInvoice();
+  toast('Invoice created (demo). Placeholder address — no funds can be sent.');
+}
+
+function renderCryptoInvoice(){
+  const inv = state.cryptoInvoice;
+  const emptyEl = document.getElementById('crypto-invoice-empty');
+  const liveEl  = document.getElementById('crypto-invoice-live');
+  if(!emptyEl || !liveEl) return;
+
+  if(!inv){
+    emptyEl.classList.remove('hidden');
+    liveEl.classList.add('hidden');
+    return;
+  }
+
+  emptyEl.classList.add('hidden');
+  liveEl.classList.remove('hidden');
+
+  const badge = document.getElementById('crypto-inv-badge');
+  badge.textContent = inv.status;
+  badge.className = 'badge ' + (inv.status === 'Awaiting payment' ? 'b-pending'
+                              : inv.status === 'Confirming' ? 'b-info'
+                              : inv.status === 'Credited' ? 'b-ok' : 'b-bad');
+
+  document.getElementById('crypto-inv-ref').textContent   = inv.ref;
+  document.getElementById('crypto-inv-asset').textContent = `${inv.symbol} — ${inv.network}`;
+  document.getElementById('crypto-inv-crypto').textContent =
+    `${cryptoAmt(inv.coinAmount, inv.decimals)} ${inv.symbol}`;
+  document.getElementById('crypto-inv-usd').textContent   = usd(inv.usdAmount);
+  document.getElementById('crypto-inv-addr').textContent  = inv.address;
+  document.getElementById('crypto-inv-net').textContent   =
+    `Network: ${inv.network} · send only ${inv.symbol} on this network`;
+
+  tickCountdown();
+}
+
+function tickCountdown(){
+  const el = document.getElementById('crypto-countdown');
+  const inv = state.cryptoInvoice;
+  if(!el || !inv) return;
+
+  const remaining = Math.max(inv.expiresAt - Date.now(), 0);
+  const mm = String(Math.floor(remaining / 60000)).padStart(2,'0');
+  const ss = String(Math.floor((remaining % 60000) / 1000)).padStart(2,'0');
+  el.textContent = `${mm}:${ss}`;
+
+  if(remaining === 0 && inv.status === 'Awaiting payment'){
+    inv.status = 'Expired';
+    renderCryptoInvoice();
+    toast('Invoice expired. Create a new one for a fresh address.', true);
+  }
+}
+
+setInterval(tickCountdown, 1000);
+
+function copyAddr(){
+  const inv = state.cryptoInvoice;
+  if(!inv) return;
+  navigator.clipboard?.writeText(inv.address)
+    .then(() => toast('Placeholder address copied (not a real wallet).'))
+    .catch(() => toast('Copy failed — select the address manually.'));
+}
+
+function markSent(){
+  const inv = state.cryptoInvoice;
+  if(!inv || inv.status !== 'Awaiting payment'){
+    return toast('No open invoice.', true);
+  }
+
+  inv.status = 'Confirming';
+  renderCryptoInvoice();
+  pushTx('Crypto deposit', inv.usdAmount, 'Awaiting confirmation', inv.ref);
+
+
+  toast('Marked as sent. In production, the webhook credits after [N] confirmations.');
+}
+
+function cancelInvoice(){
+  const inv = state.cryptoInvoice;
+  if(!inv) return;
+  inv.status = 'Cancelled';
+  renderCryptoInvoice();
+  toast('Invoice cancelled. Address is no longer valid.');
+}
+
+/* =========================================================
+   WITHDRAW
+   ========================================================= */
+/* Supported chains per asset + address format checks */
+const WALLET_CHAINS = {
+  USDT: ['TRC20 (Tron)', 'ERC20 (Ethereum)', 'BEP20 (BNB Smart Chain)', 'Solana'],
+  BTC:  ['Bitcoin'],
+  ETH:  ['ERC20 (Ethereum)', 'Arbitrum One', 'Base'],
+  TRX:  ['Tron'],
+  LTC:  ['Litecoin']
+};
+
+const ADDRESS_RULES = {
+  'TRC20 (Tron)':            /^T[1-9A-HJ-NP-Za-km-z]{33}$/,
+  'Tron':                    /^T[1-9A-HJ-NP-Za-km-z]{33}$/,
+  'ERC20 (Ethereum)':        /^0x[a-fA-F0-9]{40}$/,
+  'BEP20 (BNB Smart Chain)': /^0x[a-fA-F0-9]{40}$/,
+  'Arbitrum One':            /^0x[a-fA-F0-9]{40}$/,
+  'Base':                    /^0x[a-fA-F0-9]{40}$/,
+  'Solana':                  /^[1-9A-HJ-NP-Za-km-z]{32,44}$/,
+  'Bitcoin':                 /^(bc1[a-z0-9]{25,59}|[13][a-km-zA-HJ-NP-Z1-9]{25,34})$/,
+  'Litecoin':                /^(ltc1[a-z0-9]{25,59}|[LM3][a-km-zA-HJ-NP-Z1-9]{26,33})$/
+};
+
+let wallets = [];   // saved withdrawal wallets (in memory for this demo)
+
+function shortAddr(a){
+  return a.length > 14 ? a.slice(0,6) + '…' + a.slice(-5) : a;
+}
+
+function onWalletAssetChange(){
+  const asset = document.getElementById('wd-new-asset').value;
+  document.getElementById('wd-new-chain').innerHTML =
+    WALLET_CHAINS[asset].map(c => `<option value="${c}">${c}</option>`).join('');
+}
+
+function renderWalletSelect(selectedId){
+  const sel = document.getElementById('wd-wallet');
+  if(!wallets.length){
+    sel.innerHTML = '<option value="">No saved wallets — add one below</option>';
+  } else {
+    sel.innerHTML = wallets.map(w => {
+      const text = `${w.label ? w.label + ' — ' : ''}${w.asset} · ${w.chain} · ${shortAddr(w.address)}`;
+      return `<option value="${w.id}">${text.replace(/</g,'&lt;')}</option>`;
+    }).join('');
+    sel.value = selectedId || wallets[wallets.length - 1].id;
+  }
+  const w = selectedWallet();
+  document.getElementById('wd-wallet-note').textContent = w
+    ? `Sending ${w.asset} on ${w.chain} to ${w.address}`
+    : 'Add a wallet address and its chain to withdraw.';
+  calcWithdrawFee();
+}
+
+function selectedWallet(){
+  const id = document.getElementById('wd-wallet').value;
+  return wallets.find(w => w.id === id) || null;
+}
+
+function addWallet(){
+  const asset   = document.getElementById('wd-new-asset').value;
+  const chain   = document.getElementById('wd-new-chain').value;
+  const address = document.getElementById('wd-new-address').value.trim();
+  const label   = document.getElementById('wd-new-label').value.trim();
+  const ok      = document.getElementById('wd-new-confirm').checked;
+
+  if(!address) return toast('Enter a wallet address.', true);
+  if(!ADDRESS_RULES[chain].test(address))
+    return toast('That address is not valid for ' + chain + '. Check it and the chain.', true);
+  if(wallets.some(w => w.address === address && w.chain === chain))
+    return toast('This wallet is already saved.', true);
+  if(!ok) return toast('Please confirm the address and chain are correct.', true);
+
+  const w = { id: ref('WAL'), asset, chain, address, label };
+  wallets.push(w);
+
+  document.getElementById('wd-new-address').value = '';
+  document.getElementById('wd-new-label').value = '';
+  document.getElementById('wd-new-confirm').checked = false;
+
+  renderWalletSelect(w.id);
+  toast('Wallet saved: ' + asset + ' on ' + chain + '.');
+}
+
+function renderWithdraw(){
+  document.getElementById('wd-available').textContent = usd(state.balance);
+  if(!document.getElementById('wd-new-chain').options.length) onWalletAssetChange();
+  renderWalletSelect(document.getElementById('wd-wallet').value);
+}
+
+function calcWithdrawFee(){
+  const amount = parseFloat(document.getElementById('wd-amount').value) || 0;
+  const fee = 1;
+  const net = Math.max(amount - fee, 0);
+  document.getElementById('wd-f-amount').textContent = usd(amount);
+  document.getElementById('wd-f-fee').textContent    = usd(fee);
+  document.getElementById('wd-f-net').innerHTML      = '<strong>' + usd(net) + '</strong>';
+
+  const w = selectedWallet();
+  const el = document.getElementById('wd-f-crypto');
+  if(el){
+    if(w && net > 0){
+      const dec = (w.asset === 'BTC' || w.asset === 'LTC') ? 8 : (w.asset === 'ETH' ? 6 : 2);
+      el.textContent = '≈ ' + (net / RATES[w.asset]).toFixed(dec) + ' ' + w.asset;
+    } else {
+      el.textContent = '—';
+    }
+  }
+}
+
+function submitWithdraw(e){
+  e.preventDefault();
+  const amount = parseFloat(document.getElementById('wd-amount').value) || 0;
+  const otp = document.getElementById('wd-otp').value;
+  const w = selectedWallet();
+  if(!w)                     return toast('Add and select a wallet to withdraw to.', true);
+  if(amount < 10)            return toast('Minimum withdrawal is $10.', true);
+  if(amount > state.balance) return toast('Amount exceeds available balance.', true);
+  if(!/^\d{6}$/.test(otp))   return toast('Enter a 6-digit two-factor code.', true);
+
+  state.balance -= amount;
+  state.pending += amount;
+  pushTx('Withdrawal', amount, 'Pending');
+  renderDashboard();
+
+  toast('Withdrawal requested: ' + w.asset + ' on ' + w.chain + ' to ' + shortAddr(w.address) + '.');
+  document.getElementById('wd-amount').value = '';
+  document.getElementById('wd-otp').value = '';
+  go('dashboard');
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+renderDashboard();
+calcDepositFee();
+onWalletAssetChange();
+renderWalletSelect();
+onAssetChange();
+renderCryptoInvoice();
+
+renderNav();
+renderDemoBar();
+
+const initial = location.hash.replace('#','') || 'landing';
+go(initial, true);
+</script>
+</body>
+</html>
